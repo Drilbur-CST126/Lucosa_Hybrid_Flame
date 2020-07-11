@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Code/DynamicCamera.gd" type="Script" id=1]
+
+[node name="DynamicCamera" type="Camera2D"]
+position = Vector2( -99840, -99910 )
+current = true
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+script = ExtResource( 1 )
