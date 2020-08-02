@@ -40,10 +40,4 @@ func _adjust_hp_display(hp: int, shards: int, broken: int):
 		curHeart += 1
 			
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		GlobalData.playerHp -= 1
-		print("Oof!")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	pass

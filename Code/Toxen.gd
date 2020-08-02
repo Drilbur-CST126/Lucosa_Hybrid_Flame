@@ -11,6 +11,7 @@ export var jumpVelocity := 256.0
 export var jumpHeight := 48.0
 export var uppercutVelocity := 256.0
 export var coyoteTime : = 0.1
+export var walkSpeed := 112.0
 export var runSpeed := 192.0
 export var runAcceleration := 2048.0
 export var knockbackSpeed := 64.0
@@ -24,9 +25,11 @@ var onGround: bool = false
 var amountJumped: float = 0.0
 var coyoteTimeGranted: float = 0.0
 var attacking: bool = false
+var running := false
 var canMove := true
 var canUppercut := false
 var uppercutting := false
+var animConnected := false
 
 signal hit_ground()
 
@@ -42,7 +45,7 @@ func _setAttackHitbox(bound: Vector2):
 
 func _ready():
 	#Engine.time_scale = 0.2
-	_look_left()
+	look_left()
 	$AttackArea.connect("body_entered", self, "_basic_attack")
 	$StunTumer.connect("timeout", self, "_set_can_move", [true])
 	$AttackArea/CollisionShape2D.disabled = false
@@ -55,8 +58,10 @@ func _process(_delta):
 			anim = "smol_attack_2"
 		$AnimatedSprite.play("default")
 		$AnimatedSprite.play(anim)
-		$AnimTimer.disconnect("timeout", $AnimatedSprite, "play")
+		if animConnected:
+			$AnimTimer.disconnect("timeout", $AnimatedSprite, "play")
 		$AnimTimer.connect("timeout", $AnimatedSprite, "play", ["default"])
+		animConnected = true
 		$AnimTimer.start(0.7)
 		attacking = true
 		_setAttackHitbox(attackHitbox)
@@ -74,19 +79,23 @@ func _physics_process(delta):
 
 func _process_x_velocity(delta):
 	if canMove:
+		if onGround:
+			running = Input.is_action_pressed("run")
+		var movespeed := runSpeed if running else walkSpeed
+	
 		var moving: bool = false
 		if Input.is_action_pressed("ui_left"):
 			velocity.x -= runAcceleration * delta
 			#velocity.x = -runSpeed
 			moving = true
-			if velocity.x < -runSpeed:
-				velocity.x = -runSpeed
+			if velocity.x < -movespeed:
+				velocity.x = -movespeed
 		if Input.is_action_pressed("ui_right"):
 			velocity.x += runAcceleration * delta
 			#velocity.x = runSpeed
 			moving = true
-			if velocity.x > runSpeed:
-				velocity.x = runSpeed
+			if velocity.x > movespeed:
+				velocity.x = movespeed
 		
 		if !moving:
 			if $AnimatedSprite.animation == "run":
@@ -105,15 +114,15 @@ func _process_x_velocity(delta):
 			$AnimatedSprite.play("run")
 		
 		if velocity.x < 0.0 && $AnimatedSprite.flip_h:
-			_look_left()
+			look_left()
 		if velocity.x > 0.0 && !$AnimatedSprite.flip_h:
-			_look_right()
+			look_right()
 
-func _look_left():
+func look_left():
 	$AnimatedSprite.flip_h = false
 	$AnimatedSprite.offset.x = -2
 
-func _look_right():
+func look_right():
 	$AnimatedSprite.flip_h = true
 	$AnimatedSprite.offset.x = 1
 
@@ -130,6 +139,7 @@ func _process_y_velocity(delta):
 		canUppercut = GlobalData.hasUppercut
 		onGround = true
 		coyoteTimeGranted = coyoteTime
+		#velocity.y = 0.0
 	else:
 		onGround = false
 		if canJump && coyoteTimeGranted <= 0.0:
@@ -137,6 +147,7 @@ func _process_y_velocity(delta):
 		
 	if canJump && Input.is_action_pressed("jump"):
 		velocity.y = -jumpVelocity
+		#print("Jumpe")
 		if test_move(transform, Vector2(0.0, velocity.y * delta)):
 			canJump = false
 		else:
@@ -167,6 +178,12 @@ func _basic_attack(other: Node):
 		enemyData.take_damage(attackDmg)
 		if uppercutting:
 			canUppercut = true
+			
+func look_at(pos: Vector2):
+	if position.x > pos.x:
+		look_left()
+	else:
+		look_right()
 			
 func knockback():
 	if $AnimatedSprite.flip_h:

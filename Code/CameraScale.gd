@@ -2,8 +2,12 @@ extends Node2D
 
 onready var viewport := get_viewport()
 
+func set_previous_screen():
+	GlobalData.lastRoom = name
+
 func _ready():
 	get_tree().connect("screen_resized", self, "_screen_resized")
+	connect("ready", self, "set_previous_screen")
 
 func _screen_resized():
 	var window_size := OS.get_window_size()

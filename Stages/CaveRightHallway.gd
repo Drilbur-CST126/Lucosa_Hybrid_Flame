@@ -13,5 +13,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	if ($Toxen.position.y > 0):
-		$DynamicCamera.limit_bottom = 180
+	var pos := $Toxen.position as Vector2
+	var dyn := $DynamicCamera
+	
+	if (pos.y <= 0):
+		dyn.dynamicLimitDown = 0
+	elif (pos.x > -320):
+		dyn.dynamicLimitDown = (960.0 - pos.x) * 180.0 / 1280.0
+	else:
+		dyn.dynamicLimitDown = 180
+		
+	dyn.dynamicLimitUp = dyn.dynamicLimitDown - dyn.height

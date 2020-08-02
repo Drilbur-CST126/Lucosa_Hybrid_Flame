@@ -1,15 +1,18 @@
 extends Node
 
+enum Direction {Utd, Dtu, Ltr, Rtl}
 
 # Declare member variables here. Examples:
 var playerHp := 5 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
+var lastRoom: String
 
-var hasUppercut := true
+var hasUppercut := false
 
 signal max_hp_changed(maxHp)
 signal hp_changed(hp, shards, broken)
+signal trans_begin(direction, destination)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

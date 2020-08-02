@@ -37,52 +37,52 @@ region = Rect2( 50, 26, 25, 26 )
 [sub_resource type="AtlasTexture" id=7]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 0, 78, 25, 26 )
+region = Rect2( 0, 52, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 25, 78, 25, 26 )
+region = Rect2( 25, 52, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 25, 26 )
+region = Rect2( 50, 52, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 50, 78, 25, 26 )
+region = Rect2( 0, 78, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 75, 78, 25, 26 )
+region = Rect2( 25, 78, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 100, 78, 25, 26 )
+region = Rect2( 0, 0, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 125, 78, 25, 26 )
+region = Rect2( 50, 78, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 0, 52, 25, 26 )
+region = Rect2( 75, 78, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 25, 52, 25, 26 )
+region = Rect2( 100, 78, 25, 26 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 9
 atlas = ExtResource( 4 )
-region = Rect2( 50, 52, 25, 26 )
+region = Rect2( 125, 78, 25, 26 )
 
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
@@ -96,19 +96,20 @@ animations = [ {
 "name": "smol_attack_1",
 "speed": 20.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 9 ), SubResource( 13 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": false,
 "name": "smol_attack_2",
 "speed": 20.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 12 ), SubResource( 16 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 5, 10 )
+[sub_resource type="CapsuleShape2D" id=18]
+radius = 5.0
+height = 10.0
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 0, 0 )
@@ -117,8 +118,6 @@ extents = Vector2( 0, 0 )
 collision_layer = 2
 script = ExtResource( 2 )
 uppercutVelocity = 288.0
-runSpeed = 128.0
-runAcceleration = 4096.0
 attackHitbox = Vector2( 10, 10 )
 uppercutHitbox = Vector2( 7, 10 )
 
@@ -127,7 +126,7 @@ material = ExtResource( 3 )
 position = Vector2( 0, -2 )
 frames = SubResource( 17 )
 animation = "run"
-frame = 3
+frame = 1
 playing = true
 offset = Vector2( -2, 0 )
 

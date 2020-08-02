@@ -9,12 +9,16 @@
 script = ExtResource( 4 )
 
 [node name="DynamicCamera" parent="." instance=ExtResource( 3 )]
-position = Vector2( 720, -180 )
-limit_left = -640
-limit_top = -180
-limit_right = 640
-limit_bottom = 0
+position = Vector2( 631, -34 )
+limit_left = -100000
+limit_top = -100000
+limit_right = 100000
+limit_bottom = 100000
 target = NodePath("../Toxen")
+dynamicLimitLeft = -640
+dynamicLimitRight = 640
+dynamicLimitUp = -180
+dynamicLimitDown = 0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

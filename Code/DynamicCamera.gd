@@ -9,12 +9,13 @@ var height := ProjectSettings.get_setting("display/window/size/height") as int
 export var lockOffset := 24.0
 export var snapOffset := 48.0
 export var snapSpeed := 256.0
+export var yCenter := 0.0
 export var target: NodePath
 
 export var dynamicLimitLeft := -100000
-export var dynamicLimitRight := -100000
+export var dynamicLimitRight := 100000
 export var dynamicLimitUp := -100000
-export var dynamicLimitDown := -100000
+export var dynamicLimitDown := 100000
 
 var curLock = Lock.CtrLeft
 
@@ -22,6 +23,8 @@ signal camera_lock_changed(lock)
 
 func _ready():
 	position = get_target_pos()
+	smoothing_enabled = true
+	print(position)
 
 func set_cur_lock(value):
 	curLock = value
@@ -61,13 +64,13 @@ func _physics_process(delta):
 				position.x = targetPos.x - lockOffset
 				curLock = Lock.CtrLeft
 		
-		position.y = targetPos.y
+		position.y = targetPos.y - yCenter
 	
-	if position.x + width / 2 > dynamicLimitRight:
-		position.x = dynamicLimitRight - width / 2
-	if position.x - width / 2 < dynamicLimitLeft:
-		position.x = dynamicLimitLeft + width / 2
-	if position.y + height / 2 > dynamicLimitDown:
-		position.y = dynamicLimitDown - height / 2
-	if position.y - height / 2 < dynamicLimitUp:
-		position.y = dynamicLimitUp + height / 2
+	if position.x + width / 2.0 > dynamicLimitRight:
+		position.x = dynamicLimitRight - width / 2.0
+	if position.x - width / 2.0 < dynamicLimitLeft:
+		position.x = dynamicLimitLeft + width / 2.0
+	if position.y + height / 2.0 > dynamicLimitDown:
+		position.y = dynamicLimitDown - height / 2.0
+	if position.y - height / 2.0 < dynamicLimitUp:
+		position.y = dynamicLimitUp + height / 2.0
