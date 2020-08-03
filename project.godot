@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lucosa"
-run/main_scene="res://Stages/CaveTallRoom.tscn"
+run/main_scene="res://Stages/Test.tscn"
 boot_splash/image="res://ezgif-2-ba2a3adeab76.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
