@@ -1,16 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ruicosa/Ruicosa.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/WIPS/Ruicosa.png" type="Texture" id=2]
+[ext_resource path="res://Code/AimReticle.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 5.0
-height = 10.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 10 )
 
 [node name="Ruicosa" type="KinematicBody2D"]
 script = ExtResource( 1 )
 walkSpeed = 128.0
 maxSpeedTime = 0.15
 doubleJumpHeight = 4.0
+jumpWidth = 12.0
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -2 )
+texture = ExtResource( 2 )
+offset = Vector2( -2, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="AimReticle" parent="." instance=ExtResource( 3 )]

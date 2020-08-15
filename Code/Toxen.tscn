@@ -126,7 +126,7 @@ material = ExtResource( 3 )
 position = Vector2( 0, -2 )
 frames = SubResource( 17 )
 animation = "run"
-frame = 5
+frame = 2
 playing = true
 offset = Vector2( -2, 0 )
 
