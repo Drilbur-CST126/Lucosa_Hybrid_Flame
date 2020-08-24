@@ -1,25 +1,129 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Ruicosa/Ruicosa.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/WIPS/Ruicosa.png" type="Texture" id=2]
-[ext_resource path="res://Code/AimReticle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://IMG_1123.PNG" type="Texture" id=2]
+[ext_resource path="res://IMG_1122.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 256, 0, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 384, 0, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 0, 139, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 128, 139, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 256, 139, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 384, 139, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 0, 278, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 128, 278, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 256, 278, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 384, 278, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 0, 417, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 128, 417, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 256, 417, 128, 139 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 9
+atlas = ExtResource( 4 )
+region = Rect2( 384, 417, 128, 139 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "Run",
+"speed": 30.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3, 10 )
+extents = Vector2( 4, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
 
 [node name="Ruicosa" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 1 )
 walkSpeed = 128.0
 maxSpeedTime = 0.15
-doubleJumpHeight = 4.0
-jumpWidth = 12.0
+minJumpHeight = 1.5
+doubleJumpHeight = 2.5
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -2 )
-texture = ExtResource( 2 )
-offset = Vector2( -2, 0 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -1.5 )
+scale = Vector2( 0.167, 0.167 )
+frames = SubResource( 19 )
+animation = "Run"
+frame = 11
+playing = true
+offset = Vector2( 20, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="AimReticle" parent="." instance=ExtResource( 3 )]
+[node name="Attack" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
+shape = SubResource( 2 )
+disabled = true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cave-export.png-168830d37949bc103195206c1c24fc16.stex"
+path="res://.import/CaveGround.PNG-35519db97e5e79ccf04e40c93c5ccfb6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Tilesets/Cave-export.png"
-dest_files=[ "res://.import/Cave-export.png-168830d37949bc103195206c1c24fc16.stex" ]
+source_file="res://Graphics/LevelAssets/CaveGround.PNG"
+dest_files=[ "res://.import/CaveGround.PNG-35519db97e5e79ccf04e40c93c5ccfb6.stex" ]
 
 [params]
 
@@ -19,8 +19,8 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
+flags/repeat=1
+flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=true
 flags/srgb=0

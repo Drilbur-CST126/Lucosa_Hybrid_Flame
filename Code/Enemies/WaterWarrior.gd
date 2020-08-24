@@ -64,8 +64,8 @@ func _end_attack():
 	velocity.x = walkVelocity
 	
 func _knockback(entity: Node):
-	if entity.get_class() == "Toxen":
-		entity.look_at(position)
+	if entity.get_class() == "Ruicosa":
+		#entity.look_at(position)
 		entity.knockback()
 		if $AnimatedSprite.animation == "attack":
 			GlobalData.playerHp -= 1
