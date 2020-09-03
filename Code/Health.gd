@@ -1,5 +1,6 @@
-extends AnimatedSprite
+extends Sprite
 
+const healthFire := Color("#ba482f")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -11,18 +12,15 @@ func _ready():
 	pass # Replace with function body.
 
 func set_full():
-	play("full")
+	#play("full")
+	pass
 	
 func set_empty():
-	play("empty")
+	#play("empty")
+	pass
 
 func set_filling(amt: int):
-	play("filling")
-	frame = amt - 1
-	stop()
-	
-func set_broken():
-	play("broken")
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

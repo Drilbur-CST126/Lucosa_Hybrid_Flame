@@ -18,9 +18,9 @@ signal on_block
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hp = maxHp
-	connect("on_death", self, "_give_hp_shards")
+	connect("on_death", self, "give_hp_shards")
 	
-func _give_hp_shards():
+func give_hp_shards():
 	GlobalData.hpShards += deathShards
 
 func take_damage(amt: int):

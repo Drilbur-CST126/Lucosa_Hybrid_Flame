@@ -20,27 +20,27 @@ region = Rect2( 32, 0, 32, 27 )
 [sub_resource type="AtlasTexture" id=4]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 160, 27, 32, 27 )
+region = Rect2( 32, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 32, 27, 32, 27 )
+region = Rect2( 64, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 64, 27, 32, 27 )
+region = Rect2( 96, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 96, 27, 32, 27 )
+region = Rect2( 128, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 128, 27, 32, 27 )
+region = Rect2( 160, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 9
@@ -54,15 +54,15 @@ animations = [ {
 "name": "default",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "attack_hold",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 8 ), SubResource( 8 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 7 ), SubResource( 7 ) ],
 "loop": false,
 "name": "attack",
 "speed": 15.0
+}, {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "attack_hold",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 9 ) ],
 "loop": true,

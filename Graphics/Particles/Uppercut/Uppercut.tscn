@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Graphics/Particles/Uppercut/Uppercut.PNG" type="Texture" id=1]
+[ext_resource path="res://Code/Polish/ParticleSprite.tscn" type="PackedScene" id=2]
+
+[node name="Uppercut" type="Node2D"]
+
+[node name="ParticleSprite" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 4 )
+texture = ExtResource( 1 )
+duration = 0.2
+velocity = Vector2( 0, -32 )
+eraseParent = true

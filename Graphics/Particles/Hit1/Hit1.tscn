@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Code/Polish/ParticleSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Particles/Hit1/Hit1.png" type="Texture" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParticleSprite" parent="." instance=ExtResource( 1 )]
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 4
+duration = 0.333
+fps = 24
+eraseParent = true

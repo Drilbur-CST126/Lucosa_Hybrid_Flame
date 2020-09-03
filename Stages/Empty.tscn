@@ -14,7 +14,7 @@ margin_left = -320.0
 margin_top = -180.0
 margin_right = 320.0
 margin_bottom = 180.0
-color = Color( 0.45098, 0.219608, 0.219608, 1 )
+color = Color( 0.192157, 0.231373, 0.219608, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -33,13 +33,22 @@ position = Vector2( -16.0243, -11.6771 )
 [node name="FlyMushroom2" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 56.6029, -12.0263 )
 
+[node name="FlyMushroom3" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( -263.092, 124.404 )
+
+[node name="FlyMushroom4" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( -264.313, 69.0173 )
+
+[node name="FlyMushroom5" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( -263.906, 17.296 )
+
 [node name="WaterWarrior" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 264, 154 )
 target = NodePath("../../Ruicosa")
 moving = false
 
 [node name="Ruicosa" parent="." instance=ExtResource( 2 )]
-position = Vector2( 205.251, 148.497 )
+position = Vector2( 205.251, 156 )
 
 [node name="DynamicCamera" parent="." instance=ExtResource( 3 )]
 position = Vector2( 160, 90 )

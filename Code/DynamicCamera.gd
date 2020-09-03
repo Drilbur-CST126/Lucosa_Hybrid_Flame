@@ -25,6 +25,8 @@ func _ready():
 	position = get_target_pos()
 	smoothing_enabled = true
 	print(position)
+	width *= zoom.x
+	height *= zoom.y
 
 func set_cur_lock(value):
 	curLock = value
