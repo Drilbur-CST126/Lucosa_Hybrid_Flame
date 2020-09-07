@@ -14,14 +14,17 @@ enum ActionState {
 	DoubleJump, 
 	Jab, 
 	Dive, 
-	Knockback
+	Knockback,
+	Transforming
 }
 
 
 const animOffsets := {
 	"Idle": -20,
 	"Run": 20,
-	"Lucosa_Idle": -20
+	"Transform": -20,
+	"Lucosa_Idle": -20,
+	"Lucosa_Run": -20,
 }
 
 const walkSpeed := 128.0
@@ -64,7 +67,7 @@ func get_class():
 func look_at(pos: Vector2):
 	self.facingRight = pos.x > position.x
 	
-func knockback():
+func knockback(damage := 0):
 	if state == ActionState.Dive:
 		if facingRight:
 			velocity.x = -walkSpeed
@@ -74,6 +77,9 @@ func knockback():
 		state = ActionState.Normal
 		canDoubleJump = true
 	else:
+		if (damage > 0):
+			GlobalData.playerHp -= damage
+		
 		if facingRight:
 			velocity.x = -knockbackSpeed
 		else:
@@ -89,11 +95,12 @@ func set_facing_right(value: bool):
 	
 func set_lucosa_form(value: bool):
 	lucosaForm = value
-	play_anim("Idle")
+	#play_anim("Idle")
 	
 func play_anim(anim: String):
 	if lucosaForm:
 		anim = "Lucosa_" + anim
+		
 	if !animOffsets.has(anim):
 		play_anim("Idle")
 	else:
@@ -123,7 +130,7 @@ func dive():
 		velocity.y = knockbackSpeed if Input.is_action_pressed("ui_down") else 0.0
 		state = ActionState.Dive
 		
-func doubleJump():
+func double_jump():
 	if canDoubleJump:
 		velocity.y = doubleJumpImpulse
 		state = ActionState.DoubleJump
@@ -155,7 +162,7 @@ func attack():
 		
 func land_attack(var target: Node2D):
 	if target.has_node("EnemyData"):
-		print("ATTACK HIT!")
+		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
 		enemyData.take_damage(attackDmg)
 		
@@ -184,7 +191,7 @@ func uppercut():
 		
 func land_uppercut(var target: Node2D):
 	if target.has_node("EnemyData"):
-		print("UPPERCUT HIT!")
+		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
 		enemyData.take_damage(attackDmg)
 		canDoubleJump = true
@@ -192,6 +199,11 @@ func land_uppercut(var target: Node2D):
 func set_can_attack():
 	canAttack = true
 	#attack()
+	
+func on_anim_complete():
+	if state == ActionState.Transforming:
+		play_anim("Idle")
+		state = ActionState.Normal
 	
 func is_air_state():
 	return state == ActionState.Falling \
@@ -203,7 +215,8 @@ func is_air_state():
 	
 func is_momentum_state():
 	return state == ActionState.Dive \
-		|| state == ActionState.Knockback
+		|| state == ActionState.Knockback \
+		|| state == ActionState.Transforming
 
 func _ready():
 	var jumpTime := jumpWidth * 4.0 / walkSpeed
@@ -219,6 +232,7 @@ func _ready():
 	get_parent().call_deferred("add_child", hud)
 	
 	$AttackTimer.connect("timeout", self, "set_can_attack")
+	$Sprite.connect("animation_finished", self, "on_anim_complete")
 	
 	self.facingRight = false
 	#play_anim("Idle")
@@ -233,6 +247,9 @@ func _physics_process(delta: float):
 		ruirui_abilities()
 		
 	if Input.is_action_pressed("ui_up") && Input.is_action_just_pressed("attack"):
+		play_anim("Transform")
+		state = ActionState.Transforming
+		velocity.x = 0.0
 		self.lucosaForm = !lucosaForm
 		emit_signal("formSwap", "lucosa" if self.lucosaForm else "ruirui")
 		
@@ -245,13 +262,13 @@ func _physics_process(delta: float):
 		state = ActionState.Falling
 
 func ruirui_abilities():
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") && !Input.is_action_pressed("ui_up"):
 		dive()
 	if Input.is_action_just_pressed("jump") && !is_on_floor():
-		doubleJump()
+		double_jump()
 		
 func lucosa_abilities():
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") && !Input.is_action_pressed("ui_up"):
 		attack()
 	if Input.is_action_just_pressed("jump") && !is_on_floor():
 		uppercut()

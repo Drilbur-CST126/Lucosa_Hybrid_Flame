@@ -3,6 +3,8 @@ extends CanvasLayer
 const Health = preload("res://Code/Health.tscn")
 
 const bg := Color("#544b46")
+const FIRST_HEART_OFFSET := 180
+const NEXT_HEART_OFFSET := 90
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -20,17 +22,17 @@ func set_icon(form: String):
 	$Visuals/LucosaIcon.visible = form == "lucosa"
 	
 func adjust_max_hp_display(maxHp: int):
-	$Background.margin_right = 3 + (12 * maxHp)
+	#$Background.margin_right = 3 + (12 * maxHp)
 	if curNumHearts < maxHp:
 		for i in range(maxHp - curNumHearts):
 			var heart := Health.instance()
-			heart.offset.x = 7 + (12 * (i + curNumHearts))
+			heart.position.x = FIRST_HEART_OFFSET + (NEXT_HEART_OFFSET * (i + curNumHearts))
 			$Hearts.add_child(heart)
 	
 	curNumHearts = maxHp
-	adjust_hp_display(GlobalData.playerHp, GlobalData.hpShards, 0)
+	adjust_hp_display(GlobalData.playerHp, GlobalData.hpShards)
 
-func adjust_hp_display(hp: int, shards: int, broken: int):
+func adjust_hp_display(hp: int, shards: int):
 	var curHeart := 0
 	for node in $Hearts.get_children():
 		var heart = node

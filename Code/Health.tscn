@@ -1,6 +1,49 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Graphics/HUD.PNG" type="Texture" id=1]
 [ext_resource path="res://Code/Health.gd" type="Script" id=2]
 
-[node name="Health" type="Sprite"]
+[sub_resource type="AtlasTexture" id=1]
+flags = 9
+atlas = ExtResource( 1 )
+region = Rect2( 333.723, 8.208, 100.5, 99.8 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 9
+atlas = ExtResource( 1 )
+region = Rect2( 433, 14, 74, 88 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 9
+atlas = ExtResource( 1 )
+region = Rect2( 234, 8, 102, 102 )
+
+[node name="Health" type="Node2D"]
+pause_mode = 2
+position = Vector2( 50, 55 )
+scale = Vector2( 0.9, 0.9 )
 script = ExtResource( 2 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.329412, 0.294118, 0.27451, 1 )
+texture = SubResource( 1 )
+
+[node name="Fill" type="Sprite" parent="."]
+modulate = Color( 0.729412, 0.282353, 0.184314, 1 )
+texture = SubResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 99 )
+
+[node name="Fire" type="Sprite" parent="."]
+position = Vector2( 5.50758, 0.250343 )
+texture = SubResource( 3 )
+
+[node name="Flash" type="Sprite" parent="."]
+visible = false
+texture = SubResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 99 )
+
+[node name="Border" type="Sprite" parent="."]
+position = Vector2( 0, 1 )
+texture = SubResource( 2 )

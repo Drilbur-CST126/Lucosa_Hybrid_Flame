@@ -18,8 +18,22 @@ export var dynamicLimitUp := -100000
 export var dynamicLimitDown := 100000
 
 var curLock = Lock.CtrLeft
+var shakeSeverity := 0.0
+var shaking := false
+
 
 signal camera_lock_changed(lock)
+
+
+func get_class():
+	return "DynamicCamera"
+	
+func shake(severity: float, duration: float):
+	shakeSeverity = severity
+	shaking = true
+	yield(get_tree().create_timer(duration), "timeout")
+	shaking = false
+	offset = Vector2.ZERO
 
 func _ready():
 	position = get_target_pos()
@@ -27,6 +41,7 @@ func _ready():
 	print(position)
 	width *= zoom.x
 	height *= zoom.y
+	GlobalData.camera = self
 
 func set_cur_lock(value):
 	curLock = value
@@ -76,3 +91,7 @@ func _physics_process(delta):
 		position.y = dynamicLimitDown - height / 2.0
 	if position.y - height / 2.0 < dynamicLimitUp:
 		position.y = dynamicLimitUp + height / 2.0
+		
+	if shaking:
+		offset = Vector2(GlobalData.random.randf_range(-shakeSeverity, shakeSeverity), \
+				GlobalData.random.randf_range(-shakeSeverity, shakeSeverity))

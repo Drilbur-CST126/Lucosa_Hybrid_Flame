@@ -112,7 +112,6 @@ velocity = Vector2( 256, 0 )
 gravity = 1024.0
 
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
-deathShards = 2
 maxHp = 3
 blocking = true
 

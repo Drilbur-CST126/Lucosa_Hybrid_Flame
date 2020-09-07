@@ -47,9 +47,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hearts" type="Node2D" parent="."]
-visible = false
-
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="IconBackground" type="Sprite" parent="Visuals"]
@@ -79,3 +76,5 @@ texture = SubResource( 5 )
 visible = false
 position = Vector2( 68.11, 67.6892 )
 texture = SubResource( 6 )
+
+[node name="Hearts" type="Node2D" parent="."]

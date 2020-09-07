@@ -66,10 +66,8 @@ func _end_attack():
 func _knockback(entity: Node):
 	if entity.get_class() == "Ruicosa":
 		#entity.look_at(position)
-		entity.knockback()
-		if $AnimatedSprite.animation == "attack":
-			GlobalData.playerHp -= 1
-		else:
+		entity.knockback(1)
+		if !$AnimatedSprite.animation == "attack":
 			_begin_attack()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

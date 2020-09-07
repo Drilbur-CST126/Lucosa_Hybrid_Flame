@@ -3,7 +3,7 @@
 [ext_resource path="res://Code/DynamicCamera.gd" type="Script" id=1]
 
 [node name="DynamicCamera" type="Camera2D"]
-position = Vector2( -99360, -99640 )
+pause_mode = 2
 current = true
 zoom = Vector2( 0.25, 0.25 )
 limit_smoothed = true
