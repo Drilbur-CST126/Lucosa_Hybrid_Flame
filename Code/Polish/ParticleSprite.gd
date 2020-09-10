@@ -2,7 +2,9 @@ extends Sprite
 
 export var duration := 0.0
 export var velocity := Vector2(0.0, 0.0)
+export var velocity_random := Vector2(0.0, 0.0)
 export var acceleration := Vector2(0.0, 0.0)
+export var acceleration_random := Vector2(0.0, 0.0)
 export var fps := 0
 export var eraseParent := false
 
@@ -12,7 +14,15 @@ var frameTimer: float
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	frameTimer = frameDuration
+	velocity.x += random_around(velocity_random.x)
+	velocity.y += random_around(velocity_random.y)
+	acceleration.x += random_around(acceleration_random.x)
+	acceleration.y += random_around(acceleration_random.y)
+	
 	start_timer()
+	
+func random_around(val: float) -> float:
+	return GlobalData.random.randf_range(-val, val)
 	
 func start_timer():
 	$Timer.start(duration)

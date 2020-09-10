@@ -8,14 +8,15 @@ const UPPERCUT = preload("res://Graphics/Particles/Uppercut/Uppercut.tscn")
 
 
 enum ActionState {
-	Normal, 
-	Falling, 
-	Jump, 
-	DoubleJump, 
-	Jab, 
-	Dive, 
+	Normal,
+	Falling,
+	Jump,
+	DoubleJump,
+	Jab,
+	Dive,
 	Knockback,
-	Transforming
+	Transforming,
+	Attacking,
 }
 
 
@@ -23,8 +24,10 @@ const animOffsets := {
 	"Idle": -20,
 	"Run": 20,
 	"Transform": -20,
+	"Lucosa_Transform": -20,
 	"Lucosa_Idle": -20,
 	"Lucosa_Run": -20,
+	"Lucosa_Attack": -20,
 }
 
 const walkSpeed := 128.0
@@ -38,6 +41,7 @@ const minJumpHeight := 2.5
 const doubleJumpHeight := 2.5
 const lucosaJumpHeight := 4.0
 const jumpWidth := 10.0
+const maxCoyoteTime := 0.1
 
 const diveVelocity := 256.0
 
@@ -48,6 +52,7 @@ var gravity: float
 var minJumpGravity: float
 var jumpReleased := false
 var canDoubleJump := false
+var coyoteTime := 0.0
 var facingRight := true setget set_facing_right
 var lucosaForm := false setget set_lucosa_form
 
@@ -97,16 +102,17 @@ func set_lucosa_form(value: bool):
 	lucosaForm = value
 	#play_anim("Idle")
 	
-func play_anim(anim: String):
-	if lucosaForm:
-		anim = "Lucosa_" + anim
-		
-	if !animOffsets.has(anim):
-		play_anim("Idle")
-	else:
-		$Sprite.play(anim)
-		$Sprite.offset.x = animOffsets[anim]
-		$Sprite.offset.x *= -1 if facingRight else 1
+func play_anim(anim: String, force := false):
+	if force || !is_anim_freeze_state():
+		if lucosaForm:
+			anim = "Lucosa_" + anim
+			
+		if !animOffsets.has(anim):
+			play_anim("Idle")
+		else:
+			$Sprite.play(anim)
+			$Sprite.offset.x = animOffsets[anim]
+			$Sprite.offset.x *= -1 if facingRight else 1
 
 func accelerate_to_velocity(delta: float, dest: float, speed: float = 0.0):
 	if speed == 0.0:
@@ -138,18 +144,19 @@ func double_jump():
 		
 func attack():
 	if canAttack:
+		play_anim("Attack")
 		var child := HIT_1.instance()
 		var dir := 1 if facingRight else -1
 		
-		child.get_node("ParticleSprite").flip_h = facingRight
+		#child.get_node("ParticleSprite").flip_h = facingRight
 		child.position.x = 12 * dir
-		child.get_node("ParticleSprite").position.x = -4 * dir
-		child.get_node("ParticleSprite").velocity.x = 16 * dir
+		#child.get_node("ParticleSprite").position.x = -4 * dir
+		#child.get_node("ParticleSprite").velocity.x = 16 * dir
 		
 		var attackArea := Area2D.new()
 		var attackShape := CollisionShape2D.new()
 		var rect := RectangleShape2D.new()
-		rect.extents = Vector2(8, 6)
+		rect.extents = Vector2(6, 6)
 		attackShape.shape = rect
 		attackArea.add_child(attackShape)
 		attackArea.connect("body_entered", self, "land_attack")
@@ -158,6 +165,7 @@ func attack():
 		add_child(child)
 		
 		canAttack = false
+		state = ActionState.Attacking
 		$AttackTimer.start()
 		
 func land_attack(var target: Node2D):
@@ -204,6 +212,9 @@ func on_anim_complete():
 	if state == ActionState.Transforming:
 		play_anim("Idle")
 		state = ActionState.Normal
+	elif state == ActionState.Attacking:
+		play_anim("Idle")
+		state = ActionState.Normal
 	
 func is_air_state():
 	return state == ActionState.Falling \
@@ -217,6 +228,9 @@ func is_momentum_state():
 	return state == ActionState.Dive \
 		|| state == ActionState.Knockback \
 		|| state == ActionState.Transforming
+		
+func is_anim_freeze_state():
+	return state == ActionState.Attacking
 
 func _ready():
 	var jumpTime := jumpWidth * 4.0 / walkSpeed
@@ -246,7 +260,8 @@ func _physics_process(delta: float):
 	else:
 		ruirui_abilities()
 		
-	if Input.is_action_pressed("ui_up") && Input.is_action_just_pressed("attack"):
+	if ((Input.is_action_pressed("ui_up") && Input.is_action_just_pressed("attack")) \
+			|| Input.is_action_just_pressed("transform")) && is_on_floor():
 		play_anim("Transform")
 		state = ActionState.Transforming
 		velocity.x = 0.0
@@ -264,13 +279,13 @@ func _physics_process(delta: float):
 func ruirui_abilities():
 	if Input.is_action_just_pressed("attack") && !Input.is_action_pressed("ui_up"):
 		dive()
-	if Input.is_action_just_pressed("jump") && !is_on_floor():
+	if Input.is_action_just_pressed("jump") && coyoteTime < 0.0:
 		double_jump()
 		
 func lucosa_abilities():
 	if Input.is_action_just_pressed("attack") && !Input.is_action_pressed("ui_up"):
 		attack()
-	if Input.is_action_just_pressed("jump") && !is_on_floor():
+	if Input.is_action_just_pressed("jump") && coyoteTime < 0.0:
 		uppercut()
 
 func process_x_velocity(delta: float):
@@ -295,12 +310,19 @@ func process_y_velocity(delta: float):
 	velocity.y += curGravity * delta
 	if velocity.y > gravity * maxGravityMultiplier:
 		velocity.y = gravity * maxGravityMultiplier
+		
+	if is_on_floor():
+		coyoteTime = maxCoyoteTime
+	else:
+		print(coyoteTime)
+		coyoteTime -= delta
 
-	if Input.is_action_just_pressed("jump") && is_on_floor():
+	if Input.is_action_just_pressed("jump") && coyoteTime > 0.0:
 		velocity.y = jumpImpulse if !lucosaForm else lucosaJumpImpulse
 		state = ActionState.Jump
 		
 		jumpReleased = false
+		coyoteTime = 0.0
 	
 	if Input.is_action_just_released("jump"):
 		jumpReleased = true

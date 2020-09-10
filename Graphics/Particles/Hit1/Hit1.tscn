@@ -6,6 +6,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="ParticleSprite" parent="." instance=ExtResource( 1 )]
+visible = false
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 4

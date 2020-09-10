@@ -50,6 +50,12 @@ func set_hp_shards(amt: int):
 func set_player_max_hp(amt: int):
 	emit_signal("max_hp_changed", amt)
 	playerMaxHp = amt
+	
+func lerp_color(from: Color, to: Color, val: float):
+	return Color(lerp(from.r, to.r, val), \
+			lerp(from.g, to.g, val), \
+			lerp(from.b, to.b, val), \
+			lerp(from.a, to.a, val))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
