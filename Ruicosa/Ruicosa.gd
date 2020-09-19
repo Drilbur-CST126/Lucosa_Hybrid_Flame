@@ -21,7 +21,7 @@ enum ActionState {
 
 
 const animOffsets := {
-	"Idle": -20,
+	"Idle": -10,
 	"Run": 20,
 	"Transform": -20,
 	"Lucosa_Transform": -20,
@@ -51,11 +51,14 @@ var lucosaJumpImpulse: float
 var gravity: float
 var minJumpGravity: float
 var jumpReleased := false
-var canDoubleJump := false
+var canDoubleJump: bool
 var coyoteTime := 0.0
 var facingRight := true setget set_facing_right
-var lucosaForm := false setget set_lucosa_form
 
+var running := false
+
+var lucosaForm := false setget set_lucosa_form
+var vulnerable := true
 var canAttack := true
 var attackDmg := 2
 
@@ -80,8 +83,8 @@ func knockback(damage := 0):
 			velocity.x = walkSpeed
 		velocity.y = jumpImpulse
 		state = ActionState.Normal
-		canDoubleJump = true
-	else:
+		canDoubleJump = form_has_double_jump()
+	elif vulnerable:
 		if (damage > 0):
 			GlobalData.playerHp -= damage
 		
@@ -100,6 +103,8 @@ func set_facing_right(value: bool):
 	
 func set_lucosa_form(value: bool):
 	lucosaForm = value
+	GlobalData.lucosaForm = value
+	canDoubleJump = form_has_double_jump()
 	#play_anim("Idle")
 	
 func play_anim(anim: String, force := false):
@@ -130,7 +135,8 @@ func accelerate_to_velocity(delta: float, dest: float, speed: float = 0.0):
 		velocity.x -= velocityChange
 	
 func dive():
-	if state != ActionState.Dive && is_air_state():
+	if GlobalData.hasDive && state != ActionState.Dive \
+			&& is_air_state():
 		#self.facingRight = cos(angle) < 0.0
 		velocity.x = (1 if facingRight else -1) * diveVelocity
 		velocity.y = knockbackSpeed if Input.is_action_pressed("ui_down") else 0.0
@@ -159,7 +165,7 @@ func attack():
 		rect.extents = Vector2(6, 6)
 		attackShape.shape = rect
 		attackArea.add_child(attackShape)
-		attackArea.connect("body_entered", self, "land_attack")
+		attackArea.connect("body_entered", self, "land_attack", [attackArea])
 		child.add_child(attackArea)
 		
 		add_child(child)
@@ -168,11 +174,12 @@ func attack():
 		state = ActionState.Attacking
 		$AttackTimer.start()
 		
-func land_attack(var target: Node2D):
+func land_attack(var target: Node2D, var attackArea: Area2D):
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
 		enemyData.take_damage(attackDmg)
+		attackArea.queue_free()
 		
 func uppercut():
 	if canDoubleJump:
@@ -228,9 +235,21 @@ func is_momentum_state():
 	return state == ActionState.Dive \
 		|| state == ActionState.Knockback \
 		|| state == ActionState.Transforming
+
+func on_damaged(_amt):
+	vulnerable = false
+	$Sprite.modulate.a = 0.6
+	$HitTimer.start()
+	yield($HitTimer, "timeout")
+	vulnerable = true
+	$Sprite.modulate.a = 1
 		
 func is_anim_freeze_state():
 	return state == ActionState.Attacking
+	
+func form_has_double_jump() -> bool:
+	return GlobalData.hasUppercut if lucosaForm \
+			else GlobalData.hasDoubleJump
 
 func _ready():
 	var jumpTime := jumpWidth * 4.0 / walkSpeed
@@ -247,8 +266,12 @@ func _ready():
 	
 	$AttackTimer.connect("timeout", self, "set_can_attack")
 	$Sprite.connect("animation_finished", self, "on_anim_complete")
+	GlobalData.connect("player_hit", self, "on_damaged")
 	
 	self.facingRight = false
+	self.lucosaForm = GlobalData.lucosaForm
+	hud.set_icon("lucosa" if self.lucosaForm else "ruirui")
+	canDoubleJump = form_has_double_jump()
 	#play_anim("Idle")
 	
 func _physics_process(delta: float):
@@ -271,7 +294,7 @@ func _physics_process(delta: float):
 	velocity = move_and_slide(velocity, Vector2.UP, true)
 	if is_on_floor() && is_air_state():
 		state = ActionState.Normal
-		canDoubleJump = true
+		canDoubleJump = form_has_double_jump()
 		
 	if !is_on_floor() && state == ActionState.Normal:
 		state = ActionState.Falling
@@ -290,7 +313,7 @@ func lucosa_abilities():
 
 func process_x_velocity(delta: float):
 	if !is_momentum_state():
-		var curSpeed = walkSpeed
+		var curSpeed = runSpeed if running else walkSpeed
 		if Input.is_action_pressed("ui_left"):
 			accelerate_to_velocity(delta, -curSpeed)
 			self.facingRight = false
@@ -313,8 +336,12 @@ func process_y_velocity(delta: float):
 		
 	if is_on_floor():
 		coyoteTime = maxCoyoteTime
+		if Input.is_action_pressed("attack") && lucosaForm == false:
+			running = true
+		else:
+			running = false
 	else:
-		print(coyoteTime)
+		#print(coyoteTime)
 		coyoteTime -= delta
 
 	if Input.is_action_just_pressed("jump") && coyoteTime > 0.0:

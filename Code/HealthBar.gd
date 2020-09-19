@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 const Health = preload("res://Code/Health.tscn")
+const TransitionEffect = preload("res://Code/Polish/TransitionEffect.tscn")
 
 const bg := Color("#544b46")
 const FIRST_HEART_OFFSET := 180
@@ -15,7 +16,11 @@ var curNumHearts := 0
 func _ready():
 	GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display")
 	GlobalData.connect("hp_changed", self, "adjust_hp_display")
+	GlobalData.connect("trans_begin", self, "begin_transition")
 	adjust_max_hp_display(GlobalData.playerMaxHp)
+	
+	if GlobalData.transDirection != null:
+		end_transition()
 	
 func set_icon(form: String):
 	$Visuals/RuiruiIcon.visible = form == "ruirui"
@@ -44,5 +49,21 @@ func adjust_hp_display(hp: int, shards: int):
 			heart.set_empty()
 		curHeart += 1
 			
-func _process(_delta):
-	pass
+func begin_transition(direction, destination: String, inverse := false):
+	get_tree().paused = true
+	var effect := TransitionEffect.instance()
+	effect.set_dimensions(ProjectSettings.get_setting("display/window/size/width") / scale.x, \
+			ProjectSettings.get_setting("display/window/size/height") / scale.y)
+	effect.set_direction(direction)
+	effect.connect("finished", get_tree(), "change_scene", [destination])
+	add_child(effect)
+	
+func end_transition():
+	get_tree().paused = false
+	var effect := TransitionEffect.instance()
+	effect.inverse = true
+	effect.set_dimensions(ProjectSettings.get_setting("display/window/size/width") / scale.x, \
+			ProjectSettings.get_setting("display/window/size/height") / scale.y)
+	effect.set_direction(GlobalData.transDirection)
+	effect.connect("finished", effect, "queue_free")
+	add_child(effect)

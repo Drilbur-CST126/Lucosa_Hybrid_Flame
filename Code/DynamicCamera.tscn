@@ -6,8 +6,6 @@
 pause_mode = 2
 current = true
 zoom = Vector2( 0.25, 0.25 )
-limit_smoothed = true
-smoothing_enabled = true
 smoothing_speed = 10.0
 script = ExtResource( 1 )
 yCenter = 30.0

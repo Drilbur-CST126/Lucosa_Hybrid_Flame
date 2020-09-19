@@ -6,7 +6,7 @@
 [node name="TransitionEffect" type="Node2D"]
 script = ExtResource( 2 )
 direction = 2
-duration = 0.5
+duration = 0.2
 
 [node name="Transition" type="Sprite" parent="."]
 texture = ExtResource( 1 )

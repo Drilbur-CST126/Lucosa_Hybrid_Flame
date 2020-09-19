@@ -3,22 +3,22 @@
 [ext_resource path="res://Code/HealthBar.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/HUD.PNG" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=1]
 flags = 9
 atlas = ExtResource( 2 )
 region = Rect2( 118, 0.568926, 114.638, 124.525 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 flags = 9
 atlas = ExtResource( 2 )
 region = Rect2( 3, 160.642, 548, 23.327 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=3]
 flags = 9
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 118, 126.324 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=4]
 flags = 9
 atlas = ExtResource( 2 )
 region = Rect2( 0, 130.567, 554.238, 28.508 )
@@ -34,6 +34,7 @@ atlas = ExtResource( 2 )
 region = Rect2( 104.092, 190.722, 111.455, 130.171 )
 
 [node name="HUD" type="CanvasLayer"]
+pause_mode = 2
 scale = Vector2( 0.667, 0.667 )
 transform = Transform2D( 0.667, 0, 0, 0.667, 0, 0 )
 script = ExtResource( 1 )
@@ -52,21 +53,21 @@ __meta__ = {
 [node name="IconBackground" type="Sprite" parent="Visuals"]
 modulate = Color( 0.329412, 0.294118, 0.27451, 1 )
 position = Vector2( 68.3196, 68.7706 )
-texture = SubResource( 3 )
+texture = SubResource( 1 )
 
 [node name="BarBackground" type="Sprite" parent="Visuals"]
 modulate = Color( 0.329412, 0.294118, 0.27451, 1 )
 position = Vector2( 358.354, 121.764 )
-texture = SubResource( 4 )
+texture = SubResource( 2 )
 
 [node name="IconOutline" type="Sprite" parent="Visuals"]
 position = Vector2( 5, 5 )
-texture = SubResource( 1 )
+texture = SubResource( 3 )
 offset = Vector2( 64, 64 )
 
 [node name="BarOutline" type="Sprite" parent="Visuals"]
 position = Vector2( 358.234, 118.583 )
-texture = SubResource( 2 )
+texture = SubResource( 4 )
 
 [node name="RuiruiIcon" type="Sprite" parent="Visuals"]
 position = Vector2( 64.3422, 71.502 )

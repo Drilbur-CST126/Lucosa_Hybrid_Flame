@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 
 [node name="EnemyData" parent="." instance=ExtResource( 3 )]
 maxHp = 3
+colArea = NodePath("../CollisionShape2D")
 
 [node name="FlyShroom" type="Sprite" parent="."]
 scale = Vector2( 0.167, 0.167 )
@@ -21,5 +22,3 @@ region_rect = Rect2( 0, 0, 15, 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="Area2D" type="Area2D" parent="."]

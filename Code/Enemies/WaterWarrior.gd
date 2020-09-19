@@ -22,9 +22,8 @@ func _ready():
 	if !moving:
 		walkVelocity = 0.0
 	velocity.x = walkVelocity
-	var _err = $EnemyData.connect("on_death", self, "_die")
-	$KnockbackArea.add_child($CollisionShape2D.duplicate())
-	_err = $KnockbackArea.connect("body_entered", self, "_knockback")
+	var _err #= $EnemyData.connect("on_death", self, "_die")
+	_err = $EnemyData.connect("on_touch", self, "knockback")
 	_err = $EnemyData.connect("on_block", self, "_begin_attack")
 	_err = $AttackWindup.connect("timeout", self, "_attack")
 	_err = $AttackHold.connect("timeout", self, "_end_attack")
@@ -39,9 +38,6 @@ func _physics_process(delta):
 			Vector2.UP, false).y
 	if is_on_wall() and !attacking:
 		set_flip(!$AnimatedSprite.flip_h)
-
-func _die():
-	queue_free()
 	
 func _begin_attack():
 	if !attacking:
@@ -63,12 +59,9 @@ func _end_attack():
 	$EnemyData.blocking = true
 	velocity.x = walkVelocity
 	
-func _knockback(entity: Node):
-	if entity.get_class() == "Ruicosa":
-		#entity.look_at(position)
-		entity.knockback(1)
-		if !$AnimatedSprite.animation == "attack":
-			_begin_attack()
+func knockback(entity: Node):
+	if entity.get_class() == "Ruicosa" && !$AnimatedSprite.animation == "attack":
+		_begin_attack()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

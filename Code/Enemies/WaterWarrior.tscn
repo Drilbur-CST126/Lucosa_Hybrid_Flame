@@ -40,12 +40,12 @@ region = Rect2( 128, 27, 32, 27 )
 [sub_resource type="AtlasTexture" id=8]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 160, 27, 32, 27 )
+region = Rect2( 0, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 0, 27, 32, 27 )
+region = Rect2( 160, 27, 32, 27 )
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
@@ -61,12 +61,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 8 ) ],
 "loop": true,
-"name": "attack_hold",
+"name": "anticipation",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 9 ) ],
 "loop": true,
-"name": "anticipation",
+"name": "attack_hold",
 "speed": 5.0
 } ]
 
@@ -114,6 +114,7 @@ gravity = 1024.0
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
 maxHp = 3
 blocking = true
+colArea = NodePath("../CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3 )
@@ -124,8 +125,6 @@ frames = SubResource( 10 )
 frame = 1
 playing = true
 offset = Vector2( -2, 0 )
-
-[node name="KnockbackArea" type="Area2D" parent="."]
 
 [node name="AttackWindup" type="Timer" parent="."]
 wait_time = 0.5

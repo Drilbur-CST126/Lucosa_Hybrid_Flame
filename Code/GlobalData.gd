@@ -1,24 +1,31 @@
 extends Node
 
-enum Direction {Utd, Dtu, Ltr, Rtl}
+enum Direction {Utd, Dtu, Ltr, Rtl, None}
+
+const kPlayerClassName = "Ruicosa"
 
 # Declare member variables here. Examples:
 var playerHp := 5 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
-var lastRoom: String
+var lastRoomId: String
 var camera: Node2D
+var transDirection = null
 var random := RandomNumberGenerator.new()
+var lucosaForm := false
 
+var hasDoubleJump := false
 var hasUppercut := false
+var hasDive := false
 
 signal max_hp_changed(maxHp)
 signal hp_changed(hp, shards)
 signal trans_begin(direction, destination)
+signal player_hit(hp)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#Engine.time_scale = 1.2
+	#Engine.time_scale = 0.2
 	randomize()
 	
 func set_player_hp(amt: int):
@@ -31,6 +38,7 @@ func set_player_hp(amt: int):
 	emit_signal("hp_changed", playerHp, hpShards)
 	
 	if damage:
+		emit_signal("player_hit", playerHp)
 		get_tree().paused = true
 		if camera.has_method("shake"):
 			camera.shake(2.0, 0.1)

@@ -37,7 +37,6 @@ func shake(severity: float, duration: float):
 
 func _ready():
 	position = get_target_pos()
-	smoothing_enabled = true
 	print(position)
 	width *= zoom.x
 	height *= zoom.y
@@ -52,7 +51,7 @@ func get_target_pos() -> Vector2:
 		return Vector2(position.x, position.y)
 	return get_node(target).position
 
-func _physics_process(delta):
+func _physics_process(delta):	
 	var targetPos = get_target_pos()
 	if !Engine.editor_hint:
 		if curLock == Lock.CtrLeft:
@@ -95,3 +94,6 @@ func _physics_process(delta):
 	if shaking:
 		offset = Vector2(GlobalData.random.randf_range(-shakeSeverity, shakeSeverity), \
 				GlobalData.random.randf_range(-shakeSeverity, shakeSeverity))
+				
+	if !Engine.editor_hint && !smoothing_enabled:
+		smoothing_enabled = true
