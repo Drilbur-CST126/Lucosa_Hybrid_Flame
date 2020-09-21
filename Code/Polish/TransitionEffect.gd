@@ -26,6 +26,10 @@ func set_direction(direction):
 		setup_ltr()
 	elif direction == GlobalData.Direction.Rtl:
 		setup_rtl()
+	elif direction == GlobalData.Direction.Utd:
+		setup_utd()
+	elif direction == GlobalData.Direction.Dtu:
+		setup_dtu()
 	elif direction == GlobalData.Direction.None:
 		call_deferred("anim_finished", "")
 
@@ -74,6 +78,58 @@ func setup_rtl(var followInverse := true):
 		anim.length = duration
 		anim.track_set_path(0, ".:position:x")
 		anim.track_insert_key(0, 0.0, width + 16.0)
+		anim.track_insert_key(0, duration, 0.0)
+		$AnimationPlayer.add_animation("Swipe", anim)
+		if !inverse:
+			$AnimationPlayer.play("Swipe")
+
+func setup_utd(var followInverse := true):
+	if inverse && followInverse:
+		setup_dtu(false)
+		$AnimationPlayer.play_backwards("Swipe")
+	else:
+		$ColorRect.margin_left = 0.0
+		$ColorRect.margin_right = width
+		$ColorRect.margin_top = -height - 16.0
+		$ColorRect.margin_bottom = -16.0
+		
+		$Transition.region_rect.size.y = width
+		$Transition.rotation_degrees = 90
+		$Transition.position.x = width / 2
+		$Transition.position.y = -8.0
+		position.y = height + 16.0
+		
+		var anim := Animation.new()
+		anim.add_track(Animation.TYPE_VALUE)
+		anim.length = duration
+		anim.track_set_path(0, ".:position:y")
+		anim.track_insert_key(0, 0.0, 0.0)
+		anim.track_insert_key(0, duration, height + 16.0)
+		$AnimationPlayer.add_animation("Swipe", anim)
+		if !inverse:
+			$AnimationPlayer.play("Swipe")
+			
+func setup_dtu(var followInverse := true):
+	if inverse && followInverse:
+		setup_utd(false)
+		$AnimationPlayer.play_backwards("Swipe")
+	else:
+		$ColorRect.margin_left = 0.0
+		$ColorRect.margin_right = width
+		$ColorRect.margin_top = 0.0
+		$ColorRect.margin_bottom = height
+		
+		$Transition.region_rect.size.y = width
+		$Transition.rotation_degrees = -90
+		$Transition.position.x = width / 2
+		$Transition.position.y = -8.0
+		position.y = 0.0
+		
+		var anim := Animation.new()
+		anim.add_track(Animation.TYPE_VALUE)
+		anim.length = duration
+		anim.track_set_path(0, ".:position:y")
+		anim.track_insert_key(0, 0.0, height + 16.0)
 		anim.track_insert_key(0, duration, 0.0)
 		$AnimationPlayer.add_animation("Swipe", anim)
 		if !inverse:

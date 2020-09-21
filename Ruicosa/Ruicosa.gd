@@ -40,7 +40,7 @@ const jumpHeight := 6.0
 const minJumpHeight := 2.5
 const doubleJumpHeight := 2.5
 const lucosaJumpHeight := 4.0
-const jumpWidth := 10.0
+const jumpWidth := 11.0
 const maxCoyoteTime := 0.1
 
 const diveVelocity := 256.0

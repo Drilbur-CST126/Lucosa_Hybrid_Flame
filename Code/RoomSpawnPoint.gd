@@ -20,7 +20,7 @@ func _ready():
 			player.position = position
 			if facingRight:
 				player.facingRight = true
-		var camera := get_parent().get_node_or_null("DynamicCamera")
+		var camera := get_parent().get_node("DynamicCamera")
 		if camera != null:
 			camera.global_position = global_position
 	queue_free()

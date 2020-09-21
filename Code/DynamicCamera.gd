@@ -1,4 +1,4 @@
-tool
+#tool
 extends Camera2D
 
 enum Lock {CtrLeft, CtrRight, LeftTrans, RightTrans, Unlocked}
@@ -37,7 +37,7 @@ func shake(severity: float, duration: float):
 
 func _ready():
 	position = get_target_pos()
-	print(position)
+	#print(position)
 	width *= zoom.x
 	height *= zoom.y
 	GlobalData.camera = self
@@ -51,7 +51,7 @@ func get_target_pos() -> Vector2:
 		return Vector2(position.x, position.y)
 	return get_node(target).position
 
-func _physics_process(delta):	
+func _physics_process(delta):
 	var targetPos = get_target_pos()
 	if !Engine.editor_hint:
 		if curLock == Lock.CtrLeft:

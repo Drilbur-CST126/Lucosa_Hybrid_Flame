@@ -18,6 +18,15 @@ script/source = "extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if GlobalData.lastRoomId == \"TallRoomAboveT\":
+		#set_upper_camera($Ruicosa)
+		$DynamicCamera.dynamicLimitLeft = -320
+		$DynamicCamera.dynamicLimitRight = 0
+		pass
+	else:
+		set_lower_camera($Ruicosa)
+	#$DynamicCamera.global_position = $TopRoomSpawnPoint.global_position
+	
 	if $UpperCameraUpdate.connect(\"body_entered\", self, \"set_upper_camera\") \\
 		|| $LeftLowerCameraUpdate.connect(\"body_entered\", self, \"set_lower_camera\") \\
 		|| $RightLowerCameraUpdate.connect(\"body_entered\", self, \"set_lower_camera\"):
@@ -106,7 +115,7 @@ position = Vector2( -503.218, 140.5 )
 position = Vector2( 308, 148.5 )
 
 [node name="DynamicCamera" parent="." instance=ExtResource( 2 )]
-position = Vector2( 160, 90 )
+position = Vector2( -160, -90 )
 limit_left = -640
 limit_top = -180
 limit_right = 320
@@ -115,7 +124,7 @@ yCenter = 0.0
 target = NodePath("../../TSplitRoom/Ruicosa")
 dynamicLimitLeft = -640
 dynamicLimitRight = 320
-dynamicLimitUp = 0
+dynamicLimitUp = -180
 dynamicLimitDown = 180
 
 [node name="RightSceneTransition" parent="." instance=ExtResource( 5 )]
@@ -127,7 +136,18 @@ loadPath = "res://Stages/FrogLands/JumpTutorialRoom.tscn"
 position = Vector2( -652, 132 )
 loadPath = "res://Stages/FrogLands/LucosaTutorialRoom.tscn"
 
+[node name="TopSceneTransition" parent="." instance=ExtResource( 5 )]
+position = Vector2( -284, -188 )
+colDimensions = Vector2( 28, 8 )
+direction = 0
+loadPath = "res://Stages/FrogLands/TallRoomAboveT.tscn"
+
 [node name="LeftRoomSpawnPoint" parent="." instance=ExtResource( 6 )]
 position = Vector2( -628, 140.167 )
 loadId = "LucosaTutorialRoom"
+facingRight = true
+
+[node name="TopRoomSpawnPoint" parent="." instance=ExtResource( 6 )]
+position = Vector2( -280, -145.168 )
+loadId = "TallRoomAboveT"
 facingRight = true
