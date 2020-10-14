@@ -1,0 +1,30 @@
+extends Area2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	GlobalData.print_errors([
+		connect("body_entered", self, "entered"),
+		connect("body_exited", self, "exited")
+	])
+
+func entered(node: Node2D):
+	if node.get_class() == GlobalData.kPlayerClassName:
+		player_entered(node)
+		
+func player_entered(player: Node2D):
+	pass
+	
+func exited(node: Node2D):
+	if node.get_class() == GlobalData.kPlayerClassName:
+		player_exited(node)
+		
+func player_exited(player: Node2D):
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass

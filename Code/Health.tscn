@@ -8,12 +8,12 @@ flags = 9
 atlas = ExtResource( 1 )
 region = Rect2( 333.723, 8.208, 100.5, 99.8 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 flags = 9
 atlas = ExtResource( 1 )
 region = Rect2( 433, 14, 74, 88 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=3]
 flags = 9
 atlas = ExtResource( 1 )
 region = Rect2( 234, 8, 102, 102 )
@@ -36,7 +36,7 @@ region_rect = Rect2( 0, 0, 100, 99 )
 
 [node name="Fire" type="Sprite" parent="."]
 position = Vector2( 5.50758, 0.250343 )
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 
 [node name="Flash" type="Sprite" parent="."]
 visible = false
@@ -46,4 +46,4 @@ region_rect = Rect2( 0, 0, 100, 99 )
 
 [node name="Border" type="Sprite" parent="."]
 position = Vector2( 0, 1 )
-texture = SubResource( 2 )
+texture = SubResource( 3 )

@@ -3,25 +3,35 @@ extends Node
 enum Direction {Utd, Dtu, Ltr, Rtl, None}
 
 const kPlayerClassName = "Ruicosa"
+const kManaRegenPerSec := 20.0
+const kMaxMana := 100.0
 
 # Declare member variables here. Examples:
 var playerHp := 5 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
+var playerMana := 100.0 setget set_player_mana
+
 var lastRoomId: String
 var camera: Node2D
 var transDirection = null
 var random := RandomNumberGenerator.new()
 var lucosaForm := false
+var usingController := false
 
 var hasDoubleJump := false
 var hasUppercut := false
 var hasDive := false
+var canTransform := false
+var canTransformAnywhere := false
 
 signal max_hp_changed(maxHp)
 signal hp_changed(hp, shards)
+signal mana_changed(mana)
 signal trans_begin(direction, destination)
 signal player_hit(hp)
+
+signal control_config_changed(usingController)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,43 +39,100 @@ func _ready():
 	randomize()
 	
 func set_player_hp(amt: int):
-	var damage = amt < playerHp
-	if amt > playerMaxHp:
-		amt = playerMaxHp
-	playerHp = amt
-	if damage:
-		hpShards = 0
-	emit_signal("hp_changed", playerHp, hpShards)
-	
-	if damage:
-		emit_signal("player_hit", playerHp)
-		get_tree().paused = true
-		if camera.has_method("shake"):
-			camera.shake(2.0, 0.1)
-		yield(get_tree().create_timer(0.2), "timeout")
-		get_tree().paused = false
+	if amt != playerHp:
+		if playerMana as int == 0:
+			amt = 0
+		var damage = amt < playerHp
+		if amt > playerMaxHp:
+			amt = playerMaxHp
+		playerHp = amt
+		if damage:
+			hpShards = 0
+		emit_signal("hp_changed", playerHp, hpShards)
+		
+		if damage:
+			emit_signal("player_hit", playerHp)
+			get_tree().paused = true
+			if camera.has_method("shake"):
+				camera.shake(2.0, 0.1)
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_tree().paused = false
 	
 func set_hp_shards(amt: int):
-	if playerHp != playerMaxHp:
-		while amt >= 5:
-			amt -= 5
-			playerHp += 1
-		hpShards = amt
-	else:
-		hpShards = 0
-	emit_signal("hp_changed", playerHp, hpShards)
+	if amt != hpShards:
+		if playerHp != playerMaxHp:
+			while amt >= 5:
+				amt -= 5
+				playerHp += 1
+			hpShards = amt
+		else:
+			hpShards = 0
+		emit_signal("hp_changed", playerHp, hpShards)
 
 func set_player_max_hp(amt: int):
 	emit_signal("max_hp_changed", amt)
 	playerMaxHp = amt
+	
+func set_player_mana(amt: float):
+	if amt <= 0:
+		amt = 0
+	if amt > 100:
+		amt = 100
+	if amt != playerMana:
+		if amt == 0:
+			camera.shake(1, 0.25)
+			get_tree().paused = true
+			yield(get_tree().create_timer(0.25), "timeout")
+			get_tree().paused = false
+		playerMana = amt
+		emit_signal("mana_changed", amt)
+		
+func save(room_filename: String):
+	var dict := {
+		"filename": room_filename,
+		"lucosaForm": lucosaForm,
+		# Abilities
+		"hasDive": hasDive,
+		"hasUppercut": hasUppercut,
+		"hasDoubleJump": hasDoubleJump,
+		"canTransformAnywhere": canTransformAnywhere,
+	}
+	
+	var file = File.new()
+	file.open("user://save.json", File.WRITE)
+	file.store_line(to_json(dict))
+	file.close()
 	
 func lerp_color(from: Color, to: Color, val: float):
 	return Color(lerp(from.r, to.r, val), \
 			lerp(from.g, to.g, val), \
 			lerp(from.b, to.b, val), \
 			lerp(from.a, to.a, val))
+			
+func print_errors(connections: Array):
+	for i in connections:
+		if i != 0:
+			print("Connection failed!")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("menu"):
 		OS.window_fullscreen = !OS.window_fullscreen
+		
+#	if Input.is_action_just_pressed("controller_press"):
+#		usingController = true
+#		emit_signal("control_config_changed", true)
+#	if Input.is_action_just_pressed("keyboard_press"):
+#		usingController = false
+#		emit_signal("control_config_changed", false)
+#	if !lucosaForm:
+#		self.playerMana += kManaRegenPerSec * delta
+
+func _input(event):
+	if event is InputEventKey && usingController:
+		usingController = false
+		emit_signal("control_config_changed", false)
+	elif (event is InputEventJoypadButton || event is InputEventJoypadMotion) \
+			&& !usingController:
+		usingController = true
+		emit_signal("control_config_changed", true)

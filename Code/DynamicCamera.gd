@@ -28,15 +28,31 @@ signal camera_lock_changed(lock)
 func get_class():
 	return "DynamicCamera"
 	
+func force_camera_to_pos():
+	force_update_scroll()
+	force_update_transform()
+	reset_smoothing()
+	
 func shake(severity: float, duration: float):
 	shakeSeverity = severity
 	shaking = true
-	yield(get_tree().create_timer(duration), "timeout")
-	shaking = false
-	offset = Vector2.ZERO
+	if duration > 0:
+		yield(get_tree().create_timer(duration), "timeout")
+		shaking = false
+		offset = Vector2.ZERO
+	
+func position_at_spawn_point():
+	var spawnFound := false
+	for node in get_parent().get_children():
+		if node.get_class() == "RoomSpawnPoint" && node.is_current_spawn():
+			position = node.position
+			spawnFound = true
+			print("SPAWN FOUND")
+	if !spawnFound:
+		position = get_target_pos()
 
 func _ready():
-	position = get_target_pos()
+	position_at_spawn_point()
 	#print(position)
 	width *= zoom.x
 	height *= zoom.y
@@ -96,4 +112,6 @@ func _physics_process(delta):
 				GlobalData.random.randf_range(-shakeSeverity, shakeSeverity))
 				
 	if !Engine.editor_hint && !smoothing_enabled:
+		#print("RESET")
 		smoothing_enabled = true
+		force_camera_to_pos()

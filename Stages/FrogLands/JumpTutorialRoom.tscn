@@ -37,9 +37,6 @@ dynamicLimitDown = 180
 [node name="SoldierWatsi" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( -433, 148.5 )
 
-[node name="SoldierWatsi2" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( -387.89, 132.5 )
-
 [node name="Ruicosa" parent="." instance=ExtResource( 3 )]
 position = Vector2( 267, 140.5 )
 

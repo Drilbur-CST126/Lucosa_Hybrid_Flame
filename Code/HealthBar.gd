@@ -3,6 +3,9 @@ extends CanvasLayer
 const Health = preload("res://Code/Health.tscn")
 const TransitionEffect = preload("res://Code/Polish/TransitionEffect.tscn")
 
+const kBarWidth := 548
+onready var kBarPos := $Visuals/BarInfill.position.x as float # Treated as const, as good as const
+
 const bg := Color("#544b46")
 const FIRST_HEART_OFFSET := 180
 const NEXT_HEART_OFFSET := 90
@@ -11,13 +14,17 @@ const NEXT_HEART_OFFSET := 90
 # var a = 2
 # var b = "text"
 var curNumHearts := 0
+var firstRun := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display")
 	GlobalData.connect("hp_changed", self, "adjust_hp_display")
 	GlobalData.connect("trans_begin", self, "begin_transition")
+	GlobalData.connect("mana_changed", self, "adjust_bar_display")
 	adjust_max_hp_display(GlobalData.playerMaxHp)
+	adjust_bar_display(GlobalData.playerMana)
+	firstRun = false
 	
 	if GlobalData.transDirection != null:
 		end_transition()
@@ -43,11 +50,23 @@ func adjust_hp_display(hp: int, shards: int):
 		var heart = node
 		if curHeart < hp:
 			heart.set_full()
+			if firstRun:
+				heart.animTime = 0.0
 		elif curHeart == hp && shards > 0:
 			heart.set_filling(shards)
+			if firstRun:
+				heart.animTime = 0.0
 		else:
 			heart.set_empty()
+			if firstRun:
+				heart.animTime = 0.0
 		curHeart += 1
+
+func adjust_bar_display(mana: float):
+	#print("MANA CHANGE")
+	var width := kBarWidth * mana / (GlobalData.kMaxMana as float)
+	$Visuals/BarInfill.region_rect.size.x = width
+	$Visuals/BarInfill.position.x = kBarPos - kBarWidth / 2.0 + (width / 2.0)
 			
 func begin_transition(direction, destination: String, inverse := false):
 	get_tree().paused = true

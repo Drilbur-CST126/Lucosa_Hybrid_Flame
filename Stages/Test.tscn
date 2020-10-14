@@ -5,10 +5,9 @@
 [ext_resource path="res://Code/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Code/Enemies/WaterWarrior.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Graphics/Tilesets/Thorns.tres" type="TileSet" id=5]
-[ext_resource path="res://Code/CameraScale.gd" type="Script" id=6]
+[ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -153.791
@@ -39,3 +38,10 @@ format = 1
 tile_data = PoolIntArray( -131056, 0, 0, -131055, 0, 1, -131054, 0, 1, -131053, 0, 1, -131052, 0, 1, -131051, 0, 2, -65520, 0, 131072, -65519, 0, 65540, -65518, 0, 65537, -65517, 0, 65537, -65516, 0, 65537, -65515, 0, 65538, 17, 0, 65536, 18, 0, 65537, 19, 0, 65537, 20, 0, 65537, 21, 0, 65538, 65553, 0, 65536, 65554, 0, 65537, 65555, 0, 65541, 65556, 0, 131073, 65557, 0, 131074, 131089, 0, 65536, 131090, 0, 65541, 131091, 0, 131074, 196625, 0, 65536, 196626, 0, 65538, 262161, 0, 65536, 262162, 0, 65538, 327697, 0, 131072, 327698, 0, 131074, 655377, 0, 3, 720913, 0, 131081, 720914, 0, 2, 786449, 0, 65536, 786450, 0, 65538, 851985, 0, 65536, 851986, 0, 65538, 917518, 0, 11, 917519, 0, 196609, 917520, 0, 196609, 917521, 0, 196612, 917522, 0, 196618 )
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="DynamicCamera" parent="." instance=ExtResource( 6 )]
+target = NodePath("../Ruicosa")
+dynamicLimitLeft = 0
+dynamicLimitRight = 320
+dynamicLimitUp = 0
+dynamicLimitDown = 180

@@ -10,12 +10,12 @@ var cameraChange := false
 var upperRegion := false
 
 func set_player_position():
-	var lastRoom := GlobalData.lastRoom
+	var lastRoom := GlobalData.lastRoomId
 	if lastRoom == "CaveLowerHallway":
 		$Ruicosa.position.x = -635
 		$Ruicosa.position.y = 118
 		$DynamicCamera.position = $Ruicosa.position
-		$Ruicosa.look_right()
+		$Ruicosa.facingRight = true
 	#self.set_previous_screen()
 	print(name)
 

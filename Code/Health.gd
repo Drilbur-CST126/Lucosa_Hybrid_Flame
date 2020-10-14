@@ -7,7 +7,8 @@ const MAX_FLASH_TIME := 0.1
 
 const STATES := {
 	"Full": -1,
-	"Empty": -2
+	"Empty": -2,
+	"Broken": -3
 	#Filling is states 1-5
 }
 
@@ -32,38 +33,47 @@ func flash():
 	flashing = true
 
 func set_full():
-	#play("full")
-	$Fill.show()
-	$Fill.modulate = healthFire
-	$Fill.region_rect.size.y = 99
-	$Fill.region_rect.position.y = 0
-	$Fill.offset.y = 0
-	$Fire.show()
 	if state != STATES["Full"]:
+		$Flash.visible = false
+		#play("full")
+		$Fill.show()
+		$Fill.modulate = healthFire
+		$Fill.region_rect.size.y = 99
+		$Fill.region_rect.position.y = 0
+		$Fill.offset.y = 0
+		$Fire.show()
 		flash()
-	state = STATES["Full"]
+		state = STATES["Full"]
 	
 func set_empty():
-	$Fill.hide()
-	$Fire.hide()
 	if state != STATES["Empty"]:
+		$Flash.visible = false
+		$Fill.hide()
+		$Fire.hide()
 		flash()
-	state = STATES["Empty"]
+		state = STATES["Empty"]
 
 func set_filling(amt: int):
-	$Fill.show()
-	$Fill.modulate = white
-#	var ofs := amt * 20
-#	$Fill.region_rect.size.y = ofs
-#	$Fill.region_rect.position.y = 100 - ofs
-#	$Fill.offset.y = (100 - ofs) / 2.0
-	$Fire.hide()
 	if state != amt:
+		$Flash.visible = false
+		$Fill.show()
+		$Fill.modulate = white
+	#	var ofs := amt * 20
+	#	$Fill.region_rect.size.y = ofs
+	#	$Fill.region_rect.position.y = 100 - ofs
+	#	$Fill.offset.y = (100 - ofs) / 2.0
+		$Fire.hide()
 		flash()
-	state = amt
-	flashing = false
-	filling = true
-	animTime = MAX_FLASH_TIME
+		state = amt
+		flashing = false
+		filling = true
+		animTime = MAX_FLASH_TIME
+	
+func set_broken():
+	if state != STATES["Broken"]:
+		set_full()
+		#flashing = false
+		state = STATES["Broken"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -73,6 +83,11 @@ func _process(delta):
 		flashing = animTime > 0.0
 	elif($Flash.visible):
 		$Flash.visible = false
+		
+	if state == STATES["Broken"] && !flashing:
+		$Flash.visible = true
+		$Flash.modulate.a = (-cos(animTime) / 2.0) + 0.5
+		animTime += delta * 8.0
 		
 	if (filling):
 		var src := (state - 1) * 20
