@@ -21,9 +21,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Lucosa"
-run/main_scene="res://Stages/FrogLands/JumpTutorialRoom.tscn"
+run/main_scene="res://Menu/MainMenu.tscn"
 boot_splash/image="res://Graphics/StartScreen.png"
-boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.239216, 0.0156863, 0.0156863, 1 )
 config/icon="res://icon.png"
 

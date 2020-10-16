@@ -14,6 +14,8 @@ func _ready():
 		$OptionVBoxContainer/Continue.connect("pressed", GlobalData, "load_game"),
 		$OptionVBoxContainer/Exit.connect("pressed", get_tree(), "quit"),
 	])
+	$OptionVBoxContainer/NewGame.grab_focus()
+	$AnimationPlayer.play("Load")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

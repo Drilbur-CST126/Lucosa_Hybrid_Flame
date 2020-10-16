@@ -23,7 +23,7 @@ var hasDoubleJump := false
 var hasUppercut := false
 var hasDive := false
 var canTransform := false
-var canTransformAnywhere := false
+var canTransformAnywhere := false setget set_can_transform_anywhere
 
 signal max_hp_changed(maxHp)
 signal hp_changed(hp, shards)
@@ -86,6 +86,11 @@ func set_player_mana(amt: float):
 			get_tree().paused = false
 		playerMana = amt
 		emit_signal("mana_changed", amt)
+		
+func set_can_transform_anywhere(val: bool):
+	canTransformAnywhere = val
+	if val:
+		canTransform = true
 		
 func save(room_filename: String):
 	var dict := {
