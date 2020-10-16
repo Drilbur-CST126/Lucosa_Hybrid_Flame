@@ -10,8 +10,9 @@ extends Node2D
 func _ready():
 	#pass
 	GlobalData.print_errors([
-		$OptionVBoxContainer/Exit.connect("pressed", get_tree(), "quit"),
 		$OptionVBoxContainer/NewGame.connect("pressed", get_tree(), "change_scene", ["res://Stages/FrogLands/JumpTutorialRoom.tscn"]),
+		$OptionVBoxContainer/Continue.connect("pressed", GlobalData, "load_game"),
+		$OptionVBoxContainer/Exit.connect("pressed", get_tree(), "quit"),
 	])
 
 

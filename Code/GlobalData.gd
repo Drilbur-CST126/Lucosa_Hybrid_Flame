@@ -106,6 +106,20 @@ func save(room_filename: String):
 func load_game():
 	var file := File.new()
 	file.open("user://save.json", File.READ)
+	
+	while file.get_position() < file.get_len():
+		var data = parse_json(file.get_line())
+		
+		self.lucosaForm = data["lucosaForm"]
+		self.hasDive = data["hasDive"]
+		self.hasUppercut = data["hasUppercut"]
+		self.hasDoubleJump = data["hasDoubleJump"]
+		self.canTransformAnywhere = data["canTransformAnywhere"]
+		
+		self.lastRoomId = "Savepoint"
+		self.transDirection = Direction.Dtu
+		get_tree().change_scene(data["filename"])
+	
 	file.close()
 	
 func lerp_color(from: Color, to: Color, val: float):
