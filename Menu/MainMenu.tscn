@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Graphics/Fonts/Lato24.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Graphics/Fonts/Lato18.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Graphics/Fonts/Lato14.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Graphics/StartScreen.png" type="Texture" id=4]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.239216, 0.0156863, 0.0156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartScreen" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.501961 )
+position = Vector2( 640, 360 )
+scale = Vector2( 0.633, 0.633 )
+texture = ExtResource( 4 )
+
+[node name="TitleVBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="TitleVBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 174.0
+custom_fonts/font = ExtResource( 1 )
+text = "Lucosa"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Subtitle" type="Label" parent="TitleVBoxContainer"]
+margin_top = 178.0
+margin_right = 1280.0
+margin_bottom = 308.0
+custom_fonts/font = ExtResource( 2 )
+text = "Hybrid Flame"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionVBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="New Game" type="Label" parent="OptionVBoxContainer"]
+margin_top = 448.0
+margin_right = 1280.0
+margin_bottom = 536.0
+custom_fonts/font = ExtResource( 3 )
+text = "New Game"
+align = 1
+
+[node name="Continue" type="Label" parent="OptionVBoxContainer"]
+margin_top = 540.0
+margin_right = 1280.0
+margin_bottom = 628.0
+custom_fonts/font = ExtResource( 3 )
+text = "Continue"
+align = 1
+
+[node name="Exit" type="Label" parent="OptionVBoxContainer"]
+margin_top = 632.0
+margin_right = 1280.0
+margin_bottom = 720.0
+custom_fonts/font = ExtResource( 3 )
+text = "Exit"
+align = 1
