@@ -103,6 +103,11 @@ func save(room_filename: String):
 	file.store_line(to_json(dict))
 	file.close()
 	
+func load_game():
+	var file := File.new()
+	file.open("user://save.json", File.READ)
+	file.close()
+	
 func lerp_color(from: Color, to: Color, val: float):
 	return Color(lerp(from.r, to.r, val), \
 			lerp(from.g, to.g, val), \

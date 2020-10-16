@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Graphics/Fonts/Lato24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Graphics/Fonts/Lato18.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Graphics/Fonts/Lato14.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Graphics/StartScreen.png" type="Texture" id=4]
+[ext_resource path="res://Menu/MainMenu.gd" type="Script" id=5]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1280.0
@@ -57,26 +59,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="New Game" type="Label" parent="OptionVBoxContainer"]
-margin_top = 448.0
+[node name="NewGame" type="Button" parent="OptionVBoxContainer"]
+margin_top = 430.0
 margin_right = 1280.0
-margin_bottom = 536.0
+margin_bottom = 524.0
 custom_fonts/font = ExtResource( 3 )
 text = "New Game"
-align = 1
+flat = true
 
-[node name="Continue" type="Label" parent="OptionVBoxContainer"]
-margin_top = 540.0
+[node name="Continue" type="Button" parent="OptionVBoxContainer"]
+margin_top = 528.0
 margin_right = 1280.0
-margin_bottom = 628.0
+margin_bottom = 622.0
 custom_fonts/font = ExtResource( 3 )
 text = "Continue"
-align = 1
+flat = true
 
-[node name="Exit" type="Label" parent="OptionVBoxContainer"]
-margin_top = 632.0
+[node name="Exit" type="Button" parent="OptionVBoxContainer"]
+margin_top = 626.0
 margin_right = 1280.0
 margin_bottom = 720.0
 custom_fonts/font = ExtResource( 3 )
 text = "Exit"
-align = 1
+flat = true
