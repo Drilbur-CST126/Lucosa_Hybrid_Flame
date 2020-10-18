@@ -4,18 +4,18 @@
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var cameraRight := $Toxen.position.x as float > -160
+onready var cameraRight := $Ruicosa.position.x as float > -160
 var cameraCenter := false
 var cameraChange := false
 var upperRegion := false
 
 func set_player_position():
-	var lastRoom := GlobalData.lastRoom
+	var lastRoom := GlobalData.lastRoomId
 	if lastRoom == "CaveLowerHallway":
-		$Toxen.position.x = -635
-		$Toxen.position.y = 118
-		$DynamicCamera.position = $Toxen.position
-		$Toxen.look_right()
+		$Ruicosa.position.x = -635
+		$Ruicosa.position.y = 118
+		$DynamicCamera.position = $Ruicosa.position
+		$Ruicosa.facingRight = true
 	#self.set_previous_screen()
 	print(name)
 

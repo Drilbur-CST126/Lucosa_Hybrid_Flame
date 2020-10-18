@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Block.PNG" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 12 )
+
+[node name="Block" type="StaticBody2D"]
+
+[node name="EnemyData" parent="." instance=ExtResource( 1 )]
+deathShards = 0
+pushPlayer = false
+damageOnTouch = 0
+colArea = NodePath("../CollisionShape2D")
+
+[node name="Block" type="Sprite" parent="."]
+scale = Vector2( 0.167, 0.167 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

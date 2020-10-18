@@ -20,32 +20,32 @@ region = Rect2( 32, 0, 32, 27 )
 [sub_resource type="AtlasTexture" id=4]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 160, 27, 32, 27 )
+region = Rect2( 32, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 32, 27, 32, 27 )
+region = Rect2( 64, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 64, 27, 32, 27 )
+region = Rect2( 96, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 96, 27, 32, 27 )
+region = Rect2( 128, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 128, 27, 32, 27 )
+region = Rect2( 0, 27, 32, 27 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 9
 atlas = ExtResource( 2 )
-region = Rect2( 0, 27, 32, 27 )
+region = Rect2( 160, 27, 32, 27 )
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
@@ -54,19 +54,19 @@ animations = [ {
 "name": "default",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "attack_hold",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 8 ), SubResource( 8 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 7 ), SubResource( 7 ) ],
 "loop": false,
 "name": "attack",
 "speed": 15.0
 }, {
-"frames": [ SubResource( 9 ) ],
+"frames": [ SubResource( 8 ) ],
 "loop": true,
 "name": "anticipation",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "attack_hold",
 "speed": 5.0
 } ]
 
@@ -112,9 +112,9 @@ velocity = Vector2( 256, 0 )
 gravity = 1024.0
 
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
-deathShards = 2
 maxHp = 3
 blocking = true
+colArea = NodePath("../CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3 )
@@ -125,8 +125,6 @@ frames = SubResource( 10 )
 frame = 1
 playing = true
 offset = Vector2( -2, 0 )
-
-[node name="KnockbackArea" type="Area2D" parent="."]
 
 [node name="AttackWindup" type="Timer" parent="."]
 wait_time = 0.5

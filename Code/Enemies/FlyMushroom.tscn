@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Graphics/Enemies/FlyMushroom.PNG" type="Texture" id=1]
+[ext_resource path="res://Code/Enemies/FlyMushroom.gd" type="Script" id=2]
+[ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.5, 7.5 )
+
+[node name="FlyMushroom" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="EnemyData" parent="." instance=ExtResource( 3 )]
+maxHp = 3
+colArea = NodePath("../CollisionShape2D")
+
+[node name="FlyShroom" type="Sprite" parent="."]
+scale = Vector2( 0.167, 0.167 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 15, 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

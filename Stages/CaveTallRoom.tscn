@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Stages/CaveTallRoom.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Tilesets/Cave.tres" type="TileSet" id=2]
-[ext_resource path="res://Code/Toxen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Code/Enemies/WaterWarrior.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Code/HealthBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Code/Polish/Fog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=8]
@@ -28,10 +27,9 @@ limit_left = -640
 limit_top = -360
 limit_right = 320
 limit_bottom = 180
-smoothing_enabled = true
 snapOffset = 60.0
 yCenter = 24.0
-target = NodePath("../../CaveTallRoom/Toxen")
+target = NodePath("../Ruicosa")
 dynamicLimitLeft = -640
 dynamicLimitRight = 320
 dynamicLimitUp = 0
@@ -48,12 +46,9 @@ position = Vector2( -654, 108 )
 colDimensions = Vector2( 2, 20 )
 loadPath = "res://Stages/CaveLowerHallway.tscn"
 
-[node name="Toxen" parent="." instance=ExtResource( 3 )]
-position = Vector2( 315, 150 )
-
 [node name="WaterWarrior" parent="." instance=ExtResource( 4 )]
 position = Vector2( -115, 0 )
-target = NodePath("../../CaveTallRoom/Toxen")
+target = NodePath("../Ruicosa")
 velocity = Vector2( 0, 0 )
 moving = false
 
@@ -64,6 +59,5 @@ width = 960.0
 extraHeight = 12.0
 speed = 10.0
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" parent="HUD" instance=ExtResource( 5 )]
+[node name="Ruicosa" parent="." instance=ExtResource( 3 )]
+position = Vector2( 313.154, 148.5 )
