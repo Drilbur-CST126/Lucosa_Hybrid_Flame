@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/Waterfall.tres" type="TileSet" id=1]
 [ext_resource path="res://Enemies/SoldierWatsi/SoldierWatsi.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -32,7 +33,7 @@ margin_left = -320.0
 margin_top = -180.0
 margin_right = 320.0
 margin_bottom = 180.0
-color = Color( 0.188235, 0.313726, 0.196078, 1 )
+color = Color( 0.207843, 0.32549, 0.239216, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -71,3 +72,12 @@ position = Vector2( 128, -189.972 )
 colDimensions = Vector2( 16, 6 )
 direction = 0
 loadPath = "res://Stages/FrogLands/LucosaTutorialRoom.tscn"
+
+[node name="WaterfallSceneTransition2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -331.696, 124.231 )
+loadPath = "res://Stages/FrogLands/WaterfallRoom.tscn"
+
+[node name="RoomSpawnPoint" parent="." instance=ExtResource( 6 )]
+position = Vector2( -308, 125.331 )
+loadId = "WaterfallRoom"
+facingRight = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/Waterfall.tres" type="TileSet" id=1]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=2]
@@ -8,12 +8,6 @@
 [ext_resource path="res://Code/StageAssets/Block.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Code/Campfire.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/PlayerAreas/TransformArea.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Graphics/Scenery/LeftTrunk.tres" type="Texture" id=9]
-[ext_resource path="res://Graphics/Scenery/RightTrunk.tres" type="Texture" id=10]
-[ext_resource path="res://Graphics/Scenery/Trunk.tres" type="Texture" id=11]
-[ext_resource path="res://Graphics/Scenery/BackgroundLeaves1.tres" type="Texture" id=12]
-[ext_resource path="res://Graphics/Scenery/Branch1.tres" type="Texture" id=13]
-[ext_resource path="res://Graphics/Scenery/MediumLeaves.tres" type="Texture" id=14]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -84,118 +78,6 @@ margin_top = -180.0
 margin_right = 320.0
 margin_bottom = 540.0
 color = Color( 0.188235, 0.313726, 0.196078, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Background" type="Node2D" parent="."]
-visible = false
-scale = Vector2( 0.167, 0.167 )
-
-[node name="Tree" type="Sprite" parent="Background"]
-modulate = Color( 0.137255, 0.258824, 0.0901961, 1 )
-position = Vector2( -926.013, 2837.48 )
-rotation = 0.181207
-texture = ExtResource( 9 )
-
-[node name="RightTrunk" type="Sprite" parent="Background/Tree"]
-position = Vector2( 476.494, 5.60474 )
-texture = ExtResource( 10 )
-
-[node name="ColorRect" type="ColorRect" parent="Background/Tree"]
-margin_left = 97.0
-margin_top = -210.0
-margin_right = 415.0
-margin_bottom = 210.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Trunk" type="Sprite" parent="Background/Tree"]
-position = Vector2( 256.978, -379.314 )
-scale = Vector2( 1.14727, 1.90716 )
-texture = ExtResource( 11 )
-
-[node name="Trunk2" type="Sprite" parent="Background/Tree"]
-position = Vector2( 256.503, -1021.2 )
-scale = Vector2( 1.1389, 1.90716 )
-texture = ExtResource( 11 )
-
-[node name="BackgroundLeaves1" type="Sprite" parent="Background"]
-modulate = Color( 0.137255, 0.258824, 0.0901961, 1 )
-position = Vector2( -743.604, 1864.22 )
-rotation = 2.10718
-texture = ExtResource( 12 )
-
-[node name="BackgroundLeaves2" type="Sprite" parent="Background/BackgroundLeaves1"]
-position = Vector2( -51.606, 156.425 )
-rotation = 0.345554
-texture = ExtResource( 12 )
-
-[node name="BackgroundLeaves3" type="Sprite" parent="Background/BackgroundLeaves1"]
-position = Vector2( -208.365, 241.111 )
-rotation = 1.32244
-texture = ExtResource( 12 )
-
-[node name="ColorRect" type="ColorRect" parent="Background"]
-margin_left = -883.0
-margin_top = 1628.0
-margin_right = -477.0
-margin_bottom = 1987.0
-rect_rotation = -30.3047
-color = Color( 0.137255, 0.258824, 0.0901961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect2" type="ColorRect" parent="Background"]
-margin_left = -891.458
-margin_top = 1637.35
-margin_right = -810.458
-margin_bottom = 1830.35
-rect_rotation = -27.0268
-color = Color( 0.137255, 0.258824, 0.0901961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TransformCave" type="Sprite" parent="Background"]
-modulate = Color( 0.239216, 0.160784, 0.0117647, 1 )
-position = Vector2( -1099.6, 2893.39 )
-rotation = 1.28523
-texture = ExtResource( 13 )
-
-[node name="ColorRect" type="ColorRect" parent="Background/TransformCave"]
-margin_left = -97.0
-margin_top = -87.0
-margin_right = 128.0
-margin_bottom = 237.0
-rect_rotation = -74.1143
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect2" type="ColorRect" parent="Background/TransformCave"]
-margin_left = 16.0
-margin_top = -37.0
-margin_right = 197.0
-margin_bottom = 114.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ExitCave" type="Sprite" parent="Background"]
-modulate = Color( 0.239216, 0.160784, 0.0117647, 1 )
-position = Vector2( -198.731, 2861.68 )
-rotation = 0.0893323
-scale = Vector2( 1.51514, 2.27411 )
-texture = ExtResource( 13 )
-
-[node name="ColorRect" type="ColorRect" parent="Background/ExitCave"]
-margin_left = 14.0
-margin_top = -105.0
-margin_right = 144.0
-margin_bottom = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -276,21 +158,12 @@ position = Vector2( -284, 451.846 )
 loadId = "Savepoint"
 facingRight = true
 
-[node name="Foreground" type="Node2D" parent="."]
-visible = false
-scale = Vector2( 0.167, 0.167 )
+[node name="SceneTransition" parent="." instance=ExtResource( 4 )]
+position = Vector2( -332.171, 492.397 )
+loadPath = "res://Stages/FrogLands/WaterfallRoom.tscn"
+overrideLoadId = "TransformSaveRoomLower"
 
-[node name="MediumLeaves3" type="Sprite" parent="Foreground"]
-position = Vector2( -771.542, 2740.81 )
-texture = ExtResource( 14 )
-flip_h = true
-
-[node name="MediumLeaves2" type="Sprite" parent="Foreground"]
-position = Vector2( -858.126, 2739.09 )
-rotation = 0.0677083
-scale = Vector2( 1.30801, 1 )
-texture = ExtResource( 14 )
-
-[node name="MediumLeaves" type="Sprite" parent="Foreground"]
-position = Vector2( -990.125, 2735.86 )
-texture = ExtResource( 14 )
+[node name="LowerWaterfallRoomSpawnPoint" parent="." instance=ExtResource( 5 )]
+position = Vector2( -307.585, 499.692 )
+loadId = "WaterfallRoomLower"
+facingRight = true

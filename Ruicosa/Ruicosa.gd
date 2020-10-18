@@ -45,6 +45,8 @@ const maxCoyoteTime := 0.1
 
 const diveVelocity := 256.0
 
+export var detectCollision := false
+
 var jumpImpulse: float
 var doubleJumpImpulse: float
 var lucosaJumpImpulse: float
@@ -76,6 +78,7 @@ func look_at(pos: Vector2):
 	self.facingRight = pos.x > position.x
 	
 func knockback(damage := 0):
+	play_anim("Idle", true)
 	if state == ActionState.Dive:
 		if facingRight:
 			velocity.x = -walkSpeed
@@ -244,6 +247,10 @@ func on_damaged(_amt):
 	yield($HitTimer, "timeout")
 	vulnerable = true
 	$Sprite.modulate.a = 1
+	
+func on_collide(obj: Node2D):
+	if obj.get_class() == "DamageObject":
+		knockback(obj.dmg)
 		
 func is_anim_freeze_state():
 	return state == ActionState.Attacking
@@ -262,12 +269,14 @@ func _ready():
 	lucosaJumpImpulse = -sqrt(16.0 * lucosaJumpHeight * gravity)
 	
 	var hud := HUD.instance()
-	connect("formSwap", hud, "set_icon")
 	get_parent().call_deferred("add_child", hud)
 	
-	$AttackTimer.connect("timeout", self, "set_can_attack")
-	$Sprite.connect("animation_finished", self, "on_anim_complete")
-	GlobalData.connect("player_hit", self, "on_damaged")
+	GlobalData.print_errors([
+		connect("formSwap", hud, "set_icon"),
+		$AttackTimer.connect("timeout", self, "set_can_attack"),
+		$Sprite.connect("animation_finished", self, "on_anim_complete"),
+		GlobalData.connect("player_hit", self, "on_damaged"),
+	])
 	
 	self.facingRight = false
 	self.lucosaForm = GlobalData.lucosaForm
@@ -300,6 +309,11 @@ func _physics_process(delta: float):
 		
 	if !is_on_floor() && state == ActionState.Normal:
 		state = ActionState.Falling
+		
+	if detectCollision:
+		for i in range(0, get_slide_count()):
+			var collision := get_slide_collision(i)
+			on_collide(collision.collider)
 
 func ruirui_abilities():
 	if Input.is_action_just_pressed("attack") && !Input.is_action_pressed("ui_up"):
