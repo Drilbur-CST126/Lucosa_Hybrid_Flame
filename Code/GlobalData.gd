@@ -11,6 +11,7 @@ var playerHp := 5 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
+var distributeHpShards := false setget set_distribute_hp_shards
 
 var lastRoomId: String
 var camera: Node2D
@@ -50,6 +51,10 @@ func set_player_hp(amt: int):
 			hpShards = 0
 		emit_signal("hp_changed", playerHp, hpShards)
 		
+		if playerHp == 0:
+			reload_game()
+			playerHp = playerMaxHp
+		
 		if damage:
 			emit_signal("player_hit", playerHp)
 			get_tree().paused = true
@@ -60,14 +65,18 @@ func set_player_hp(amt: int):
 	
 func set_hp_shards(amt: int):
 	if amt != hpShards:
-		if playerHp != playerMaxHp:
+		distribute_hp_shards(amt)
+		
+func distribute_hp_shards(amt: int):
+	if playerHp != playerMaxHp:
+		if distributeHpShards:
 			while amt >= 5:
 				amt -= 5
 				playerHp += 1
-			hpShards = amt
-		else:
-			hpShards = 0
-		emit_signal("hp_changed", playerHp, hpShards)
+		hpShards = amt
+	else:
+		hpShards = 0
+	emit_signal("hp_changed", playerHp, hpShards)
 
 func set_player_max_hp(amt: int):
 	emit_signal("max_hp_changed", amt)
@@ -86,6 +95,11 @@ func set_player_mana(amt: float):
 			get_tree().paused = false
 		playerMana = amt
 		emit_signal("mana_changed", amt)
+		
+func set_distribute_hp_shards(val: bool):
+	distributeHpShards = val
+	if val:
+		distribute_hp_shards(hpShards)
 		
 func set_can_transform_anywhere(val: bool):
 	canTransformAnywhere = val
@@ -107,10 +121,29 @@ func save(room_filename: String):
 	file.open("user://save.json", File.WRITE)
 	file.store_line(to_json(dict))
 	file.close()
+	file.open("user://reload.json", File.WRITE)
+	file.store_line(to_json(dict))
+	file.close()
 	
-func load_game():
+func save_reload(room_filename: String):
+	var dict := {
+		"filename": room_filename,
+		"lucosaForm": lucosaForm,
+		# Abilities
+		"hasDive": hasDive,
+		"hasUppercut": hasUppercut,
+		"hasDoubleJump": hasDoubleJump,
+		"canTransformAnywhere": canTransformAnywhere,
+	}
+	
+	var file = File.new()
+	file.open("user://reload.json", File.WRITE)
+	file.store_line(to_json(dict))
+	file.close()
+	
+func load_file(filename: String):
 	var file := File.new()
-	file.open("user://save.json", File.READ)
+	file.open(filename, File.READ)
 	
 	while file.get_position() < file.get_len():
 		var data = parse_json(file.get_line())
@@ -124,8 +157,15 @@ func load_game():
 		self.lastRoomId = "Savepoint"
 		self.transDirection = Direction.Dtu
 		get_tree().change_scene(data["filename"])
+		save_reload(data["filename"])
 	
 	file.close()
+	
+func load_game():
+	load_file("user://save.json")
+	
+func reload_game():
+	load_file("user://reload.json")
 	
 func lerp_color(from: Color, to: Color, val: float):
 	return Color(lerp(from.r, to.r, val), \
@@ -141,7 +181,8 @@ func print_errors(connections: Array):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("menu"):
-		OS.window_fullscreen = !OS.window_fullscreen
+		#OS.window_fullscreen = !OS.window_fullscreen
+		get_tree().change_scene("res://Menu/MainMenu.tscn")
 		
 #	if Input.is_action_just_pressed("controller_press"):
 #		usingController = true
