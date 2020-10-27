@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 
 const HUD = preload("res://Code/HUD.tscn")
+const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tscn")
 const Enemy = preload("res://Code/Enemy.gd")
 const HIT_1 = preload("res://Graphics/Particles/Hit1/Hit1.tscn")
 const UPPERCUT = preload("res://Graphics/Particles/Uppercut/Uppercut.tscn")
@@ -17,6 +18,7 @@ enum ActionState {
 	Knockback,
 	Transforming,
 	Attacking,
+	Healing,
 }
 
 
@@ -52,6 +54,8 @@ var doubleJumpImpulse: float
 var lucosaJumpImpulse: float
 var gravity: float
 var minJumpGravity: float
+onready var hud := HUD.instance()
+
 var jumpReleased := false
 var canDoubleJump: bool
 var coyoteTime := 0.0
@@ -215,6 +219,28 @@ func land_uppercut(var target: Node2D):
 		enemyData.take_damage(attackDmg)
 		canDoubleJump = true
 		
+func begin_heal():
+	if is_on_floor() && state != ActionState.Healing:
+		state = ActionState.Healing
+		var healScene := RuiruiHealthScene.instance()
+		hud.add_child(healScene)
+		Utility.print_connect_errors(get_path(), [
+			healScene.connect("on_finish", self, "end_heal"),
+			GlobalData.connect("player_hit", self, "interrupt_heal", [healScene])
+		])
+
+func end_heal():
+	state = ActionState.Normal
+	Utility.print_connect_errors(get_path(), [
+			GlobalData.disconnect("player_hit", self, "interrupt_heal")
+		])
+		
+func interrupt_heal(_hp: int, healScene):
+	healScene.queue_free()
+	Utility.print_connect_errors(get_path(), [
+			GlobalData.disconnect("player_hit", self, "interrupt_heal")
+		])
+		
 func set_can_attack():
 	canAttack = true
 	#attack()
@@ -227,7 +253,7 @@ func on_anim_complete():
 		play_anim("Idle")
 		state = ActionState.Normal
 	
-func is_air_state():
+func is_air_state() -> bool:
 	return state == ActionState.Falling \
 		|| state == ActionState.Jump \
 		|| state == ActionState.DoubleJump \
@@ -235,10 +261,13 @@ func is_air_state():
 		|| state == ActionState.Dive \
 		|| state == ActionState.Knockback
 	
-func is_momentum_state():
+func is_momentum_state() -> bool:
 	return state == ActionState.Dive \
 		|| state == ActionState.Knockback \
 		|| state == ActionState.Transforming
+		
+func is_stun_state() -> bool:
+	return state == ActionState.Healing
 
 func on_damaged(_amt):
 	vulnerable = false
@@ -268,10 +297,9 @@ func _ready():
 	doubleJumpImpulse = -sqrt(16.0 * doubleJumpHeight * gravity)
 	lucosaJumpImpulse = -sqrt(16.0 * lucosaJumpHeight * gravity)
 	
-	var hud := HUD.instance()
 	get_parent().call_deferred("add_child", hud)
 	
-	GlobalData.print_errors([
+	Utility.print_connect_errors(get_path(),[
 		connect("formSwap", hud, "set_icon"),
 		$AttackTimer.connect("timeout", self, "set_can_attack"),
 		$Sprite.connect("animation_finished", self, "on_anim_complete"),
@@ -284,36 +312,41 @@ func _ready():
 	canDoubleJump = form_has_double_jump()
 	#play_anim("Idle")
 	
-func _physics_process(delta: float):
-	process_x_velocity(delta)
-	process_y_velocity(delta)
+func _process(_delta: float):
+	if Input.is_action_just_pressed("spell"):
+		begin_heal()
 	
-	if lucosaForm:
-		lucosa_abilities()
-	else:
-		ruirui_abilities()
+func _physics_process(delta: float):
+	if !is_stun_state():
+		process_x_velocity(delta)
+		process_y_velocity(delta)
 		
-	if ((Input.is_action_pressed("ui_up") && Input.is_action_just_pressed("attack")) \
-			|| Input.is_action_just_pressed("transform")) && is_on_floor() \
-			&& GlobalData.canTransform:
-		play_anim("Transform")
-		state = ActionState.Transforming
-		velocity.x = 0.0
-		self.lucosaForm = !lucosaForm
-		emit_signal("formSwap", "lucosa" if self.lucosaForm else "ruirui")
-		
-	velocity = move_and_slide(velocity, Vector2.UP, true)
-	if is_on_floor() && is_air_state():
-		state = ActionState.Normal
-		canDoubleJump = form_has_double_jump()
-		
-	if !is_on_floor() && state == ActionState.Normal:
-		state = ActionState.Falling
-		
-	if detectCollision:
-		for i in range(0, get_slide_count()):
-			var collision := get_slide_collision(i)
-			on_collide(collision.collider)
+		if lucosaForm:
+			lucosa_abilities()
+		else:
+			ruirui_abilities()
+			
+		if ((Input.is_action_pressed("ui_up") && Input.is_action_just_pressed("attack")) \
+				|| Input.is_action_just_pressed("transform")) && is_on_floor() \
+				&& GlobalData.canTransform:
+			play_anim("Transform")
+			state = ActionState.Transforming
+			velocity.x = 0.0
+			self.lucosaForm = !lucosaForm
+			emit_signal("formSwap", "lucosa" if self.lucosaForm else "ruirui")
+			
+		velocity = move_and_slide(velocity, Vector2.UP, true)
+		if is_on_floor() && is_air_state():
+			state = ActionState.Normal
+			canDoubleJump = form_has_double_jump()
+			
+		if !is_on_floor() && state == ActionState.Normal:
+			state = ActionState.Falling
+			
+		if detectCollision:
+			for i in range(0, get_slide_count()):
+				var collision := get_slide_collision(i)
+				on_collide(collision.collider)
 
 func ruirui_abilities():
 	if Input.is_action_just_pressed("attack") && !Input.is_action_pressed("ui_up"):

@@ -16,11 +16,12 @@ const STATES := {
 var animTime := 0.0
 var flashing := false
 var filling := false
-var state: int = STATES["Full"]
+var state: int = STATES["Full"] setget set_state
+var prevState: int
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func set_state(val: int):
+	prevState = state
+	state = val
 
 
 # Called when the node enters the scene tree for the first time.
@@ -55,16 +56,19 @@ func set_empty():
 
 func set_filling(amt: int):
 	if state != amt:
-		$Flash.visible = false
+		set_state(amt)
+		if prevState < 0:
+			prevState = 0
+		
 		$Fill.show()
 		$Fill.modulate = white
-	#	var ofs := amt * 20
-	#	$Fill.region_rect.size.y = ofs
-	#	$Fill.region_rect.position.y = 100 - ofs
-	#	$Fill.offset.y = (100 - ofs) / 2.0
+		var ofs := prevState * 20
+		$Fill.region_rect.size.y = ofs
+		$Fill.region_rect.position.y = 100 - ofs
+		$Fill.offset.y = (100 - ofs) / 2.0
 		$Fire.hide()
-		flash()
-		state = amt
+		$Flash.hide()
+		
 		flashing = false
 		filling = true
 		animTime = MAX_FLASH_TIME
@@ -90,7 +94,7 @@ func _process(delta):
 		animTime += delta * 8.0
 		
 	if (filling):
-		var src := (state - 1) * 20
+		var src := prevState * 20
 		var cur := state * 20
 		var pos := lerp(cur, src, animTime / MAX_FLASH_TIME) as float
 		var ofs = 100 - pos

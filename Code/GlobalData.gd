@@ -7,11 +7,11 @@ const kManaRegenPerSec := 20.0
 const kMaxMana := 100.0
 
 # Declare member variables here. Examples:
-var playerHp := 5 setget set_player_hp
+var playerHp := 1 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
-var distributeHpShards := false setget set_distribute_hp_shards
+var distributeHpShards := true setget set_distribute_hp_shards
 
 var lastRoomId: String
 var camera: Node2D
@@ -166,17 +166,6 @@ func load_game():
 	
 func reload_game():
 	load_file("user://reload.json")
-	
-func lerp_color(from: Color, to: Color, val: float):
-	return Color(lerp(from.r, to.r, val), \
-			lerp(from.g, to.g, val), \
-			lerp(from.b, to.b, val), \
-			lerp(from.a, to.a, val))
-			
-func print_errors(connections: Array):
-	for i in connections:
-		if i != 0:
-			print("Connection failed!")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
