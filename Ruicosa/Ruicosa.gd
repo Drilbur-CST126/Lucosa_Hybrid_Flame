@@ -3,9 +3,11 @@ extends KinematicBody2D
 
 const HUD = preload("res://Code/HUD.tscn")
 const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tscn")
+const LucosaHealthScene = preload("res://Code/HealMinigame/LucosaHealthScene.tscn")
 const Enemy = preload("res://Code/Enemy.gd")
-const HIT_1 = preload("res://Graphics/Particles/Hit1/Hit1.tscn")
-const UPPERCUT = preload("res://Graphics/Particles/Uppercut/Uppercut.tscn")
+
+const kHit1Particle = preload("res://Graphics/Particles/Hit1/Hit1.tscn")
+const kUppercutParticle = preload("res://Graphics/Particles/Uppercut/Uppercut.tscn")
 
 
 enum ActionState {
@@ -158,7 +160,7 @@ func double_jump():
 func attack():
 	if canAttack:
 		play_anim("Attack")
-		var child := HIT_1.instance()
+		var child := kHit1Particle.instance()
 		var dir := 1 if facingRight else -1
 		
 		#child.get_node("ParticleSprite").flip_h = facingRight
@@ -195,7 +197,7 @@ func uppercut():
 		state = ActionState.DoubleJump
 		canDoubleJump = false
 		
-		var child := UPPERCUT.instance()
+		var child := kUppercutParticle.instance()
 		var dir := 1 if facingRight else -1
 		
 		child.get_node("ParticleSprite").flip_h = facingRight
@@ -222,7 +224,7 @@ func land_uppercut(var target: Node2D):
 func begin_heal():
 	if is_on_floor() && state != ActionState.Healing:
 		state = ActionState.Healing
-		var healScene := RuiruiHealthScene.instance()
+		var healScene := LucosaHealthScene.instance() if lucosaForm else RuiruiHealthScene.instance()
 		hud.add_child(healScene)
 		Utility.print_connect_errors(get_path(), [
 			healScene.connect("on_finish", self, "end_heal"),
