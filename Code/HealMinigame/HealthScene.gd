@@ -27,8 +27,11 @@ func begin_run():
 		])
 		runsLeft -= 1
 	else:
-		emit_signal("on_finish")
-		$AnimationPlayer.play("FadeOut")
+		finish()
+		
+func finish():
+	emit_signal("on_finish")
+	$AnimationPlayer.play("FadeOut")
 		
 func on_anim_finished(name: String):
 	if name == "FadeIn":
@@ -44,3 +47,7 @@ func _ready():
 	Utility.print_connect_errors(get_path(), [
 		$AnimationPlayer.connect("animation_finished", self, "on_anim_finished")
 	])
+	
+func _process(_delta):
+	if Input.is_action_just_pressed("attack"):
+		finish()
