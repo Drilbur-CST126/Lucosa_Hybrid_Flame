@@ -174,7 +174,9 @@ func attack():
 		rect.extents = Vector2(6, 6)
 		attackShape.shape = rect
 		attackArea.add_child(attackShape)
-		attackArea.connect("body_entered", self, "land_attack", [attackArea])
+		Utility.print_connect_errors(get_path(), [
+			attackArea.connect("body_entered", self, "land_attack", [attackArea])
+		])
 		child.add_child(attackArea)
 		
 		add_child(child)
@@ -209,7 +211,9 @@ func uppercut():
 		rect.extents = Vector2(6, 8)
 		attackShape.shape = rect
 		attackArea.add_child(attackShape)
-		attackArea.connect("body_entered", self, "land_uppercut")
+		Utility.print_connect_errors(get_path(), [
+			attackArea.connect("body_entered", self, "land_uppercut")
+		])
 		child.add_child(attackArea)
 		
 		add_child(child)
@@ -222,7 +226,7 @@ func land_uppercut(var target: Node2D):
 		canDoubleJump = true
 		
 func begin_heal():
-	if is_on_floor() && state != ActionState.Healing:
+	if is_on_floor() && !GlobalData.player_at_full_hp() && state != ActionState.Healing:
 		state = ActionState.Healing
 		var healScene := LucosaHealthScene.instance() if lucosaForm else RuiruiHealthScene.instance()
 		hud.add_child(healScene)
@@ -234,16 +238,12 @@ func begin_heal():
 
 func end_heal():
 	state = ActionState.Normal
-	Utility.print_connect_errors(get_path(), [
-			GlobalData.disconnect("player_hit", self, "interrupt_heal")
-		])
+	GlobalData.disconnect("player_hit", self, "interrupt_heal")
 	GlobalData.distributeHpShards = true
 		
 func interrupt_heal(_hp: int, healScene):
 	healScene.queue_free()
-	Utility.print_connect_errors(get_path(), [
-			GlobalData.disconnect("player_hit", self, "interrupt_heal")
-		])
+	GlobalData.disconnect("player_hit", self, "interrupt_heal")
 	GlobalData.distributeHpShards = true
 		
 func set_can_attack():

@@ -19,8 +19,7 @@ func lerp_color(from: Color, to: Color, val: float):
 			
 func print_connect_errors(path: String, connections: Array):
 	for i in connections:
-		if i != 0:
-			print("Connection failed in " + path + "!")
+		assert(i == 0, "Connection failed in " + path + "!")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

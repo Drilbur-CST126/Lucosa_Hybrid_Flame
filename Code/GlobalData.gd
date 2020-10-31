@@ -1,6 +1,6 @@
 extends Node
 
-enum Direction {Utd, Dtu, Ltr, Rtl, None}
+enum Direction {Utd, Dtu, Ltr, Rtl, Fade, None}
 
 const kPlayerClassName = "Ruicosa"
 const kManaRegenPerSec := 20.0
@@ -31,6 +31,7 @@ signal hp_changed(hp, shards)
 signal mana_changed(mana)
 signal trans_begin(direction, destination)
 signal player_hit(hp)
+signal player_dead()
 
 signal control_config_changed(usingController)
 
@@ -51,17 +52,19 @@ func set_player_hp(amt: int):
 			hpShards = 0
 		emit_signal("hp_changed", playerHp, hpShards)
 		
-		if playerHp == 0:
-			reload_game()
-			playerHp = playerMaxHp
-		
 		if damage:
 			emit_signal("player_hit", playerHp)
 			get_tree().paused = true
 			if camera.has_method("shake"):
 				camera.shake(2.0, 0.1)
 			yield(get_tree().create_timer(0.2), "timeout")
-			get_tree().paused = false
+			if playerHp == 0:
+				if camera.has_method("shake"):
+					camera.shake(4.0, -1)
+				yield(get_tree().create_timer(1.0), "timeout")
+				emit_signal("player_dead")
+			else:
+				get_tree().paused = false
 	
 func set_hp_shards(amt: int):
 	if amt != hpShards:
@@ -149,6 +152,8 @@ func load_file(filename: String):
 	var file := File.new()
 	file.open(filename, File.READ)
 	
+	var saveLocation: String
+	
 	while file.get_position() < file.get_len():
 		var data = parse_json(file.get_line())
 		
@@ -159,17 +164,19 @@ func load_file(filename: String):
 		self.canTransformAnywhere = data["canTransformAnywhere"]
 		
 		self.lastRoomId = "Savepoint"
-		self.transDirection = Direction.Dtu
+		self.transDirection = Direction.Fade
 		get_tree().change_scene(data["filename"])
-		save_reload(data["filename"])
+		saveLocation = data["filename"]
 	
 	file.close()
+	save_reload(saveLocation)
 	
 func load_game():
 	load_file("user://save.json")
 	
 func reload_game():
 	load_file("user://reload.json")
+	playerHp = playerMaxHp
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

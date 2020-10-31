@@ -20,10 +20,13 @@ var adjustHealthMutex := Mutex.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display")
-	GlobalData.connect("hp_changed", self, "adjust_hp_display")
-	GlobalData.connect("trans_begin", self, "begin_transition")
-	GlobalData.connect("mana_changed", self, "adjust_bar_display")
+	Utility.print_connect_errors(get_path(), [
+		GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display"),
+		GlobalData.connect("hp_changed", self, "adjust_hp_display"),
+		GlobalData.connect("trans_begin", self, "begin_transition"),
+		GlobalData.connect("mana_changed", self, "adjust_bar_display"),
+		GlobalData.connect("player_dead", self, "begin_death_transition"),
+	])
 	adjust_max_hp_display(GlobalData.playerMaxHp)
 	adjust_bar_display(GlobalData.playerMana)
 	firstRun = false
@@ -77,13 +80,32 @@ func adjust_bar_display(mana: float):
 	$Visuals/BarInfill.region_rect.size.x = width
 	$Visuals/BarInfill.position.x = kBarPos - kBarWidth / 2.0 + (width / 2.0)
 			
+func begin_death_transition():
+	var effect := TransitionEffect.instance()
+	var height: float = ProjectSettings.get_setting("display/window/size/height") / scale.y
+	effect.set_dimensions(ProjectSettings.get_setting("display/window/size/width") / scale.x, \
+			height)
+	#effect.duration *= 0.5
+	effect.set_direction(GlobalData.Direction.Dtu)
+	#GlobalData.transDirection = GlobalData.Direction.Fade
+	effect.position.y = height + 16.0
+	effect.delay = 1.0
+	
+	Utility.print_connect_errors(get_path(), [
+		effect.connect("finished", GlobalData, "reload_game")
+	])
+	add_child(effect)
+			
 func begin_transition(direction, destination: String, inverse := false):
 	get_tree().paused = true
 	var effect := TransitionEffect.instance()
 	effect.set_dimensions(ProjectSettings.get_setting("display/window/size/width") / scale.x, \
 			ProjectSettings.get_setting("display/window/size/height") / scale.y)
 	effect.set_direction(direction)
-	effect.connect("finished", get_tree(), "change_scene", [destination])
+	effect.inverse = inverse
+	Utility.print_connect_errors(get_path(), [
+		effect.connect("finished", get_tree(), "change_scene", [destination])
+	])
 	add_child(effect)
 	
 func end_transition():
@@ -93,5 +115,7 @@ func end_transition():
 	effect.set_dimensions(ProjectSettings.get_setting("display/window/size/width") / scale.x, \
 			ProjectSettings.get_setting("display/window/size/height") / scale.y)
 	effect.set_direction(GlobalData.transDirection)
-	effect.connect("finished", effect, "queue_free")
+	Utility.print_connect_errors(get_path(), [
+		effect.connect("finished", effect, "queue_free")
+	])
 	add_child(effect)
