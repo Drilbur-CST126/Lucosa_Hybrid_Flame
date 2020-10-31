@@ -38,7 +38,7 @@ func _ready():
 func _process(delta: float):
 	if fireFlashEffect:
 		var parent := get_parent() as CanvasItem
-		parent.modulate = GlobalData.lerp_color(Color.white, fireCol, fireTimer/ fireFlashDur)
+		parent.modulate = Utility.lerp_color(Color.white, fireCol, fireTimer/ fireFlashDur)
 		fireTimer -= delta
 		if fireTimer <= 0.0:
 			fireFlashEffect = false

@@ -16,12 +16,17 @@ const NEXT_HEART_OFFSET := 90
 var curNumHearts := 0
 var firstRun := true
 
+var adjustHealthMutex := Mutex.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display")
-	GlobalData.connect("hp_changed", self, "adjust_hp_display")
-	GlobalData.connect("trans_begin", self, "begin_transition")
-	GlobalData.connect("mana_changed", self, "adjust_bar_display")
+	Utility.print_connect_errors(get_path(), [
+		GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display"),
+		GlobalData.connect("hp_changed", self, "adjust_hp_display"),
+		GlobalData.connect("trans_begin", self, "begin_transition"),
+		GlobalData.connect("mana_changed", self, "adjust_bar_display"),
+		GlobalData.connect("player_dead", self, "begin_death_transition"),
+	])
 	adjust_max_hp_display(GlobalData.playerMaxHp)
 	adjust_bar_display(GlobalData.playerMana)
 	firstRun = false
@@ -45,6 +50,7 @@ func adjust_max_hp_display(maxHp: int):
 	adjust_hp_display(GlobalData.playerHp, GlobalData.hpShards)
 
 func adjust_hp_display(hp: int, shards: int):
+	adjustHealthMutex.lock()
 	var curHeart := 0
 	for node in $Hearts.get_children():
 		var heart = node
@@ -52,8 +58,13 @@ func adjust_hp_display(hp: int, shards: int):
 			heart.set_full()
 			if firstRun:
 				heart.animTime = 0.0
-		elif curHeart == hp && shards > 0:
-			heart.set_filling(shards)
+		elif shards > 0:
+			if shards > 5:
+				heart.set_filling(5)
+				shards -= 5
+			else:
+				heart.set_filling(shards)
+				shards = 0
 			if firstRun:
 				heart.animTime = 0.0
 		else:
@@ -61,6 +72,7 @@ func adjust_hp_display(hp: int, shards: int):
 			if firstRun:
 				heart.animTime = 0.0
 		curHeart += 1
+	adjustHealthMutex.unlock()
 
 func adjust_bar_display(mana: float):
 	#print("MANA CHANGE")
@@ -68,13 +80,32 @@ func adjust_bar_display(mana: float):
 	$Visuals/BarInfill.region_rect.size.x = width
 	$Visuals/BarInfill.position.x = kBarPos - kBarWidth / 2.0 + (width / 2.0)
 			
+func begin_death_transition():
+	var effect := TransitionEffect.instance()
+	var height: float = ProjectSettings.get_setting("display/window/size/height") / scale.y
+	effect.set_dimensions(ProjectSettings.get_setting("display/window/size/width") / scale.x, \
+			height)
+	#effect.duration *= 0.5
+	effect.set_direction(GlobalData.Direction.Dtu)
+	#GlobalData.transDirection = GlobalData.Direction.Fade
+	effect.position.y = height + 16.0
+	effect.delay = 1.0
+	
+	Utility.print_connect_errors(get_path(), [
+		effect.connect("finished", GlobalData, "reload_game")
+	])
+	add_child(effect)
+			
 func begin_transition(direction, destination: String, inverse := false):
 	get_tree().paused = true
 	var effect := TransitionEffect.instance()
 	effect.set_dimensions(ProjectSettings.get_setting("display/window/size/width") / scale.x, \
 			ProjectSettings.get_setting("display/window/size/height") / scale.y)
 	effect.set_direction(direction)
-	effect.connect("finished", get_tree(), "change_scene", [destination])
+	effect.inverse = inverse
+	Utility.print_connect_errors(get_path(), [
+		effect.connect("finished", get_tree(), "change_scene", [destination])
+	])
 	add_child(effect)
 	
 func end_transition():
@@ -84,5 +115,7 @@ func end_transition():
 	effect.set_dimensions(ProjectSettings.get_setting("display/window/size/width") / scale.x, \
 			ProjectSettings.get_setting("display/window/size/height") / scale.y)
 	effect.set_direction(GlobalData.transDirection)
-	effect.connect("finished", effect, "queue_free")
+	Utility.print_connect_errors(get_path(), [
+		effect.connect("finished", effect, "queue_free")
+	])
 	add_child(effect)

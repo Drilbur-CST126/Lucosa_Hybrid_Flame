@@ -6,7 +6,7 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GlobalData.print_errors([
+	Utility.print_connect_errors(get_path(),[
 		connect("body_entered", self, "entered"),
 		connect("body_exited", self, "exited")
 	])

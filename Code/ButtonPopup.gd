@@ -23,7 +23,7 @@ func set_controller_pos(usingController: bool):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_controller_pos(GlobalData.usingController)
-	GlobalData.print_errors([GlobalData.connect("control_config_changed", self, "set_controller_pos")])
+	Utility.print_connect_errors(get_path(),[GlobalData.connect("control_config_changed", self, "set_controller_pos")])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

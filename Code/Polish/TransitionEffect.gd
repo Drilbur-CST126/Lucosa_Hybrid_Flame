@@ -6,6 +6,7 @@ var height: float
 export(GlobalData.Direction) var direction
 export var inverse := false
 export var duration: float
+export var delay := -1.0
 
 signal finished()
 
@@ -14,6 +15,8 @@ func _ready():
 	$AnimationPlayer.connect("animation_finished", self, "anim_finished")
 	
 func anim_finished(_name: String):
+	if delay > 0.0:
+		yield(get_tree().create_timer(delay), "timeout")
 	emit_signal("finished")
 	queue_free()
 	
@@ -30,6 +33,8 @@ func set_direction(direction):
 		setup_utd()
 	elif direction == GlobalData.Direction.Dtu:
 		setup_dtu()
+	elif direction == GlobalData.Direction.Fade:
+		setup_fade()
 	elif direction == GlobalData.Direction.None:
 		call_deferred("anim_finished", "")
 
@@ -134,6 +139,26 @@ func setup_dtu(var followInverse := true):
 		$AnimationPlayer.add_animation("Swipe", anim)
 		if !inverse:
 			$AnimationPlayer.play("Swipe")
+			
+func setup_fade(var followInverse := true):
+	$ColorRect.margin_left = 0.0
+	$ColorRect.margin_right = width
+	$ColorRect.margin_top = 0.0
+	$ColorRect.margin_bottom = height
+	#$Transition.visible = false
+		
+	var anim := Animation.new()
+	anim.add_track(Animation.TYPE_VALUE)
+	anim.length = duration
+	anim.track_set_path(0, ".:modulate")
+	anim.track_insert_key(0, 0.0, Color(0.0, 0.0, 0.0, 0.0))
+	anim.track_insert_key(0, duration, Color(0.0, 0.0, 0.0, 1.0))
+	$AnimationPlayer.add_animation("Fade", anim)
+	if !inverse:
+		modulate = Color(0.0, 0.0, 0.0, 0.0)
+		$AnimationPlayer.play("Fade")
+	else:
+		$AnimationPlayer.play_backwards("Fade")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

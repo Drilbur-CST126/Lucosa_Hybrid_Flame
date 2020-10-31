@@ -29,6 +29,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalData="*res://Code/GlobalData.gd"
+Utility="*res://Code/Utility.gd"
 
 [display]
 

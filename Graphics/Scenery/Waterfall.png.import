@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HdTileset.PNG-e9d6204415e39143a5147474e0a871f6.stex"
+path="res://.import/Waterfall.png-35f09ac87f3555324a69144da9a3a322.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Tilesets/HdTileset.PNG"
-dest_files=[ "res://.import/HdTileset.PNG-e9d6204415e39143a5147474e0a871f6.stex" ]
+source_file="res://Graphics/Scenery/Waterfall.png"
+dest_files=[ "res://.import/Waterfall.png-35f09ac87f3555324a69144da9a3a322.stex" ]
 
 [params]
 
