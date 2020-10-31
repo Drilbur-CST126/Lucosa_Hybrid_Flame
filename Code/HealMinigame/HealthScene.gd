@@ -41,7 +41,10 @@ func on_anim_finished(name: String):
 	
 func on_submit(amt: int):
 	GlobalData.hpShards += amt
-	begin_run()
+	if GlobalData.player_at_full_hp():
+		finish()
+	else:
+		begin_run()
 
 func _ready():
 	Utility.print_connect_errors(get_path(), [

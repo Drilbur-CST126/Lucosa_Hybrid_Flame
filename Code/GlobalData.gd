@@ -106,6 +106,10 @@ func set_can_transform_anywhere(val: bool):
 	if val:
 		canTransform = true
 		
+func player_at_full_hp() -> bool:
+	var hpFromShards := hpShards / 5
+	return hpFromShards + playerHp >= playerMaxHp
+		
 func save(room_filename: String):
 	var dict := {
 		"filename": room_filename,
