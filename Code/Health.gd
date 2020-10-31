@@ -35,6 +35,7 @@ func flash():
 
 func set_full():
 	if state != STATES["Full"]:
+		filling = false
 		$Flash.visible = false
 		#play("full")
 		$Fill.show()

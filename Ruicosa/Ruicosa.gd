@@ -228,18 +228,21 @@ func begin_heal():
 			healScene.connect("on_finish", self, "end_heal"),
 			GlobalData.connect("player_hit", self, "interrupt_heal", [healScene])
 		])
+		GlobalData.distributeHpShards = false
 
 func end_heal():
 	state = ActionState.Normal
 	Utility.print_connect_errors(get_path(), [
 			GlobalData.disconnect("player_hit", self, "interrupt_heal")
 		])
+	GlobalData.distributeHpShards = true
 		
 func interrupt_heal(_hp: int, healScene):
 	healScene.queue_free()
 	Utility.print_connect_errors(get_path(), [
 			GlobalData.disconnect("player_hit", self, "interrupt_heal")
 		])
+	GlobalData.distributeHpShards = true
 		
 func set_can_attack():
 	canAttack = true

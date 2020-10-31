@@ -16,6 +16,8 @@ const NEXT_HEART_OFFSET := 90
 var curNumHearts := 0
 var firstRun := true
 
+var adjustHealthMutex := Mutex.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display")
@@ -45,6 +47,7 @@ func adjust_max_hp_display(maxHp: int):
 	adjust_hp_display(GlobalData.playerHp, GlobalData.hpShards)
 
 func adjust_hp_display(hp: int, shards: int):
+	adjustHealthMutex.lock()
 	var curHeart := 0
 	for node in $Hearts.get_children():
 		var heart = node
@@ -52,8 +55,13 @@ func adjust_hp_display(hp: int, shards: int):
 			heart.set_full()
 			if firstRun:
 				heart.animTime = 0.0
-		elif curHeart == hp && shards > 0:
-			heart.set_filling(shards)
+		elif shards > 0:
+			if shards > 5:
+				heart.set_filling(5)
+				shards -= 5
+			else:
+				heart.set_filling(shards)
+				shards = 0
 			if firstRun:
 				heart.animTime = 0.0
 		else:
@@ -61,6 +69,7 @@ func adjust_hp_display(hp: int, shards: int):
 			if firstRun:
 				heart.animTime = 0.0
 		curHeart += 1
+	adjustHealthMutex.unlock()
 
 func adjust_bar_display(mana: float):
 	#print("MANA CHANGE")
