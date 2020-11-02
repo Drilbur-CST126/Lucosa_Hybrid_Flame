@@ -3,7 +3,7 @@ extends Node
 enum Direction {Utd, Dtu, Ltr, Rtl, Fade, None}
 
 const kPlayerClassName = "Ruicosa"
-const kManaRegenPerSec := 20.0
+const kManaRegenPerSec := 15.0
 const kMaxMana := 100.0
 
 # Declare member variables here. Examples:
@@ -19,6 +19,7 @@ var transDirection = null
 var random := RandomNumberGenerator.new()
 var lucosaForm := false
 var usingController := false
+var regenMana := true
 
 var hasDoubleJump := false
 var hasUppercut := false
@@ -88,14 +89,9 @@ func set_player_max_hp(amt: int):
 func set_player_mana(amt: float):
 	if amt <= 0:
 		amt = 0
-	if amt > 100:
-		amt = 100
+	if amt > kMaxMana:
+		amt = kMaxMana
 	if amt != playerMana:
-		if amt == 0:
-			camera.shake(1, 0.25)
-			get_tree().paused = true
-			yield(get_tree().create_timer(0.25), "timeout")
-			get_tree().paused = false
 		playerMana = amt
 		emit_signal("mana_changed", amt)
 		
@@ -183,15 +179,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("menu"):
 		#OS.window_fullscreen = !OS.window_fullscreen
 		get_tree().change_scene("res://Menu/MainMenu.tscn")
-		
-#	if Input.is_action_just_pressed("controller_press"):
-#		usingController = true
-#		emit_signal("control_config_changed", true)
-#	if Input.is_action_just_pressed("keyboard_press"):
-#		usingController = false
-#		emit_signal("control_config_changed", false)
-#	if !lucosaForm:
-#		self.playerMana += kManaRegenPerSec * delta
+	
+	if regenMana:
+		set_player_mana(playerMana + kManaRegenPerSec * delta)
 
 func _input(event):
 	if event is InputEventKey && usingController:
