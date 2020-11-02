@@ -226,8 +226,11 @@ func land_uppercut(var target: Node2D):
 		canDoubleJump = true
 		
 func begin_heal():
-	if is_on_floor() && !GlobalData.player_at_full_hp() && state != ActionState.Healing:
+	if is_on_floor() && !GlobalData.player_at_full_hp() \
+			&& state != ActionState.Healing && GlobalData.playerMana == GlobalData.kMaxMana:
 		state = ActionState.Healing
+		GlobalData.playerMana = 0.0
+		GlobalData.regenMana = false
 		var healScene := LucosaHealthScene.instance() if lucosaForm else RuiruiHealthScene.instance()
 		hud.add_child(healScene)
 		Utility.print_connect_errors(get_path(), [
@@ -238,13 +241,13 @@ func begin_heal():
 
 func end_heal():
 	state = ActionState.Normal
+	GlobalData.regenMana = true
 	GlobalData.disconnect("player_hit", self, "interrupt_heal")
 	GlobalData.distributeHpShards = true
 		
 func interrupt_heal(_hp: int, healScene):
 	healScene.queue_free()
-	GlobalData.disconnect("player_hit", self, "interrupt_heal")
-	GlobalData.distributeHpShards = true
+	end_heal()
 		
 func set_can_attack():
 	canAttack = true
