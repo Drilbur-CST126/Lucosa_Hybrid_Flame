@@ -65,7 +65,7 @@ var facingRight := true setget set_facing_right
 
 var running := false
 
-var lucosaForm := false setget set_lucosa_form
+export var lucosaForm := false setget set_lucosa_form
 var vulnerable := true
 var canAttack := true
 var attackDmg := 2
