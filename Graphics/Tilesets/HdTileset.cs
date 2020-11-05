@@ -10,11 +10,12 @@ public class HdTileset : TileSet
         kNormal = 0,
         kWater = 1,
         kNormalBranch = 2,
+        kWaterBranch = 3,
     }
 
     private Dictionary<Ids, List<Ids>> binds = new Dictionary<Ids, List<Ids>>() {
         {Ids.kNormal, new List<Ids>{ Ids.kWater, Ids.kNormalBranch } },
-        {Ids.kWater, new List<Ids>{ Ids.kNormal } }
+        {Ids.kWater, new List<Ids>{ Ids.kNormal, Ids.kWaterBranch } }
     };
 
     // Called when the node enters the scene tree for the first time.

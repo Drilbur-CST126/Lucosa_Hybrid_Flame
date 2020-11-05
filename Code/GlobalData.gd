@@ -7,7 +7,7 @@ const kManaRegenPerSec := 15.0
 const kMaxMana := 100.0
 
 # Declare member variables here. Examples:
-var playerHp := 1 setget set_player_hp
+var playerHp := 5 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
