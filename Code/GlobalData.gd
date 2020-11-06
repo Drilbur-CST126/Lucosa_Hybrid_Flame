@@ -43,8 +43,6 @@ func _ready():
 	
 func set_player_hp(amt: int):
 	if amt != playerHp:
-		if playerMana as int == 0:
-			amt = 0
 		var damage = amt < playerHp
 		if amt > playerMaxHp:
 			amt = playerMaxHp
