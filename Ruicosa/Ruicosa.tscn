@@ -265,20 +265,15 @@ animations = [ {
 "name": "Lucosa_Attack",
 "speed": 24.0
 }, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": false,
-"name": "Lucosa_Transform",
-"speed": 24.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Lucosa_Idle",
-"speed": 5.0
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": false,
+"name": "Lucosa_Transform",
+"speed": 24.0
 }, {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": true,
@@ -289,10 +284,15 @@ animations = [ {
 "loop": true,
 "name": "Run",
 "speed": 24.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Lucosa_Idle",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=51]
-extents = Vector2( 4, 10 )
+extents = Vector2( 3.9, 10 )
 
 [node name="Ruicosa" type="KinematicBody2D"]
 collision_layer = 2
@@ -315,3 +315,11 @@ one_shot = true
 
 [node name="HitTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="LeftGroundRayCast" type="RayCast2D" parent="."]
+position = Vector2( -10, 11.5 )
+cast_to = Vector2( 0, 1 )
+
+[node name="RightGroundRayCast" type="RayCast2D" parent="."]
+position = Vector2( 10, 11.5 )
+cast_to = Vector2( 0, 1 )
