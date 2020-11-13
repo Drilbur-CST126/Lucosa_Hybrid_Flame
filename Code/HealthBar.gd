@@ -26,6 +26,7 @@ func _ready():
 		GlobalData.connect("trans_begin", self, "begin_transition"),
 		GlobalData.connect("mana_changed", self, "adjust_bar_display"),
 		GlobalData.connect("player_dead", self, "begin_death_transition"),
+		GlobalData.connect("ability_unlocked", self, "show_ability_popup"),
 	])
 	adjust_max_hp_display(GlobalData.playerMaxHp)
 	adjust_bar_display(GlobalData.playerMana)
@@ -79,6 +80,12 @@ func adjust_bar_display(mana: float):
 	var width := kBarWidth * mana / (GlobalData.kMaxMana as float)
 	$Visuals/BarInfill.region_rect.size.x = width
 	$Visuals/BarInfill.position.x = kBarPos - kBarWidth / 2.0 + (width / 2.0)
+	
+func show_ability_popup(ability):
+	match ability:
+		GlobalData.Ability.Dive:
+			var divePopup := load("res://Menu/AbilityPopups/Dive.tscn")
+			add_child(divePopup.instance())
 			
 func begin_death_transition():
 	var effect := TransitionEffect.instance()

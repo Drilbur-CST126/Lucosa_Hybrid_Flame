@@ -2,6 +2,8 @@ extends Node
 
 enum Direction {Utd, Dtu, Ltr, Rtl, Fade, None}
 
+enum Ability {Dive, Uppercut, DoubleJump, TransformAnywhere}
+
 const kPlayerClassName = "Ruicosa"
 const kManaRegenPerSec := 15.0
 const kMaxMana := 100.0
@@ -34,6 +36,7 @@ signal trans_begin(direction, destination)
 signal player_hit(hp)
 signal hit_animation_finished()
 signal player_dead()
+signal ability_unlocked(ability)
 
 signal control_config_changed(usingController)
 
@@ -174,6 +177,12 @@ func load_game():
 func reload_game():
 	load_file("user://reload.json")
 	playerHp = playerMaxHp
+	
+func unlock_ability(ability):
+	match ability:
+		Ability.Dive:
+			hasDive = true
+			emit_signal("ability_unlocked", Ability.Dive)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

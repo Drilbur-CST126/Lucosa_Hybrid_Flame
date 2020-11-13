@@ -2,9 +2,7 @@ extends "res://Code/PlayerArea.gd"
 
 const ButtonPopup = preload("res://Code/ButtonPopup.tscn")
 
-enum Ability {
-	Dive,
-}
+const Ability = GlobalData.Ability
 
 export(Ability) var ability
 
@@ -34,9 +32,5 @@ func _ready():
 	
 func _process(delta):
 	if !Engine.editor_hint && inArea && Input.is_action_just_pressed("ui_up"):
-		match ability:
-			Ability.Dive:
-				GlobalData.hasDive = true
-				var dive := load("res://Menu/AbilityPopups/Dive.tscn")
-				get_parent().add_child(dive.instance())
+		GlobalData.unlock_ability(ability)
 		queue_free()
