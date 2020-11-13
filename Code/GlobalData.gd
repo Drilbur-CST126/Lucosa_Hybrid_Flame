@@ -32,6 +32,7 @@ signal hp_changed(hp, shards)
 signal mana_changed(mana)
 signal trans_begin(direction, destination)
 signal player_hit(hp)
+signal hit_animation_finished()
 signal player_dead()
 
 signal control_config_changed(usingController)
@@ -40,6 +41,7 @@ signal control_config_changed(usingController)
 func _ready():
 	#Engine.time_scale = 0.2
 	randomize()
+	random.randomize()
 	
 func set_player_hp(amt: int):
 	if amt != playerHp:
@@ -64,6 +66,7 @@ func set_player_hp(amt: int):
 				emit_signal("player_dead")
 			else:
 				get_tree().paused = false
+				emit_signal("hit_animation_finished")
 	
 func set_hp_shards(amt: int):
 	if amt != hpShards:

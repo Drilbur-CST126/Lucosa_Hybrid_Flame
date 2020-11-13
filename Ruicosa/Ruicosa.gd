@@ -293,6 +293,7 @@ func on_damaged(_amt):
 func on_collide(obj: Node2D):
 	if obj.is_in_group("DamageObject"):
 		take_damage(1)
+		yield(GlobalData, "hit_animation_finished")
 		position = respawnPos
 	if obj.is_in_group("StablePlatform") && is_on_floor() \
 			&& $LeftGroundRayCast.get_collider() == obj \

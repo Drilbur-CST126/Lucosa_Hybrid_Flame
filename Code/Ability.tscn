@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Graphics/Particles/Ability/Ability.png" type="Texture" id=1]
+[ext_resource path="res://Code/Ability.gd" type="Script" id=2]
+[ext_resource path="res://Shaders/RadialGradient.shader" type="Shader" id=3]
+[ext_resource path="res://Code/Polish/Circle.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 3 )
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/strength = 1.0
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 9
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 9
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 9
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 9
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 9
+atlas = ExtResource( 1 )
+region = Rect2( 0, 48, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 20.0
+
+[node name="Ability" type="Area2D"]
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 2 )
+
+[node name="Circle" parent="." instance=ExtResource( 4 )]
+material = SubResource( 8 )
+polygon = PoolVector2Array( 0, 0, 48, 0, 47.0777, 9.36434, 44.3462, 18.3688, 39.9105, 26.6674, 33.9411, 33.9411, 26.6674, 39.9105, 18.3688, 44.3462, 9.36434, 47.0777, 2.93906e-15, 48, -9.36434, 47.0777, -18.3688, 44.3462, -26.6674, 39.9105, -33.9411, 33.9411, -39.9105, 26.6674, -44.3462, 18.3688, -47.0777, 9.36434, -48, 5.87811e-15, -47.0777, -9.36434, -44.3462, -18.3688, -39.9105, -26.6674, -33.9411, -33.9411, -26.6674, -39.9105, -18.3688, -44.3462, -9.36434, -47.0777, -8.81717e-15, -48, 9.36434, -47.0777, 18.3688, -44.3462, 26.6674, -39.9105, 33.9411, -33.9411, 39.9105, -26.6674, 44.3462, -18.3688, 47.0777, -9.36434, 48, -1.17562e-14 )
+uv = PoolVector2Array( 0.5, 0.5, 1, 0.5, 0.990393, 0.597545, 0.96194, 0.691342, 0.915735, 0.777785, 0.853553, 0.853553, 0.777785, 0.915735, 0.691342, 0.96194, 0.597545, 0.990393, 0.5, 1, 0.402455, 0.990393, 0.308658, 0.96194, 0.222215, 0.915735, 0.146447, 0.853553, 0.0842652, 0.777785, 0.0380602, 0.691342, 0.00960736, 0.597545, 0, 0.5, 0.00960736, 0.402455, 0.0380602, 0.308658, 0.0842652, 0.222215, 0.146447, 0.146447, 0.222215, 0.0842652, 0.308658, 0.0380602, 0.402455, 0.00960736, 0.5, 0, 0.597545, 0.00960736, 0.691342, 0.0380602, 0.777785, 0.0842652, 0.853553, 0.146447, 0.915735, 0.222215, 0.96194, 0.308658, 0.990393, 0.402455, 1, 0.5 )
+diameter = 48.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 6 )
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )

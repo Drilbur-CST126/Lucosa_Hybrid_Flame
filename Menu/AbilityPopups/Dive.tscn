@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Graphics/Fonts/LatoItalic12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Graphics/Fonts/Lato18Italic.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Code/ButtonPopup.tscn" type="PackedScene" id=3]
+
+[node name="DivePopup" type="Control"]
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_scale = Vector2( 0.25, 0.25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 340.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 1 )
+text = "You have unlocked"
+align = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 70.0
+margin_right = 1280.0
+margin_bottom = 200.0
+custom_fonts/font = ExtResource( 2 )
+text = "DIVE"
+align = 1
+
+[node name="Space" type="ColorRect" parent="VBoxContainer"]
+margin_top = 204.0
+margin_right = 1280.0
+margin_bottom = 270.0
+rect_min_size = Vector2( 0, 66 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 274.0
+margin_right = 1280.0
+margin_bottom = 340.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 258.0
+margin_right = 374.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 1 )
+text = "Press"
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 378.0
+margin_right = 444.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 66, 66 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="ButtonPopup" parent="VBoxContainer/HBoxContainer/ColorRect" instance=ExtResource( 3 )]
+position = Vector2( 33, 33 )
+scale = Vector2( 4, 4 )
+elevated = false
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 448.0
+margin_right = 1022.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 1 )
+text = "in midair to preform a dive"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 0.85
+anchor_right = 0.95
+anchor_bottom = 0.9
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 759.0
+margin_right = 875.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 1 )
+text = "Press"
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer"]
+margin_left = 879.0
+margin_right = 945.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 66, 66 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="ButtonPopup" parent="HBoxContainer/ColorRect2" instance=ExtResource( 3 )]
+position = Vector2( 33, 33 )
+scale = Vector2( 4, 4 )
+elevated = false
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+margin_left = 949.0
+margin_right = 1216.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 1 )
+text = "To Continue"

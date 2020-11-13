@@ -145,9 +145,10 @@ loadId = "LucosaTutorialRoom"
 position = Vector2( 308, -59.5 )
 
 [node name="Block" parent="." instance=ExtResource( 6 )]
-position = Vector2( -262, 500.045 )
+position = Vector2( -262, 502.272 )
 
 [node name="HdFalseTileMap" type="TileMap" parent="."]
+visible = false
 scale = Vector2( 0.167, 0.167 )
 tile_set = ExtResource( 9 )
 cell_size = Vector2( 48, 48 )

@@ -1,3 +1,4 @@
+tool
 extends Node2D
 
 enum Buttons {
@@ -8,10 +9,18 @@ enum Buttons {
 }
 
 export(Buttons) var curButton := Buttons.Up setget set_cur_button
+export var elevated := true setget set_elevated
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+
+func set_elevated(val: bool):
+	elevated = val
+	if val:
+		$Sprite.position.y = -20
+	else:
+		$Sprite.position.y = 0
 
 func set_cur_button(val):
 	curButton = val
@@ -22,7 +31,8 @@ func set_controller_pos(usingController: bool):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_controller_pos(GlobalData.usingController)
+	if !Engine.editor_hint:
+		set_controller_pos(GlobalData.usingController)
 	Utility.print_connect_errors(get_path(),[GlobalData.connect("control_config_changed", self, "set_controller_pos")])
 
 
