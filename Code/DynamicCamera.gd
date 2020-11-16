@@ -47,7 +47,6 @@ func position_at_spawn_point():
 		if node.get_class() == "RoomSpawnPoint" && node.is_current_spawn():
 			position = node.position
 			spawnFound = true
-			print("SPAWN FOUND")
 	if !spawnFound:
 		position = get_target_pos()
 
