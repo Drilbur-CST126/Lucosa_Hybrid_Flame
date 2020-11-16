@@ -2,12 +2,14 @@ extends Node
 
 enum Direction {Utd, Dtu, Ltr, Rtl, Fade, None}
 
+enum Ability {Dive, Uppercut, DoubleJump, TransformAnywhere}
+
 const kPlayerClassName = "Ruicosa"
 const kManaRegenPerSec := 15.0
 const kMaxMana := 100.0
 
 # Declare member variables here. Examples:
-var playerHp := 1 setget set_player_hp
+var playerHp := 5 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
@@ -32,7 +34,9 @@ signal hp_changed(hp, shards)
 signal mana_changed(mana)
 signal trans_begin(direction, destination)
 signal player_hit(hp)
+signal hit_animation_finished()
 signal player_dead()
+signal ability_unlocked(ability)
 
 signal control_config_changed(usingController)
 
@@ -40,11 +44,10 @@ signal control_config_changed(usingController)
 func _ready():
 	#Engine.time_scale = 0.2
 	randomize()
+	random.randomize()
 	
 func set_player_hp(amt: int):
 	if amt != playerHp:
-		if playerMana as int == 0:
-			amt = 0
 		var damage = amt < playerHp
 		if amt > playerMaxHp:
 			amt = playerMaxHp
@@ -66,6 +69,7 @@ func set_player_hp(amt: int):
 				emit_signal("player_dead")
 			else:
 				get_tree().paused = false
+				emit_signal("hit_animation_finished")
 	
 func set_hp_shards(amt: int):
 	if amt != hpShards:
@@ -173,6 +177,12 @@ func load_game():
 func reload_game():
 	load_file("user://reload.json")
 	playerHp = playerMaxHp
+	
+func unlock_ability(ability):
+	match ability:
+		Ability.Dive:
+			hasDive = true
+			emit_signal("ability_unlocked", Ability.Dive)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

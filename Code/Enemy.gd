@@ -42,6 +42,7 @@ func _process(delta: float):
 		fireTimer -= delta
 		if fireTimer <= 0.0:
 			fireFlashEffect = false
+			parent.modulate = Color.white
 			
 func on_touch(other: Node2D):
 	if pushPlayer && other.get_class() == GlobalData.kPlayerClassName:

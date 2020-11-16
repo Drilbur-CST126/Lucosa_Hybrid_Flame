@@ -20,6 +20,10 @@ func lerp_color(from: Color, to: Color, val: float):
 func print_connect_errors(path: String, connections: Array):
 	for i in connections:
 		assert(i == 0, "Connection failed in " + path + "!")
+		
+func remove_children(node: Node):
+	for child in node.get_children():
+		node.remove_child(child)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

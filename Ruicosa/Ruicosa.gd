@@ -35,7 +35,7 @@ const animOffsets := {
 }
 
 const walkSpeed := 128.0
-const runSpeed := 192.0
+const runSpeed := 180.0
 const maxSpeedTime := 0.15
 const maxGravityMultiplier := 4.0
 const knockbackSpeed := 64.0
@@ -50,6 +50,7 @@ const maxCoyoteTime := 0.1
 const diveVelocity := 256.0
 
 export var detectCollision := false
+export var facingRight := true setget set_facing_right
 
 var jumpImpulse: float
 var doubleJumpImpulse: float
@@ -61,11 +62,11 @@ onready var hud := HUD.instance()
 var jumpReleased := false
 var canDoubleJump: bool
 var coyoteTime := 0.0
-var facingRight := true setget set_facing_right
+onready var respawnPos := position
 
 var running := false
 
-var lucosaForm := false setget set_lucosa_form
+export var lucosaForm := false setget set_lucosa_form
 var vulnerable := true
 var canAttack := true
 var attackDmg := 2
@@ -103,6 +104,10 @@ func knockback(damage := 0):
 			velocity.x = knockbackSpeed
 		velocity.y = jumpImpulse / 2.0
 		state = ActionState.Knockback
+		
+func take_damage(amt: int):
+	if vulnerable:
+		GlobalData.playerHp -= amt
 
 func set_facing_right(value: bool):
 	facingRight = value
@@ -286,8 +291,14 @@ func on_damaged(_amt):
 	$Sprite.modulate.a = 1
 	
 func on_collide(obj: Node2D):
-	if obj.get_class() == "DamageObject":
-		knockback(obj.dmg)
+	if obj.is_in_group("DamageObject"):
+		take_damage(1)
+		yield(GlobalData, "hit_animation_finished")
+		position = respawnPos
+	if obj.is_in_group("StablePlatform") && is_on_floor() \
+			&& $LeftGroundRayCast.get_collider() == obj \
+			&& $RightGroundRayCast.get_collider() == obj:
+		respawnPos = position
 		
 func is_anim_freeze_state():
 	return state == ActionState.Attacking
@@ -319,6 +330,9 @@ func _ready():
 	hud.set_icon("lucosa" if self.lucosaForm else "ruirui")
 	canDoubleJump = form_has_double_jump()
 	#play_anim("Idle")
+	
+	$LeftGroundRayCast.enabled = detectCollision
+	$RightGroundRayCast.enabled = detectCollision
 	
 func _process(_delta: float):
 	if Input.is_action_just_pressed("spell"):

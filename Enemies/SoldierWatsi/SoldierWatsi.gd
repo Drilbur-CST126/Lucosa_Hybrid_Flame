@@ -4,6 +4,7 @@ const kMovespeed := 64.0
 const kHitbox := 6.0
 
 export var facingRight := false
+export var standing := false
 
 var moving := true
 var velocity: Vector2
@@ -26,7 +27,7 @@ func _ready():
 	$StunTimer.connect("timeout", self, "stun_timer_finish")
 
 func _physics_process(delta):
-	if moving:
+	if moving && !standing:
 		velocity = move_and_slide(velocity)
 		if !$RayCast2D.is_colliding() || is_on_wall():
 			set_facing_right(!facingRight)
