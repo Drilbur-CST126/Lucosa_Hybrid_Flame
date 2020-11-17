@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HdTileset.PNG-e9d6204415e39143a5147474e0a871f6.stex"
+path="res://.import/HDTileset.PNG-d7712fa6ef5f638a190dacc07fb8a341.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Tilesets/HdTileset.PNG"
-dest_files=[ "res://.import/HdTileset.PNG-e9d6204415e39143a5147474e0a871f6.stex" ]
+source_file="res://Graphics/Tilesets/HDTileset.PNG"
+dest_files=[ "res://.import/HDTileset.PNG-d7712fa6ef5f638a190dacc07fb8a341.stex" ]
 
 [params]
 
@@ -20,10 +20,10 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=true
-flags/srgb=0
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
