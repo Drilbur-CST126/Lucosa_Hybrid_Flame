@@ -32,5 +32,9 @@ func _ready():
 	
 func _process(delta):
 	if !Engine.editor_hint && inArea && Input.is_action_just_pressed("ui_up"):
-		GlobalData.unlock_ability(ability)
+		match ability:
+			GlobalData.Ability.Dive:
+				var divePopup := load("res://Menu/AbilityPopups/Dive.tscn")
+				GlobalData.hud.add_child(divePopup.instance())
+				GlobalData.hasDive = true
 		queue_free()

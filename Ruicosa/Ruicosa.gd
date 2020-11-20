@@ -291,10 +291,11 @@ func on_damaged(_amt):
 	$Sprite.modulate.a = 1
 	
 func on_collide(obj: Node2D):
-	if obj.is_in_group("DamageObject"):
+	if obj.is_in_group("DamageObject") && vulnerable:
 		take_damage(1)
-		yield(GlobalData, "hit_animation_finished")
-		position = respawnPos
+		if GlobalData.playerHp > 0:
+			yield(GlobalData, "hit_animation_finished")
+			position = respawnPos
 	if obj.is_in_group("StablePlatform") && is_on_floor() \
 			&& $LeftGroundRayCast.get_collider() == obj \
 			&& $RightGroundRayCast.get_collider() == obj:

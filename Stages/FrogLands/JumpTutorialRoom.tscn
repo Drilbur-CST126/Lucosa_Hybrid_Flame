@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://Code/PlayerAreas/TutorialArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=4]
@@ -49,3 +50,9 @@ loadPath = "res://Stages/FrogLands/TSplitRoom.tscn"
 position = Vector2( -627.954, 124.115 )
 loadId = "TSplitRoom"
 facingRight = true
+
+[node name="TutorialArea" parent="." instance=ExtResource( 1 )]
+position = Vector2( 76.0377, 157.289 )
+size = Vector2( 116, 5 )
+popup = "res://Menu/TutorialPopups/Jump.tscn"
+waitTime = 3.0

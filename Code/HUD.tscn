@@ -4,32 +4,32 @@
 [ext_resource path="res://Graphics/HUD.PNG" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 9
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 118, 0.568926, 114.638, 124.525 )
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 9
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3, 160.642, 548, 23.327 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 9
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 118, 126.324 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 9
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 130.567, 554.238, 28.508 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 9
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 5.76999, 192.713, 96.8834, 128.606 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 9
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 104.092, 190.722, 111.455, 130.171 )
 

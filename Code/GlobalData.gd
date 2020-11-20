@@ -8,7 +8,8 @@ const kPlayerClassName = "Ruicosa"
 const kManaRegenPerSec := 15.0
 const kMaxMana := 100.0
 
-# Declare member variables here. Examples:
+var debug := true
+
 var playerHp := 5 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
@@ -22,6 +23,7 @@ var random := RandomNumberGenerator.new()
 var lucosaForm := false
 var usingController := false
 var regenMana := true
+var hud: CanvasLayer
 
 var hasDoubleJump := false
 var hasUppercut := false
@@ -36,7 +38,6 @@ signal trans_begin(direction, destination)
 signal player_hit(hp)
 signal hit_animation_finished()
 signal player_dead()
-signal ability_unlocked(ability)
 
 signal control_config_changed(usingController)
 
@@ -158,10 +159,10 @@ func load_file(filename: String):
 		var data = parse_json(file.get_line())
 		
 		self.lucosaForm = data["lucosaForm"]
-		self.hasDive = data["hasDive"]
-		self.hasUppercut = data["hasUppercut"]
-		self.hasDoubleJump = data["hasDoubleJump"]
-		self.canTransformAnywhere = data["canTransformAnywhere"]
+		self.hasDive = hasDive || data["hasDive"]
+		self.hasUppercut = hasUppercut || data["hasUppercut"]
+		self.hasDoubleJump = hasDoubleJump || data["hasDoubleJump"]
+		self.canTransformAnywhere = canTransformAnywhere || data["canTransformAnywhere"]
 		
 		self.lastRoomId = "Savepoint"
 		self.transDirection = Direction.Fade
@@ -201,3 +202,21 @@ func _input(event):
 			&& !usingController:
 		usingController = true
 		emit_signal("control_config_changed", true)
+		
+func _unhandled_key_input(event):
+	if debug && event is InputEventKey:
+		if event.scancode >= KEY_0 && event.scancode <= KEY_9 && event.pressed && !event.echo:
+			match event.scancode:
+				KEY_1:
+					hasDive = !hasDive
+					print("Dive has been set to " + String(hasDive))
+				KEY_2:
+					hasUppercut = !hasUppercut
+					print("Uppercut has been set to " + String(hasUppercut))
+				KEY_3:
+					hasDoubleJump = !hasDoubleJump
+					print("Double jump has been set to " + String(hasDoubleJump))
+				KEY_6:
+					canTransformAnywhere = !canTransformAnywhere
+					canTransform = canTransformAnywhere
+					print("Can transform anywhere has been set to " + String(canTransformAnywhere))

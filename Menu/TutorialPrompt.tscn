@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Code/Polish/Circle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shaders/RadialGradient.shader" type="Shader" id=2]
+[ext_resource path="res://Code/ButtonPopup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/Fonts/LatoItalic12.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Menu/TutorialPrompt.gd" type="Script" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/color = Color( 0, 0, 0, 1 )
+shader_param/strength = 0.6
+
+[sub_resource type="Animation" id=2]
+resource_name = "FadeIn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Circle:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 23.0, 33.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HBoxContainer:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -15.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="TutorialPrompt" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Circle" parent="." instance=ExtResource( 1 )]
+material = SubResource( 1 )
+position = Vector2( 640, 681 )
+scale = Vector2( 4.08333, 1 )
+polygon = PoolVector2Array( 0, 0, 60, 0, 58.8471, 11.7054, 55.4328, 22.961, 49.8882, 33.3342, 42.4264, 42.4264, 33.3342, 49.8882, 22.961, 55.4328, 11.7054, 58.8471, 3.67382e-15, 60, -11.7054, 58.8471, -22.961, 55.4328, -33.3342, 49.8882, -42.4264, 42.4264, -49.8882, 33.3342, -55.4328, 22.961, -58.8471, 11.7054, -60, 7.34764e-15, -58.8471, -11.7054, -55.4328, -22.961, -49.8882, -33.3342, -42.4264, -42.4264, -33.3342, -49.8882, -22.961, -55.4328, -11.7054, -58.8471, -1.10215e-14, -60, 11.7054, -58.8471, 22.961, -55.4328, 33.3342, -49.8882, 42.4264, -42.4264, 49.8882, -33.3342, 55.4328, -22.961, 58.8471, -11.7054, 60, -1.46953e-14 )
+uv = PoolVector2Array( 0.5, 0.5, 1, 0.5, 0.990393, 0.597545, 0.96194, 0.691342, 0.915735, 0.777785, 0.853553, 0.853553, 0.777785, 0.915735, 0.691342, 0.96194, 0.597545, 0.990393, 0.5, 1, 0.402455, 0.990393, 0.308658, 0.96194, 0.222215, 0.915735, 0.146447, 0.853553, 0.0842652, 0.777785, 0.0380602, 0.691342, 0.00960736, 0.597545, 0, 0.5, 0.00960736, 0.402455, 0.0380602, 0.308658, 0.0842652, 0.222215, 0.146447, 0.146447, 0.222215, 0.0842652, 0.308658, 0.0380602, 0.402455, 0.00960736, 0.5, 0, 0.597545, 0.00960736, 0.691342, 0.0380602, 0.777785, 0.0842652, 0.853553, 0.146447, 0.915735, 0.222215, 0.96194, 0.308658, 0.990393, 0.402455, 1, 0.5 )
+vertices = 32
+diameter = 60.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "FadeIn"
+anims/FadeIn = SubResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonControl" type="Control" parent="HBoxContainer"]
+margin_left = 515.0
+margin_right = 581.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 66, 66 )
+
+[node name="ButtonPopup" parent="HBoxContainer/ButtonControl" instance=ExtResource( 3 )]
+position = Vector2( 33, 33 )
+scale = Vector2( 4, 4 )
+elevated = false
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 585.0
+margin_right = 764.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 4 )
+text = "Content"

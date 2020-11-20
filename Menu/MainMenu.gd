@@ -9,6 +9,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#pass
+	GlobalData.debug = false
 	Utility.print_connect_errors(get_path(), [
 		$OptionVBoxContainer/NewGame.connect("pressed", self, "new_game"),
 		$OptionVBoxContainer/Continue.connect("pressed", GlobalData, "load_game"),
