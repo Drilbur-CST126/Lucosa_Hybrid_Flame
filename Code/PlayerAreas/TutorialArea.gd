@@ -5,6 +5,11 @@ export var size := Vector2(10.0, 10.0) setget set_size
 export(String, FILE, "*.tscn,*.scn") var popup
 export var waitTime := 0.0
 
+enum RequireForm { Ruirui, Lucosa, None }
+export(RequireForm) var requiredForm = RequireForm.None
+
+export(Array, GlobalData.Ability) var requiredAbilities = []
+
 var tutorial: Control = null
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,6 +18,18 @@ var tutorial: Control = null
 func set_size(val: Vector2):
 	size = val
 	$CollisionShape2D.shape.extents = size
+	
+func requirements_met() -> bool:
+	# In the required form
+	var met: bool = ((requiredForm == RequireForm.Ruirui && GlobalData.lucosaForm == false) \
+			|| (requiredForm == RequireForm.Lucosa && GlobalData.lucosaForm == true)) \
+			|| requiredForm == RequireForm.None
+	
+	# Having the required abilities
+	for ability in requiredAbilities:
+		met = met && GlobalData.has_ability(ability)
+	
+	return met
 	
 func create_prompt():
 	tutorial = load(popup).instance()
@@ -27,10 +44,11 @@ func _ready():
 	])
 
 func player_entered(player: Node2D):
-	if waitTime > 0.0:
-		$Timer.start(waitTime)
-	else:
-		create_prompt()
+	if requirements_met():
+		if waitTime > 0.0:
+			$Timer.start(waitTime)
+		else:
+			create_prompt()
 
 func player_exited(player: Node2D):
 	$Timer.stop()

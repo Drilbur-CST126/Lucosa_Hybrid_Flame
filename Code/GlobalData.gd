@@ -183,7 +183,25 @@ func unlock_ability(ability):
 	match ability:
 		Ability.Dive:
 			hasDive = true
-			emit_signal("ability_unlocked", Ability.Dive)
+		Ability.Uppercut:
+			hasUppercut = true
+		Ability.DoubleJump:
+			hasDoubleJump = true
+		Ability.TransformAnywhere:
+			canTransformAnywhere = true
+	emit_signal("ability_unlocked", ability)
+			
+func has_ability(ability) -> bool:
+	match ability:
+		Ability.Dive:
+			return hasDive
+		Ability.Uppercut:
+			return hasUppercut
+		Ability.DoubleJump:
+			return hasDoubleJump
+		Ability.TransformAnywhere:
+			return canTransformAnywhere
+	return false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Shaders/RadialGradient.tres" type="Material" id=8]
 [ext_resource path="res://Code/Polish/Circle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/Ability.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Code/PlayerAreas/TutorialArea.tscn" type="PackedScene" id=11]
 
 [node name="DiveUnlockRoom" type="Node2D"]
 
@@ -28,6 +29,7 @@ material = ExtResource( 8 )
 position = Vector2( -155.238, 124.935 )
 polygon = PoolVector2Array( 0, 0, 250, 0, 245.196, 48.7726, 230.97, 95.6709, 207.867, 138.893, 176.777, 176.777, 138.893, 207.867, 95.6709, 230.97, 48.7726, 245.196, 1.53076e-14, 250, -48.7726, 245.196, -95.6709, 230.97, -138.893, 207.867, -176.777, 176.777, -207.867, 138.893, -230.97, 95.6709, -245.196, 48.7726, -250, 3.06152e-14, -245.196, -48.7726, -230.97, -95.6709, -207.867, -138.893, -176.777, -176.777, -138.893, -207.867, -95.6709, -230.97, -48.7726, -245.196, -4.59227e-14, -250, 48.7726, -245.196, 95.6709, -230.97, 138.893, -207.867, 176.777, -176.777, 207.867, -138.893, 230.97, -95.6709, 245.196, -48.7726, 250, -6.12303e-14 )
 uv = PoolVector2Array( 0.5, 0.5, 1, 0.5, 0.990393, 0.597545, 0.96194, 0.691342, 0.915735, 0.777785, 0.853553, 0.853553, 0.777785, 0.915735, 0.691342, 0.96194, 0.597545, 0.990393, 0.5, 1, 0.402455, 0.990393, 0.308658, 0.96194, 0.222215, 0.915735, 0.146447, 0.853553, 0.0842652, 0.777785, 0.0380602, 0.691342, 0.00960736, 0.597545, 0, 0.5, 0.00960736, 0.402455, 0.0380602, 0.308658, 0.0842652, 0.222215, 0.146447, 0.146447, 0.222215, 0.0842652, 0.308658, 0.0380602, 0.402455, 0.00960736, 0.5, 0, 0.597545, 0.00960736, 0.691342, 0.0380602, 0.777785, 0.0842652, 0.853553, 0.146447, 0.915735, 0.222215, 0.96194, 0.308658, 0.990393, 0.402455, 1, 0.5 )
+vertices = 32
 diameter = 250.0
 
 [node name="Tree" type="Sprite" parent="."]
@@ -83,3 +85,10 @@ margin_right = 320.0
 margin_bottom = 180.0
 entity = "res://Code/Polish/Butterfly.tscn"
 numEntities = 35
+
+[node name="TutorialArea" parent="." instance=ExtResource( 11 )]
+position = Vector2( 162.445, -27.4592 )
+size = Vector2( 148, 148 )
+popup = "res://Menu/TutorialPopups/Dive.tscn"
+requiredForm = 0
+requiredAbilities = [ 0 ]
