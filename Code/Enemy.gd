@@ -46,7 +46,7 @@ func _process(delta: float):
 			
 func on_touch(other: Node2D):
 	if pushPlayer && other.get_class() == GlobalData.kPlayerClassName:
-		other.knockback(damageOnTouch)
+		other.knockback(self, damageOnTouch)
 	emit_signal("on_touch", other)
 	
 func give_hp_shards():
