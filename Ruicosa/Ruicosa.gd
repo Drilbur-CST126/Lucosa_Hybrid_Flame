@@ -46,16 +46,17 @@ const doubleJumpHeight := 2.5
 const lucosaJumpHeight := 4.0
 const jumpWidth := 11.0
 const maxCoyoteTime := 0.1
+const jumpTime := jumpWidth * 4.0 / walkSpeed
+const gravity = 2.0 * jumpHeight * 8.0 / (jumpTime * jumpTime)
+const jumpImpulse := -gravity * jumpTime
 
 const diveVelocity := 256.0
 
 export var detectCollision := false
 export var facingRight := true setget set_facing_right
 
-var jumpImpulse: float
 var doubleJumpImpulse: float
 var lucosaJumpImpulse: float
-var gravity: float
 var minJumpGravity: float
 onready var hud := HUD.instance()
 
@@ -310,9 +311,7 @@ func form_has_double_jump() -> bool:
 			else GlobalData.hasDoubleJump
 
 func _ready():
-	var jumpTime := jumpWidth * 4.0 / walkSpeed
-	gravity = 2.0 * jumpHeight * 8.0 / (jumpTime * jumpTime)
-	jumpImpulse = -gravity * jumpTime
+	GlobalData.gravity = gravity
 	
 	minJumpGravity = jumpImpulse * jumpImpulse / (16.0 * minJumpHeight)
 	doubleJumpImpulse = -sqrt(16.0 * doubleJumpHeight * gravity)

@@ -15,6 +15,7 @@ var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 5 setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
 var distributeHpShards := true setget set_distribute_hp_shards
+var gravity: float
 
 var lastRoomId: String
 var camera: Node2D
@@ -206,8 +207,7 @@ func has_ability(ability) -> bool:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("menu"):
-		#OS.window_fullscreen = !OS.window_fullscreen
-		get_tree().change_scene("res://Menu/MainMenu.tscn")
+		OS.window_fullscreen = !OS.window_fullscreen
 	
 	if regenMana:
 		set_player_mana(playerMana + kManaRegenPerSec * delta)

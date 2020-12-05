@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://Enemies/FrogWarrior/FrogWarrior.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/SoldierWatsi/SoldierWatsi.tscn" type="PackedScene" id=4]
@@ -102,9 +103,8 @@ position = Vector2( -74, 124.5 )
 [node name="SoldierWatsi2" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 225, 148.5 )
 
-[node name="SoldierWatsi3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -329, 124.5 )
-facingRight = true
+[node name="FrogWarrior" parent="Enemies" instance=ExtResource( 1 )]
+position = Vector2( -347.709, 120.094 )
 
 [node name="SoldierWatsi4" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( -503.218, 140.5 )
