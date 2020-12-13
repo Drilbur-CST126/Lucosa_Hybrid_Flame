@@ -25,6 +25,7 @@ var lucosaForm := false
 var usingController := false
 var regenMana := true
 var hud: CanvasLayer
+var flags := []
 
 var hasDoubleJump := false
 var hasUppercut := false
@@ -124,6 +125,7 @@ func save(room_filename: String):
 		"hasUppercut": hasUppercut,
 		"hasDoubleJump": hasDoubleJump,
 		"canTransformAnywhere": canTransformAnywhere,
+		"flags": flags
 	}
 	
 	var file = File.new()
@@ -143,6 +145,7 @@ func save_reload(room_filename: String):
 		"hasUppercut": hasUppercut,
 		"hasDoubleJump": hasDoubleJump,
 		"canTransformAnywhere": canTransformAnywhere,
+		"flags": flags
 	}
 	
 	var file = File.new()
@@ -159,6 +162,7 @@ func load_file(filename: String):
 	while file.get_position() < file.get_len():
 		var data = parse_json(file.get_line())
 		
+		self.flags = Array(data["flags"])
 		self.lucosaForm = data["lucosaForm"]
 		self.hasDive = hasDive || data["hasDive"]
 		self.hasUppercut = hasUppercut || data["hasUppercut"]

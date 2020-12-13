@@ -408,7 +408,7 @@ func process_y_velocity(delta: float):
 		
 	if is_on_floor():
 		coyoteTime = maxCoyoteTime
-		if Input.is_action_pressed("attack") && lucosaForm == false:
+		if Input.is_action_pressed("run") && lucosaForm == false:
 			running = true
 		else:
 			running = false

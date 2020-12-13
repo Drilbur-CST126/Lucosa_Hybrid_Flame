@@ -27,9 +27,13 @@ func random_around(val: float) -> float:
 func start_timer():
 	$Timer.start(duration)
 	if (eraseParent):
-		var err = $Timer.connect("timeout", get_parent(), "queue_free")
+		Utility.print_connect_errors(get_path(), [
+			$Timer.connect("timeout", get_parent(), "queue_free")
+		])
 	else:
-		var err = $Timer.connect("timeout", self, "queue_free")
+		Utility.print_connect_errors(get_path(), [
+			$Timer.connect("timeout", self, "queue_free")
+		])
 	
 func _process(delta):
 	position += velocity * delta

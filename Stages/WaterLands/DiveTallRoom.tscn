@@ -7,6 +7,8 @@
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=6]
 
+
+
 [node name="DiveTallRoom" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]

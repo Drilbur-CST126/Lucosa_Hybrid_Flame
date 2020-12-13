@@ -29,11 +29,15 @@ signal on_touch(other)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hp = maxHp
-	connect("on_death", self, "give_hp_shards")
 	$Area2D.add_child(get_node(colArea).duplicate())
-	$Area2D.connect("body_entered", self, "on_touch")
+	Utility.print_connect_errors(get_path(), [
+		connect("on_death", self, "give_hp_shards"),
+		$Area2D.connect("body_entered", self, "on_touch"),
+	])
 	if freeParentOnDeath:
-		connect("on_death", get_parent(), "queue_free")
+		Utility.print_connect_errors(get_path(), [
+			connect("on_death", get_parent(), "queue_free")
+		])
 	
 func _process(delta: float):
 	if fireFlashEffect:

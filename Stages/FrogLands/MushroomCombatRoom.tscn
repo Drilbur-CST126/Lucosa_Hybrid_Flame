@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Graphics/Scenery/MushroomPlatform/BigMushroomTop.tres" type="Texture" id=7]
 [ext_resource path="res://Graphics/Scenery/MushroomPlatform/BigMushroomStem.tres" type="Texture" id=8]
 [ext_resource path="res://Enemies/FrogWarrior/FrogWarrior.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 123.51, 18.8282 )
@@ -148,7 +149,6 @@ shape = SubResource( 2 )
 
 [node name="Ruicosa" parent="." instance=ExtResource( 3 )]
 position = Vector2( -308.13, -57.6581 )
-lucosaForm = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -164,3 +164,13 @@ dynamicLimitLeft = -320
 dynamicLimitRight = 320
 dynamicLimitUp = -180
 dynamicLimitDown = 360
+
+[node name="LeftSceneTransition" parent="." instance=ExtResource( 10 )]
+position = Vector2( -332.345, -67.8144 )
+loadPath = "res://Stages/FrogLands/TallRoomAboveT.tscn"
+
+[node name="FallSceneTransition" parent="." instance=ExtResource( 10 )]
+position = Vector2( -1.03369, 405.756 )
+colDimensions = Vector2( 320, 12 )
+direction = 1
+loadPath = "res://Stages/FrogLands/JumpTutorialRoom.tscn"

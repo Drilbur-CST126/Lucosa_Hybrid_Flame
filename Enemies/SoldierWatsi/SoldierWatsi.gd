@@ -23,10 +23,12 @@ func set_facing_right(value: bool):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_facing_right(facingRight)
-	$EnemyData.connect("on_hit", self, "on_damage")
-	$StunTimer.connect("timeout", self, "stun_timer_finish")
+	Utility.print_connect_errors(get_path(), [
+		$EnemyData.connect("on_hit", self, "on_damage"),
+		$StunTimer.connect("timeout", self, "stun_timer_finish"),
+	])
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if moving && !standing:
 		velocity = move_and_slide(velocity)
 		if !$RayCast2D.is_colliding() || is_on_wall():

@@ -13,7 +13,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	var pos := $Toxen.position as Vector2
+	var pos := $Ruicosa.position as Vector2
 	var dyn := $DynamicCamera
 	
 	if (pos.y <= 0):

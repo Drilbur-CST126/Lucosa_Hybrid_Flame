@@ -6,4 +6,5 @@
 scale = Vector2( 0.167, 0.167 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 48, 48 )
+collision_friction = 0.0
 format = 1

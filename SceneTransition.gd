@@ -23,7 +23,9 @@ func set_col_dimensions(val: Vector2):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	($CollisionShape2D.shape as RectangleShape2D).extents = colDimensions
-	connect("body_entered", self, "entered")
+	Utility.print_connect_errors(get_path(), [
+		connect("body_entered", self, "entered")
+	])
 	ready = true
 	var shape := RectangleShape2D.new()
 	shape.extents = colDimensions

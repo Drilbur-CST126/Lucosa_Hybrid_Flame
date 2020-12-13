@@ -1,0 +1,191 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Code/StageAssets/SwitchDoor/SwitchDoor.PNG" type="Texture" id=1]
+[ext_resource path="res://Code/StageAssets/SwitchDoor/SwitchDoor.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 59.5137, 0.68073, 60.4145, 243.847 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0.681, 60.414, 243.847 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128.372, 84.6796, 24.3838, 45.3538 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128.06, 35.0077, 23.6278, 45.8429 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 24, 120 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "Open"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("UpperDoor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.7, 1.7 ),
+"transitions": PoolRealArray( 1.5, 1.5 ),
+"update": 0,
+"values": [ Vector2( -0.18321, -26.7375 ), Vector2( -0.183, -148.237 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lock/UpperLock:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7, 1.7 ),
+"transitions": PoolRealArray( 1.5, 1.5 ),
+"update": 0,
+"values": [ Vector2( -1.22238, 5.80192e-15 ), Vector2( -1.222, -243 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UpperDoor:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7, 1.7 ),
+"transitions": PoolRealArray( 1.5, 1.5 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 60, 243 ), Rect2( 0, 243, 60, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Lock:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.7, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("LowerDoor:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.7, 1.7 ),
+"transitions": PoolRealArray( 1.5, 1.5 ),
+"update": 0,
+"values": [ Vector2( -1.7962, 43.945 ), Vector2( -1.796, 165.445 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("LowerDoor:region_rect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.7, 1.7 ),
+"transitions": PoolRealArray( 1.5, 1.5 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 60, 243 ), Rect2( 0, 0, 60, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Lock/LowerLock:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.7, 1.7 ),
+"transitions": PoolRealArray( 1.5, 1.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 243 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Lock:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ -90.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lock:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ -90.0, 0.0 ]
+}
+
+[node name="SwitchDoor" type="Node2D"]
+scale = Vector2( 0.167, 0.167 )
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_left = -133.0
+margin_top = -269.0
+margin_right = 269.0
+margin_bottom = 274.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LowerDoor" type="Sprite" parent="."]
+position = Vector2( -1.7962, 44.05 )
+texture = SubResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 60, 242.79 )
+
+[node name="UpperDoor" type="Sprite" parent="."]
+position = Vector2( -0.18321, -26.8425 )
+texture = SubResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0.210036, 60, 242.79 )
+
+[node name="Lock" type="Node2D" parent="."]
+rotation = -1.5708
+scale = Vector2( 1.1, 1 )
+
+[node name="LowerLock" type="Sprite" parent="Lock"]
+position = Vector2( 0, 0.210036 )
+texture = SubResource( 3 )
+offset = Vector2( -9, 0 )
+
+[node name="UpperLock" type="Sprite" parent="Lock"]
+position = Vector2( -1.22238, -0.210036 )
+texture = SubResource( 4 )
+offset = Vector2( 9, 0 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Open = SubResource( 6 )
+anims/Unlock = SubResource( 7 )

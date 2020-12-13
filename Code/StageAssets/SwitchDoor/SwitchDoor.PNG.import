@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Thorns.png-19fa16f4a4466a25745980ead086446f.stex"
+path="res://.import/SwitchDoor.PNG-b28ea4363797dd07005e1af87c689786.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Tilesets/Thorns.png"
-dest_files=[ "res://.import/Thorns.png-19fa16f4a4466a25745980ead086446f.stex" ]
+source_file="res://Code/StageAssets/SwitchDoor/SwitchDoor.PNG"
+dest_files=[ "res://.import/SwitchDoor.PNG-b28ea4363797dd07005e1af87c689786.stex" ]
 
 [params]
 

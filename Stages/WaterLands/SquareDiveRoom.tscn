@@ -9,6 +9,8 @@
 [ext_resource path="res://Enemies/SoldierWatsi/SoldierWatsi.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Graphics/Scenery/TransformWall2.PNG" type="Texture" id=8]
 
+
+
 [node name="SquareDiveRoom" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]

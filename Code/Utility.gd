@@ -24,6 +24,12 @@ func print_connect_errors(path: String, connections: Array):
 func remove_children(node: Node):
 	for child in node.get_children():
 		node.remove_child(child)
+		
+func contains(container, object) -> bool:
+	for i in container:
+		if i == object:
+			return true
+	return false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

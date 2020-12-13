@@ -69,3 +69,12 @@ loadPath = "res://Stages/FrogLands/FrogKingRoom.tscn"
 position = Vector2( 12, -44.066 )
 loadId = "FrogKingRoom"
 facingRight = true
+
+[node name="RightSceneTransition" parent="." instance=ExtResource( 4 )]
+position = Vector2( 331.953, -68.0422 )
+direction = 3
+loadPath = "res://Stages/FrogLands/MushroomCombatRoom.tscn"
+
+[node name="RightRoomSpawnPoint" parent="." instance=ExtResource( 5 )]
+position = Vector2( 308.062, -59.7315 )
+loadId = "MushroomCombatRoom"

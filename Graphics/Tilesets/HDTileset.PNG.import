@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HDTileset.PNG-d7712fa6ef5f638a190dacc07fb8a341.stex"
+path="res://.import/HdTileset.PNG-e9d6204415e39143a5147474e0a871f6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Tilesets/HDTileset.PNG"
-dest_files=[ "res://.import/HDTileset.PNG-d7712fa6ef5f638a190dacc07fb8a341.stex" ]
+source_file="res://Graphics/Tilesets/HdTileset.PNG"
+dest_files=[ "res://.import/HdTileset.PNG-e9d6204415e39143a5147474e0a871f6.stex" ]
 
 [params]
 
