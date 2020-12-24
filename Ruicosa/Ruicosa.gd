@@ -5,6 +5,7 @@ const HUD = preload("res://Code/HUD.tscn")
 const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tscn")
 const LucosaHealthScene = preload("res://Code/HealMinigame/LucosaHealthScene.tscn")
 const Enemy = preload("res://Code/Enemy.gd")
+const Fireball = preload("res://Ruicosa/Fireball/Fireball.tscn")
 
 const kHit1Particle = preload("res://Graphics/Particles/Hit1/Hit1.tscn")
 const kUppercutParticle = preload("res://Graphics/Particles/Uppercut/Uppercut.tscn")
@@ -51,6 +52,7 @@ const gravity = 2.0 * jumpHeight * 8.0 / (jumpTime * jumpTime)
 const jumpImpulse := -gravity * jumpTime
 
 const diveVelocity := 256.0
+const kFireballForce := Vector2(192.0, -128.0)
 
 export var detectCollision := false
 export var facingRight := true setget set_facing_right
@@ -182,7 +184,8 @@ func attack():
 		attackShape.shape = rect
 		attackArea.add_child(attackShape)
 		Utility.print_connect_errors(get_path(), [
-			attackArea.connect("body_entered", self, "land_attack", [attackArea])
+			attackArea.connect("body_entered", self, "land_attack", [attackArea]),
+			attackArea.connect("area_entered", self, "land_attack", [attackArea]),
 		])
 		child.add_child(attackArea)
 		
@@ -194,6 +197,10 @@ func attack():
 		$AttackTimer.start()
 		
 func land_attack(var target: Node2D, var attackArea: Area2D):
+	if target.get_class() == "Fireball":
+		var impulse := kFireballForce
+		impulse.x *= 1 if facingRight else -1
+		(target as RigidBody2D).apply_central_impulse(impulse)
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
@@ -219,7 +226,8 @@ func uppercut():
 		attackShape.shape = rect
 		attackArea.add_child(attackShape)
 		Utility.print_connect_errors(get_path(), [
-			attackArea.connect("body_entered", self, "land_uppercut")
+			attackArea.connect("body_entered", self, "land_uppercut"),
+			attackArea.connect("area_entered", self, "land_uppercut"),
 		])
 		child.add_child(attackArea)
 		
@@ -231,6 +239,19 @@ func land_uppercut(var target: Node2D):
 		var enemyData: Enemy = target.get_node("EnemyData")
 		enemyData.take_damage(attackDmg)
 		canDoubleJump = true
+		
+func fireball():
+	var child := Fireball.instance()
+	var dir := 1 if facingRight else -1
+	var vel := velocity
+	vel.y += kFireballForce.y
+	
+	child.gravity_scale = gravity / 12.0
+	child.linear_velocity = vel
+	child.global_position = global_position
+	child.position.x += 12 * dir
+	
+	get_parent().add_child_below_node(self, child)
 		
 func begin_heal():
 	if is_on_floor() && !GlobalData.player_at_full_hp() \
@@ -326,7 +347,7 @@ func _ready():
 		GlobalData.connect("player_hit", self, "on_damaged"),
 	])
 	
-	self.facingRight = false
+	set_facing_right(facingRight)
 	self.lucosaForm = GlobalData.lucosaForm
 	hud.set_icon("lucosa" if self.lucosaForm else "ruirui")
 	canDoubleJump = form_has_double_jump()
@@ -382,6 +403,8 @@ func lucosa_abilities():
 		attack()
 	if Input.is_action_just_pressed("jump") && coyoteTime < 0.0:
 		uppercut()
+	if Input.is_action_just_pressed("run") && GlobalData.hasFireball:
+		fireball()
 
 func process_x_velocity(delta: float):
 	if !is_momentum_state():

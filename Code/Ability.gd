@@ -21,6 +21,8 @@ func has_ability() -> bool:
 	match ability:
 		Ability.Dive:
 			return GlobalData.hasDive
+		Ability.Fireball:
+			return GlobalData.hasFireball
 	return false
 
 func _ready():
@@ -33,8 +35,12 @@ func _ready():
 func _process(delta):
 	if !Engine.editor_hint && inArea && Input.is_action_just_pressed("ui_up"):
 		match ability:
-			GlobalData.Ability.Dive:
+			Ability.Dive:
 				var divePopup := load("res://Menu/AbilityPopups/Dive.tscn")
 				GlobalData.hud.add_child(divePopup.instance())
 				GlobalData.hasDive = true
+			Ability.Fireball:
+				var fireballPopup := load("res://Menu/AbilityPopups/Fireball.tscn")
+				GlobalData.hud.add_child(fireballPopup.instance())
+				GlobalData.hasFireball = true
 		queue_free()

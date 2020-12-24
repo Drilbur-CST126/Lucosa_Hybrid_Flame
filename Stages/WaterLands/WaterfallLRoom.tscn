@@ -53,7 +53,7 @@ target = NodePath("../Ruicosa")
 [node name="SoldierWatsi" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( -95.6369, 61.7442 )
 
-[node name="HdThornTileMap" parent="Enemies" groups=[
+[node name="HdThornTileMap" parent="." groups=[
 "DamageObject",
 ] instance=ExtResource( 1 )]
 position = Vector2( 0, -0.5 )
@@ -123,6 +123,6 @@ direction = 0
 loadPath = "res://Stages/WaterLands/SquareDiveRoom.tscn"
 
 [node name="UpperRoomSpawnPoint" parent="." instance=ExtResource( 7 )]
-position = Vector2( 172.092, -171.079 )
+position = Vector2( 181.129, -170.603 )
 loadId = "SquareDiveRoom"
 facingRight = true

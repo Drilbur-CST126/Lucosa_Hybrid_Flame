@@ -76,6 +76,7 @@ func setup_rtl(var followInverse := true):
 		$Transition.region_rect.size.y = height
 		$Transition.position.x = -8.0
 		$Transition.position.y = height / 2
+		$Transition.flip_h = true
 		position.x = 0.0
 		
 		var anim := Animation.new()

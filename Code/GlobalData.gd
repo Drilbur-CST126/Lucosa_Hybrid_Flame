@@ -2,7 +2,7 @@ extends Node
 
 enum Direction {Utd, Dtu, Ltr, Rtl, Fade, None}
 
-enum Ability {Dive, Uppercut, DoubleJump, TransformAnywhere}
+enum Ability {Dive, Uppercut, DoubleJump, Fireball, TransformAnywhere}
 
 const kPlayerClassName = "Ruicosa"
 const kManaRegenPerSec := 15.0
@@ -30,6 +30,8 @@ var flags := []
 var hasDoubleJump := false
 var hasUppercut := false
 var hasDive := false
+var hasFireball := false
+var hasExplosionImmunity := false
 var canTransform := false
 var canTransformAnywhere := false setget set_can_transform_anywhere
 
@@ -65,7 +67,7 @@ func set_player_hp(amt: int):
 			if camera.has_method("shake"):
 				camera.shake(2.0, 0.1)
 			yield(get_tree().create_timer(0.2), "timeout")
-			if playerHp == 0:
+			if playerHp <= 0:
 				if camera.has_method("shake"):
 					camera.shake(4.0, -1)
 				yield(get_tree().create_timer(1.0), "timeout")
@@ -192,6 +194,8 @@ func unlock_ability(ability):
 			hasUppercut = true
 		Ability.DoubleJump:
 			hasDoubleJump = true
+		Ability.Fireball:
+			hasFireball = true
 		Ability.TransformAnywhere:
 			canTransformAnywhere = true
 	emit_signal("ability_unlocked", ability)
@@ -204,6 +208,8 @@ func has_ability(ability) -> bool:
 			return hasUppercut
 		Ability.DoubleJump:
 			return hasDoubleJump
+		Ability.Fireball:
+			return hasFireball
 		Ability.TransformAnywhere:
 			return canTransformAnywhere
 	return false
@@ -238,6 +244,9 @@ func _unhandled_key_input(event):
 				KEY_3:
 					hasDoubleJump = !hasDoubleJump
 					print("Double jump has been set to " + String(hasDoubleJump))
+				KEY_4:
+					hasFireball = !hasFireball
+					print("Fireball has been set to " + String(hasFireball))
 				KEY_6:
 					canTransformAnywhere = !canTransformAnywhere
 					canTransform = canTransformAnywhere

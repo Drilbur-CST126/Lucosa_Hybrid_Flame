@@ -25,8 +25,7 @@ func _ready():
 		var player := get_parent().get_node_or_null(GlobalData.kPlayerClassName)
 		if player != null:
 			player.position = position
-			if facingRight:
-				player.facingRight = true
+			player.facingRight = facingRight
 #		var camera := get_parent().get_node("DynamicCamera")
 #		if camera != null:
 #			camera.global_position = global_position
