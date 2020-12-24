@@ -241,17 +241,23 @@ func land_uppercut(var target: Node2D):
 		canDoubleJump = true
 		
 func fireball():
-	var child := Fireball.instance()
-	var dir := 1 if facingRight else -1
-	var vel := velocity
-	vel.y += kFireballForce.y
-	
-	child.gravity_scale = gravity / 12.0
-	child.linear_velocity = vel
-	child.global_position = global_position
-	child.position.x += 12 * dir
-	
-	get_parent().add_child_below_node(self, child)
+	var canCast := true
+	for child in get_parent().get_children():
+		if child.get_class() == "Fireball":
+			canCast = false
+			
+	if canCast:
+		var child := Fireball.instance()
+		var dir := 1 if facingRight else -1
+		var vel := velocity
+		vel.y += kFireballForce.y
+		
+		child.gravity_scale = gravity / 12.0
+		child.linear_velocity = vel
+		child.global_position = global_position
+		child.position.x += 12 * dir
+		
+		get_parent().add_child_below_node(self, child)
 		
 func begin_heal():
 	if is_on_floor() && !GlobalData.player_at_full_hp() \

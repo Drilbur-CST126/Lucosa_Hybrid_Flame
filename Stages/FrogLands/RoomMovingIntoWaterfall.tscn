@@ -44,6 +44,10 @@ __meta__ = {
 [node name="SwitchDoor" parent="." instance=ExtResource( 8 )]
 position = Vector2( 276.603, -91.3685 )
 
+[node name="Switch" parent="." instance=ExtResource( 9 )]
+position = Vector2( -10.0236, 89.9567 )
+rotation = -0.341137
+
 [node name="HdTileMap" type="TileMap" parent="." groups=[
 "StablePlatform",
 ]]
@@ -99,7 +103,4 @@ loadPath = "res://Stages/FrogLands/WaterfallRoom.tscn"
 position = Vector2( -308, 125.331 )
 loadId = "WaterfallRoom"
 facingRight = true
-
-[node name="Switch" parent="." instance=ExtResource( 9 )]
-position = Vector2( 261.028, -79.9279 )
 [connection signal="activated" from="Switch" to="SwitchDoor" method="open"]
