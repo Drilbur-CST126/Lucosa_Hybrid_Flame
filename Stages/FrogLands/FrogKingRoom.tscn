@@ -7,8 +7,6 @@
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=6]
 
-
-
 [node name="FrogKingRoom" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -24,16 +22,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FrogKingCanvasLayer" type="CanvasLayer" parent="."]
+[node name="FrogKingCanvasLayer" type="ParallaxBackground" parent="."]
 layer = -1
-follow_viewport_enable = true
-follow_viewport_scale = 0.6
 
-[node name="FrogKing" type="Sprite" parent="FrogKingCanvasLayer"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="FrogKingCanvasLayer"]
+motion_scale = Vector2( 0.6, 1 )
+
+[node name="FrogKing" type="Sprite" parent="FrogKingCanvasLayer/ParallaxLayer"]
 modulate = Color( 1, 1, 1, 0.8 )
-position = Vector2( -150.595, 153.979 )
+position = Vector2( -34.7966, 117.495 )
 rotation = 0.13033
-scale = Vector2( 0.167, 0.167 )
+scale = Vector2( 0.125, 0.125 )
 texture = ExtResource( 4 )
 
 [node name="HdTileMap" type="TileMap" parent="."]

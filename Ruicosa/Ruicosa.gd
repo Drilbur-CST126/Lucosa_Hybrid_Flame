@@ -15,6 +15,7 @@ enum ActionState {
 	Normal,
 	Falling,
 	Jump,
+	FullJump,
 	DoubleJump,
 	Jab,
 	Dive,
@@ -22,6 +23,8 @@ enum ActionState {
 	Transforming,
 	Attacking,
 	Healing,
+	MinecartEnter,
+	InMinecart,
 }
 
 
@@ -287,6 +290,13 @@ func set_can_attack():
 	canAttack = true
 	#attack()
 	
+func jump(full := false):
+	velocity.y = jumpImpulse if !lucosaForm else lucosaJumpImpulse
+	state = ActionState.Jump if !full else ActionState.FullJump
+	
+	jumpReleased = false
+	coyoteTime = 0.0
+	
 func on_anim_complete():
 	if state == ActionState.Transforming:
 		play_anim("Idle")
@@ -306,10 +316,12 @@ func is_air_state() -> bool:
 func is_momentum_state() -> bool:
 	return state == ActionState.Dive \
 		|| state == ActionState.Knockback \
-		|| state == ActionState.Transforming
+		|| state == ActionState.Transforming \
+		|| state == ActionState.MinecartEnter
 		
 func is_stun_state() -> bool:
-	return state == ActionState.Healing
+	return state == ActionState.Healing \
+		|| state == ActionState.InMinecart
 
 func on_damaged(_amt):
 	vulnerable = false
@@ -446,11 +458,7 @@ func process_y_velocity(delta: float):
 		coyoteTime -= delta
 
 	if Input.is_action_just_pressed("jump") && coyoteTime > 0.0:
-		velocity.y = jumpImpulse if !lucosaForm else lucosaJumpImpulse
-		state = ActionState.Jump
-		
-		jumpReleased = false
-		coyoteTime = 0.0
+		jump()
 	
 	if Input.is_action_just_released("jump"):
 		jumpReleased = true

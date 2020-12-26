@@ -120,6 +120,15 @@ shape = SubResource( 2 )
 position = Vector2( -331.577, -83.7997 )
 loadPath = "res://Stages/FrogLands/RoomBeforeDoubleJump.tscn"
 
+[node name="RailSceneTransition" parent="." instance=ExtResource( 7 )]
+position = Vector2( -331.577, 140.625 )
+loadPath = "res://Stages/FrogLands/RailStation.tscn"
+
+[node name="RailRoomSpawnPoint" parent="." instance=ExtResource( 10 )]
+position = Vector2( -308.194, 147.978 )
+loadId = "RailStation"
+facingRight = true
+
 [node name="RightSceneTransition" parent="." instance=ExtResource( 7 )]
 position = Vector2( 652.264, 108.296 )
 colDimensions = Vector2( 12, 44 )
