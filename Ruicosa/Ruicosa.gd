@@ -158,6 +158,7 @@ func accelerate_to_velocity(delta: float, dest: float, speed: float = 0.0):
 func dive():
 	if GlobalData.hasDive && state != ActionState.Dive \
 			&& is_air_state():
+		jumpReleased = true
 		#self.facingRight = cos(angle) < 0.0
 		velocity.x = (1 if facingRight else -1) * diveVelocity
 		velocity.y = knockbackSpeed if Input.is_action_pressed("ui_down") else 0.0

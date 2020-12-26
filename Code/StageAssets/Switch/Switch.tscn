@@ -1,11 +1,171 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Code/Polish/Circle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/StageAssets/Switch/Switch.gd" type="Script" id=2]
 [ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Code/StageAssets/Switch/SwitchBody.tres" type="Texture" id=4]
+[ext_resource path="res://Code/StageAssets/Switch/SwitchJaw.tres" type="Texture" id=5]
+[ext_resource path="res://Code/StageAssets/Switch/SwitchMouth.tres" type="Texture" id=6]
+[ext_resource path="res://Code/StageAssets/Switch/SwitchEyeFill.tres" type="Texture" id=7]
+[ext_resource path="res://Code/StageAssets/Switch/SwitchEyeOutline.tres" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 10 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Off"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual/SwitchEyeFill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0823529, 0.243137, 0.0196078, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual/SwitchJaw:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Visual/SwitchMouth:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.5 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 70.369, 2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Visual/SwitchMouth:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, -7.5 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "On"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual/SwitchEyeFill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.654902, 0.419608, 0.784314, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual/SwitchJaw:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Visual/SwitchMouth:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 70.369, 17 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Visual/SwitchMouth:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "TurnOn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual/SwitchEyeFill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0823529, 0.243137, 0.0196078, 1 ), Color( 0.654902, 0.419608, 0.784314, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual/SwitchJaw:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Visual/SwitchMouth:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 70.369, 2 ), Rect2( 0, 0, 70.369, 17 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Visual/SwitchMouth:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, -7.5 ), Vector2( 0, 0 ) ]
+}
 
 [node name="Switch" type="Area2D"]
 script = ExtResource( 2 )
@@ -28,3 +188,36 @@ freeParentOnDeath = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Visual" type="Node2D" parent="."]
+scale = Vector2( 0.167, 0.167 )
+
+[node name="SwitchBody" type="Sprite" parent="Visual"]
+position = Vector2( -3.24582, -3.94916 )
+texture = ExtResource( 4 )
+
+[node name="SwitchEyeFill" type="Sprite" parent="Visual"]
+modulate = Color( 0.0823529, 0.243137, 0.0196078, 1 )
+position = Vector2( 1.01251, -46.5554 )
+texture = ExtResource( 7 )
+
+[node name="SwitchEyeOutline" type="Sprite" parent="Visual"]
+position = Vector2( 1.08997, -46.2624 )
+texture = ExtResource( 8 )
+
+[node name="SwitchMouth" type="Sprite" parent="Visual"]
+visible = false
+position = Vector2( -2.45986, -24.1314 )
+texture = ExtResource( 6 )
+offset = Vector2( 0, -7.5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 70.369, 2 )
+
+[node name="SwitchJaw" type="Sprite" parent="Visual"]
+position = Vector2( -3.43282, -23.0864 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Off = SubResource( 5 )
+anims/On = SubResource( 4 )
+anims/TurnOn = SubResource( 3 )

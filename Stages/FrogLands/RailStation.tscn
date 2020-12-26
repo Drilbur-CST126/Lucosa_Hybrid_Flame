@@ -29,10 +29,15 @@ limit_bottom = 180
 position = Vector2( 308.201, 149.881 )
 facingRight = false
 
-[node name="SceneTransition" parent="." instance=ExtResource( 4 )]
+[node name="RightSceneTransition" parent="." instance=ExtResource( 4 )]
 position = Vector2( 332.994, 140.735 )
 direction = 3
 loadPath = "res://Stages/FrogLands/RoomBeforeFireball.tscn"
+
+[node name="UpperSceneTransition" parent="." instance=ExtResource( 4 )]
+position = Vector2( 140.205, -21.7362 )
+direction = 0
+loadPath = "res://Stages/FrogLands/RoomBeforeDoubleJump.tscn"
 
 [node name="Minecart" parent="." instance=ExtResource( 5 )]
 position = Vector2( 79.107, 123.678 )

@@ -3,6 +3,7 @@ extends Node2D
 export var loadId: String
 export var facingRight := false
 export var onGround := true
+export var jump := false
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -26,6 +27,8 @@ func _ready():
 		if player != null:
 			player.position = position
 			player.facingRight = facingRight
+			if jump:
+				player.jump(true)
 #		var camera := get_parent().get_node("DynamicCamera")
 #		if camera != null:
 #			camera.global_position = global_position

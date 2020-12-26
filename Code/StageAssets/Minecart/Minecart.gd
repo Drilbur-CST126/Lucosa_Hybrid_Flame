@@ -17,4 +17,5 @@ func lower_entered(other: Node2D):
 	if other.get_class() == GlobalData.kPlayerClassName:
 		other.state = other.ActionState.InMinecart
 		other.play_anim("Idle", true)
+		other.velocity = Vector2()
 		player = other

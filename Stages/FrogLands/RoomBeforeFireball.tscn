@@ -35,7 +35,7 @@ __meta__ = {
 position = Vector2( -261.727, 140.626 )
 
 [node name="Switch" parent="." instance=ExtResource( 12 )]
-position = Vector2( -93.0294, 160.475 )
+position = Vector2( -89.964, 160.475 )
 rotation = 0.172471
 
 [node name="HdTileMap" parent="." groups=[
@@ -81,7 +81,7 @@ tile_data = PoolIntArray( 983026, 4, 3, 983028, 4, 196608, 983029, 4, 13, 104856
 position = Vector2( -100.405, 147.102 )
 
 [node name="Butterfly2" parent="Polish" instance=ExtResource( 9 )]
-position = Vector2( -87.7703, 156.27 )
+position = Vector2( -84.9835, 151.811 )
 
 [node name="SummonArea" parent="Polish" instance=ExtResource( 8 )]
 margin_left = -143.0
