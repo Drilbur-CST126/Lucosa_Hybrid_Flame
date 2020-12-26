@@ -41,12 +41,12 @@ func anim_completed(anim: String):
 		activate()
 		
 func begin_activate():
-	$AnimationPlayer.play("TurnOn")
+	if !hasBeenActivated:
+		$AnimationPlayer.play("TurnOn")
 
 func activate():
 	if !hasBeenActivated:
 		hasBeenActivated = true
-		$Circle.color = Color.green
 		if buttonPopup != null:
 			buttonPopup.queue_free()
 			buttonPopup = null
@@ -55,5 +55,4 @@ func activate():
 		
 func init_activate():
 	hasBeenActivated = true
-	$Circle.color = Color.green
 	$AnimationPlayer.play("On")

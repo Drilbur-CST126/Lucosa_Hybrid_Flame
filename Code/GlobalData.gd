@@ -126,6 +126,7 @@ func save(room_filename: String):
 		"hasDive": hasDive,
 		"hasUppercut": hasUppercut,
 		"hasDoubleJump": hasDoubleJump,
+		"hasFireball": hasFireball,
 		"canTransformAnywhere": canTransformAnywhere,
 		"flags": flags
 	}
@@ -146,6 +147,7 @@ func save_reload(room_filename: String):
 		"hasDive": hasDive,
 		"hasUppercut": hasUppercut,
 		"hasDoubleJump": hasDoubleJump,
+		"hasFireball": hasFireball,
 		"canTransformAnywhere": canTransformAnywhere,
 		"flags": flags
 	}
@@ -169,6 +171,7 @@ func load_file(filename: String):
 		self.hasDive = hasDive || data["hasDive"]
 		self.hasUppercut = hasUppercut || data["hasUppercut"]
 		self.hasDoubleJump = hasDoubleJump || data["hasDoubleJump"]
+		self.hasFireball = hasFireball || data["hasFireball"]
 		self.canTransformAnywhere = canTransformAnywhere || data["canTransformAnywhere"]
 		
 		self.lastRoomId = "Savepoint"
