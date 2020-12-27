@@ -55,12 +55,20 @@ modulate = Color( 0.329412, 0.294118, 0.27451, 1 )
 position = Vector2( 68.3196, 68.7706 )
 texture = SubResource( 1 )
 
+[node name="IconInfill" type="Sprite" parent="Visuals"]
+modulate = Color( 0.58, 0.1682, 0.1682, 1 )
+position = Vector2( 68.3196, 68.7706 )
+texture = SubResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 114.638, 124.525 )
+
 [node name="BarBackground" type="Sprite" parent="Visuals"]
 modulate = Color( 0.329412, 0.294118, 0.27451, 1 )
 position = Vector2( 358.354, 121.764 )
 texture = SubResource( 2 )
 
 [node name="BarInfill" type="Sprite" parent="Visuals"]
+visible = false
 position = Vector2( 358.354, 121.764 )
 texture = SubResource( 2 )
 region_enabled = true
@@ -76,11 +84,13 @@ position = Vector2( 358.234, 118.583 )
 texture = SubResource( 4 )
 
 [node name="RuiruiIcon" type="Sprite" parent="Visuals"]
+modulate = Color( 1, 1, 1, 0.752941 )
 position = Vector2( 64.3422, 71.502 )
 texture = SubResource( 5 )
 
 [node name="LucosaIcon" type="Sprite" parent="Visuals"]
 visible = false
+modulate = Color( 1, 1, 1, 0.752941 )
 position = Vector2( 68.11, 67.6892 )
 texture = SubResource( 6 )
 

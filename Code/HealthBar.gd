@@ -4,7 +4,9 @@ const Health = preload("res://Code/Health.tscn")
 const TransitionEffect = preload("res://Code/Polish/TransitionEffect.tscn")
 
 const kBarWidth := 548
+const kIconHeight := 124.525
 onready var kBarPos := $Visuals/BarInfill.position.x as float # Treated as const, as good as const
+onready var kIconPos := $Visuals/IconInfill.position.y as float # Same as above
 
 const bg := Color("#544b46")
 const FIRST_HEART_OFFSET := 180
@@ -24,7 +26,7 @@ func _ready():
 		GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display"),
 		GlobalData.connect("hp_changed", self, "adjust_hp_display"),
 		GlobalData.connect("trans_begin", self, "begin_transition"),
-		GlobalData.connect("mana_changed", self, "adjust_bar_display"),
+		GlobalData.connect("mana_changed", self, "adjust_icon_display"),
 		GlobalData.connect("player_dead", self, "begin_death_transition"),
 	])
 	GlobalData.hud = self
@@ -80,6 +82,12 @@ func adjust_bar_display(mana: float):
 	var width := kBarWidth * mana / (GlobalData.kMaxMana as float)
 	$Visuals/BarInfill.region_rect.size.x = width
 	$Visuals/BarInfill.position.x = kBarPos - kBarWidth / 2.0 + (width / 2.0)
+	
+func adjust_icon_display(infill: float):
+	var height := kIconHeight * infill / (GlobalData.kMaxMana as float)
+	$Visuals/IconInfill.region_rect.position.y = kIconHeight - height
+	$Visuals/IconInfill.region_rect.size.y = height
+	$Visuals/IconInfill.position.y = kIconPos + kIconHeight / 2.0 - (height / 2.0)	
 			
 func begin_death_transition():
 	var effect := TransitionEffect.instance()
