@@ -13,5 +13,6 @@ func _ready():
 func open():
 	$AnimationPlayer.play("Open")
 	GlobalData.flags.append(openFlag)
+	GlobalData.camera.shake(0.5, 2)
 	yield($AnimationPlayer, "animation_finished")
 	queue_free()

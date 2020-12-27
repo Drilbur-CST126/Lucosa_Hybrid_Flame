@@ -7,14 +7,17 @@ const Ability = GlobalData.Ability
 export(Ability) var ability
 
 var popup
+var player
 var inArea := false
 
-func player_entered(player: Node2D):
-	player.add_child(popup)
+func player_entered(playerNode: Node2D):
+	playerNode.add_child(popup)
+	player = playerNode
 	inArea = true
 	
-func player_exited(player: Node2D):
-	player.remove_child(popup)
+func player_exited(playerNode: Node2D):
+	playerNode.remove_child(popup)
+	player = null
 	inArea = false
 	
 func has_ability() -> bool:
@@ -36,11 +39,16 @@ func _process(delta):
 	if !Engine.editor_hint && inArea && Input.is_action_just_pressed("ui_up"):
 		match ability:
 			Ability.Dive:
-				var divePopup := load("res://Menu/AbilityPopups/Dive.tscn")
-				GlobalData.hud.add_child(divePopup.instance())
+				var divePopup = load("res://Menu/AbilityPopups/Dive.tscn").instance()
+				divePopup.player = player
+				GlobalData.hud.add_child(divePopup)
 				GlobalData.hasDive = true
 			Ability.Fireball:
-				var fireballPopup := load("res://Menu/AbilityPopups/Fireball.tscn")
-				GlobalData.hud.add_child(fireballPopup.instance())
+				var fireballPopup = load("res://Menu/AbilityPopups/Fireball.tscn").instance()
+				fireballPopup.player = player
+				GlobalData.hud.add_child(fireballPopup)
 				GlobalData.hasFireball = true
+		player.play_anim("Idle", true)
+		player.velocity = Vector2.ZERO
+		player.state = player.ActionState.Stun
 		queue_free()

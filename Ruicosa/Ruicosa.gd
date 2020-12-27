@@ -25,6 +25,7 @@ enum ActionState {
 	Healing,
 	MinecartEnter,
 	InMinecart,
+	Stun,
 }
 
 
@@ -322,7 +323,8 @@ func is_momentum_state() -> bool:
 		
 func is_stun_state() -> bool:
 	return state == ActionState.Healing \
-		|| state == ActionState.InMinecart
+		|| state == ActionState.InMinecart \
+		|| state == ActionState.Stun
 
 func on_damaged(_amt):
 	vulnerable = false

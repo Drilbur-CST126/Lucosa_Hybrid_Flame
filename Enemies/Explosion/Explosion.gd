@@ -11,6 +11,7 @@ func _ready():
 		connect("body_entered", self, "entity_entered"),
 		connect("area_entered", self, "entity_entered"),
 	])
+	GlobalData.camera.shake(3.0, 0.2)
 	
 func disable_hitbox():
 	$CollisionShape2D.disabled = true

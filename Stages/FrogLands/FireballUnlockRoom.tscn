@@ -53,7 +53,6 @@ ability = 3
 
 [node name="Ruicosa" parent="." instance=ExtResource( 7 )]
 position = Vector2( 12.063, 143.312 )
-lucosaForm = true
 
 [node name="DynamicCamera" parent="." instance=ExtResource( 8 )]
 limit_left = 0
