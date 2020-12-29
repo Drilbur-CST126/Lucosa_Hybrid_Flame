@@ -45,7 +45,7 @@ __meta__ = {
 position = Vector2( 276.603, -91.3685 )
 
 [node name="Switch" parent="." instance=ExtResource( 9 )]
-position = Vector2( -10.0236, 89.9567 )
+position = Vector2( -16.3071, 89.9567 )
 rotation = -0.341137
 
 [node name="HdTileMap" type="TileMap" parent="." groups=[

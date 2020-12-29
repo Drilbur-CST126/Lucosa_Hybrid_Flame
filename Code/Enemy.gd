@@ -16,6 +16,7 @@ export var damageOnTouch := 1
 export var fireFlashDur := 0.1
 export var colArea: NodePath
 export var freeParentOnDeath := true
+export var shakeOnDeath := true
 
 var hp: int
 var fireTimer := 0.0
@@ -66,6 +67,8 @@ func take_damage(amt: int):
 		emit_signal("on_hit")
 		if hp <= 0:
 			emit_signal("on_death")
+			if shakeOnDeath:
+				GlobalData.camera.shake(2.0, 0.1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

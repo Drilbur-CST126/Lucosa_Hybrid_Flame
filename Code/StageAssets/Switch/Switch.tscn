@@ -11,7 +11,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 10 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "Off"
 length = 0.1
 tracks/0/type = "value"
@@ -63,7 +63,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, -7.5 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "On"
 length = 0.1
 tracks/0/type = "value"
@@ -115,8 +115,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "TurnOn"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/SwitchEyeFill:modulate")
 tracks/0/interp = 1
@@ -175,6 +174,7 @@ pushPlayer = false
 damageOnTouch = 0
 colArea = NodePath("../CollisionShape2D")
 freeParentOnDeath = false
+shakeOnDeath = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -208,6 +208,6 @@ position = Vector2( -3.43282, -23.0864 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Off = SubResource( 5 )
-anims/On = SubResource( 4 )
-anims/TurnOn = SubResource( 3 )
+anims/Off = SubResource( 2 )
+anims/On = SubResource( 3 )
+anims/TurnOn = SubResource( 4 )
