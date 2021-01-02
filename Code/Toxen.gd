@@ -66,9 +66,9 @@ func _process(_delta):
 		attacking = true
 		_setAttackHitbox(attackHitbox)
 		$AttackArea/CollisionShape2D.disabled = false
-		yield(get_tree().create_timer(0.3), "timeout")
+		yield(Utility.create_timer(self,0.3), "timeout")
 		$AttackArea/CollisionShape2D.disabled = true
-		#yield(get_tree().create_timer(0.2), "timeout")
+		#yield(Utility.create_timer(self,0.2), "timeout")
 		attacking = false
 
 func _physics_process(delta):
@@ -164,7 +164,7 @@ func _process_y_velocity(delta):
 		canUppercut = false
 		_setAttackHitbox(uppercutHitbox)
 		$AttackArea/CollisionShape2D.disabled = false
-		yield(get_tree().create_timer(0.05), "timeout")
+		yield(Utility.create_timer(self,0.05), "timeout")
 		$AttackArea/CollisionShape2D.disabled = true
 		uppercutting = false
 				

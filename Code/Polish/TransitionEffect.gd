@@ -16,7 +16,7 @@ func _ready():
 	
 func anim_finished(_name: String):
 	if delay > 0.0:
-		yield(get_tree().create_timer(delay), "timeout")
+		yield(Utility.create_timer(self,delay), "timeout")
 	emit_signal("finished")
 	queue_free()
 	

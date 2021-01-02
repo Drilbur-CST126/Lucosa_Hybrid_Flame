@@ -30,6 +30,15 @@ func contains(container, object) -> bool:
 		if i == object:
 			return true
 	return false
+	
+func create_timer(node: Node, duration: float) -> Timer:
+	var timer := Timer.new()
+	node.add_child(timer)
+	timer.start(duration)
+	print_connect_errors(get_path(), [
+		timer.connect("timeout", timer, "queue_free"),
+	])
+	return timer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

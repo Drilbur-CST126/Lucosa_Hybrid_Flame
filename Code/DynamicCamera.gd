@@ -37,7 +37,7 @@ func shake(severity: float, duration: float):
 	shakeSeverity = severity
 	shaking = true
 	if duration > 0:
-		yield(get_tree().create_timer(duration), "timeout")
+		yield(Utility.create_timer(self,duration), "timeout")
 		shaking = false
 		offset = Vector2.ZERO
 	

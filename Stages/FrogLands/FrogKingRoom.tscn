@@ -44,6 +44,7 @@ tile_data = PoolIntArray( -65577, 0, 0, -65576, 0, 1, -65575, 0, 1, -65574, 0, 1
 
 [node name="Ruicosa" parent="." instance=ExtResource( 2 )]
 position = Vector2( 308, 132.5 )
+facingRight = false
 
 [node name="DynamicCamera" parent="." instance=ExtResource( 3 )]
 limit_left = -320

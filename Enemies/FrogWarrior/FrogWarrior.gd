@@ -101,7 +101,7 @@ func attack():
 	canAttack = false
 	play_anim("Attack")
 	$AttackCooldownTimer.start()
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(Utility.create_timer(self,0.3), "timeout")
 	var attack := FrogSword1.instance()
 	var dir := get_dir()
 	attack.get_node("ParticleSprite").velocity *= dir
@@ -109,7 +109,7 @@ func attack():
 	attack.get_node("ParticleSprite").acceleration *= dir
 	attack.position.x = 8.0 * dir
 	add_child(attack)
-	yield(get_tree().create_timer(0.2), "timeout")
+	yield(Utility.create_timer(self,0.2), "timeout")
 	play_anim("Run")
 	moving = true
 	yield($AttackCooldownTimer, "timeout")
