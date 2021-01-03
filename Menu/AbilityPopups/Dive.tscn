@@ -20,7 +20,7 @@ func _process(_delta):
 
 [sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
-length = 3.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -64,6 +64,18 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
+"times": PoolRealArray( 0, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("VBoxContainer/Label3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0, 2.5, 3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
@@ -154,7 +166,7 @@ color = Color( 1, 1, 1, 0 )
 [node name="ButtonPopup" parent="VBoxContainer/HBoxContainer/ColorRect" instance=ExtResource( 3 )]
 position = Vector2( 33, 33 )
 scale = Vector2( 4, 4 )
-curButton = 3
+curButton = 4
 elevated = false
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
@@ -163,6 +175,17 @@ margin_right = 1022.0
 margin_bottom = 66.0
 custom_fonts/font = ExtResource( 1 )
 text = "in midair to preform a dive"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+margin_top = 344.0
+margin_right = 1280.0
+margin_bottom = 410.0
+custom_fonts/font = ExtResource( 1 )
+text = "Dive into enemies to deal damage"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_top = 0.85
