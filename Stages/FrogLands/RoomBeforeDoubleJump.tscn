@@ -96,7 +96,7 @@ entity = "res://Code/Polish/Butterfly.tscn"
 numEntities = 6
 
 [node name="Block" parent="." instance=ExtResource( 7 )]
-position = Vector2( -188.014, 45.1446 )
+position = Vector2( -149.442, 45.1446 )
 
 [node name="SecretTerrainArea" parent="." instance=ExtResource( 11 )]
 

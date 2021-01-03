@@ -66,11 +66,11 @@ func set_player_hp(amt: int):
 			get_tree().paused = true
 			if camera.has_method("shake"):
 				camera.shake(3.0, 0.15)
-			yield(Utility.create_timer(self,0.2), "timeout")
+			yield(get_tree().create_timer(0.2), "timeout")
 			if playerHp <= 0:
 				if camera.has_method("shake"):
 					camera.shake(4.0, -1)
-				yield(Utility.create_timer(self,1.0), "timeout")
+				yield(get_tree().create_timer(1.0), "timeout")
 				emit_signal("player_dead")
 			else:
 				get_tree().paused = false

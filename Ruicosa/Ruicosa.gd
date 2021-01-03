@@ -414,7 +414,7 @@ func _physics_process(delta: float):
 				on_collide(collision.collider)
 
 func ruirui_abilities():
-	if Input.is_action_just_pressed("attack") && !Input.is_action_pressed("ui_up"):
+	if Input.is_action_just_pressed("second_attack") && !Input.is_action_pressed("ui_up"):
 		dive()
 	if Input.is_action_just_pressed("jump") && coyoteTime < 0.0:
 		double_jump()
@@ -424,7 +424,7 @@ func lucosa_abilities():
 		attack()
 	if Input.is_action_just_pressed("jump") && coyoteTime < 0.0:
 		uppercut()
-	if Input.is_action_just_pressed("run") && GlobalData.hasFireball:
+	if Input.is_action_just_pressed("second_attack") && GlobalData.hasFireball:
 		fireball()
 
 func process_x_velocity(delta: float):
@@ -452,7 +452,7 @@ func process_y_velocity(delta: float):
 		
 	if is_on_floor():
 		coyoteTime = maxCoyoteTime
-		if Input.is_action_pressed("run") && lucosaForm == false:
+		if Input.is_action_pressed("attack") && lucosaForm == false:
 			running = true
 		else:
 			running = false

@@ -169,7 +169,7 @@ color = Color( 1, 1, 1, 0 )
 [node name="ButtonPopup" parent="VBoxContainer/HBoxContainer/ColorRect" instance=ExtResource( 3 )]
 position = Vector2( 33, 33 )
 scale = Vector2( 4, 4 )
-curButton = 3
+curButton = 4
 elevated = false
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]

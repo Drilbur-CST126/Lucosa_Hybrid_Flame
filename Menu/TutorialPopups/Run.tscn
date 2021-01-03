@@ -4,7 +4,7 @@
 
 [node name="Run" instance=ExtResource( 1 )]
 displayText = "Run"
-button = 3
+button = 4
 
 [node name="Circle" parent="." index="0"]
 position = Vector2( 640, 753 )
@@ -17,7 +17,7 @@ margin_left = 561.0
 margin_right = 627.0
 
 [node name="ButtonPopup" parent="HBoxContainer/ButtonControl" index="0"]
-curButton = 3
+curButton = 4
 
 [node name="Label" parent="HBoxContainer" index="1"]
 margin_left = 631.0
