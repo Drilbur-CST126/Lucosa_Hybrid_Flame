@@ -16,6 +16,7 @@ const kAnimOffsets := {
 	"Run" : 0,
 	"Shock" : 4,
 	"Attack": 4,
+	"Strike": 6,
 }
 
 export var facingRight := true
@@ -101,15 +102,18 @@ func attack():
 	canAttack = false
 	play_anim("Attack")
 	$AttackCooldownTimer.start()
-	yield(Utility.create_timer(self,0.3), "timeout")
+	yield(Utility.create_timer(self,0.55), "timeout")
+	play_anim("Strike")
 	var attack := FrogSword1.instance()
 	var dir := get_dir()
-	attack.get_node("ParticleSprite").velocity *= dir
-	attack.get_node("ParticleSprite").velocity_random *= dir
-	attack.get_node("ParticleSprite").acceleration *= dir
-	attack.position.x = 8.0 * dir
+	#attack.get_node("ParticleSprite").velocity *= dir
+	#attack.get_node("ParticleSprite").velocity_random *= dir
+	#attack.get_node("ParticleSprite").acceleration *= dir
+	#attack.position.x = 8.0 * dir
+	attack.scale.x = -dir
+	#attack.hide()
 	add_child(attack)
-	yield(Utility.create_timer(self,0.2), "timeout")
+	yield(Utility.create_timer(self,0.3), "timeout")
 	play_anim("Run")
 	moving = true
 	yield($AttackCooldownTimer, "timeout")
@@ -131,6 +135,8 @@ func _ready():
 	Utility.print_connect_errors(get_path(), [
 		$EnemyData.connect("on_hit", self, "on_damage"),
 	])
+	
+	play_anim("Walk")
 
 func _physics_process(delta):
 	if moving:

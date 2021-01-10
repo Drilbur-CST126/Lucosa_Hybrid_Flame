@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Code/Polish/ParticleSprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Particles/FrogSword1/FrogSword1.gd" type="Script" id=2]
@@ -6,24 +6,52 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 3 )
 
+[sub_resource type="Animation" id=2]
+resource_name = "Play"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ParticleSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.167, 0.167 ), Vector2( 0.2, 0.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ParticleSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.8 ), Color( 1, 1, 1, 0.8 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="FrogSword1" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="ParticleSprite" parent="." instance=ExtResource( 1 )]
+modulate = Color( 1, 1, 1, 0.8 )
 duration = 0.3
-velocity = Vector2( 64, 0 )
-velocity_random = Vector2( 2, 3 )
-acceleration = Vector2( -213.333, 0 )
+velocity = Vector2( -128, 0 )
+velocity_random = Vector2( -2, 3 )
+acceleration = Vector2( 426.667, 0 )
 eraseParent = true
 
-[node name="ColorRect" type="ColorRect" parent="ParticleSprite"]
-margin_left = -48.0
-margin_top = -18.0
-margin_right = 48.0
-margin_bottom = 18.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Polygon2D" type="Polygon2D" parent="ParticleSprite"]
+color = Color( 0.694118, 0.776471, 0.780392, 1 )
+polygon = PoolVector2Array( 16.4005, 39.0763, 4.90229, 42.3495, -5.86555, 43.8451, -22.6155, 44.7424, -35.178, 42.3495, -45.6468, 39.0593, -53.7226, 32.7781, -59.4057, 23.5058, -62.3967, 12.4388, -62.0976, -4.90936, -58.2093, -17.1727, -50.1334, -29.7352, -39.3655, -40.204, -25.3075, -49.4763, -13.3432, -54.8602, -21.12, -48.2798, -27.4012, -41.9986, -36.0754, -31.829, -41.1602, -21.3602, -42.3566, -10.5924, -40.562, -0.422746, -35.7762, 7.35403, -27.9995, 13.6353, -16.9325, 20.2156, -7.23884, 24.0331, 5.11811, 25.4658, 18.1914, 25.6448, 27.683, 25.8239, 37.5327, 26.003, 43.0844, 26.003, 35.4112, 30.0862, 27.9335, 33.9745 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Play"
+anims/Play = SubResource( 2 )
