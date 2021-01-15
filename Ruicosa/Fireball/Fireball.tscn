@@ -29,6 +29,7 @@ tracks/0/keys = {
 [node name="Fireball" type="RigidBody2D"]
 collision_layer = 0
 physics_material_override = SubResource( 1 )
+gravity_scale = -1.0
 continuous_cd = 2
 script = ExtResource( 4 )
 

@@ -259,7 +259,7 @@ func fireball():
 		var vel := velocity
 		vel.y += kFireballForce.y
 		
-		child.gravity_scale = gravity / 12.0
+		child.gravity_scale = gravity / 9.8 / 9.8
 		child.linear_velocity = vel
 		child.global_position = global_position
 		child.position.x += 12 * dir
