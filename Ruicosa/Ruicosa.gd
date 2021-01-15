@@ -83,6 +83,7 @@ var state = ActionState.Normal
 
 
 signal formSwap(form)
+signal dive(Node2D)
 
 
 func get_class():
@@ -164,6 +165,7 @@ func dive():
 		velocity.x = (1 if facingRight else -1) * diveVelocity
 		velocity.y = knockbackSpeed if Input.is_action_pressed("ui_down") else 0.0
 		state = ActionState.Dive
+		emit_signal("dive", self)
 		
 func double_jump():
 	if canDoubleJump:

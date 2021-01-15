@@ -26,6 +26,7 @@ signal on_death
 signal on_hit
 signal on_block
 signal on_touch(other)
+signal on_stop_touch(other)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +35,7 @@ func _ready():
 	Utility.print_connect_errors(get_path(), [
 		connect("on_death", self, "give_hp_shards"),
 		$Area2D.connect("body_entered", self, "on_touch"),
+		$Area2D.connect("body_exited", self, "on_stop_touch"),
 	])
 	if freeParentOnDeath:
 		Utility.print_connect_errors(get_path(), [
@@ -53,6 +55,9 @@ func on_touch(other: Node2D):
 	if pushPlayer && other.get_class() == GlobalData.kPlayerClassName:
 		other.knockback(self, damageOnTouch)
 	emit_signal("on_touch", other)
+	
+func on_stop_touch(other: Node2D):
+	emit_signal("on_stop_touch", other)
 	
 func give_hp_shards():
 	GlobalData.hpShards += deathShards

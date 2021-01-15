@@ -164,10 +164,6 @@ second_attack={
  ]
 }
 
-[physics]
-
-2d/default_gravity=10
-
 [rendering]
 
 quality/2d/use_pixel_snap=true
