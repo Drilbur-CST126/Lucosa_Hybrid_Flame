@@ -11,9 +11,7 @@ export(RequireForm) var requiredForm = RequireForm.None
 export(Array, GlobalData.Ability) var requiredAbilities = []
 
 var tutorial: Control = null
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var popupLoad
 
 func set_size(val: Vector2):
 	size = val
@@ -32,7 +30,7 @@ func requirements_met() -> bool:
 	return met
 	
 func create_prompt():
-	tutorial = load(popup).instance()
+	tutorial = popupLoad.instance()
 	GlobalData.hud.add_child(tutorial)
 
 # Called when the node enters the scene tree for the first time.
@@ -42,6 +40,8 @@ func _ready():
 	Utility.print_connect_errors(get_path(), [
 		$Timer.connect("timeout", self, "create_prompt")
 	])
+	
+	popupLoad = load(popup)
 
 func player_entered(player: Node2D):
 	if requirements_met():
