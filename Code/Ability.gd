@@ -11,12 +11,14 @@ var player
 var inArea := false
 
 func player_entered(playerNode: Node2D):
+	popup = ButtonPopup.instance()
+	popup.curButton = popup.Buttons.Up
 	playerNode.add_child(popup)
 	player = playerNode
 	inArea = true
 	
 func player_exited(playerNode: Node2D):
-	playerNode.remove_child(popup)
+	popup.queue_free()
 	player = null
 	inArea = false
 	
@@ -31,9 +33,6 @@ func has_ability() -> bool:
 func _ready():
 	if has_ability():
 		queue_free()
-	
-	popup = ButtonPopup.instance()
-	popup.curButton = popup.Buttons.Up
 	
 func _process(delta):
 	if !Engine.editor_hint && inArea && Input.is_action_just_pressed("ui_up"):

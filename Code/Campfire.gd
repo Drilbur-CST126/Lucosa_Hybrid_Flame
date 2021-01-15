@@ -28,7 +28,7 @@ func player_entered(player: Node2D):
 		
 func player_exited(player: Node2D):
 	playerInside = false
-	player.remove_child(buttonPopup)
+	buttonPopup.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

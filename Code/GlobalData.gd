@@ -138,6 +138,7 @@ func save(room_filename: String):
 	file.open("user://reload.json", File.WRITE)
 	file.store_line(to_json(dict))
 	file.close()
+	#file.free()
 	
 func save_reload(room_filename: String):
 	var dict := {
@@ -156,6 +157,7 @@ func save_reload(room_filename: String):
 	file.open("user://reload.json", File.WRITE)
 	file.store_line(to_json(dict))
 	file.close()
+	#file.free()
 	
 func load_file(filename: String):
 	var file := File.new()
@@ -220,7 +222,8 @@ func has_ability(ability) -> bool:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("menu"):
-		OS.window_fullscreen = !OS.window_fullscreen
+		#OS.window_fullscreen = !OS.window_fullscreen
+		print_stray_nodes()
 	
 	if regenMana:
 		set_player_mana(playerMana + kManaRegenPerSec * delta)
