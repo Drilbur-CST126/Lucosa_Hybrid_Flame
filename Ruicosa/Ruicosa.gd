@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+class_name Ruicosa
 
 const HUD = preload("res://Code/HUD.tscn")
 const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tscn")

@@ -17,7 +17,7 @@ func update_chain_length():
 		$RigidBody2D.position.y = 12.0 + $Chain.kLinkLength * length
 		
 func contact(other: Node2D):
-	if other.get_class() == GlobalData.kPlayerClassName:
+	if other is Ruicosa:
 		if other.state == other.ActionState.Dive:
 			on_dive_contact(other)
 		else:
@@ -27,7 +27,7 @@ func contact(other: Node2D):
 			])
 			
 func on_stop_contact(other: Node2D):
-	if other.get_class() == GlobalData.kPlayerClassName && awaitDive:
+	if other is Ruicosa && awaitDive:
 		other.disconnect("dive", self, "on_dive_contact")
 		awaitDive = false
 			

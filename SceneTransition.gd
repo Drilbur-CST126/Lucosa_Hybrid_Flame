@@ -32,7 +32,7 @@ func _ready():
 	$CollisionShape2D.shape = shape
 
 func entered(unit: Node):
-	if !Engine.editor_hint and unit.get_class() == GlobalData.kPlayerClassName:
+	if !Engine.editor_hint and unit is Ruicosa:
 		GlobalData.emit_signal("trans_begin", direction, loadPath)
 		GlobalData.transDirection = direction
 		if overrideLoadId != "":

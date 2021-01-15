@@ -75,7 +75,7 @@ func handle_walk():
 		set_facing_right(!facingRight)
 			
 	if $VisionRayCast.is_colliding() \
-		&& $VisionRayCast.get_collider().get_class() == GlobalData.kPlayerClassName \
+		&& $VisionRayCast.get_collider() is Ruicosa \
 		&& GlobalData.lucosaForm:
 			set_target($VisionRayCast.get_collider())
 		
@@ -94,7 +94,7 @@ func handle_chase(delta: float):
 	velocity.x *= dir
 	
 	if canAttack && $VisionRayCast.is_colliding() \
-		&& $VisionRayCast.get_collider().get_class() == GlobalData.kPlayerClassName:
+		&& $VisionRayCast.get_collider() is Ruicosa:
 			attack()
 	
 func attack():

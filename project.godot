@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Ruicosa",
+"language": "GDScript",
+"path": "res://Ruicosa/Ruicosa.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Toxen",
 "language": "GDScript",
 "path": "res://Code/Toxen.gd"
 } ]
 _global_script_class_icons={
+"Ruicosa": "",
 "Toxen": ""
 }
 

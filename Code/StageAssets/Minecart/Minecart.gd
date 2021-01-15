@@ -14,7 +14,7 @@ func _process(_delta):
 			player = null
 	
 func lower_entered(other: Node2D):
-	if other.get_class() == GlobalData.kPlayerClassName:
+	if other is Ruicosa:
 		other.state = other.ActionState.InMinecart
 		other.play_anim("Idle", true)
 		other.velocity = Vector2()

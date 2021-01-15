@@ -12,14 +12,14 @@ func _ready():
 	])
 
 func entered(node: Node2D):
-	if node.get_class() == GlobalData.kPlayerClassName:
+	if node is Ruicosa:
 		player_entered(node)
 		
 func player_entered(_player: Node2D):
 	pass
 	
 func exited(node: Node2D):
-	if node.get_class() == GlobalData.kPlayerClassName:
+	if node is Ruicosa:
 		player_exited(node)
 		
 func player_exited(_player: Node2D):

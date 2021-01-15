@@ -13,7 +13,7 @@ func set_pos(val):
 	update_camera()
 	
 func entered(node: Node2D, val):
-	if node.get_class() == GlobalData.kPlayerClassName:
+	if node is Ruicosa:
 		set_pos(val)
 
 func update_camera():
