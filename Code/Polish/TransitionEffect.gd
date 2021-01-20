@@ -61,20 +61,23 @@ func setup_ltr(var followInverse := true):
 		anim.track_insert_key(0, duration, width)
 		$AnimationPlayer.add_animation("Swipe", anim)
 		if !inverse:
+			position.x = -16.0
 			$AnimationPlayer.play("Swipe")
+		else:
+			position.x = width
 		
 func setup_rtl(var followInverse := true):
 	if inverse && followInverse:
 		setup_ltr(false)
 		$AnimationPlayer.play_backwards("Swipe")
 	else:
-		$ColorRect.margin_left = 0.0
-		$ColorRect.margin_right = width
+		$ColorRect.margin_left = width
+		$ColorRect.margin_right = width * 2.0
 		$ColorRect.margin_top = 0.0
 		$ColorRect.margin_bottom = height
 		
 		$Transition.region_rect.size.y = height
-		$Transition.position.x = -8.0
+		$Transition.position.x = width - 8.0
 		$Transition.position.y = height / 2
 		$Transition.flip_h = true
 		position.x = 0.0
@@ -83,11 +86,13 @@ func setup_rtl(var followInverse := true):
 		anim.add_track(Animation.TYPE_VALUE)
 		anim.length = duration
 		anim.track_set_path(0, ".:position:x")
-		anim.track_insert_key(0, 0.0, width + 16.0)
-		anim.track_insert_key(0, duration, 0.0)
+		anim.track_insert_key(0, 0.0, 0.0)
+		anim.track_insert_key(0, duration, -width - 16.0)
 		$AnimationPlayer.add_animation("Swipe", anim)
 		if !inverse:
 			$AnimationPlayer.play("Swipe")
+		else:
+			position.x = -width
 
 func setup_utd(var followInverse := true):
 	if inverse && followInverse:
@@ -162,5 +167,5 @@ func setup_fade(var followInverse := true):
 		$AnimationPlayer.play_backwards("Fade")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass

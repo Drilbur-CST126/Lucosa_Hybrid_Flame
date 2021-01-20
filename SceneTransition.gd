@@ -33,12 +33,12 @@ func _ready():
 
 func entered(unit: Node):
 	if !Engine.editor_hint and unit is Ruicosa:
-		GlobalData.emit_signal("trans_begin", direction, loadPath)
-		GlobalData.transDirection = direction
+		var roomId: String
 		if overrideLoadId != "":
-			GlobalData.lastRoomId = overrideLoadId
+			roomId = overrideLoadId
 		else:
-			GlobalData.lastRoomId = get_parent().name
+			roomId = get_parent().name
+		GlobalData.transition_rooms(direction, loadPath, roomId)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

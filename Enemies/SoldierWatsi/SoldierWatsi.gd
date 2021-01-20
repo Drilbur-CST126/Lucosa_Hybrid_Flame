@@ -34,7 +34,7 @@ func _physics_process(_delta):
 		if !$RayCast2D.is_colliding() || is_on_wall():
 			set_facing_right(!facingRight)
 		
-func on_damage():
+func on_damage(_source):
 	moving = false
 	$StunTimer.start()
 

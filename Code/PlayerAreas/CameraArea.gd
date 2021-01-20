@@ -27,19 +27,35 @@ func _ready():
 		$DisableForceTimer.connect("timeout", self, "disable_force"),
 	])
 		
-func player_entered(_player: Node2D):
+func player_entered(player: Node2D):
 	var camera := GlobalData.camera
 	camera.dynamicLimitLeft = cameraBounds.position.x
 	camera.dynamicLimitRight = cameraBounds.end.x
 	camera.dynamicLimitUp = cameraBounds.position.y
 	camera.dynamicLimitDown = cameraBounds.end.y
 	if enableForce:
-		camera.global_position = camera.get_target_pos()
-		camera.force_update_transform()
-		(camera as Camera2D).force_update_scroll()
+		if GlobalData.oldCameraLimits == null:
+			GlobalData.oldCameraLimits = [
+				camera.limit_left,
+				camera.limit_right,
+				camera.limit_top,
+				camera.limit_bottom,
+			]
+			camera.limit_left = camera.dynamicLimitLeft
+			camera.limit_right = camera.dynamicLimitRight
+			camera.limit_top = camera.dynamicLimitUp
+			camera.limit_bottom = camera.dynamicLimitDown
+		camera.global_position = player.global_position
+		camera.force_camera_to_pos()
 		
 func disable_force():
 	enableForce = false
+	if GlobalData.oldCameraLimits != null:
+		var camera := GlobalData.camera
+		camera.limit_left = GlobalData.oldCameraLimits[0]
+		camera.limit_right = GlobalData.oldCameraLimits[1]
+		camera.limit_top = GlobalData.oldCameraLimits[2]
+		camera.limit_bottom = GlobalData.oldCameraLimits[3]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

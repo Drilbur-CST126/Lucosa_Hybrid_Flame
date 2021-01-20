@@ -22,7 +22,7 @@ func destruct(_anim):
 func entity_entered(ent: Node2D):
 	if ent.has_node("EnemyData"): # If the entity is an enemy
 		var enemyData = ent.get_node("EnemyData")
-		enemyData.take_damage(kEnemyDamage)
+		enemyData.take_damage(kEnemyDamage, self)
 	elif ent.get_class() == GlobalData.kPlayerClassName: # If the entity is the player
 		if !GlobalData.hasExplosionImmunity:
 			GlobalData.playerHp -= kPlayerDamage

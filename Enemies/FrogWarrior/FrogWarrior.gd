@@ -119,11 +119,14 @@ func attack():
 	yield($AttackCooldownTimer, "timeout")
 	canAttack = true
 	
-func on_damage():
+func on_damage(source):
 	moving = false
-	$StunTimer.start(0.3)
-	yield($StunTimer, "timeout")
-	moving = true
+	if source is Ruicosa && target == null:
+		set_target(source)
+	else:
+		$StunTimer.start(0.3)
+		yield($StunTimer, "timeout")
+		moving = true
 		
 func _ready():
 	$GroundRayCast.force_raycast_update()

@@ -1,5 +1,6 @@
 #tool
 extends Camera2D
+class_name DynamicCamera
 
 enum Lock {CtrLeft, CtrRight, LeftTrans, RightTrans, Unlocked}
 
@@ -23,6 +24,7 @@ var shaking := false
 
 
 signal camera_lock_changed(lock)
+signal shaking_finished()
 
 
 func get_class():
@@ -39,6 +41,7 @@ func shake(severity: float, duration: float):
 	if duration > 0:
 		yield(Utility.create_timer(self,duration), "timeout")
 		shaking = false
+		emit_signal("shaking_finished")
 		offset = Vector2.ZERO
 	
 func position_at_spawn_point():
@@ -56,6 +59,7 @@ func _ready():
 	width *= zoom.x
 	height *= zoom.y
 	GlobalData.camera = self
+	GlobalData.oldCameraLimits = null
 
 func set_cur_lock(value):
 	curLock = value

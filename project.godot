@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Camera2D",
+"class": "DynamicCamera",
+"language": "GDScript",
+"path": "res://Code/DynamicCamera.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Ruicosa",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Code/Toxen.gd"
 } ]
 _global_script_class_icons={
+"DynamicCamera": "",
 "Ruicosa": "",
 "Toxen": ""
 }

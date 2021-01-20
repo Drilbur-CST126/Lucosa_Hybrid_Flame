@@ -22,7 +22,7 @@ func _ready():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up") && playerInside && !hasBeenActivated:
-		begin_activate()
+		begin_activate(null)
 
 func player_entered(player: Node2D):
 	if !hasBeenActivated:
@@ -40,7 +40,7 @@ func anim_completed(anim: String):
 	if anim == "TurnOn":
 		activate()
 		
-func begin_activate():
+func begin_activate(_src):
 	if !hasBeenActivated:
 		$AnimationPlayer.play("TurnOn")
 

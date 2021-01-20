@@ -39,6 +39,9 @@ func create_timer(node: Node, duration: float) -> Timer:
 		timer.connect("timeout", timer, "queue_free"),
 	])
 	return timer
+	
+func get_dir(facingRight: bool) -> int:
+	return 1 if facingRight else -1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

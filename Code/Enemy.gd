@@ -23,8 +23,8 @@ var fireTimer := 0.0
 var fireFlashEffect := false
 
 signal on_death
-signal on_hit
-signal on_block
+signal on_hit(source)
+signal on_block(source)
 signal on_touch(other)
 signal on_stop_touch(other)
 
@@ -62,14 +62,14 @@ func on_stop_touch(other: Node2D):
 func give_hp_shards():
 	GlobalData.hpShards += deathShards
 
-func take_damage(amt: int):
+func take_damage(amt: int, source: Node2D):
 	if blocking:
-		emit_signal("on_block")
+		emit_signal("on_block", source)
 	else:
 		hp -= amt
 		fireTimer = fireFlashDur
 		fireFlashEffect = true
-		emit_signal("on_hit")
+		emit_signal("on_hit", source)
 		if hp <= 0:
 			emit_signal("on_death")
 			if shakeOnDeath:

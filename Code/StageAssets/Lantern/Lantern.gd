@@ -23,7 +23,7 @@ func contact(other: Node2D):
 		else:
 			awaitDive = true
 			Utility.print_connect_errors(get_path(), [
-				other.connect("dive", self, "on_dive_contact")
+				other.connect("dive", self, "on_dive_contact"),
 			])
 			
 func on_stop_contact(other: Node2D):
@@ -33,7 +33,10 @@ func on_stop_contact(other: Node2D):
 			
 func on_dive_contact(other: Node2D):
 	other.knockback($RigidBody2D/EnemyData, 0)
-	var playerOfs: Vector2 = other.global_position - $RigidBody2D.global_position
+	on_hit(other)
+	
+func on_hit(source: Node2D):
+	var playerOfs: Vector2 = source.global_position - $RigidBody2D.global_position
 	$RigidBody2D.apply_impulse(playerOfs, playerOfs.normalized() * -kDiveImpulse)
 
 func _ready():
@@ -43,4 +46,5 @@ func _ready():
 		Utility.print_connect_errors(get_path(), [
 			$RigidBody2D/EnemyData.connect("on_touch", self, "contact"),
 			$RigidBody2D/EnemyData.connect("on_stop_touch", self, "on_stop_contact"),
+			$RigidBody2D/EnemyData.connect("on_hit", self, "on_hit"),
 		])

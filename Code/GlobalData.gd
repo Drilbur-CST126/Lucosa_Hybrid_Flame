@@ -18,7 +18,8 @@ var distributeHpShards := true setget set_distribute_hp_shards
 var gravity: float
 
 var lastRoomId: String
-var camera: Node2D
+var camera: DynamicCamera
+var oldCameraLimits = null
 var transDirection = null
 var random := RandomNumberGenerator.new()
 var lucosaForm := false
@@ -218,6 +219,11 @@ func has_ability(ability) -> bool:
 		Ability.TransformAnywhere:
 			return canTransformAnywhere
 	return false
+	
+func transition_rooms(dir, dest: String, curRoomId: String):
+	transDirection = dir
+	lastRoomId = curRoomId
+	emit_signal("trans_begin", dir, dest)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

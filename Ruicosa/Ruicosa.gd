@@ -47,7 +47,7 @@ const knockbackSpeed := 64.0
 
 const jumpHeight := 6.0
 const minJumpHeight := 2.5
-const doubleJumpHeight := 2.5
+const doubleJumpHeight := 3.5
 const lucosaJumpHeight := 4.0
 const jumpWidth := 11.0
 const maxCoyoteTime := 0.1
@@ -102,7 +102,7 @@ func knockback(enemy: Node2D, damage := 0):
 		velocity.y = jumpImpulse
 		state = ActionState.Normal
 		canDoubleJump = form_has_double_jump()
-		enemy.take_damage(attackDmg)
+		enemy.take_damage(attackDmg, self)
 	elif vulnerable:
 		if (damage > 0):
 			GlobalData.playerHp -= damage
@@ -211,7 +211,7 @@ func land_attack(var target: Node2D, var attackArea: Area2D):
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
-		enemyData.take_damage(attackDmg)
+		enemyData.take_damage(attackDmg, self)
 		attackArea.queue_free()
 		
 func uppercut():
@@ -244,7 +244,7 @@ func land_uppercut(var target: Node2D):
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
-		enemyData.take_damage(attackDmg)
+		enemyData.take_damage(attackDmg, self)
 		canDoubleJump = true
 		
 func fireball():
