@@ -35,6 +35,7 @@ func add_chain_links():
 	colorRect.margin_bottom = kLinkLength / 2.0
 	
 	var lastBody := $StaticBody2D
+	var pinJointPos := 0.0
 	for i in range(0, length):
 		var rigidBody := RigidBody2D.new()
 		rigidBody.add_child(collisionShape.duplicate())
@@ -47,7 +48,8 @@ func add_chain_links():
 		rigidBody.add_child(colorRect.duplicate())
 		
 		var pinJoint := PinJoint2D.new()
-		pinJoint.position.y = kLinkLength / 2.0
+		pinJoint.position.y = pinJointPos
+		pinJointPos = kLinkLength / 2.0
 		pinJoint.node_a = lastBody.get_path()
 		pinJoint.node_b = rigidBody.get_path()
 		pinJoint.bias = length / 600.0

@@ -4,6 +4,7 @@ const kWanderRange := 24.0
 const kMoveSpeed := 48.0
 const kChaseHeightAbovePlayer := 24.0
 const kChaseLineWidth := 32.0
+const kAnimationRotation := 3.0
 
 enum State {
 	Wander,
@@ -65,6 +66,15 @@ func _process(delta):
 		var _vel = move_and_collide(dist.normalized() * moveAmt)
 	else:
 		var _vel = move_and_collide(dist)
+	if dist.x < -0.1:
+		$Graphics.scale.x = -0.14
+	elif dist.x > 0.1:
+		$Graphics.scale.x = 0.14
 		
 	if state == State.Chase:
 		dest = closest_chase_dest()
+		
+	var rotationAmt := kAnimationRotation * cos(2 * PI * $AnimationTimer.time_left / $AnimationTimer.wait_time)
+	$Graphics/Body1/Head.rotation_degrees = rotationAmt
+	$Graphics/Body1/Body2.rotation_degrees = -rotationAmt
+	$Graphics/Body1/Body2/Body3.rotation_degrees = -rotationAmt

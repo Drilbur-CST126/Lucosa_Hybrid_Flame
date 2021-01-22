@@ -1,13 +1,47 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Enemies/Firefly/Firefly.gd" type="Script" id=1]
 [ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Firefly/Graphics/Firefly.PNG" type="Texture" id=3]
+[ext_resource path="res://Enemies/Firefly/Graphics/Leg.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/Firefly/Graphics/Eyes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/Firefly/Graphics/Wings.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 4 )
+extents = Vector2( 6, 3 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 56.0
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 3.936, 73.654, 63.344, 57.214 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 6.906, 134.036, 51.57, 46.064 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 58.018, 124.326, 70.944, 56.484 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 10.298, 184.644, 35.506, 49.93 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0.88, 0, 67.004, 69.748 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 119.249, 2.5785, 32.1953, 36.3765 )
 
 [node name="Firefly" type="KinematicBody2D"]
 collision_layer = 0
@@ -17,6 +51,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = -8.0
 margin_top = -4.0
 margin_right = 8.0
@@ -38,3 +73,72 @@ shape = SubResource( 2 )
 maxHp = 3
 colArea = NodePath("../CollisionShape2D")
 shakeOnDeath = false
+
+[node name="Graphics" type="Node2D" parent="."]
+position = Vector2( -3.87091, 0.315993 )
+scale = Vector2( 0.14, 0.14 )
+
+[node name="Body1" type="Sprite" parent="Graphics"]
+show_behind_parent = true
+position = Vector2( 23.4368, -6.3808 )
+texture = SubResource( 4 )
+
+[node name="Body2" type="Sprite" parent="Graphics/Body1"]
+show_behind_parent = true
+position = Vector2( -12.7682, 1.23804 )
+texture = SubResource( 5 )
+offset = Vector2( -9.20865, 0.68624 )
+
+[node name="Light" type="Sprite" parent="Graphics/Body1/Body2"]
+show_behind_parent = true
+position = Vector2( -2.52187, 21.0133 )
+texture = SubResource( 6 )
+
+[node name="Body3" type="Sprite" parent="Graphics/Body1/Body2"]
+show_behind_parent = true
+position = Vector2( -21.9769, 1.48493 )
+texture = SubResource( 7 )
+offset = Vector2( -5.25929, 8.63515 )
+
+[node name="Leg" parent="Graphics/Body1/Body2/Body3" instance=ExtResource( 4 )]
+position = Vector2( -10.9654, 26.5496 )
+scale = Vector2( 0.7, 0.7 )
+frame = 0
+
+[node name="Leg" parent="Graphics/Body1/Body2" instance=ExtResource( 4 )]
+position = Vector2( -21.0777, 18.9229 )
+scale = Vector2( 0.85, 0.85 )
+frame = 1
+
+[node name="Leg" parent="Graphics/Body1" instance=ExtResource( 4 )]
+position = Vector2( -10.2849, 22.2269 )
+frame = 1
+
+[node name="Wings" parent="Graphics/Body1" instance=ExtResource( 6 )]
+position = Vector2( -32.619, -29.1142 )
+frame = 1
+offsets = PoolVector2Array( 0, 0, 0, 3, 6, 4, 2, 3, 2, 3, 0, 2 )
+
+[node name="BackWings" parent="Graphics/Body1" instance=ExtResource( 6 )]
+show_behind_parent = true
+position = Vector2( 32.8805, -29.1142 )
+frame = 1
+flip_h = true
+offsets = PoolVector2Array( 0, 0, 0, 3, 6, 4, 2, 3, 2, 3, 0, 2 )
+
+[node name="Head" type="Sprite" parent="Graphics/Body1"]
+position = Vector2( 11.5846, -0.24689 )
+texture = SubResource( 3 )
+offset = Vector2( 15.5059, 3.37278 )
+
+[node name="Eyes" parent="Graphics/Body1/Head" instance=ExtResource( 5 )]
+position = Vector2( 20.4953, -1.45316 )
+frame = 0
+
+[node name="Antennae" type="Sprite" parent="Graphics/Body1/Head"]
+position = Vector2( 22.921, -32.3752 )
+texture = SubResource( 8 )
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
