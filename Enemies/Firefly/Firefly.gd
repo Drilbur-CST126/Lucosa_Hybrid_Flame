@@ -22,7 +22,7 @@ func wander():
 		var dist := kWanderRange * sqrt(GlobalData.random.randf())
 		var angle := 2 * PI * GlobalData.random.randf()
 		dest = kInitialPosition + Vector2(dist * cos(angle), dist * sin(angle))
-		$WanderTimer.start()
+		#$WanderTimer.start()
 	
 func check_if_player_entered(other: Node2D):
 	if other is Ruicosa:

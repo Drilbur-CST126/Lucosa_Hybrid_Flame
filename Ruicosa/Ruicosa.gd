@@ -92,9 +92,9 @@ func get_class():
 func look_at(pos: Vector2):
 	self.facingRight = pos.x > position.x
 	
-func knockback(enemy: Node2D, damage := 0):
+func knockback(enemy: Node2D, damage := 0, allowDive := true):
 	play_anim("Idle", true)
-	if state == ActionState.Dive:
+	if state == ActionState.Dive && allowDive:
 		if facingRight:
 			velocity.x = -walkSpeed
 		else:
