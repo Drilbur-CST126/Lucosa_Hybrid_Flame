@@ -13,8 +13,8 @@ func set_length(value: int):
 
 func update_chain_length():
 	if get_node_or_null("Chain") != null:
-		$Chain.length = length
-		$RigidBody2D.position.y = 12.0 + $Chain.kLinkLength * length
+		$Chain.length = 2 * length
+		$RigidBody2D.position.y = 12.0 + 2 * $Chain.kLinkLength * length
 		
 func contact(other: Node2D):
 	if other is Ruicosa:

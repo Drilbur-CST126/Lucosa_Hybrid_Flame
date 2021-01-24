@@ -1,10 +1,13 @@
 tool
 extends Node2D
 
-const kLinkLength := 16.0
+const kLinkLength := 8.0
 const kLinkWidth := 2.0
 
-export(int, 0, 10) var length = 1 setget set_length
+const kChainWideTexture := preload("res://Code/StageAssets/Chain/ChainWide.tres")
+const kChainLongTexture := preload("res://Code/StageAssets/Chain/ChainLong.tres")
+
+export(int, 0, 20) var length = 1 setget set_length
 export(int, LAYERS_2D_PHYSICS) var layer = 1
 export(int, LAYERS_2D_PHYSICS) var mask = 1
 
@@ -27,25 +30,16 @@ func add_chain_links():
 	collisionRect.extents.y = kLinkLength / 2.0
 	collisionShape.shape = collisionRect
 	
-	var colorRect := ColorRect.new()
-	colorRect.color = Color("#982424")
-	colorRect.margin_left = -kLinkWidth / 2.0
-	colorRect.margin_right = kLinkWidth / 2.0
-	colorRect.margin_top = -kLinkLength / 2.0
-	colorRect.margin_bottom = kLinkLength / 2.0
-	
 	var lastBody := $StaticBody2D
 	var pinJointPos := 0.0
 	for i in range(0, length):
 		var rigidBody := RigidBody2D.new()
 		rigidBody.add_child(collisionShape.duplicate())
 		rigidBody.position.y = kLinkLength * (0.5 + i)
-		rigidBody.mass = 20
+		rigidBody.mass = 20 * (length - i)
 		rigidBody.collision_layer = layer
 		rigidBody.collision_mask = mask
 		add_child(rigidBody)
-		
-		rigidBody.add_child(colorRect.duplicate())
 		
 		var pinJoint := PinJoint2D.new()
 		pinJoint.position.y = pinJointPos
@@ -56,9 +50,18 @@ func add_chain_links():
 		lastBody.add_child(pinJoint)
 		lastBody = rigidBody
 		
+		var spr := Sprite.new()
+		spr.scale = Vector2(1.0 / 12.0, 1.0 / 12.0)
+		rigidBody.add_child(spr)
+		if i % 2 != 0:
+			spr.texture = kChainWideTexture
+			rigidBody.show_behind_parent = true
+		else:
+			spr.texture = kChainLongTexture
+		
 	end = lastBody
+	(end as RigidBody2D).apply_impulse(Vector2.ZERO, Vector2(0.0, 1.0))
 	collisionShape.queue_free()
-	colorRect.queue_free()
 	
 func attach_to_end(body: PhysicsBody2D):
 	var pinJoint := PinJoint2D.new()
