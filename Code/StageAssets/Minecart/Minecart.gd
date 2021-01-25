@@ -7,7 +7,8 @@ const kMoveDuration := 1.5
 export(String, FILE, "*.tscn,*.scn") var destination
 export(int, 1, 99) var routeId := 1
 export var movingRight := true
-export var lockedDist := 320.0
+export var lockedDist := 160.0
+export var spawnDist := 32.0
 
 var player: Ruicosa = null
 var velocity := 0.0
@@ -33,10 +34,12 @@ func _ready():
 		$LowerArea2D.connect("body_entered", self, "lower_entered"),
 	])
 	if GlobalData.lastRoomId == get_room_id():
+		position.x += spawnDist * Utility.get_dir(movingRight)
 		player = get_parent().get_node_or_null(GlobalData.kPlayerClassName)
 		if player != null:
 			player.global_position = global_position - Vector2(0, 6)
 			player.facingRight = !movingRight
+		move_in(spawnDist)
 	
 func _process(delta):
 	if !inMovingAnim && player != null:
@@ -60,6 +63,9 @@ func _process(delta):
 		
 func unlock():
 	GlobalData.flags.append(get_unlocked_flag())
+	move_in(lockedDist)
+	
+func move_in(dist: float):
 	# dist(0) = 0
 	# dist(mt) = md
 	# v(mt) = 0
@@ -72,8 +78,8 @@ func unlock():
 	# 0 = md / mt - acc * mt / 2
 	# acc * mt = 2 * md / mt
 	# mt^2 = 2 * md / acc
-	var moveTime := sqrt(2 * lockedDist / kAcceleration)
-	velocity = lockedDist / moveTime + kAcceleration * moveTime / 2.0
+	var moveTime := sqrt(2 * dist / kAcceleration)
+	velocity = Utility.get_dir(!movingRight) * (dist / moveTime + kAcceleration * moveTime / 2.0)
 	movingIn = true
 	inMovingAnim = true
 	

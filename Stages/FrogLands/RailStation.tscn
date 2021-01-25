@@ -27,7 +27,6 @@ facingRight = false
 position = Vector2( 79.107, 123.678 )
 destination = "res://Stages/WaterLands/WaterRailStation.tscn"
 movingRight = false
-lockedDist = 320.0
 
 [node name="Switch" parent="." instance=ExtResource( 8 )]
 position = Vector2( 170.801, 128.821 )
