@@ -79,3 +79,12 @@ position = Vector2( 332.421, -39.9531 )
 colDimensions = Vector2( 12, 16 )
 direction = 3
 loadPath = "res://Stages/WaterLands/WaterRailStation.tscn"
+
+[node name="ThornSceneTransition" parent="." instance=ExtResource( 2 )]
+position = Vector2( -333.072, -67.912 )
+loadPath = "res://Stages/WaterLands/ThornChallengeRoom.tscn"
+
+[node name="ThornRoomSpawnPoint" parent="." instance=ExtResource( 7 )]
+position = Vector2( -310.409, -60.2137 )
+loadId = "ThornChallengeRoom"
+facingRight = true

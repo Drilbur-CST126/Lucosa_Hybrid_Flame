@@ -342,6 +342,8 @@ func on_collide(obj: Node2D):
 		if GlobalData.playerHp > 0:
 			yield(GlobalData, "hit_animation_finished")
 			position = respawnPos
+			if GlobalData.camera != null:
+				GlobalData.camera.global_position = global_position
 	if obj.is_in_group("StablePlatform") && is_on_floor() \
 			&& $LeftGroundRayCast.get_collider() == obj \
 			&& $RightGroundRayCast.get_collider() == obj:
