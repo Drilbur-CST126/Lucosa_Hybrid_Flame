@@ -70,15 +70,15 @@ colDimensions = Vector2( 12, 16 )
 direction = 3
 loadPath = "res://Stages/WaterLands/TallRoom1.tscn"
 
-[node name="RailRoomSpawnPoint" parent="." instance=ExtResource( 7 )]
-position = Vector2( 308.997, -36.1901 )
-loadId = "WaterRailStation"
-
 [node name="RailSceneTransition" parent="." instance=ExtResource( 2 )]
 position = Vector2( 332.421, -39.9531 )
 colDimensions = Vector2( 12, 16 )
 direction = 3
 loadPath = "res://Stages/WaterLands/WaterRailStation.tscn"
+
+[node name="RailRoomSpawnPoint" parent="." instance=ExtResource( 7 )]
+position = Vector2( 308.997, -36.1901 )
+loadId = "WaterRailStation"
 
 [node name="ThornSceneTransition" parent="." instance=ExtResource( 2 )]
 position = Vector2( -333.072, -67.912 )
@@ -87,4 +87,13 @@ loadPath = "res://Stages/WaterLands/ThornChallengeRoom.tscn"
 [node name="ThornRoomSpawnPoint" parent="." instance=ExtResource( 7 )]
 position = Vector2( -310.409, -60.2137 )
 loadId = "ThornChallengeRoom"
+facingRight = true
+
+[node name="IronspearSceneTransition" parent="." instance=ExtResource( 2 )]
+position = Vector2( -332.221, -412.543 )
+loadPath = "res://Stages/WaterLands/IronspearArena.tscn"
+
+[node name="IronspearRoomSpawnPoint" parent="." instance=ExtResource( 7 )]
+position = Vector2( -306.33, -403.948 )
+loadId = "IronspearArena"
 facingRight = true

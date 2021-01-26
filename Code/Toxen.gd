@@ -175,7 +175,7 @@ func _process_y_velocity(delta):
 func _basic_attack(other: Node):
 	if other.has_node("EnemyData"):
 		var enemyData: Enemy = other.get_node("EnemyData")
-		enemyData.take_damage(attackDmg)
+		enemyData.take_damage(attackDmg, self)
 		if uppercutting:
 			canUppercut = true
 			
