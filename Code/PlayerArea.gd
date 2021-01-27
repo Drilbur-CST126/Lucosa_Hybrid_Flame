@@ -1,4 +1,5 @@
 extends Area2D
+class_name PlayerArea
 
 # Declare member variables here. Examples:
 # var a = 2
