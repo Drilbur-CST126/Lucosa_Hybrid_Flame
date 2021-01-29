@@ -15,6 +15,16 @@ func update_display_area():
 	displayArea.margin_right = cameraBounds.end.x
 	displayArea.margin_top = cameraBounds.position.y
 	displayArea.margin_bottom = cameraBounds.end.y
+	
+func disable():
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)
+	
+func enable():
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

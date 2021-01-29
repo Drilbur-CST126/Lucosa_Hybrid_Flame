@@ -97,11 +97,12 @@ script = ExtResource( 3 )
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
 maxHp = 4
 colArea = NodePath("../CollisionShape2D")
+shakeOnDeath = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.167, 0.167 )
 frames = SubResource( 16 )
-frame = 2
+frame = 11
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Code/StageAssets/Arena/ArenaSpawn/ArenaSpawn.gd" type="Script" id=1]
+[ext_resource path="res://Code/StageAssets/Arena/ArenaSpawn/ArenaSpawn.PNG" type="Texture" id=2]
+[ext_resource path="res://Code/Polish/Circle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Shaders/RadialGradient.shader" type="Shader" id=4]
+[ext_resource path="res://Graphics/Particles/CorruptionCircle/CorruptionCircle.tres" type="Material" id=5]
+[ext_resource path="res://Graphics/Particles/CorruptionCircle/CorruptionCircle.png" type="Texture" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/color = Color( 0.152941, 0.0980392, 0.184314, 1 )
+shader_param/strength = 0.6
+
+[sub_resource type="Animation" id=2]
+resource_name = "Summon"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -180.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Circle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[node name="ArenaSpawn" type="Node2D"]
+scale = Vector2( 0.167, 0.167 )
+script = ExtResource( 1 )
+
+[node name="Circle" parent="." instance=ExtResource( 3 )]
+material = SubResource( 1 )
+color = Color( 0.290196, 0.192157, 0.345098, 1 )
+polygon = PoolVector2Array( 0, 0, 240, 0, 235.388, 46.8217, 221.731, 91.844, 199.553, 133.337, 169.706, 169.706, 133.337, 199.553, 91.844, 221.731, 46.8217, 235.388, 1.46953e-14, 240, -46.8217, 235.388, -91.844, 221.731, -133.337, 199.553, -169.706, 169.706, -199.553, 133.337, -221.731, 91.844, -235.388, 46.8217, -240, 2.93906e-14, -235.388, -46.8217, -221.731, -91.844, -199.553, -133.337, -169.706, -169.706, -133.337, -199.553, -91.844, -221.731, -46.8217, -235.388, -4.40858e-14, -240, 46.8217, -235.388, 91.844, -221.731, 133.337, -199.553, 169.706, -169.706, 199.553, -133.337, 221.731, -91.844, 235.388, -46.8217, 240, -5.87811e-14 )
+uv = PoolVector2Array( 0.5, 0.5, 1, 0.5, 0.990393, 0.597545, 0.96194, 0.691342, 0.915735, 0.777785, 0.853553, 0.853553, 0.777785, 0.915735, 0.691342, 0.96194, 0.597545, 0.990393, 0.5, 1, 0.402455, 0.990393, 0.308658, 0.96194, 0.222215, 0.915735, 0.146447, 0.853553, 0.0842652, 0.777785, 0.0380602, 0.691342, 0.00960736, 0.597545, 0, 0.5, 0.00960736, 0.402455, 0.0380602, 0.308658, 0.0842652, 0.222215, 0.146447, 0.146447, 0.222215, 0.0842652, 0.308658, 0.0380602, 0.402455, 0.00960736, 0.5, 0, 0.597545, 0.00960736, 0.691342, 0.0380602, 0.777785, 0.0842652, 0.853553, 0.146447, 0.915735, 0.222215, 0.96194, 0.308658, 0.990393, 0.402455, 1, 0.5 )
+vertex_colors = PoolColorArray( 0.290196, 0.192157, 0.345098, 1 )
+diameter = 240.0
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.752941 )
+rotation = -0.942478
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Summon = SubResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+scale = Vector2( 0.167, 0.167 )
+emitting = false
+lifetime = 2.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+process_material = ExtResource( 5 )
+texture = ExtResource( 6 )

@@ -1,7 +1,8 @@
 extends Node2D
+class_name EnemyData
 
-
-const fireCol := Color("#ba482f")
+const kFireCol := Color("#ba482f")
+const kCorruptCol := Color("#27192f")
 
 
 # Declare member variables here. Examples:
@@ -13,14 +14,16 @@ export var vulnerable := true
 export var blocking := false
 export var pushPlayer := true
 export var damageOnTouch := 1
-export var fireFlashDur := 0.1
+export var flashDur := 0.1
 export var colArea: NodePath
 export var freeParentOnDeath := true
 export var shakeOnDeath := true
 
 var hp: int
-var fireTimer := 0.0
-var fireFlashEffect := false
+var flashTimer := 0.0
+var flashMaxDur := 0.0
+var flashEffect := false
+var flashColor := kFireCol
 
 signal on_death
 signal on_hit(source)
@@ -43,12 +46,12 @@ func _ready():
 		])
 	
 func _process(delta: float):
-	if fireFlashEffect:
+	if flashEffect:
 		var parent := get_parent() as CanvasItem
-		parent.modulate = Utility.lerp_color(Color.white, fireCol, fireTimer/ fireFlashDur)
-		fireTimer -= delta
-		if fireTimer <= 0.0:
-			fireFlashEffect = false
+		parent.modulate = Utility.lerp_color(Color.white, kFireCol, flashTimer / flashMaxDur)
+		flashTimer -= delta
+		if flashTimer <= 0.0:
+			flashEffect = false
 			parent.modulate = Color.white
 			
 func on_touch(other: Node2D):
@@ -67,13 +70,21 @@ func take_damage(amt: int, source: Node2D):
 		emit_signal("on_block", source)
 	else:
 		hp -= amt
-		fireTimer = fireFlashDur
-		fireFlashEffect = true
+		flash_color(kFireCol)
 		emit_signal("on_hit", source)
 		if hp <= 0:
 			emit_signal("on_death")
 			if shakeOnDeath:
 				GlobalData.camera.shake(2.0, 0.1)
+				
+func flash_color(col: Color, duration := -1.0):
+	flashColor = col
+	flashEffect = true
+	if duration <= 0.0:
+		flashTimer = flashDur
+	else:
+		flashTimer = duration
+	flashMaxDur = flashTimer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

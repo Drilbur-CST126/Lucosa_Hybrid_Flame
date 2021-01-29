@@ -99,6 +99,7 @@ func handle_chase(delta: float):
 	
 func attack():
 	moving = false
+	velocity = Vector2.ZERO
 	canAttack = false
 	play_anim("Attack")
 	$AttackCooldownTimer.start()

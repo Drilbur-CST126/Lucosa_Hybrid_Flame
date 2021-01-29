@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "ArenaSpawn",
+"language": "GDScript",
+"path": "res://Code/StageAssets/Arena/ArenaSpawn/ArenaSpawn.gd"
+}, {
 "base": "Camera2D",
 "class": "DynamicCamera",
 "language": "GDScript",
 "path": "res://Code/DynamicCamera.gd"
+}, {
+"base": "Node2D",
+"class": "EnemyData",
+"language": "GDScript",
+"path": "res://Code/Enemy.gd"
 }, {
 "base": "Area2D",
 "class": "PlayerArea",
@@ -30,7 +40,9 @@ _global_script_classes=[ {
 "path": "res://Code/Toxen.gd"
 } ]
 _global_script_class_icons={
+"ArenaSpawn": "",
 "DynamicCamera": "",
+"EnemyData": "",
 "PlayerArea": "",
 "Ruicosa": "",
 "Toxen": ""

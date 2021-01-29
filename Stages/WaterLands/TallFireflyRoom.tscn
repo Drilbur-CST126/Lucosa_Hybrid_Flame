@@ -97,3 +97,12 @@ loadPath = "res://Stages/WaterLands/IronspearArena.tscn"
 position = Vector2( -306.33, -403.948 )
 loadId = "IronspearArena"
 facingRight = true
+
+[node name="LongSceneTransition" parent="." instance=ExtResource( 2 )]
+position = Vector2( -332.173, 304.217 )
+colDimensions = Vector2( 12, 16 )
+loadPath = "res://Stages/WaterLands/LongRoom.tscn"
+
+[node name="LongRoomSpawnPoint" parent="." instance=ExtResource( 7 )]
+position = Vector2( -306.77, 307.721 )
+loadId = "LongRoom"
