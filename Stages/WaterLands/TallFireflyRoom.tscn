@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=2]
@@ -11,14 +11,8 @@
 [ext_resource path="res://Graphics/Scenery/ForestScenery/Grass1.tres" type="Texture" id=9]
 [ext_resource path="res://Graphics/Scenery/ForestScenery/Grass2.tres" type="Texture" id=10]
 [ext_resource path="res://Graphics/Scenery/ForestScenery/Flower.tres" type="Texture" id=11]
-[ext_resource path="res://Graphics/Scenery/ForestScenery/BigTree.tres" type="Texture" id=12]
 [ext_resource path="res://Shaders/ColorAdd.tres" type="Material" id=13]
-[ext_resource path="res://Graphics/Scenery/ForestScenery/LeafShadow1.tres" type="Texture" id=14]
-[ext_resource path="res://Graphics/Scenery/ForestScenery/Leaves3.tres" type="Texture" id=15]
-[ext_resource path="res://Graphics/Scenery/ForestScenery/Leaves1.tres" type="Texture" id=16]
-[ext_resource path="res://Graphics/Scenery/ForestScenery/Leaves2.tres" type="Texture" id=17]
-[ext_resource path="res://Graphics/Scenery/ForestScenery/LeafShadow2.tres" type="Texture" id=18]
-[ext_resource path="res://Graphics/Scenery/ForestScenery/Branch1.tres" type="Texture" id=19]
+[ext_resource path="res://Code/Polish/OutlinePolygon.tscn" type="PackedScene" id=20]
 
 [node name="TallFireflyRoom" type="Node2D"]
 position = Vector2( -1, 0 )
@@ -43,96 +37,28 @@ __meta__ = {
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Scenery/ParallaxBackground"]
 material = ExtResource( 13 )
-position = Vector2( 45.4294, -100.831 )
-scale = Vector2( 0.167, 0.167 )
 motion_scale = Vector2( 0.8, 0.8 )
 
-[node name="BigTree" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -1260.75, 2236.38 )
-rotation = -0.101741
-scale = Vector2( 1.6256, 3.96316 )
-texture = ExtResource( 12 )
+[node name="OutlinePolygon" parent="Scenery" instance=ExtResource( 20 )]
+position = Vector2( 0, 0.321805 )
+color = Color( 0.239216, 0.278431, 0.196078, 1 )
+polygon = PoolVector2Array( -1884.94, 2033.57, -490.065, 2113.1, -430.925, 2033.57, -473.75, 1972.39, -426.846, 1892.86, -447.239, 1799.05, -771.487, 1678.73, -777.605, 1460.53, -647.09, 1413.63, -669.523, 1368.76, -649.13, 1276.99, -659.326, 1230.09, -818.391, 1164.83, -1050.87, 1007.81, -1899.22, 973.138, -1954.28, 1625.71, -1942.04, 2023.38 )
+outlineColor = Color( 0.15888, 0.24, 0.1464, 1 )
+width = 3.0
 
-[node name="Polygon2D" type="Polygon2D" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-position = Vector2( -2166.12, -668.827 )
-color = Color( 0.345098, 0.47451, 0.227451, 1 )
-polygon = PoolVector2Array( -383.861, 85.9128, 6.52536, 1115.67, 1023.99, 983.495, 1592.46, 542.182, 1529.78, -511.624, 796.52, -716.378, -200.136, -410.829 )
+[node name="OutlinePolygon2" parent="Scenery" instance=ExtResource( 20 )]
+position = Vector2( 0, 0.321805 )
+color = Color( 0.239216, 0.278431, 0.196078, 1 )
+polygon = PoolVector2Array( 917.477, 1717.62, 959.645, 1783.5, 930.655, 1815.13, 1007.08, 1967.99, 980.729, 1996.98, 999.177, 2023.33, 993.906, 2086.59, 1955.86, 2131.39, 2050.74, 1095.64, 1842.54, 979.678, 1349.7, 919.061, 922.748, 984.949, 856.861, 1087.73, 711.909, 1100.91, 764.618, 1193.15, 688.189, 1224.78, 693.46, 1256.4, 711.909, 1346.01, 677.647, 1367.1, 688.189, 1443.52, 661.834, 1522.59 )
+outlineColor = Color( 0.15888, 0.24, 0.1464, 1 )
+width = 3.0
 
-[node name="Branch1" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -817.917, 753.796 )
-rotation = -0.44477
-scale = Vector2( 2.05248, 1.69231 )
-texture = ExtResource( 19 )
-
-[node name="Branch2" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -1993.88, 1890.32 )
-rotation = 0.0688045
-scale = Vector2( -2.1989, 2.17735 )
-texture = ExtResource( 19 )
-
-[node name="Leaves2" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -842.908, 195.426 )
-rotation = -0.4473
-scale = Vector2( 1.48936, 1.92308 )
-texture = ExtResource( 17 )
-
-[node name="Leaves1" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -1604.82, 524.258 )
-rotation = -0.165016
-scale = Vector2( 2.73815, 1.93299 )
-texture = ExtResource( 16 )
-
-[node name="Leaves3" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -2382.53, 14.0901 )
-rotation = 2.349
-scale = Vector2( 2.9773, 3.80926 )
-texture = ExtResource( 15 )
-
-[node name="LeafShadow1" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-position = Vector2( -1707.73, 4.203 )
-rotation = 0.563418
-scale = Vector2( 2.72727, 2.6875 )
-texture = ExtResource( 14 )
-
-[node name="LeafShadow2" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-position = Vector2( -1320.16, -794.167 )
-rotation = 0.686639
-scale = Vector2( 2.99973, 2.66667 )
-texture = ExtResource( 18 )
-
-[node name="Leaves5" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -953.291, -1246.92 )
-rotation = -1.63454
-scale = Vector2( 2.50432, 2.59004 )
-texture = ExtResource( 15 )
-
-[node name="Leaves4" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -552.731, -608.668 )
-rotation = -1.57114
-scale = Vector2( 1.7037, 2 )
-texture = ExtResource( 17 )
-
-[node name="Leaves6" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -1917.28, -1321.75 )
-rotation = 2.86407
-scale = Vector2( 2.55315, 1.74727 )
-texture = ExtResource( 16 )
-
-[node name="Leaves7" type="Sprite" parent="Scenery/ParallaxBackground/ParallaxLayer"]
-use_parent_material = true
-position = Vector2( -2493.91, -709.908 )
-rotation = -3.50803
-scale = Vector2( 2.8139, 2.86508 )
-texture = ExtResource( 15 )
+[node name="OutlinePolygon3" parent="Scenery" instance=ExtResource( 20 )]
+position = Vector2( 0, 0.321805 )
+color = Color( 0.239216, 0.278431, 0.196078, 1 )
+polygon = PoolVector2Array( -1901.81, -1537.38, -1807.95, -1517.14, -1717.76, -1631.25, -1550.28, -1627.56, -1444.79, -1682.39, -1312.86, -1649.65, -1141.09, -1714.51, -936.672, -1819.64, -837.385, -2044.49, -892.869, -3043.21, -2011.31, -3014.01, -1987.95, -1746.63 )
+outlineColor = Color( 0.160784, 0.239216, 0.145098, 1 )
+width = 3.0
 
 [node name="Bush" type="Sprite" parent="Scenery"]
 position = Vector2( 482.074, 271.295 )

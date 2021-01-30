@@ -20,10 +20,20 @@ func on_enemy_defeat():
 			])
 	
 	if numEnemies == 0:
-		emit_signal("cleared")
-		queue_free()
+		clear()
+		
+func get_clear_str() -> String:
+	return String(get_path()) + "_cleared"
+		
+func clear():
+	emit_signal("cleared")
+	queue_free()
+	GlobalData.flags.append(get_clear_str())
 
 func _ready():
+	if GlobalData.flags.has(get_clear_str()):
+		clear()
+	
 	for i in get_children():
 		var child := i as Node2D
 		var isArenaSpawn := child is ArenaSpawn

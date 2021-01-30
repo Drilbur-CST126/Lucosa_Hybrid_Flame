@@ -68,8 +68,10 @@ func _process(delta):
 		var _vel = move_and_collide(dist)
 	if dist.x < -0.1:
 		$Graphics.scale.x = -0.14
+		$Graphics.position.x = 3.871
 	elif dist.x > 0.1:
 		$Graphics.scale.x = 0.14
+		$Graphics.position.x = -3.871
 		
 	if state == State.Chase:
 		dest = closest_chase_dest()
