@@ -10,10 +10,12 @@ const kMaxMana := 100.0
 
 var debug := true
 
-var playerHp := 5 setget set_player_hp
+var playerHp := 4 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
-var playerMaxHp := 5 setget set_player_max_hp
+var playerMaxHp := 4 setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
+var playerAttackDmg := 2
+var playerForesight := 0
 var distributeHpShards := true setget set_distribute_hp_shards
 var gravity: float
 
@@ -95,6 +97,7 @@ func distribute_hp_shards(amt: int):
 func set_player_max_hp(amt: int):
 	emit_signal("max_hp_changed", amt)
 	playerMaxHp = amt
+	set_player_hp(amt)
 	
 func set_player_mana(amt: float):
 	if amt <= 0:
@@ -129,7 +132,11 @@ func save(room_filename: String):
 		"hasDoubleJump": hasDoubleJump,
 		"hasFireball": hasFireball,
 		"canTransformAnywhere": canTransformAnywhere,
-		"flags": flags
+		"flags": flags,
+		# Stats
+		"maxHp": playerMaxHp,
+		"attackDmg": playerAttackDmg,
+		"foresight": playerForesight,
 	}
 	
 	var file = File.new()
@@ -151,7 +158,11 @@ func save_reload(room_filename: String):
 		"hasDoubleJump": hasDoubleJump,
 		"hasFireball": hasFireball,
 		"canTransformAnywhere": canTransformAnywhere,
-		"flags": flags
+		"flags": flags,
+		# Stats
+		"maxHp": playerMaxHp,
+		"attackDmg": playerAttackDmg,
+		"foresight": playerForesight,
 	}
 	
 	var file = File.new()
@@ -176,6 +187,9 @@ func load_file(filename: String):
 		self.hasDoubleJump = hasDoubleJump || data["hasDoubleJump"]
 		self.hasFireball = hasFireball || data["hasFireball"]
 		self.canTransformAnywhere = canTransformAnywhere || data["canTransformAnywhere"]
+		self.playerMaxHp = max(playerMaxHp, data["maxHp"])
+		self.playerAttackDmg = max(playerAttackDmg, data["attackDmg"])
+		self.playerForesight = max(playerForesight, data["foresight"])
 		
 		self.lastRoomId = "Savepoint"
 		self.transDirection = Direction.Fade

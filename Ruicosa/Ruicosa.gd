@@ -76,7 +76,6 @@ var running := false
 export var lucosaForm := false setget set_lucosa_form
 var vulnerable := true
 var canAttack := true
-var attackDmg := 2
 
 var velocity := Vector2()
 var state = ActionState.Normal
@@ -102,7 +101,7 @@ func knockback(enemy: Node2D, damage := 0, allowDive := true):
 		velocity.y = jumpImpulse
 		state = ActionState.Normal
 		canDoubleJump = form_has_double_jump()
-		enemy.take_damage(attackDmg, self)
+		enemy.take_damage(GlobalData.playerAttackDmg, self)
 	elif vulnerable:
 		if (damage > 0):
 			GlobalData.playerHp -= damage
@@ -211,7 +210,7 @@ func land_attack(var target: Node2D, var attackArea: Area2D):
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
-		enemyData.take_damage(attackDmg, self)
+		enemyData.take_damage(GlobalData.playerAttackDmg, self)
 		attackArea.queue_free()
 		
 func uppercut():
@@ -244,7 +243,7 @@ func land_uppercut(var target: Node2D):
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
-		enemyData.take_damage(attackDmg, self)
+		enemyData.take_damage(GlobalData.playerAttackDmg, self)
 		canDoubleJump = true
 		
 func fireball():
