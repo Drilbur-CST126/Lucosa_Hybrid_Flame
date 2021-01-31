@@ -10,7 +10,7 @@ func _ready():
 		$ExplosionTimer.connect("timeout", self, "explode"),
 	])
 
-func _process(delta: float):
+func _process(_delta: float):
 	var mod = 1.0 + cos($ExplosionTimer.time_left)
 	$Visual/Glow.modulate = Color(mod, mod, mod)
 	if $ExplosionTimer.time_left <= 0.2 && !$AnimationPlayer.is_playing():

@@ -119,7 +119,7 @@ func set_can_transform_anywhere(val: bool):
 		canTransform = true
 		
 func player_at_full_hp() -> bool:
-	var hpFromShards := hpShards / 5
+	var hpFromShards := int(hpShards / 5.0)
 	return hpFromShards + playerHp >= playerMaxHp
 		
 func save(room_filename: String):
@@ -173,7 +173,9 @@ func save_reload(room_filename: String):
 	
 func load_file(filename: String):
 	var file := File.new()
-	file.open(filename, File.READ)
+	Utility.print_errors([
+		file.open(filename, File.READ),
+	])
 	
 	var saveLocation: String
 	
@@ -187,13 +189,15 @@ func load_file(filename: String):
 		self.hasDoubleJump = hasDoubleJump || data["hasDoubleJump"]
 		self.hasFireball = hasFireball || data["hasFireball"]
 		self.canTransformAnywhere = canTransformAnywhere || data["canTransformAnywhere"]
-		self.playerMaxHp = max(playerMaxHp, data["maxHp"])
-		self.playerAttackDmg = max(playerAttackDmg, data["attackDmg"])
-		self.playerForesight = max(playerForesight, data["foresight"])
+		self.playerMaxHp = int(max(playerMaxHp, data["maxHp"]))
+		self.playerAttackDmg = int(max(playerAttackDmg, data["attackDmg"]))
+		self.playerForesight = int(max(playerForesight, data["foresight"]))
 		
 		self.lastRoomId = "Savepoint"
 		self.transDirection = Direction.Fade
-		get_tree().change_scene(data["filename"])
+		Utility.print_errors([
+			get_tree().change_scene(data["filename"]),
+		])
 		saveLocation = data["filename"]
 	
 	file.close()

@@ -21,6 +21,13 @@ func print_connect_errors(path: String, connections: Array):
 	for i in connections:
 		assert(i == 0, "Connection failed in " + path + "!")
 		
+func print_errors(calls: Array):
+	for i in calls:
+		if i != 0:
+			printerr("Godot Error found! Error: " + i)
+			print_stack()
+		
+		
 func remove_children(node: Node):
 	for child in node.get_children():
 		node.remove_child(child)

@@ -12,7 +12,9 @@ signal finished()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimationPlayer.connect("animation_finished", self, "anim_finished")
+	Utility.print_errors([
+		$AnimationPlayer.connect("animation_finished", self, "anim_finished")
+	])
 	
 func anim_finished(_name: String):
 	if delay > 0.0:
@@ -24,18 +26,18 @@ func set_dimensions(width_: float, height_: float):
 	width = width_
 	height = height_
 	
-func set_direction(direction):
-	if direction == GlobalData.Direction.Ltr:
+func set_direction(val):
+	if val == GlobalData.Direction.Ltr:
 		setup_ltr()
-	elif direction == GlobalData.Direction.Rtl:
+	elif val == GlobalData.Direction.Rtl:
 		setup_rtl()
-	elif direction == GlobalData.Direction.Utd:
+	elif val == GlobalData.Direction.Utd:
 		setup_utd()
-	elif direction == GlobalData.Direction.Dtu:
+	elif val == GlobalData.Direction.Dtu:
 		setup_dtu()
-	elif direction == GlobalData.Direction.Fade:
+	elif val == GlobalData.Direction.Fade:
 		setup_fade()
-	elif direction == GlobalData.Direction.None:
+	elif val == GlobalData.Direction.None:
 		call_deferred("anim_finished", "")
 
 func setup_ltr(var followInverse := true):
@@ -54,7 +56,9 @@ func setup_ltr(var followInverse := true):
 		position.x = width
 		
 		var anim := Animation.new()
-		anim.add_track(Animation.TYPE_VALUE)
+		Utility.print_errors([
+			anim.add_track(Animation.TYPE_VALUE),
+		])
 		anim.length = duration
 		anim.track_set_path(0, ".:position:x")
 		anim.track_insert_key(0, 0.0, -16.0)
@@ -83,7 +87,9 @@ func setup_rtl(var followInverse := true):
 		position.x = 0.0
 		
 		var anim := Animation.new()
-		anim.add_track(Animation.TYPE_VALUE)
+		Utility.print_errors([
+			anim.add_track(Animation.TYPE_VALUE),
+		])
 		anim.length = duration
 		anim.track_set_path(0, ".:position:x")
 		anim.track_insert_key(0, 0.0, 0.0)
@@ -111,7 +117,9 @@ func setup_utd(var followInverse := true):
 		position.y = height + 16.0
 		
 		var anim := Animation.new()
-		anim.add_track(Animation.TYPE_VALUE)
+		Utility.print_errors([
+			anim.add_track(Animation.TYPE_VALUE),
+		])
 		anim.length = duration
 		anim.track_set_path(0, ".:position:y")
 		anim.track_insert_key(0, 0.0, 0.0)
@@ -137,7 +145,9 @@ func setup_dtu(var followInverse := true):
 		position.y = 0.0
 		
 		var anim := Animation.new()
-		anim.add_track(Animation.TYPE_VALUE)
+		Utility.print_errors([
+			anim.add_track(Animation.TYPE_VALUE),
+		])
 		anim.length = duration
 		anim.track_set_path(0, ".:position:y")
 		anim.track_insert_key(0, 0.0, height + 16.0)
@@ -146,7 +156,7 @@ func setup_dtu(var followInverse := true):
 		if !inverse:
 			$AnimationPlayer.play("Swipe")
 			
-func setup_fade(var followInverse := true):
+func setup_fade(var _followInverse := true):
 	$ColorRect.margin_left = 0.0
 	$ColorRect.margin_right = width
 	$ColorRect.margin_top = 0.0
@@ -154,7 +164,9 @@ func setup_fade(var followInverse := true):
 	#$Transition.visible = false
 		
 	var anim := Animation.new()
-	anim.add_track(Animation.TYPE_VALUE)
+	Utility.print_errors([
+		anim.add_track(Animation.TYPE_VALUE),
+	])
 	anim.length = duration
 	anim.track_set_path(0, ".:modulate")
 	anim.track_insert_key(0, 0.0, Color(0.0, 0.0, 0.0, 0.0))
@@ -165,7 +177,3 @@ func setup_fade(var followInverse := true):
 		$AnimationPlayer.play("Fade")
 	else:
 		$AnimationPlayer.play_backwards("Fade")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

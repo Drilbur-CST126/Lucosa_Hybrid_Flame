@@ -26,12 +26,12 @@ func player_entered(player: Node2D):
 #	if node.get_class() == GlobalData.kPlayerClassName:
 #		playerInside = false
 		
-func player_exited(player: Node2D):
+func player_exited(_player: Node2D):
 	playerInside = false
 	buttonPopup.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if playerInside && Input.is_action_just_pressed("ui_up"):
 		GlobalData.playerHp = GlobalData.playerMaxHp
 		GlobalData.save(get_parent().filename)

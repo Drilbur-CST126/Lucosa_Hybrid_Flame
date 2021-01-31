@@ -23,7 +23,7 @@ func _ready():
 	start_timer()
 	if rotation == 0.0:
 		rotation_degrees = GlobalData.random.randf_range(-15.0, 15.0)
-	(get_parent() as KinematicBody2D).move_and_slide(Vector2.ZERO)
+	var _vel = (get_parent() as KinematicBody2D).move_and_slide(Vector2.ZERO)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

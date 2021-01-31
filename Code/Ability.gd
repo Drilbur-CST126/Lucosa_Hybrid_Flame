@@ -17,7 +17,7 @@ func player_entered(playerNode: Node2D):
 	player = playerNode
 	inArea = true
 	
-func player_exited(playerNode: Node2D):
+func player_exited(_playerNode: Node2D):
 	popup.queue_free()
 	player = null
 	inArea = false
@@ -36,7 +36,7 @@ func _ready():
 	if has_ability():
 		queue_free()
 	
-func _process(delta):
+func _process(_delta):
 	if !Engine.editor_hint && inArea && Input.is_action_just_pressed("ui_up"):
 		var popup
 		match ability:

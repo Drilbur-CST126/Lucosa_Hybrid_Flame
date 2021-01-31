@@ -56,8 +56,8 @@ func position_at_spawn_point():
 func _ready():
 	position_at_spawn_point()
 	#print(position)
-	width *= zoom.x
-	height *= zoom.y
+	width = int(width * zoom.x)
+	height = int(height * zoom.y)
 	GlobalData.camera = self
 	GlobalData.oldCameraLimits = null
 

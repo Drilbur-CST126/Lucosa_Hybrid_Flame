@@ -28,7 +28,7 @@ func player_entered(playerNode: Node2D):
 	player = playerNode
 	inArea = true
 	
-func player_exited(playerNode: Node2D):
+func player_exited(_playerNode: Node2D):
 	popup.queue_free()
 	player = null
 	inArea = false
@@ -36,6 +36,7 @@ func player_exited(playerNode: Node2D):
 func _ready():
 	if !Engine.editor_hint && GlobalData.flags.has(collected_str()):
 		queue_free()
+	$Circle.material.set_shader_param("color", kColors[type])
 		
 func _process(delta):
 	if !Engine.editor_hint && inArea && Input.is_action_just_pressed("ui_up"):

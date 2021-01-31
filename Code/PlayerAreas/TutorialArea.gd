@@ -43,14 +43,14 @@ func _ready():
 	
 	popupLoad = load(popup)
 
-func player_entered(player: Node2D):
+func player_entered(_player: Node2D):
 	if requirements_met():
 		if waitTime > 0.0:
 			$Timer.start(waitTime)
 		else:
 			create_prompt()
 
-func player_exited(player: Node2D):
+func player_exited(_player: Node2D):
 	$Timer.stop()
 	if tutorial != null:
 		tutorial.unload()

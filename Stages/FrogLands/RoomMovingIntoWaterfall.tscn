@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/SoldierWatsi/SoldierWatsi.tscn" type="PackedScene" id=2]
@@ -10,26 +10,7 @@
 [ext_resource path="res://Code/StageAssets/SwitchDoor/SwitchDoor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Code/StageAssets/Switch/Switch.tscn" type="PackedScene" id=9]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-func _process(delta):
-	pass
-	#$DynamicCamera.dynamicLimitDown = -9.0/8.0 * $DynamicCamera.position.x + 90.0
-"
-
 [node name="RoomMovingIntoWaterfall" type="Node2D"]
-script = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -320.0

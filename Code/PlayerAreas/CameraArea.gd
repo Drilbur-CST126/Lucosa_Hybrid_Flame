@@ -39,10 +39,10 @@ func _ready():
 		
 func player_entered(player: Node2D):
 	var camera := GlobalData.camera
-	camera.dynamicLimitLeft = cameraBounds.position.x
-	camera.dynamicLimitRight = cameraBounds.end.x
-	camera.dynamicLimitUp = cameraBounds.position.y
-	camera.dynamicLimitDown = cameraBounds.end.y
+	camera.dynamicLimitLeft = int(cameraBounds.position.x)
+	camera.dynamicLimitRight = int(cameraBounds.end.x)
+	camera.dynamicLimitUp = int(cameraBounds.position.y)
+	camera.dynamicLimitDown = int(cameraBounds.end.y)
 	if enableForce:
 		if GlobalData.oldCameraLimits == null:
 			GlobalData.oldCameraLimits = [

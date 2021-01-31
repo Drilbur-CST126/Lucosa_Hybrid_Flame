@@ -13,8 +13,8 @@ func reload_self():
 	#if Engine.editor_hint:
 		Utility.remove_children(self)
 		if entity != null && entity != "":
-			var area := rect_size.x * rect_size.y / 64.0
-			for i in range(0, numEntities):
+			#var area := rect_size.x * rect_size.y / 64.0
+			for _i in range(0, numEntities):
 				var x = GlobalData.random.randf()
 				var y = GlobalData.random.randf()
 				var ent = loadedEntity.instance()
