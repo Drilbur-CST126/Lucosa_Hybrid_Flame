@@ -70,7 +70,6 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 351.471, 407.554 )
 
 [node name="TransformArea" parent="." instance=ExtResource( 8 )]
-visible = false
 position = Vector2( -931.109, -45.0218 )
 size = Vector2( 24, 16 )
 

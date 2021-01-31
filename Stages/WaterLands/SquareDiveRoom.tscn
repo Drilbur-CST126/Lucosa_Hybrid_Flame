@@ -23,15 +23,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TransformArea" parent="." instance=ExtResource( 6 )]
-visible = false
-position = Vector2( 219.025, -66.0427 )
-size = Vector2( 38, 22 )
-
 [node name="TransformWall2" type="Sprite" parent="."]
 position = Vector2( 219.86, -71.6236 )
 scale = Vector2( 0.167, 0.167 )
 texture = ExtResource( 8 )
+
+[node name="TransformArea" parent="TransformWall2" instance=ExtResource( 6 )]
+position = Vector2( -5, 33.4185 )
+scale = Vector2( 5.98802, 5.98802 )
+size = Vector2( 38, 22 )
 
 [node name="Switch" parent="." instance=ExtResource( 9 )]
 position = Vector2( -310.072, -26.5446 )
@@ -78,13 +78,11 @@ position = Vector2( 180.778, 200.283 )
 colDimensions = Vector2( 92, 20 )
 direction = 1
 loadPath = "res://Stages/WaterLands/WaterfallLRoom.tscn"
-overrideLoadId = ""
 
 [node name="WaterfallSceneTransition2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 332.354, -36.0348 )
 direction = 3
 loadPath = "res://Stages/FrogLands/WaterfallRoom.tscn"
-overrideLoadId = ""
 
 [node name="WaterfallRoomSpawnPoint" parent="." instance=ExtResource( 2 )]
 position = Vector2( 308.865, -29.0483 )
@@ -93,9 +91,7 @@ loadId = "WaterfallRoom"
 [node name="RailSceneTransition" parent="." instance=ExtResource( 1 )]
 position = Vector2( -332.042, -39.8325 )
 colDimensions = Vector2( 12, 16 )
-direction = 2
 loadPath = "res://Stages/WaterLands/WaterRailStation.tscn"
-overrideLoadId = ""
 
 [node name="RailRoomSpawnPoint" parent="." instance=ExtResource( 2 )]
 position = Vector2( -308.683, -35.1607 )

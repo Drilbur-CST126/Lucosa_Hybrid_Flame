@@ -18,6 +18,8 @@ func set_size(val: Vector2):
 	$ColorRect.margin_top = -size.y
 	$ColorRect.margin_left = -size.x
 	$ColorRect.margin_right = size.x
+	$Particles2D.process_material.emission_box_extents = Vector3(6 * size.x, 6 * size.y, 1)
+	$Particles2D.amount = size.x * size.y / 24
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
