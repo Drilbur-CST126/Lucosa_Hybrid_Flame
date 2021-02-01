@@ -35,6 +35,7 @@ const animOffsets := {
 	"Transform": -20,
 	"Lucosa_Transform": -20,
 	"Lucosa_Idle": -20,
+	"Lucosa_Uppercut": -20,
 	"Lucosa_Run": -20,
 	"Lucosa_Attack": -20,
 }
@@ -129,7 +130,7 @@ func set_lucosa_form(value: bool):
 	canDoubleJump = form_has_double_jump()
 	#play_anim("Idle")
 	
-func play_anim(anim: String, force := false):
+func play_anim(anim: String, force := false, reset := false):
 	if force || !is_anim_freeze_state():
 		if lucosaForm:
 			anim = "Lucosa_" + anim
@@ -137,9 +138,12 @@ func play_anim(anim: String, force := false):
 		if !animOffsets.has(anim):
 			play_anim("Idle")
 		else:
-			$Sprite.play(anim)
-			$Sprite.offset.x = animOffsets[anim]
-			$Sprite.offset.x *= -1 if facingRight else 1
+			if reset && $Sprite.animation == anim:
+				$Sprite.frame = 0
+			else:
+				$Sprite.play(anim)
+				$Sprite.offset.x = animOffsets[anim]
+				$Sprite.offset.x *= -1 if facingRight else 1
 
 func accelerate_to_velocity(delta: float, dest: float, speed: float = 0.0):
 	if speed == 0.0:
@@ -215,15 +219,17 @@ func land_attack(var target: Node2D, var attackArea: Area2D):
 		
 func uppercut():
 	if canDoubleJump:
+		play_anim("Uppercut", true, true)
 		velocity.y = lucosaJumpImpulse
 		state = ActionState.DoubleJump
 		canDoubleJump = false
 		
-		var child := kUppercutParticle.instance()
+		var child := kUppercutParticle.instance() as Node2D
 		var dir := 1 if facingRight else -1
 		
 		child.get_node("ParticleSprite").flip_h = facingRight
 		child.position.x = 12 * dir
+		child.hide()
 		
 		var attackArea := Area2D.new()
 		var attackShape := CollisionShape2D.new()
@@ -326,6 +332,10 @@ func is_stun_state() -> bool:
 	return state == ActionState.Healing \
 		|| state == ActionState.InMinecart \
 		|| state == ActionState.Stun
+		
+func is_anim_freeze_state():
+	return state == ActionState.Attacking \
+		|| state == ActionState.DoubleJump
 
 func on_damaged(_amt):
 	vulnerable = false
@@ -347,9 +357,6 @@ func on_collide(obj: Node2D):
 			&& $LeftGroundRayCast.get_collider() == obj \
 			&& $RightGroundRayCast.get_collider() == obj:
 		respawnPos = position
-		
-func is_anim_freeze_state():
-	return state == ActionState.Attacking
 	
 func form_has_double_jump() -> bool:
 	return GlobalData.hasUppercut if lucosaForm \
