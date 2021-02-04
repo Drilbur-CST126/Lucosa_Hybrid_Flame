@@ -2,7 +2,14 @@ tool
 extends "res://Code/PlayerArea.gd"
 
 const ButtonPopup = preload("res://Code/ButtonPopup.tscn")
+#const DialogueBox = preload("res://Code/Dialogue/DialogueBox.tscn")
+
 const kColors := [Color("#ffff00"), Color("#00ffff"), Color("#ff00ff")]
+const kDialoguePaths := [
+	"res://Dialogue/Upgrades/LifeRing.json",
+	"res://Dialogue/Upgrades/Rune.json",
+	"res://Dialogue/Upgrades/ForesightOrb.json",
+]
 
 enum Type { Life = 0, Damage = 1, Foresight = 2 }
 
@@ -48,6 +55,7 @@ func _process(delta):
 			Type.Foresight:
 				GlobalData.playerForesight += 1
 		GlobalData.flags.append(collected_str())
+		GlobalData.hud.show_dialogue_box(kDialoguePaths[type])
 		queue_free()
 		
 	lifetime += delta

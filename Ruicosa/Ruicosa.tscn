@@ -316,8 +316,7 @@ script = ExtResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.167, 0.167 )
 frames = SubResource( 50 )
-animation = "Lucosa_Uppercut"
-frame = 8
+animation = "Idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

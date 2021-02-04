@@ -170,9 +170,9 @@ facingRight = true
 jump = true
 [connection signal="activated" from="Switch" to="SwitchDoor" method="open"]
 [connection signal="has_player" from="ArenaNodes/SignalArea" to="ArenaNodes/BossDoor" method="close"]
-[connection signal="cleared" from="ArenaNodes/Arena" to="CameraAreas/CameraArea3" method="enable"]
-[connection signal="cleared" from="ArenaNodes/Arena" to="CameraAreas/ArenaCameraArea" method="disable"]
 [connection signal="cleared" from="ArenaNodes/Arena" to="CameraAreas/ArenaCameraArea2" method="disable"]
-[connection signal="cleared" from="ArenaNodes/Arena" to="ArenaNodes/BossDoor2" method="open"]
-[connection signal="cleared" from="ArenaNodes/Arena" to="ArenaNodes/BossDoor" method="open"]
+[connection signal="cleared" from="ArenaNodes/Arena" to="CameraAreas/ArenaCameraArea" method="disable"]
 [connection signal="cleared" from="ArenaNodes/Arena" to="ArenaNodes/SignalArea" method="queue_free"]
+[connection signal="cleared" from="ArenaNodes/Arena" to="CameraAreas/CameraArea3" method="enable"]
+[connection signal="cleared" from="ArenaNodes/Arena" to="ArenaNodes/BossDoor" method="open"]
+[connection signal="cleared" from="ArenaNodes/Arena" to="ArenaNodes/BossDoor2" method="open"]

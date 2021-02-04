@@ -1,0 +1,48 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"text": "Textbox 1"
+		},
+		{
+			"type": "Dialogue",
+			"text": "Textbox 2"
+		},
+		{
+			"type": "Branch",
+			"dialogue": 
+			{
+				"type": "Dialogue",
+				"text": "Branch"
+			},
+			"options": 
+			[
+				{
+					"text": "Option 1",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"text": "Option 1 Chosen"
+						}
+					]
+				},
+				{
+					"text": "Option 2",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"text": "Option 2 Chosen"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Dialogue",
+			"text": "Branch Over"
+		}
+	]
+}

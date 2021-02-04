@@ -177,7 +177,7 @@ func double_jump():
 		canDoubleJump = false
 		
 func attack():
-	if canAttack:
+	if canAttack && !is_anim_freeze_state():
 		play_anim("Attack")
 		var child := kHit1Particle.instance()
 		var dir := 1 if facingRight else -1
@@ -312,6 +312,9 @@ func on_anim_complete():
 		state = ActionState.Normal
 	elif state == ActionState.Attacking:
 		play_anim("Idle")
+		state = ActionState.Normal
+	elif state == ActionState.DoubleJump:
+		play_anim("Idle", true)
 		state = ActionState.Normal
 	
 func is_air_state() -> bool:

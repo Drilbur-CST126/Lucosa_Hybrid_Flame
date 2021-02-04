@@ -182,7 +182,7 @@ func load_file(filename: String):
 	while file.get_position() < file.get_len():
 		var data = parse_json(file.get_line())
 		
-		self.flags = Array(data["flags"])
+		self.flags += data["flags"]
 		self.lucosaForm = data["lucosaForm"]
 		self.hasDive = hasDive || data["hasDive"]
 		self.hasUppercut = hasUppercut || data["hasUppercut"]

@@ -1,7 +1,9 @@
 extends CanvasLayer
+class_name Hud
 
 const Health = preload("res://Code/Health.tscn")
 const TransitionEffect = preload("res://Code/Polish/TransitionEffect.tscn")
+const DialogueBox = preload("res://Code/Dialogue/DialogueBox.tscn")
 
 const kBarWidth := 548
 const kIconHeight := 124.525
@@ -36,6 +38,9 @@ func _ready():
 	
 	if GlobalData.transDirection != null:
 		end_transition()
+		
+	yield(Utility.create_timer(self, 1.0), "timeout")
+	#add_child(DialogueBox.instance())
 	
 func set_icon(form: String):
 	$Visuals/RuiruiIcon.visible = form == "ruirui"
@@ -87,7 +92,12 @@ func adjust_icon_display(infill: float):
 	var height := kIconHeight * infill / (GlobalData.kMaxMana as float)
 	$Visuals/IconInfill.region_rect.position.y = kIconHeight - height
 	$Visuals/IconInfill.region_rect.size.y = height
-	$Visuals/IconInfill.position.y = kIconPos + kIconHeight / 2.0 - (height / 2.0)	
+	$Visuals/IconInfill.position.y = kIconPos + kIconHeight / 2.0 - (height / 2.0)
+	
+func show_dialogue_box(path: String):
+	var dialogueBox := DialogueBox.instance()
+	dialogueBox.init(path)
+	GlobalData.hud.add_child(dialogueBox)
 			
 func begin_death_transition():
 	var effect := TransitionEffect.instance()
