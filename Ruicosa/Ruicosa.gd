@@ -218,7 +218,7 @@ func land_attack(var target: Node2D, var attackArea: Area2D):
 		attackArea.queue_free()
 		
 func uppercut():
-	if canDoubleJump:
+	if canDoubleJump && (!is_anim_freeze_state() || state == ActionState.DoubleJump):
 		play_anim("Uppercut", true, true)
 		velocity.y = lucosaJumpImpulse
 		state = ActionState.DoubleJump

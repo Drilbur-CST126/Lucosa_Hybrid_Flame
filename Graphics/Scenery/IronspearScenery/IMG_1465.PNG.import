@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ArenaSpawn.PNG-f7e37c822d748278d3050bd90d6157a5.stex"
+path="res://.import/IMG_1465.PNG-a04e06e5988d00398545dd26c93a801f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Code/StageAssets/Arena/ArenaSpawn/ArenaSpawn.PNG"
-dest_files=[ "res://.import/ArenaSpawn.PNG-f7e37c822d748278d3050bd90d6157a5.stex" ]
+source_file="res://Graphics/Scenery/IronspearScenery/IMG_1465.PNG"
+dest_files=[ "res://.import/IMG_1465.PNG-a04e06e5988d00398545dd26c93a801f.stex" ]
 
 [params]
 

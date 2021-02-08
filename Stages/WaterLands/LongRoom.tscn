@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Firefly/Firefly.tscn" type="PackedScene" id=2]
@@ -12,31 +12,134 @@
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/PlayerAreas/CameraArea.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Code/Polish/OutlinePolygon.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/BigTree.tres" type="Texture" id=13]
+[ext_resource path="res://Shaders/ColorAdd.tres" type="Material" id=14]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/Leaves2.tres" type="Texture" id=15]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/Leaves1.tres" type="Texture" id=16]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/Grass2.tres" type="Texture" id=17]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/Leaves3.tres" type="Texture" id=18]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/Branch2.tres" type="Texture" id=19]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/Grass1.tres" type="Texture" id=20]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/Branch1.tres" type="Texture" id=21]
+[ext_resource path="res://Graphics/Scenery/ForestScenery/Bush.tres" type="Texture" id=22]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 252, 16 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 640, 24 )
 
 [node name="LongRoom" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -960.0
-margin_top = -360.25
-margin_right = 640.0
-margin_bottom = 179.75
+[node name="Scenery" type="Node2D" parent="."]
+scale = Vector2( 0.167, 0.167 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Scenery"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Scenery/ParallaxBackground"]
+motion_scale = Vector2( 0, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="Scenery/ParallaxBackground/ParallaxLayer"]
+margin_left = -320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 180.0
 color = Color( 0.231373, 0.333333, 0.278431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OutlinePolygon" parent="." instance=ExtResource( 12 )]
-scale = Vector2( 0.167, 0.167 )
+[node name="OutlinePolygon" parent="Scenery" instance=ExtResource( 12 )]
 color = Color( 0.239216, 0.278431, 0.196078, 1 )
 polygon = PoolVector2Array( 844.405, 75.8083, 1007.81, 215.49, 1168.57, 215.49, 1155.39, 384.162, 1226.55, 423.694, 1239.73, 539.656, 1337.24, 600.272, 1353.06, 687.244, 1566.53, 729.412, 1587.61, 790.028, 4070.25, 1064.12, 4281.09, 307.732, 1123.77, -82.3215 )
 outlineColor = Color( 0.160784, 0.239216, 0.145098, 1 )
-width = 3.0
+
+[node name="OutlinePolygon2" parent="Scenery" instance=ExtResource( 12 )]
+color = Color( 0.239216, 0.278431, 0.196078, 1 )
+polygon = PoolVector2Array( -3161.4, -1287.39, -3031.67, -1185.45, -2966.8, -1208.62, -2698.06, -1097.42, -2637.83, -1129.85, -2568.33, -1041.82, -2369.09, -1125.22, -2281.05, -1083.52, -2151.32, -1162.29, -1877.95, -1171.55, -1896.48, -2265.04, -4055.66, -2251.14, -5890.49, -1245.69, -5797.83, 135.072, -3985.7, -86.7827, -3805.23, -324.477, -4009.32, -504.341, -3939.82, -620.176, -4083.46, -777.713, -4032.49, -953.783, -3536.71, -1305.92 )
+outlineColor = Color( 0.160784, 0.239216, 0.145098, 1 )
+
+[node name="Bush" type="Sprite" parent="Scenery"]
+position = Vector2( -2240.63, -577.178 )
+rotation = -0.217146
+scale = Vector2( 1.31053, 1.14424 )
+texture = ExtResource( 22 )
+
+[node name="Grass1" type="Sprite" parent="Scenery"]
+position = Vector2( -2918.84, -550.329 )
+texture = ExtResource( 20 )
+
+[node name="Grass2" type="Sprite" parent="Scenery"]
+position = Vector2( -3659.58, -310.817 )
+rotation = 0.252734
+scale = Vector2( -0.963525, 1.58591 )
+texture = ExtResource( 17 )
+
+[node name="BigTree" type="Sprite" parent="Scenery"]
+material = ExtResource( 14 )
+position = Vector2( -1213.21, 440.782 )
+rotation = 0.237188
+texture = ExtResource( 13 )
+
+[node name="Branch1" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( 433.233, -222.229 )
+rotation = -0.18808
+scale = Vector2( 1.47352, 1.10356 )
+texture = ExtResource( 21 )
+
+[node name="Branch2" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( -341.79, -328.735 )
+texture = ExtResource( 19 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Scenery/BigTree"]
+color = Color( 0.345098, 0.47451, 0.227451, 1 )
+polygon = PoolVector2Array( -387.228, -417.215, -251.938, -386.979, 72.0906, -140.114, 114.51, -85.1098, 541.194, -341.133, 986.638, -460.773, 1061.26, -811.666, 20.7571, -534.723 )
+
+[node name="Leaves6" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( 721.138, -388.571 )
+rotation = 0.760995
+scale = Vector2( 1.02779, 1.07552 )
+texture = ExtResource( 18 )
+
+[node name="Leaves7" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( 1090.98, -588.85 )
+rotation = -0.589979
+texture = ExtResource( 15 )
+
+[node name="Leaves1" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( -415.84, -411.293 )
+rotation = 0.265326
+texture = ExtResource( 16 )
+
+[node name="Leaves2" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( -110.118, -212.159 )
+rotation = 0.731822
+texture = ExtResource( 16 )
+
+[node name="Leaves4" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( 614.281, -596.881 )
+rotation = -0.314674
+texture = ExtResource( 18 )
+
+[node name="Leaves3" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( 356.62, -200.645 )
+rotation = -0.481699
+texture = ExtResource( 15 )
+
+[node name="Leaves5" type="Sprite" parent="Scenery/BigTree"]
+use_parent_material = true
+position = Vector2( 155.26, -475.671 )
+rotation = -0.682206
+scale = Vector2( 0.747589, 1.06788 )
+texture = ExtResource( 16 )
 
 [node name="CameraAreas" type="Node2D" parent="."]
 visible = false
@@ -52,14 +155,14 @@ cameraBounds = Rect2( -960, -224, 640, 224 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraArea2"]
 position = Vector2( -720, -80 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CameraArea3" parent="CameraAreas" instance=ExtResource( 11 )]
 cameraBounds = Rect2( -640, 0, 1280, 180 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraArea3"]
 position = Vector2( 0, 136 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="TransformWall1" type="Sprite" parent="."]
 position = Vector2( -937.371, -51.3021 )
