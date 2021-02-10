@@ -5,7 +5,7 @@ enum Direction {Utd, Dtu, Ltr, Rtl, Fade, None}
 enum Ability {Dive, Uppercut, DoubleJump, Fireball, TransformAnywhere}
 
 const kPlayerClassName = "Ruicosa"
-const kManaRegenPerSec := 15.0
+const kManaRegenPerSec := 10.0
 const kMaxMana := 100.0
 
 var debug := true
@@ -14,6 +14,8 @@ var playerHp := 4 setget set_player_hp
 var hpShards := 0 setget set_hp_shards
 var playerMaxHp := 4 setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
+var charges := 0 setget set_charges
+var maxCharges := 0 setget set_max_charges
 var playerAttackDmg := 2
 var playerForesight := 0
 var distributeHpShards := true setget set_distribute_hp_shards
@@ -41,6 +43,8 @@ var canTransformAnywhere := false setget set_can_transform_anywhere
 signal max_hp_changed(maxHp)
 signal hp_changed(hp, shards)
 signal mana_changed(mana)
+signal charges_changed(charges)
+signal max_charges_changed(charges)
 signal trans_begin(direction, destination)
 signal player_hit(hp)
 signal hit_animation_finished()
@@ -103,10 +107,26 @@ func set_player_mana(amt: float):
 	if amt <= 0:
 		amt = 0
 	if amt > kMaxMana:
-		amt = kMaxMana
+		amt = 0
+		set_charges(charges + 1)
 	if amt != playerMana:
 		playerMana = amt
 		emit_signal("mana_changed", amt)
+		
+func set_charges(amt: int):
+	if amt <= 0:
+		amt = 0
+	elif amt > maxCharges:
+		amt = maxCharges
+		
+	if amt != charges:
+		charges = amt
+		emit_signal("charges_changed", amt)
+		
+func set_max_charges(amt: int):
+	if amt != maxCharges:
+		maxCharges = amt
+		emit_signal("max_charges_changed", amt)
 		
 func set_distribute_hp_shards(val: bool):
 	distributeHpShards = val
@@ -249,8 +269,10 @@ func _process(delta):
 		#OS.window_fullscreen = !OS.window_fullscreen
 		print_stray_nodes()
 	
-	if regenMana:
+	if regenMana && charges < maxCharges:
 		set_player_mana(playerMana + kManaRegenPerSec * delta)
+	elif playerMana != 0:
+		set_player_mana(0)
 
 func _input(event):
 	if event is InputEventKey && usingController:

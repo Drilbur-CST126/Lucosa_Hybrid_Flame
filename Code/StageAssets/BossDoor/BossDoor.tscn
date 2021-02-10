@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 2, 2 ),
 "update": 0,
-"values": [ Vector2( -1, 40 ), Vector2( -1, 0 ) ]
+"values": [ Vector2( -1, 20 ), Vector2( -1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:rotation_degrees")
@@ -54,13 +54,12 @@ position = Vector2( 0, -20 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1, 40 )
-rotation = 0.523599
+position = Vector2( -1, 0 )
 scale = Vector2( 0.167, 0.167 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -120 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 96, 0 )
+region_rect = Rect2( 0, 0, 96, 264 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/close = SubResource( 2 )

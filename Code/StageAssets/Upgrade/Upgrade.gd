@@ -51,7 +51,7 @@ func _process(delta):
 			Type.Life:
 				GlobalData.playerMaxHp += 1
 			Type.Damage:
-				GlobalData.playerAttackDmg += 1
+				GlobalData.maxCharges += 1
 			Type.Foresight:
 				GlobalData.playerForesight += 1
 		GlobalData.flags.append(collected_str())

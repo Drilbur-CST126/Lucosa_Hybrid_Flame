@@ -3,7 +3,7 @@
 	[
 		{
 			"type": "Dialogue",
-			"text": "You found a Power Rune!\nYour attack damage has increased!"
+			"text": "You found a Charge Rune!\nYou can now store an extra Charge Attack!"
 		},
 	]
 }

@@ -49,6 +49,7 @@ diameter = 12.0
 [node name="EnemyData" parent="RigidBody2D" instance=ExtResource( 3 )]
 deathShards = 0
 maxHp = 99
+blocking = true
 pushPlayer = false
 damageOnTouch = 0
 colArea = NodePath("../CollisionShape2D")
@@ -59,5 +60,5 @@ shakeOnDeath = false
 position = Vector2( 0.34103, -0.937828 )
 scale = Vector2( 0.167, 0.167 )
 frames = SubResource( 2 )
-frame = 4
+frame = 5
 playing = true

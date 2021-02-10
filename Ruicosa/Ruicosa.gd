@@ -92,7 +92,7 @@ func get_class():
 func look_at(pos: Vector2):
 	self.facingRight = pos.x > position.x
 	
-func knockback(enemy: Node2D, damage := 0, allowDive := true):
+func knockback(enemy: Enemy, damage := 0, allowDive := true):
 	play_anim("Idle", true)
 	if state == ActionState.Dive && allowDive:
 		if facingRight:
@@ -102,7 +102,8 @@ func knockback(enemy: Node2D, damage := 0, allowDive := true):
 		velocity.y = jumpImpulse
 		state = ActionState.Normal
 		canDoubleJump = form_has_double_jump()
-		enemy.take_damage(GlobalData.playerAttackDmg, self)
+		if enemy.vulnerable:
+			enemy.take_damage(get_attack_damage(!enemy.blocking), self)
 	elif vulnerable:
 		if (damage > 0):
 			GlobalData.playerHp -= damage
@@ -129,6 +130,13 @@ func set_lucosa_form(value: bool):
 	GlobalData.lucosaForm = value
 	canDoubleJump = form_has_double_jump()
 	#play_anim("Idle")
+	
+func get_attack_damage(consumeCharges := true) -> int:
+	if consumeCharges && GlobalData.charges > 0:
+		GlobalData.charges -= 1
+		return 2 * GlobalData.playerAttackDmg
+	else:
+		return GlobalData.playerAttackDmg
 	
 func play_anim(anim: String, force := false, reset := false):
 	if force || !is_anim_freeze_state():
@@ -214,7 +222,8 @@ func land_attack(var target: Node2D, var attackArea: Area2D):
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
-		enemyData.take_damage(GlobalData.playerAttackDmg, self)
+		if enemyData.vulnerable:
+			enemyData.take_damage(get_attack_damage(!enemyData.blocking), self)
 		attackArea.queue_free()
 		
 func uppercut():
@@ -249,7 +258,8 @@ func land_uppercut(var target: Node2D):
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")
-		enemyData.take_damage(GlobalData.playerAttackDmg, self)
+		if enemyData.vulnerable:
+			enemyData.take_damage(get_attack_damage(!enemyData.blocking), self)
 		canDoubleJump = true
 		
 func fireball():

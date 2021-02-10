@@ -73,7 +73,6 @@ texture = ExtResource( 2 )
 anims/Summon = SubResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-scale = Vector2( 0.167, 0.167 )
 emitting = false
 lifetime = 2.0
 one_shot = true
@@ -81,3 +80,6 @@ speed_scale = 5.0
 explosiveness = 1.0
 process_material = ExtResource( 5 )
 texture = ExtResource( 6 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Particles2D"]
+rect = Rect2( 0, 0, 1, 1 )

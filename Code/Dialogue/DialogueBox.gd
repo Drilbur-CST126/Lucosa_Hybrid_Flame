@@ -37,6 +37,12 @@ func init(path: String = "res://Dialogue/test.json"):
 	file.close()
 	initialized = true
 	
+static func input_down() -> bool:
+	return Input.is_action_pressed("ui_accept") || Input.is_action_pressed("ui_cancel")
+	
+static func input_just_down() -> bool:
+	return Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("ui_cancel")
+	
 func _ready():
 	if !initialized:
 		init()
@@ -45,14 +51,14 @@ func _ready():
 	set_cur_dialogue(root.get_first().dialogue)
 	
 func _process(delta):
-	nextCharTimer -= 5 * delta if Input.is_action_pressed("ui_accept") else delta
+	nextCharTimer -= 8 * delta if input_down() else delta
 	while !awaitingInput && nextCharTimer < 0.0:
 		nextCharTimer += kBaseCharDelay
 		label.visible_characters += 1
 		if label.visible_characters > label.text.length():
 			text_scroll_finished()
 			
-	if awaitingInput && Input.is_action_just_pressed("ui_accept"):
+	if awaitingInput && input_just_down():
 		var next := curArray.next()
 		if next == null: # Textbox is finished
 			$AnimationPlayer.play_backwards("Open")

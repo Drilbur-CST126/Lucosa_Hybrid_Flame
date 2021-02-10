@@ -1,9 +1,11 @@
 extends Node2D
 class_name EnemyData
 
-const kFireCol := Color("#ba482f")
-const kCorruptCol := Color("#27192f")
+const ColorAdd := preload("res://Shaders/ColorAdd.tres")
 
+const kFireCol := Color("#6a382f")
+const kBlockCol := Color(0.6, 0.6, 0.6, 0.6)
+const kCorruptCol := Color("#27192f")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -14,7 +16,7 @@ export var vulnerable := true
 export var blocking := false
 export var pushPlayer := true
 export var damageOnTouch := 1
-export var flashDur := 0.1
+export var flashDur := 0.2
 export var colArea: NodePath
 export var freeParentOnDeath := true
 export var shakeOnDeath := true
@@ -24,6 +26,7 @@ var flashTimer := 0.0
 var flashMaxDur := 0.0
 var flashEffect := false
 var flashColor := kFireCol
+var shader: ShaderMaterial
 
 signal on_death
 signal on_hit(source)
@@ -34,6 +37,9 @@ signal on_stop_touch(other)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hp = maxHp
+	shader = ColorAdd.duplicate()
+	shader.set_shader_param("color", Color(1.0, 1.0, 1.0, 0.0))
+	add_shader(get_parent())
 	$Area2D.add_child(get_node(colArea).duplicate())
 	Utility.print_connect_errors(get_path(), [
 		connect("on_death", self, "give_hp_shards"),
@@ -44,16 +50,29 @@ func _ready():
 		Utility.print_connect_errors(get_path(), [
 			connect("on_death", get_parent(), "queue_free")
 		])
+	if flashTimer > 0.0:
+		shader.set_shader_param("color", flashColor)
 	
 func _process(delta: float):
 	if flashEffect:
-		var parent := get_parent() as CanvasItem
-		parent.modulate = Utility.lerp_color(Color.white, kFireCol, flashTimer / flashMaxDur)
+		shader.set_shader_param("color", Utility.color_change_alpha(flashColor, flashTimer / flashMaxDur))
 		flashTimer -= delta
 		if flashTimer <= 0.0:
 			flashEffect = false
-			parent.modulate = Color.white
+			shader.set_shader_param("color", Color(1.0, 1.0, 1.0, 0.0))
 			
+func add_shader(item: CanvasItem):
+	item.material = shader
+	for i in item.get_children():
+		if i is CanvasItem:
+			recurse_use_shader(i)
+		
+func recurse_use_shader(item: CanvasItem):
+	item.use_parent_material = true
+	for i in item.get_children():
+		if i is CanvasItem:
+			recurse_use_shader(i)
+		
 func on_touch(other: Node2D):
 	if pushPlayer && other.get_class() == GlobalData.kPlayerClassName:
 		other.knockback(self, damageOnTouch)
@@ -68,6 +87,7 @@ func give_hp_shards():
 func take_damage(amt: int, source: Node2D):
 	if blocking:
 		emit_signal("on_block", source)
+		flash_color(kBlockCol)
 	else:
 		hp -= amt
 		flash_color(kFireCol)

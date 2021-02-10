@@ -17,6 +17,9 @@ func lerp_color(from: Color, to: Color, val: float):
 			lerp(from.b, to.b, val), \
 			lerp(from.a, to.a, val))
 			
+func color_change_alpha(src: Color, alpha: float):
+	return Color(src.r, src.g, src.b, src.a * alpha)
+			
 func print_connect_errors(path: String, connections: Array):
 	for i in connections:
 		assert(i == 0, "Connection failed in " + path + "!")

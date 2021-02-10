@@ -46,5 +46,5 @@ func _ready():
 		Utility.print_connect_errors(get_path(), [
 			$RigidBody2D/EnemyData.connect("on_touch", self, "contact"),
 			$RigidBody2D/EnemyData.connect("on_stop_touch", self, "on_stop_contact"),
-			$RigidBody2D/EnemyData.connect("on_hit", self, "on_hit"),
+			$RigidBody2D/EnemyData.connect("on_block", self, "on_hit"),
 		])

@@ -24,14 +24,18 @@ func spawn_enemy() -> Node2D:
 func anim_finished(_name):
 	get_parent().call_deferred("add_child", child)
 	$Particles2D.emitting = true
-	var part := $Particles2D
-	remove_child($Particles2D)
-	child.add_child(part)
+#	var part := $Particles2D
+#	remove_child($Particles2D)
+#	child.add_child(part)
 	
 	var en := child.get_node("EnemyData") as EnemyData
-	en.flash_color(en.kCorruptCol, 0.2)
+	en.flash_color(en.kCorruptCol)
 	
 	child = null
+	
+func _process(_delta):
+	if get_node_or_null("Particles2D") != null && $Particles2D.emitting && !$Particles2D/VisibilityNotifier2D.is_on_screen():
+		$Particles2D.queue_free()
 	
 func _exit_tree():
 	if child != null: # If scene is exited before the spawn anim finishes
