@@ -13,10 +13,13 @@ class DialogueContainer:
 class Dialogue:
 	extends Node
 	
-	var text
+	var text: String
+	var speaker = null
 
 	func _init(dict: Dictionary, _parent):
 		text = dict["text"]
+		if dict.has("speaker"):
+			speaker = dict["speaker"]
 
 class DialogueBranch:
 	extends Node
@@ -30,6 +33,7 @@ class DialogueBranch:
 			options.append(i["text"])
 			var new_path = script.new(i["path"], parent)
 			add_child(new_path)
+		add_child(dialogue)
 
 
 var current := 0

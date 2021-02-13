@@ -1,0 +1,174 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "???",
+			"text": "Little Ruirui. May I ask you a question?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Uh, sure? Who are you, exactly?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "My name is Derenisa. Now, would you mind telling me your business here?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "I'm... just climbing the waterfall. That's all.",
+		},
+		{
+			"type": "Branch",
+			"dialogue": 
+			{
+				"type": "Dialogue",
+				"speaker": "Derenisa",
+				"text": "Climbing the waterfall, are you? How very brave. Especially with a criminal on the loose.",
+			},
+			"options": 
+			[
+				{
+					"text": "Criminal?",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Criminal? What criminal?",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Derenisa",
+							"text": "A Shifter. Caught in the town earlier today. It ran off in this direction. And I plan to catch it.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "(A \"Shifter?\" Is she referring to me?)",
+						},
+					]
+				},
+				{
+					"text": "Oh, yeah",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Oh, yeah. That shapeshifter...",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Derenisa",
+							"text": "Yes, that \"shapeshifter.\" The same one that ran off in this direction. I plan on catching it, actually.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "(Oh no... she's definitely talking about me...)",
+						},
+					]
+				}
+			]
+		},
+		{
+			"type": "Branch",
+			"dialogue": 
+			{
+				"type": "Dialogue",
+				"speaker": "Derenisa",
+				"text": "Say, you're a nice girl. You wouldn't happen to have a lead on it's whereabouts, would you?",
+			},
+			"options": 
+			[
+				{
+					"text": "*Mislead her*",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Of course! I think I saw it run that way, past the campfire.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Derenisa",
+							"text": "Hmph. Wonderful. I'll have my catch in no time. Thank you, citizen.",
+						},
+					]
+				},
+				{
+					"text": "*Say nothing*",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Nope! No idea whatsoever.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Derenisa",
+							"text": "Really? You sounded quite eager to answer my question.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "S-sorry, just nerves, from the big scary Shifer on the loose... Heh heh...",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Derenisa",
+							"text": "...Sure. Well, I will continue my search then. Let me know if you see anything.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "You will be the first to know!",
+						},
+					]
+				},
+				{
+					"text": "*Resist*",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Why should I tell you anything?",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Derenisa",
+							"text": "Ohh, so you are a rebel now? Well, let me tell you something, miss.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Derenisa",
+							"text": "I am an officer of the Lucosan Royal Guard. And you are a peasant. If you are hiding that Shifter's whereabouts from me, you'll be on the same road to prison. Understand?",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "S-sorry! Sorry...",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "I think they ran that way, past the campfire.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Derenisa",
+							"text": "Thank you, citizen. If you keep doing as you're told, this won't be an issue again. Be glad I showed you mercy.",
+						},
+					]
+				}
+			]
+		},
+	]
+}

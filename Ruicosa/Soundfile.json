@@ -1,0 +1,7 @@
+{
+	"Jump": "res://Sounds/Jump.wav",
+	"DoubleJump": "res://Sounds/DoubleJump.wav",
+	"Dive": "res://Sounds/Dive.wav",
+	"Attack": "res://Sounds/Attack.wav",
+	"Uppercut": "res://Sounds/Uppercut.wav",
+}

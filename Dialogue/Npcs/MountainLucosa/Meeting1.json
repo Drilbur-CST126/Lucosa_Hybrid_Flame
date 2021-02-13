@@ -1,0 +1,118 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "[Lucosa]",
+			"text": "Ho, traveller! You've gotten pretty far up here!",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Oh. Uh, hi.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "[Lucosa]",
+			"text": "Hm? You don't seem very thrilled for someone about to reach the top!",
+		},
+		{
+			"type": "Branch",
+			"dialogue":
+			{
+				"type": "Dialogue",
+				"speaker": "Rez",
+				"text": "Oh, sorry. It's just...",
+			},
+			"options": 
+			[
+				{
+					"text": "Nerves",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "It's just nerves, nothing to worry about.",
+						},
+						{
+							"type": "Branch",
+							"dialogue":
+							{
+								"type": "Dialogue",
+								"speaker": "[Lucosa]",
+								"text": "Ah, I see. Is it about that shapeshifter on the loose?",
+							},
+							"options":
+							[
+								{
+									"text": "Yes",
+									"path":
+									[
+										{
+											"type": "Dialogue",
+											"speaker": "Rez",
+											"text": "In a way... yeah, it is.",
+										},
+										{
+											"type": "Dialogue",
+											"speaker": "[Lucosa]",
+											"text": "Is that all? Well, I don't think you need to worry much.",
+										},
+									]
+								},
+								{
+									"text": "No",
+									"path":
+									[
+										{
+											"type": "Dialogue",
+											"speaker": "Rez",
+											"text": "No, it's not that.",
+										},
+										{
+											"type": "Dialogue",
+											"speaker": "[Lucosa]",
+											"text": "That's good to hear. It's kind of tiring how scared people can get.",
+										},
+									]
+								},
+							]
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "[Lucosa]",
+							"text": "Between you and me... I don't think that shapeshifter is a problem. They just wanna see the waterfall, like any of us.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Hm. Yeah, I like that outlook. Thank you.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "[Lucosa]",
+							"text": "Any time!",
+						},
+					]
+				},
+				{
+					"text": "Nothing",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "...Nothing. It's nothing. Don't worry about it.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "[Lucosa]",
+							"text": "Oh, okay. Well, enjoy your hike!",
+						},
+					]
+				}
+			]
+		},
+	]
+}

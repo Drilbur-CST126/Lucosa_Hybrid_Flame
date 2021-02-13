@@ -171,6 +171,7 @@ func accelerate_to_velocity(delta: float, dest: float, speed: float = 0.0):
 func dive():
 	if GlobalData.hasDive && state != ActionState.Dive \
 			&& is_air_state():
+		$SoundManager.play_sound("Dive")
 		jumpReleased = true
 		#self.facingRight = cos(angle) < 0.0
 		velocity.x = (1 if facingRight else -1) * diveVelocity
@@ -180,12 +181,14 @@ func dive():
 		
 func double_jump():
 	if canDoubleJump:
+		$SoundManager.play_sound("DoubleJump")
 		velocity.y = doubleJumpImpulse
 		state = ActionState.DoubleJump
 		canDoubleJump = false
 		
 func attack():
 	if canAttack && !is_anim_freeze_state():
+		$SoundManager.play_sound("Attack")
 		play_anim("Attack")
 		var child := kHit1Particle.instance()
 		var dir := 1 if facingRight else -1
@@ -228,6 +231,7 @@ func land_attack(var target: Node2D, var attackArea: Area2D):
 		
 func uppercut():
 	if canDoubleJump && (!is_anim_freeze_state() || state == ActionState.DoubleJump):
+		$SoundManager.play_sound("Uppercut")
 		play_anim("Uppercut", true, true)
 		velocity.y = lucosaJumpImpulse
 		state = ActionState.DoubleJump
@@ -310,6 +314,7 @@ func set_can_attack():
 	#attack()
 	
 func jump(full := false):
+	$SoundManager.play_sound("Jump")
 	velocity.y = jumpImpulse if !lucosaForm else lucosaJumpImpulse
 	state = ActionState.Jump if !full else ActionState.FullJump
 	

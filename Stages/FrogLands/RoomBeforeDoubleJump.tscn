@@ -143,3 +143,12 @@ position = Vector2( -163.639, 156.371 )
 loadId = "RailStation"
 onGround = false
 jump = true
+
+[node name="CliffSceneTransition" parent="." instance=ExtResource( 9 )]
+position = Vector2( -332.147, -84.2943 )
+loadPath = "res://Stages/Cliffs/CliffEntrance.tscn"
+
+[node name="RoomSpawnPoint" parent="." instance=ExtResource( 10 )]
+position = Vector2( -308.106, -76.1818 )
+loadId = "CliffEntrance"
+facingRight = true

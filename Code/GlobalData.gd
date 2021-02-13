@@ -303,3 +303,5 @@ func _unhandled_key_input(event):
 					canTransformAnywhere = !canTransformAnywhere
 					canTransform = canTransformAnywhere
 					print("Can transform anywhere has been set to " + String(canTransformAnywhere))
+				KEY_7:
+					set_player_hp(playerMaxHp)

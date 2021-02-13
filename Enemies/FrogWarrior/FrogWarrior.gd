@@ -93,7 +93,7 @@ func handle_chase(delta: float):
 		velocity.x = runSpeed
 	velocity.x *= dir
 	
-	if canAttack && $VisionRayCast.is_colliding() \
+	if canAttack && is_on_floor() && $VisionRayCast.is_colliding() \
 		&& $VisionRayCast.get_collider() is Ruicosa:
 			attack()
 	

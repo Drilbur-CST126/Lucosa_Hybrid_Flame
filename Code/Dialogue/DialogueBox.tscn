@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Graphics/Fonts/Lato12.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Code/Dialogue/DialogueBox.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/DialogueBeep.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Open"
@@ -64,7 +65,7 @@ __meta__ = {
 anchor_left = 0.1
 anchor_top = -0.3
 anchor_right = 0.9
-color = Color( 0.0954, 0.13065, 0.18, 0.501961 )
+color = Color( 0.0941176, 0.129412, 0.180392, 0.501961 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,6 +83,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Name" type="ColorRect" parent="TextBox"]
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.25
+color = Color( 0.0941176, 0.129412, 0.180392, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextBox/Name"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/normal_font = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Open"
 anims/Open = SubResource( 1 )
+
+[node name="Options" type="VBoxContainer" parent="."]
+anchor_left = 0.1
+anchor_top = 0.4
+anchor_right = 0.9
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharBeep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0

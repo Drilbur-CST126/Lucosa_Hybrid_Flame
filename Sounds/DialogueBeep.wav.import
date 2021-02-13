@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/DialogueBeep.wav-1e1d83b0922ecc218a53afa3bf57685a.sample"
+
+[deps]
+
+source_file="res://Sounds/DialogueBeep.wav"
+dest_files=[ "res://.import/DialogueBeep.wav-1e1d83b0922ecc218a53afa3bf57685a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -52,6 +52,9 @@ func create_timer(node: Node, duration: float) -> Timer:
 	
 func get_dir(facingRight: bool) -> int:
 	return 1 if facingRight else -1
+	
+func set_font(src: Control, path: String):
+	src.set("custom_fonts/font", load(path))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
