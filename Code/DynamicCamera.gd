@@ -55,11 +55,19 @@ func position_at_spawn_point():
 
 func _ready():
 	position_at_spawn_point()
-	#print(position)
 	width = int(width * zoom.x)
 	height = int(height * zoom.y)
 	GlobalData.camera = self
 	GlobalData.oldCameraLimits = null
+	
+	# Auto-set limits
+	if limit_left == -10000000 && get_parent().has_node("StageBg"):
+		print("StageBg")
+		var bg := get_parent().get_node("StageBg") as ColorRect
+		limit_left = int(bg.margin_left)
+		limit_right = int(bg.margin_right)
+		limit_top = int(bg.margin_top)
+		limit_bottom = int(bg.margin_bottom)
 
 func set_cur_lock(value):
 	curLock = value

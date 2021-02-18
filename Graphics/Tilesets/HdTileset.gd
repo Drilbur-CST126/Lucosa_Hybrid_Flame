@@ -6,11 +6,18 @@ enum Ids {
 	Water = 1,
 	NormalBranch = 2,
 	WaterBranch = 3,
+	Thorns = 4,
+	Snow = 5,
+	SnowBranch = 6,
 }
 
 const binds := {
-	Ids.Normal : [Ids.Water, Ids.NormalBranch],
-	Ids.Water : [Ids.Normal, Ids.WaterBranch],
+	Ids.Normal : [Ids.Water, Ids.Snow, Ids.NormalBranch],
+	Ids.Water : [Ids.Normal, Ids.Snow, Ids.WaterBranch],
+	Ids.Snow : [Ids.Normal, Ids.Water, Ids.SnowBranch],
+	Ids.NormalBranch : [Ids.WaterBranch, Ids.SnowBranch],
+	Ids.WaterBranch : [Ids.NormalBranch, Ids.SnowBranch],
+	Ids.SnowBranch : [Ids.NormalBranch, Ids.WaterBranch],
 }
 
 func _is_tile_bound(drawn_id, neighbor_id):

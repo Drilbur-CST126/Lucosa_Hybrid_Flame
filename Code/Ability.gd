@@ -30,6 +30,8 @@ func has_ability() -> bool:
 			return GlobalData.hasFireball
 		Ability.Uppercut:
 			return GlobalData.hasUppercut
+		Ability.DoubleJump:
+			return GlobalData.hasDoubleJump
 	return false
 
 func _ready():
@@ -49,6 +51,10 @@ func _process(_delta):
 			Ability.Uppercut:
 				popup = load("res://Menu/AbilityPopups/Uppercut.tscn").instance()
 				GlobalData.hasUppercut = true
+				player.canDoubleJump = true
+			Ability.DoubleJump:
+				popup = load("res://Menu/AbilityPopups/DoubleJump.tscn").instance()
+				GlobalData.hasDoubleJump = true
 				player.canDoubleJump = true
 		
 		popup.player = player

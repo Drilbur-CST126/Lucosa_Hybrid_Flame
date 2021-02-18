@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Code/Dialogue/Npc.gd"
 }, {
+"base": "Polygon2D",
+"class": "OutlinePolygon",
+"language": "GDScript",
+"path": "res://Code/Polish/OutlinePolygon.gd"
+}, {
 "base": "Area2D",
 "class": "PlayerArea",
 "language": "GDScript",
@@ -53,6 +58,11 @@ _global_script_classes=[ {
 "class": "Ruicosa",
 "language": "GDScript",
 "path": "res://Ruicosa/Ruicosa.gd"
+}, {
+"base": "ColorRect",
+"class": "StageBg",
+"language": "GDScript",
+"path": "res://Code/Polish/StageBg.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Toxen",
@@ -67,8 +77,10 @@ _global_script_class_icons={
 "Hud": "",
 "InteractArea": "",
 "Npc": "",
+"OutlinePolygon": "",
 "PlayerArea": "",
 "Ruicosa": "",
+"StageBg": "",
 "Toxen": ""
 }
 

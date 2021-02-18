@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float lower = 0.95;
+uniform float upper = 1.05;
+
+float rand(vec2 co){
+    return mix(lower, upper, fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453));
+}
+
+void fragment()
+{
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= rand(UV);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/lower = 0.95
+shader_param/upper = 1.05

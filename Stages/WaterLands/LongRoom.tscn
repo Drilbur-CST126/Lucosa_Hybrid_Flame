@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Firefly/Firefly.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Graphics/Scenery/ForestScenery/Grass1.tres" type="Texture" id=20]
 [ext_resource path="res://Graphics/Scenery/ForestScenery/Branch1.tres" type="Texture" id=21]
 [ext_resource path="res://Graphics/Scenery/ForestScenery/Bush.tres" type="Texture" id=22]
+[ext_resource path="res://Graphics/Scenery/FireSign.PNG" type="Texture" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 252, 16 )
@@ -140,6 +141,11 @@ position = Vector2( 155.26, -475.671 )
 rotation = -0.682206
 scale = Vector2( 0.747589, 1.06788 )
 texture = ExtResource( 16 )
+
+[node name="FireSign" type="Sprite" parent="Scenery"]
+position = Vector2( -4058.54, -312.023 )
+scale = Vector2( 1.75135, 1.67136 )
+texture = ExtResource( 23 )
 
 [node name="CameraAreas" type="Node2D" parent="."]
 visible = false

@@ -1,5 +1,6 @@
 tool
 extends ColorRect
+class_name StageBg
 
 export var screen_size := Rect2(0, 0, 1, 1) setget set_screen_size
 
