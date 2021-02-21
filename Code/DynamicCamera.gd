@@ -62,7 +62,6 @@ func _ready():
 	
 	# Auto-set limits
 	if limit_left == -10000000 && get_parent().has_node("StageBg"):
-		print("StageBg")
 		var bg := get_parent().get_node("StageBg") as ColorRect
 		limit_left = int(bg.margin_left)
 		limit_right = int(bg.margin_right)

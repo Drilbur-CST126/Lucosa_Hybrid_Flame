@@ -33,11 +33,13 @@ func _ready():
 		GlobalData.connect("mana_changed", self, "adjust_mana_display"),
 		GlobalData.connect("max_charges_changed", self, "adjust_max_charge_display"),
 		GlobalData.connect("charges_changed", self, "adjust_charge_display"),
+		GlobalData.connect("charge_enabled_changed", self, "adjust_charge_enabled"),
 		GlobalData.connect("player_dead", self, "begin_death_transition"),
 	])
 	GlobalData.hud = self
 	adjust_max_hp_display(GlobalData.playerMaxHp)
 	adjust_max_charge_display(GlobalData.maxCharges)
+	adjust_charge_enabled(GlobalData.chargeEnabled)
 	firstRun = false
 	
 	if GlobalData.transDirection != null:
@@ -90,7 +92,6 @@ func adjust_mana_display(mana: float):
 	if GlobalData.charges < $Charges.get_child_count():
 		var charge := $Charges.get_child(GlobalData.charges) as Charge
 		charge.set_fill(int(mana))
-	pass
 	
 func adjust_max_charge_display(maxCharges: int):
 	var numCharges := $Charges.get_child_count()
@@ -114,6 +115,11 @@ func adjust_charge_display(charges: int):
 			charge.set_empty()
 			
 	adjust_mana_display(GlobalData.playerMana)
+	
+func adjust_charge_enabled(enabled: bool):
+	for i in range(0, $Charges.get_child_count()):
+		var charge := $Charges.get_child(i) as Charge
+		charge.set_enabled(enabled)
 	
 func show_dialogue_box(path: String):
 	var dialogueBox := DialogueBox.instance()

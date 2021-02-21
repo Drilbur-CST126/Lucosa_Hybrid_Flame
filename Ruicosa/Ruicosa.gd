@@ -132,7 +132,7 @@ func set_lucosa_form(value: bool):
 	#play_anim("Idle")
 	
 func get_attack_damage(consumeCharges := true) -> int:
-	if consumeCharges && GlobalData.charges > 0:
+	if GlobalData.chargeEnabled && consumeCharges && GlobalData.charges > 0:
 		GlobalData.charges -= 1
 		return 2 * GlobalData.playerAttackDmg
 	else:
@@ -407,7 +407,7 @@ func _ready():
 	
 func _process(_delta: float):
 	if Input.is_action_just_pressed("spell"):
-		begin_heal()
+		GlobalData.chargeEnabled = !GlobalData.chargeEnabled
 	
 func _physics_process(delta: float):
 	if !is_stun_state():

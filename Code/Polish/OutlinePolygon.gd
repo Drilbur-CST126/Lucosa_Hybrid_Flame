@@ -20,7 +20,6 @@ func set_width(val: float):
 func update():
 	.update()
 	if get_node_or_null("Line2D") != null:
-		#var line = $Line2D
 		$Line2D.points = polygon
 		if polygon.size() > 0:
 			$Line2D.add_point(polygon[0])

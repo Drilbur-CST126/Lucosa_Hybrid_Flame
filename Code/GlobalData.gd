@@ -16,6 +16,7 @@ var playerMaxHp := 4 setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
 var charges := 0 setget set_charges
 var maxCharges := 0 setget set_max_charges
+var chargeEnabled := true setget set_charge_enabled
 var playerAttackDmg := 2
 var playerForesight := 0
 var distributeHpShards := true setget set_distribute_hp_shards
@@ -45,6 +46,7 @@ signal hp_changed(hp, shards)
 signal mana_changed(mana)
 signal charges_changed(charges)
 signal max_charges_changed(charges)
+signal charge_enabled_changed(state)
 signal trans_begin(direction, destination)
 signal player_hit(hp)
 signal hit_animation_finished()
@@ -112,6 +114,10 @@ func set_player_mana(amt: float):
 	if amt != playerMana:
 		playerMana = amt
 		emit_signal("mana_changed", amt)
+		
+func set_charge_enabled(val: bool):
+	chargeEnabled = val
+	emit_signal("charge_enabled_changed", val)
 		
 func set_charges(amt: int):
 	if amt <= 0:
