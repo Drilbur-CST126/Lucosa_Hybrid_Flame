@@ -4,3 +4,11 @@
 
 [node name="Room" type="Polygon2D"]
 script = ExtResource( 1 )
+outlineColor = Color( 1, 1, 1, 1 )
+width = 1.25
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.25
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2

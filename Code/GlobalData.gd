@@ -266,8 +266,8 @@ func transition_rooms(dir, dest: String, curRoomId: String):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("menu"):
-		#OS.window_fullscreen = !OS.window_fullscreen
-		print_stray_nodes()
+		OS.window_fullscreen = !OS.window_fullscreen
+		#print_stray_nodes()
 	
 	if regenMana && charges < maxCharges:
 		set_player_mana(playerMana + kManaRegenPerSec * delta)

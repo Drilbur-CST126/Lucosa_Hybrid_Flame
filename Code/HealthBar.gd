@@ -2,11 +2,13 @@ extends CanvasLayer
 class_name Hud
 
 const Health = preload("res://Code/Health.tscn")
+const ChargeScn = preload("res://Code/Charge.tscn")
 const TransitionEffect = preload("res://Code/Polish/TransitionEffect.tscn")
 const DialogueBox = preload("res://Code/Dialogue/DialogueBox.tscn")
 
 const kBarWidth := 548
 const kIconHeight := 124.525
+const kChargeWidth := 72
 onready var kBarPos := $Visuals/BarInfill.position.x as float # Treated as const, as good as const
 onready var kIconPos := $Visuals/IconInfill.position.y as float # Same as above
 
@@ -28,12 +30,14 @@ func _ready():
 		GlobalData.connect("max_hp_changed", self, "adjust_max_hp_display"),
 		GlobalData.connect("hp_changed", self, "adjust_hp_display"),
 		GlobalData.connect("trans_begin", self, "begin_transition"),
-		GlobalData.connect("mana_changed", self, "adjust_icon_display"),
+		GlobalData.connect("mana_changed", self, "adjust_mana_display"),
+		GlobalData.connect("max_charges_changed", self, "adjust_max_charge_display"),
+		GlobalData.connect("charges_changed", self, "adjust_charge_display"),
 		GlobalData.connect("player_dead", self, "begin_death_transition"),
 	])
 	GlobalData.hud = self
 	adjust_max_hp_display(GlobalData.playerMaxHp)
-	adjust_bar_display(GlobalData.playerMana)
+	adjust_max_charge_display(GlobalData.maxCharges)
 	firstRun = false
 	
 	if GlobalData.transDirection != null:
@@ -82,17 +86,34 @@ func adjust_hp_display(hp: int, shards: int):
 		curHeart += 1
 	adjustHealthMutex.unlock()
 
-func adjust_bar_display(mana: float):
-	#print("MANA CHANGE")
-	var width := kBarWidth * mana / (GlobalData.kMaxMana as float)
-	$Visuals/BarInfill.region_rect.size.x = width
-	$Visuals/BarInfill.position.x = kBarPos - kBarWidth / 2.0 + (width / 2.0)
+func adjust_mana_display(mana: float):
+	if GlobalData.charges < $Charges.get_child_count():
+		var charge := $Charges.get_child(GlobalData.charges) as Charge
+		charge.set_fill(int(mana))
+	pass
 	
-func adjust_icon_display(infill: float):
-	var height := kIconHeight * infill / (GlobalData.kMaxMana as float)
-	$Visuals/IconInfill.region_rect.position.y = kIconHeight - height
-	$Visuals/IconInfill.region_rect.size.y = height
-	$Visuals/IconInfill.position.y = kIconPos + kIconHeight / 2.0 - (height / 2.0)
+func adjust_max_charge_display(maxCharges: int):
+	var numCharges := $Charges.get_child_count()
+	if numCharges < maxCharges:
+		for i in range(numCharges, maxCharges):
+			var charge := ChargeScn.instance() as Charge
+			charge.position.x = kChargeWidth * i
+			$Charges.add_child(charge)
+	elif numCharges > maxCharges:
+		for _i in range(maxCharges, numCharges):
+			$Charges.get_child(maxCharges).queue_free()
+			
+	adjust_charge_display(GlobalData.charges)
+			
+func adjust_charge_display(charges: int):
+	for i in range(0, $Charges.get_child_count()):
+		var charge := $Charges.get_child(i) as Charge
+		if i < charges:
+			charge.set_full()
+		else:
+			charge.set_empty()
+			
+	adjust_mana_display(GlobalData.playerMana)
 	
 func show_dialogue_box(path: String):
 	var dialogueBox := DialogueBox.instance()

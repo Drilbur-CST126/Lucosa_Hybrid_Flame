@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Code/Dialogue/Npc.gd" type="Script" id=1]
+[ext_resource path="res://Dialogue/Npcs/FrogKing/Graphics/FrogKing.PNG" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 16 )
+
+[node name="FrogKing" type="Area2D"]
+script = ExtResource( 1 )
+dialogueTree = "res://Dialogue/Npcs/FrogKing/Text.json"
+
+[node name="FrogKing" type="Sprite" parent="."]
+position = Vector2( 13.652, -20.163 )
+scale = Vector2( 0.167, 0.167 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Graphics/HUD.PNG" type="Texture" id=1]
+[ext_resource path="res://Code/Charge.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 318, 218, 68, 71 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 245, 217, 70, 74 )
+
+[node name="Charge" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.329412, 0.294118, 0.27451, 1 )
+texture = SubResource( 1 )
+
+[node name="Fill" type="Sprite" parent="."]
+position = Vector2( 0, -1 )
+texture = SubResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 68, 70 )
+
+[node name="Outline" type="Sprite" parent="."]
+texture = SubResource( 2 )

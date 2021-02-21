@@ -1,0 +1,151 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Code/Dialogue/Npc.gd" type="Script" id=1]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/Head1.tres" type="Texture" id=2]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/Body.tres" type="Texture" id=3]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/Eye1.tres" type="Texture" id=4]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/Head2.tres" type="Texture" id=5]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/Eye3.tres" type="Texture" id=6]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/Head3.tres" type="Texture" id=7]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/Eye2.tres" type="Texture" id=8]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/ArmWind1.tres" type="Texture" id=9]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/ArmWind2.tres" type="Texture" id=10]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/ArmWind3.tres" type="Texture" id=11]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegWind1.tres" type="Texture" id=12]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegWind2.tres" type="Texture" id=13]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegWind3.tres" type="Texture" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 10 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Blink"
+length = 2.5
+loop = true
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Eye:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.25, 2.33333, 2.41667 ),
+"transitions": PoolRealArray( 1, 1, 2.2974, 3.13834 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Wind"
+length = 0.5
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Head:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"transitions": PoolRealArray( 1, 1.6245, 1, 6.9644 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Arm:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 10 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/FrontLeg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"transitions": PoolRealArray( 1, 1, 0.90125, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/BackLeg:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"transitions": PoolRealArray( 1, 2.54912, 4.28709, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/BackArm:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 10 ) ]
+}
+
+[node name="Derenisa" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Graphics" type="Node2D" parent="."]
+scale = Vector2( 0.167, 0.167 )
+
+[node name="Body" type="Sprite" parent="Graphics"]
+position = Vector2( 0, 8.38636 )
+texture = ExtResource( 3 )
+
+[node name="BackArm" type="Sprite" parent="Graphics/Body"]
+show_behind_parent = true
+position = Vector2( -9.93764, 1.46766 )
+texture = ExtResource( 10 )
+
+[node name="BackLeg" type="Sprite" parent="Graphics/Body"]
+show_behind_parent = true
+position = Vector2( -8.03463, 30.1324 )
+texture = ExtResource( 13 )
+
+[node name="FrontLeg" type="Sprite" parent="Graphics/Body"]
+show_behind_parent = true
+position = Vector2( 6.94318, 32.7532 )
+texture = ExtResource( 13 )
+
+[node name="Arm" type="Sprite" parent="Graphics/Body"]
+position = Vector2( 11.0613, 1.46766 )
+texture = ExtResource( 10 )
+
+[node name="Head" type="Sprite" parent="Graphics/Body"]
+position = Vector2( 2.76522, -41.5211 )
+texture = ExtResource( 5 )
+
+[node name="Eye" type="Sprite" parent="Graphics/Body/Head"]
+position = Vector2( -6.85599, -4.17261 )
+texture = ExtResource( 4 )
+
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="Graphics/Body/Head"]
+autoplay = "Blink"
+anims/Blink = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+autoplay = "Wind"
+anims/Wind = SubResource( 3 )
