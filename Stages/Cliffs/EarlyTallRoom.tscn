@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Graphics/Particles/Snow/Snowfall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Code/StageAssets/Upgrade/Upgrade.tscn" type="PackedScene" id=9]
 
 [node name="EarlyTallRoom" type="Node2D"]
 
@@ -84,15 +83,3 @@ loadPath = "res://Stages/Cliffs/LongDiveHallway.tscn"
 position = Vector2( 12.4173, 75.3876 )
 loadId = "LongDiveHallway"
 facingRight = true
-
-[node name="Upgrade" parent="." instance=ExtResource( 9 )]
-position = Vector2( 65.7611, 136.223 )
-type = 1
-
-[node name="Upgrade2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 88.5813, 137.336 )
-type = 1
-
-[node name="Upgrade3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 108.618, 139.006 )
-type = 1
