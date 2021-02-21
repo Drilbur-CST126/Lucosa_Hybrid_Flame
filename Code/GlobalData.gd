@@ -162,6 +162,7 @@ func save(room_filename: String):
 		# Stats
 		"maxHp": playerMaxHp,
 		"attackDmg": playerAttackDmg,
+		"maxCharges": maxCharges,
 		"foresight": playerForesight,
 	}
 	
@@ -188,6 +189,7 @@ func save_reload(room_filename: String):
 		# Stats
 		"maxHp": playerMaxHp,
 		"attackDmg": playerAttackDmg,
+		"maxCharges": maxCharges,
 		"foresight": playerForesight,
 	}
 	
@@ -217,6 +219,8 @@ func load_file(filename: String):
 		self.canTransformAnywhere = canTransformAnywhere || data["canTransformAnywhere"]
 		self.playerMaxHp = int(max(playerMaxHp, data["maxHp"]))
 		self.playerAttackDmg = int(max(playerAttackDmg, data["attackDmg"]))
+		self.maxCharges = int(max(maxCharges, data["maxCharges"]))
+		self.charges = maxCharges
 		self.playerForesight = int(max(playerForesight, data["foresight"]))
 		
 		self.lastRoomId = "Savepoint"
