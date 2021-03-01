@@ -2,7 +2,7 @@ extends Node
 
 enum Direction {Utd, Dtu, Ltr, Rtl, Fade, None}
 
-enum Ability {Dive, Uppercut, DoubleJump, Fireball, TransformAnywhere}
+enum Ability {Dive, Uppercut, DoubleJump, Fireball, ExplosionImmunity, TransformAnywhere}
 
 const kPlayerClassName = "Ruicosa"
 const kManaRegenPerSec := 10.0
@@ -264,6 +264,8 @@ func has_ability(ability) -> bool:
 			return hasDoubleJump
 		Ability.Fireball:
 			return hasFireball
+		Ability.ExplosionImmunity:
+			return hasExplosionImmunity
 		Ability.TransformAnywhere:
 			return canTransformAnywhere
 	return false
@@ -293,25 +295,41 @@ func _input(event):
 		usingController = true
 		emit_signal("control_config_changed", true)
 		
-func _unhandled_key_input(event):
-	if debug && event is InputEventKey:
-		if event.scancode >= KEY_0 && event.scancode <= KEY_9 && event.pressed && !event.echo:
-			match event.scancode:
-				KEY_1:
-					hasDive = !hasDive
-					print("Dive has been set to " + String(hasDive))
-				KEY_2:
-					hasUppercut = !hasUppercut
-					print("Uppercut has been set to " + String(hasUppercut))
-				KEY_3:
-					hasDoubleJump = !hasDoubleJump
-					print("Double jump has been set to " + String(hasDoubleJump))
-				KEY_4:
-					hasFireball = !hasFireball
-					print("Fireball has been set to " + String(hasFireball))
-				KEY_6:
-					canTransformAnywhere = !canTransformAnywhere
-					canTransform = canTransformAnywhere
-					print("Can transform anywhere has been set to " + String(canTransformAnywhere))
-				KEY_7:
-					set_player_hp(playerMaxHp)
+	if debug && event is InputEventKey && event.pressed && !event.echo:
+		match event.scancode:
+			KEY_1:
+				hasDive = !hasDive
+				print("Dive has been set to " + String(hasDive))
+			KEY_2:
+				hasUppercut = !hasUppercut
+				print("Uppercut has been set to " + String(hasUppercut))
+			KEY_3:
+				hasDoubleJump = !hasDoubleJump
+				print("Double jump has been set to " + String(hasDoubleJump))
+			KEY_4:
+				hasFireball = !hasFireball
+				print("Fireball has been set to " + String(hasFireball))
+			KEY_5:
+				hasExplosionImmunity = !hasExplosionImmunity
+				print("Explosion immunity has been set to " + String(hasExplosionImmunity))
+			KEY_6:
+				canTransformAnywhere = !canTransformAnywhere
+				canTransform = canTransformAnywhere
+				print("Can transform anywhere has been set to " + String(canTransformAnywhere))
+			KEY_7:
+				GlobalData.playerMaxHp += 1
+			KEY_8:
+				GlobalData.maxCharges += 1
+			KEY_9:
+				GlobalData.playerForesight += 1
+			KEY_SHIFT:
+				set_player_hp(playerMaxHp)
+			KEY_TAB:
+				hasDive = true
+				hasUppercut = true
+				hasDoubleJump = true
+				hasFireball = true
+				hasExplosionImmunity = true
+				canTransformAnywhere = true
+				canTransform = true
+				print("All upgrades turned on")

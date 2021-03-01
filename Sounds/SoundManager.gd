@@ -1,6 +1,7 @@
 extends Node2D
 
 export(String, FILE, "*.json") var soundJson
+export var volumeDb := 0.0
 
 func _ready():
 	var file := File.new()
@@ -11,6 +12,7 @@ func _ready():
 	for soundName in obj:
 		var streamPlayer := AudioStreamPlayer.new()
 		streamPlayer.stream = load(obj[soundName])
+		streamPlayer.volume_db = volumeDb
 		add_child(streamPlayer)
 		streamPlayer.name = soundName
 

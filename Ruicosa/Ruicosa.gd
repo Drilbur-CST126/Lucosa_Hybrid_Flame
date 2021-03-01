@@ -221,7 +221,7 @@ func land_attack(var target: Node2D, var attackArea: Area2D):
 	if target.get_class() == "Fireball":
 		var impulse := kFireballForce
 		impulse.x *= 1 if facingRight else -1
-		(target as RigidBody2D).apply_central_impulse(impulse)
+		(target as RigidBody2D).linear_velocity += impulse
 	if target.has_node("EnemyData"):
 		velocity.x = 0.0
 		var enemyData: Enemy = target.get_node("EnemyData")

@@ -27,7 +27,11 @@ func entity_entered(ent: Node2D):
 	elif ent.get_class() == GlobalData.kPlayerClassName: # If the entity is the player
 		if !GlobalData.hasExplosionImmunity:
 			GlobalData.playerHp -= kPlayerDamage
+		elif GlobalData.lucosaForm:
+			ent.canDoubleJump = GlobalData.hasUppercut
+		else:
+			ent.canDoubleJump = GlobalData.hasDoubleJump
 		var explosionImpulse = sqrt(16.0 * kPlayerKnockback * ent.gravity)
-		var velocity: Vector2 = (ent.position + Vector2(0.0, -explosionImpulse / 16.0) - position).normalized() * explosionImpulse
+		var velocity := Vector2(0.0, -explosionImpulse)
 		ent.velocity = velocity
 		ent.state = ent.ActionState.Falling

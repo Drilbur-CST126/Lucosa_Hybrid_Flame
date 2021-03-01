@@ -1,0 +1,15 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "Y'know, part of me feels bad for him down there. Stuck by the fireplace, unable to get up.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "Then I remember that he's an earth elemental. He doesn't have any excuse!",
+		},
+	]
+}

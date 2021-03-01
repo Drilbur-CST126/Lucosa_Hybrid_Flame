@@ -1,0 +1,15 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "Ugh, I can't wait for that Shifter to just finally be ours, I want this mission to be over.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "I mean, look at this! How am I supposed to get up THERE with those nightmare-mushrooms in the way?!",
+		},
+	]
+}
