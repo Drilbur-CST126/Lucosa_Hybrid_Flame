@@ -34,6 +34,29 @@ class DialogueBranch:
 			var new_path = script.new(i["path"], parent)
 			add_child(new_path)
 		add_child(dialogue)
+		
+class DialogueCond:
+	extends Node
+	
+	var cond: String
+	var truePath = null
+	var falsePath = null
+	
+	func _init(script: GDScript, dict: Dictionary, parent):
+		cond = dict["condition"]
+		truePath = script.new(dict["true"], parent)
+		falsePath = script.new(dict["false"], parent)
+		add_child(truePath)
+		add_child(falsePath)
+		
+	func is_true() -> bool:
+		match cond:
+			"lucosaForm":
+				return GlobalData.lucosaForm
+		return false
+		
+	func get_path():
+		return truePath if is_true() else falsePath
 
 
 var current := 0
@@ -47,6 +70,8 @@ func _init(array: Array, init_parent = null):
 				add_child(Dialogue.new(dict, self))
 			"Branch":
 				add_child(DialogueBranch.new(get_script(), dict, self))
+			"Cond":
+				add_child(DialogueCond.new(get_script(), dict, self))
 				
 func get_first() -> DialogueContainer:
 	current = -1
@@ -55,7 +80,10 @@ func get_first() -> DialogueContainer:
 func next() -> DialogueContainer:
 	current += 1
 	if get_child_count() > current:
-		return DialogueContainer.new(get_children()[current], self)
+		var container := DialogueContainer.new(get_children()[current], self)
+		while container.dialogue is DialogueCond:
+			container = container.dialogue.get_path().get_first()
+		return container
 	elif parent != null:
 		return parent.next()
 	else:

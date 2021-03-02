@@ -11,9 +11,9 @@ curve = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
-emission_box_extents = Vector3( 800, 180, 0 )
+emission_box_extents = Vector3( 160, 180, 0 )
 flag_disable_z = true
-direction = Vector3( 1, 1, 0 )
+direction = Vector3( -1, 1, 0 )
 spread = 10.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 72.0

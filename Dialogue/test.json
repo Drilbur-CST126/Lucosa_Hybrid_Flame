@@ -10,39 +10,34 @@
 			"text": "Textbox 2"
 		},
 		{
-			"type": "Branch",
-			"dialogue": 
-			{
-				"type": "Dialogue",
-				"text": "Branch"
-			},
-			"options": 
+			"type": "Cond",
+			"condition": "lucosaForm",
+			"true": 
 			[
 				{
-					"text": "Option 1",
-					"path":
-					[
-						{
-							"type": "Dialogue",
-							"text": "Option 1 Chosen"
-						}
-					]
+					"type": "Dialogue",
+					"text": "True"
 				},
 				{
-					"text": "Option 2",
-					"path":
-					[
-						{
-							"type": "Dialogue",
-							"text": "Option 2 Chosen"
-						}
-					]
-				}
-			]
+					"type": "Dialogue",
+					"text": "True 2"
+				},
+			],
+			"false": 
+			[
+				{
+					"type": "Dialogue",
+					"text": "False"
+				},
+				{
+					"type": "Dialogue",
+					"text": "False 2"
+				},
+			],
 		},
 		{
 			"type": "Dialogue",
-			"text": "Branch Over"
-		}
+			"text": "Cond Over"
+		},
 	]
 }

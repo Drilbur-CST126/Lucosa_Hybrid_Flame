@@ -43,6 +43,7 @@ func player_exited(_playerNode: Node2D):
 func _ready():
 	if !Engine.editor_hint && GlobalData.flags.has(collected_str()):
 		queue_free()
+	$Circle.material = $Circle.material.duplicate(true)
 	$Circle.material.set_shader_param("color", kColors[type])
 		
 func _process(delta):

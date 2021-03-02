@@ -84,4 +84,13 @@ loadPath = "res://Stages/FrogLands/WaterfallRoom.tscn"
 position = Vector2( -308, 125.331 )
 loadId = "WaterfallRoom"
 facingRight = true
+
+[node name="BonusSceneTransition2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 332.208, -92.2398 )
+direction = 3
+loadPath = "res://Stages/FrogLands/FrogBonusRoom.tscn"
+
+[node name="BonusRoomSpawnPoint" parent="." instance=ExtResource( 6 )]
+position = Vector2( 308.825, -85.0817 )
+loadId = "FrogBonusRoom"
 [connection signal="activated" from="Switch" to="SwitchDoor" method="open"]

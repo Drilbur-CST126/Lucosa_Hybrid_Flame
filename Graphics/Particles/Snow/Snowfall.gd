@@ -35,6 +35,7 @@ func update_material():
 	emitting = true
 
 func _ready():
+	process_material = process_material.duplicate(true)
 	update_material()
 	
 #func _process(delta):

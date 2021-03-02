@@ -1,0 +1,15 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "Commander Derenisa told us to meet her at the top of this hill. I dunno why, but she seemed really mad.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "Not gonna lie...  I think she might know that I've been slacking off. I'm scared...",
+		},
+	]
+}
