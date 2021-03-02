@@ -121,10 +121,11 @@ func adjust_charge_enabled(enabled: bool):
 		var charge := $Charges.get_child(i) as Charge
 		charge.set_enabled(enabled)
 	
-func show_dialogue_box(path: String):
+func show_dialogue_box(path: String) -> Node:
 	var dialogueBox := DialogueBox.instance()
 	dialogueBox.init(path)
 	GlobalData.hud.add_child(dialogueBox)
+	return dialogueBox
 			
 func begin_death_transition():
 	var effect := TransitionEffect.instance()

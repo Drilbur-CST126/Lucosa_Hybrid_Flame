@@ -5,5 +5,19 @@
 			"type": "Dialogue",
 			"text": "You found a Charge Rune!\nYou can now store an extra Charge Attack!"
 		},
+		{
+			"type": "Cond",
+			"condition": "hasPreviousChargeAttack",
+			"false": [
+				{
+					"type": "Dialogue",
+					"text": "Attacks will consume Charges to deal extra damage. Charge Attacks regenerate over time."
+				},
+				{
+					"type": "Dialogue",
+					"text": "Press S to toggle Charge Attacks on and off."
+				},
+			]
+		}
 	]
 }

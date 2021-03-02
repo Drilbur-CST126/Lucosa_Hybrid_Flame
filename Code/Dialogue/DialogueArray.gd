@@ -39,24 +39,43 @@ class DialogueCond:
 	extends Node
 	
 	var cond: String
+	var parent = null
 	var truePath = null
 	var falsePath = null
 	
-	func _init(script: GDScript, dict: Dictionary, parent):
+	func _init(script: GDScript, dict: Dictionary, p):
 		cond = dict["condition"]
-		truePath = script.new(dict["true"], parent)
-		falsePath = script.new(dict["false"], parent)
-		add_child(truePath)
-		add_child(falsePath)
+		parent = p
+		if dict.has("true"):
+			truePath = script.new(dict["true"], parent)
+			add_child(truePath)
+		if dict.has("false"):
+			falsePath = script.new(dict["false"], parent)
+			add_child(falsePath)
 		
 	func is_true() -> bool:
 		match cond:
 			"lucosaForm":
 				return GlobalData.lucosaForm
+			"hasPreviousChargeAttack":
+				return GlobalData.maxCharges > 1
 		return false
 		
 	func get_path():
 		return truePath if is_true() else falsePath
+		
+class DialogueEvent:
+	extends Node
+	
+	var event: String
+	var params: Dictionary
+	
+	func _init(dict: Dictionary, _parent):
+		for key in dict:
+			if key == "event":
+				event = dict["event"]
+			elif key != "type":
+				params[key] = dict[key]
 
 
 var current := 0
@@ -72,6 +91,8 @@ func _init(array: Array, init_parent = null):
 				add_child(DialogueBranch.new(get_script(), dict, self))
 			"Cond":
 				add_child(DialogueCond.new(get_script(), dict, self))
+			"Event":
+				add_child(DialogueEvent.new(dict, self))
 				
 func get_first() -> DialogueContainer:
 	current = -1
@@ -81,8 +102,13 @@ func next() -> DialogueContainer:
 	current += 1
 	if get_child_count() > current:
 		var container := DialogueContainer.new(get_children()[current], self)
-		while container.dialogue is DialogueCond:
-			container = container.dialogue.get_path().get_first()
+		while container != null && container.dialogue is DialogueCond:
+			var nextPath = container.dialogue.get_path()
+			if nextPath == null:
+				container = next()
+			else:
+				container = nextPath.get_first()
+		pass
 		return container
 	elif parent != null:
 		return parent.next()

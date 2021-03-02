@@ -322,6 +322,8 @@ func _input(event):
 				GlobalData.maxCharges += 1
 			KEY_9:
 				GlobalData.playerForesight += 1
+			KEY_0:
+				Engine.time_scale = 0.2
 			KEY_SHIFT:
 				set_player_hp(playerMaxHp)
 			KEY_TAB:

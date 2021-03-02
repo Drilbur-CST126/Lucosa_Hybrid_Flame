@@ -39,5 +39,19 @@
 			"type": "Dialogue",
 			"text": "Cond Over"
 		},
+		{
+			"type": "Event",
+			"event": "Signal",
+			"name": "signal_test"
+		},
+		{
+			"type": "Dialogue",
+			"text": "Signal Test"
+		},
+		{
+			"type": "Event",
+			"event": "Signal",
+			"name": "signal_test_2"
+		},
 	]
 }

@@ -2,119 +2,164 @@
 	"tree": 
 	[
 		{
-			"type": "Dialogue",
-			"speaker": "Frog King",
-			"text": "Halt.",
-		},
-		{
-			"type": "Dialogue",
-			"speaker": "Frog King",
-			"text": "We detect a presence. A Lucosa.",
-		},
-		{
-			"type": "Branch",
-			"dialogue":
-			{
-				"type": "Dialogue",
-				"speaker": "Frog King",
-				"text": "What is your business here, Lucosa?",
-			},
-			"options": 
+			"type": "Cond",
+			"condition": "lucosaForm",
+			"true":
 			[
 				{
-					"text": "Hunting the Shapeshifter",
-					"path":
+					"type": "Dialogue",
+					"speaker": "Frog King",
+					"text": "Halt.",
+				},
+				{
+					"type": "Dialogue",
+					"speaker": "Frog King",
+					"text": "We detect a presence. A Lucosa.",
+				},
+				{
+					"type": "Branch",
+					"dialogue":
+					{
+						"type": "Dialogue",
+						"speaker": "Frog King",
+						"text": "What is your business here, Lucosa?",
+					},
+					"options": 
 					[
 						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "(They might be helping the hunters, I should be careful with my words.)",
+							"text": "Hunting the Shapeshifter",
+							"path":
+							[
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "(They might be helping the hunters, I should be careful with my words.)",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "I'm part of the search group for that shapeshifter. I'm sure you've heard about them by now.",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Frog King",
+									"text": "Fool! We own these lands, not you. I suggest you leave now.",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "Oh! S-sure thing, sorry!",
+								},
+							]
 						},
 						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "I'm part of the search group for that shapeshifter. I'm sure you've heard about them by now.",
+							"text": "Sightseeing",
+							"path":
+							[
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "(I should just sidestep the shapeshifter thing entirely, best not to tempt fate.)",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "I'm just here to see the waterfall, like anyone else.",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Frog King",
+									"text": "Understandable. If you keep peace, our lands are yours.",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "Oh, thank you!",
+								},
+							]
 						},
 						{
-							"type": "Dialogue",
-							"speaker": "Frog King",
-							"text": "Fool! We own these lands, not you. I suggest you leave now.",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "Oh! S-sure thing, sorry!",
+							"text": "Hiding",
+							"path":
+							[
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "(The frogs have no reason to turn me in. I can just be honest.)",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "...If I may be honest, I'm hiding. The Lucosan Royal Guard put a bounty on my head for, uh, reasons.",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Frog King",
+									"text": "I see. May I give advice?",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "Uh, sure.",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Frog King",
+									"text": "Leave, if you can. The Lucosa have no power to arrest you here. Keep out of trouble, and I will stop them.",
+								},
+								{
+									"type": "Dialogue",
+									"speaker": "Rez",
+									"text": "Oh, thank you!",
+								},
+							]
 						},
 					]
 				},
 				{
-					"text": "Sightseeing",
-					"path":
-					[
-						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "(I should just sidestep the shapeshifter thing entirely, best not to tempt fate.)",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "I'm just here to see the waterfall, like anyone else.",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Frog King",
-							"text": "Understandable. If you keep peace, our lands are yours.",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "Oh, thank you!",
-						},
-					]
+					"type": "Dialogue",
+					"speaker": "Rez",
+					"text": "(It seems like he's actually on my side! It feels nice, having an ally...)",
+				},
+			],
+			"false":
+			[
+				{
+					"type": "Dialogue",
+					"speaker": "Frog King",
+					"text": "Halt.",
 				},
 				{
-					"text": "Hiding",
-					"path":
-					[
-						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "(The frogs have no reason to turn me in. I can just be honest.)",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "...If I may be honest, I'm hiding. The Lucosan Royal Guard put a bounty on my head for, uh, reasons.",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Frog King",
-							"text": "I see. May I give advice?",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "Uh, sure.",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Frog King",
-							"text": "Leave, if you can. The Lucosa have no power to arrest you here. Keep out of trouble, and I will stop them.",
-						},
-						{
-							"type": "Dialogue",
-							"speaker": "Rez",
-							"text": "Oh, thank you!",
-						},
-					]
+					"type": "Dialogue",
+					"speaker": "Frog King",
+					"text": "We detect a presence. A Ruirui.",
+				},
+				{
+					"type": "Dialogue",
+					"speaker": "Rez",
+					"text": "Greetings, your Highness.",
+				},
+				{
+					"type": "Dialogue",
+					"speaker": "Frog King",
+					"text": "Our kind are on guard. Lucosa have been running through our land, searching for a Shapeshifter.",
+				},
+				{
+					"type": "Dialogue",
+					"speaker": "Rez",
+					"text": "I've, uh, heard.\n(Just feign ignorance...)",
+				},
+				{
+					"type": "Dialogue",
+					"speaker": "Frog King",
+					"text": "Your kind trouble us not. Keep to yourself, and all will be well.",
+				},
+				{
+					"type": "Dialogue",
+					"speaker": "Rez",
+					"text": "I will oblige, your Highness. Thank you.",
 				},
 			]
-		},
-		{
-			"type": "Dialogue",
-			"speaker": "Rez",
-			"text": "(It seems like he's actually on my side! It feels nice, having an ally...)",
-		},
+		}
 	]
 }
