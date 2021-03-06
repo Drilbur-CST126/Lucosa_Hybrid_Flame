@@ -44,7 +44,7 @@ margin_top = -86.0
 margin_right = 325.0
 margin_bottom = 175.0
 topColor = Color( 0.282353, 0.4, 0.396078, 1 )
-bottomColor = Color( 0.2582, 0.186, 0.3, 1 )
+bottomColor = Color( 0.258824, 0.184314, 0.301961, 1 )
 
 [node name="Snowfall" parent="." instance=ExtResource( 10 )]
 position = Vector2( 160, 0 )
@@ -108,5 +108,5 @@ position = Vector2( 208.974, 139.15 )
 type = 2
 [connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor3" method="open"]
-[connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor2" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor4" method="open"]
+[connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor2" method="open"]

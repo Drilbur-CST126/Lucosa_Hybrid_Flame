@@ -10,7 +10,7 @@
 [ext_resource path="res://Code/StageAssets/Lantern/Lantern.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Code/PlayerAreas/CameraArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/StageAssets/Upgrade/Upgrade.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Code/Polish/Gradient.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/CorruptonRuirui.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 90 )
@@ -31,25 +31,6 @@ color = Color( 0.231373, 0.333333, 0.278431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-margin_left = 800.0
-margin_top = -360.0
-margin_right = 960.0
-margin_bottom = -187.0
-color = Color( 0.32172, 0.2556, 0.36, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Gradient" parent="." instance=ExtResource( 11 )]
-margin_left = 148.0
-margin_top = -207.0
-margin_right = 285.0
-margin_bottom = 456.0
-rect_rotation = -90.0
-topColor = Color( 0.231373, 0.333333, 0.278431, 1 )
-bottomColor = Color( 0.321569, 0.254902, 0.360784, 1 )
 
 [node name="Ruicosa" parent="." instance=ExtResource( 4 )]
 position = Vector2( 309.688, 150.626 )
@@ -127,3 +108,6 @@ cameraBounds = Rect2( 0, -360, 960, 180 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraArea3"]
 position = Vector2( 640, -270 )
 shape = SubResource( 3 )
+
+[node name="CorruptionRuirui" parent="." instance=ExtResource( 11 )]
+position = Vector2( 901.169, -222.547 )

@@ -1,0 +1,194 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "???",
+			"text": "Ah. A fellow seeker of Runes, I see.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Oh! I, uh, didn't know that was yours. Sorry.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "???",
+			"text": "No need to worry over it. I can sense power in you. I believe you can do much more with it.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Wait, really? What do you sense?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "???",
+			"text": "Heh.",
+		},
+		{
+			"type": "Branch",
+			"dialogue": 
+			{
+				"type": "Dialogue",
+				"speaker": "???",
+				"text": "I can answer any question you have.",
+			},
+			"options": 
+			[
+				{
+					"text": "Who are you?",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "So, who are you?",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "Heh.",
+						},
+						{
+							"type": "Event",
+							"event": "Signal",
+							"name": "SquintBlink"
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "A sinner on the road to atonement. Nothing more, nothing less.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Oh, huh.\n(A sinner? I wonder what she did? It doesn't seem like she wants to discuss it further.)",
+						},
+					]
+				},
+				{
+					"text": "What's with the Runes?",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "What's the deal with these Runes?",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "They are artifacts of an older time, a time before peace. These stones absorbed the magic of war, and now lay dormant.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "Like most things of that time, these Runes now lie in ruins, granting magic to those who can wield them.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Oh, I see. What do you need them for?",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "...Like these Runes, I know the pain and ruin of conflict. If I can fix anything, it will be through their magic.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Oh... I'm sorry to hear that.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "Don't let it trouble you. This is my quest. You surely have yours as well.",
+						},
+					]
+				},
+				{
+					"text": "My \"power\"?",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "What... power do you see in me?",
+						},
+						{
+							"type": "Event",
+							"event": "Signal",
+							"name": "FullBlink"
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "I'm sure you know better than I. The dark gift at your core. Your shapeshifting.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "W-wait, you can see that??",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "You have no need to worry, I am a friend. I can also see that your heart is kind. Dark magic needs a dark heart to make a monster, after all.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "So... you don't think I'm a monster?",
+						},
+						{
+							"type": "Event",
+							"event": "Signal",
+							"name": "ClosedEyes"
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "Between us, it is I that is most monsterous, and I have kept my darkness tame for decades. You have no need to worry.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Thank you... that's relieving to hear.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "Of course.",
+						},
+					]
+				},
+				{
+					"text": "(Leave)",
+					"path":
+					[
+						{
+							"type": "Dialogue",
+							"speaker": "Rez",
+							"text": "Well, I have to go. Thank you for talking with me.",
+						},
+						{
+							"type": "Dialogue",
+							"speaker": "???",
+							"text": "Of course. Stay safe, I sense dark hearts around.",
+						},
+						{
+							"type": "Event",
+							"event": "Exit",
+						},
+					]
+				},
+			]
+		},
+		{
+			"type": "Event",
+			"event": "LoopBack",
+		},
+	]
+}

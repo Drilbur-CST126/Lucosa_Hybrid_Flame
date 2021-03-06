@@ -1,0 +1,126 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/CorruptonRuirui.gd" type="Script" id=1]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Body5.tres" type="Texture" id=2]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Body4.tres" type="Texture" id=3]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Body1.tres" type="Texture" id=4]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Body2.tres" type="Texture" id=5]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Body3.tres" type="Texture" id=6]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Arm4.tres" type="Texture" id=7]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Arm2.tres" type="Texture" id=8]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Arm5.tres" type="Texture" id=9]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Arm3.tres" type="Texture" id=10]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Arm1.tres" type="Texture" id=11]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Head.tres" type="Texture" id=12]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Eye1.tres" type="Texture" id=13]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Eye2.tres" type="Texture" id=14]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Eye3.tres" type="Texture" id=15]
+[ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/Graphics/Eye4.tres" type="Texture" id=16]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "ClosedEyes"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Head/Eye:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.784584 ),
+"update": 1,
+"values": [ ExtResource( 16 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "FullBlink"
+length = 1.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Head/Eye:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.3, 1.35, 1.4, 1.45, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1.46409, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 14 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "SquintBlink"
+length = 1.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Head/Eye:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.3, 1.35, 1.45 ),
+"transitions": PoolRealArray( 1, 1, 3.03143, 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 15 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 12, 8 )
+
+[node name="CorruptionRuirui" type="Area2D"]
+script = ExtResource( 1 )
+dialogueTree = "res://Dialogue/Npcs/CorruptionRuirui/Text.json"
+
+[node name="Graphics" type="Node2D" parent="."]
+pause_mode = 2
+position = Vector2( 1.97966, 0 )
+scale = Vector2( 0.167, 0.167 )
+
+[node name="Head" type="Sprite" parent="Graphics"]
+position = Vector2( -21.1815, -61.0596 )
+texture = ExtResource( 12 )
+
+[node name="Eye" type="Sprite" parent="Graphics/Head"]
+position = Vector2( -5.41521, 11.0698 )
+texture = ExtResource( 16 )
+
+[node name="Body" type="AnimatedSprite" parent="Graphics"]
+frames = SubResource( 1 )
+frame = 2
+playing = true
+
+[node name="Arm" type="AnimatedSprite" parent="Graphics/Body"]
+position = Vector2( -22.7933, 6.93159 )
+frames = SubResource( 2 )
+frame = 5
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+anims/ClosedEyes = SubResource( 5 )
+anims/FullBlink = SubResource( 3 )
+anims/SquintBlink = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -10.1087, 0 )
+shape = SubResource( 6 )

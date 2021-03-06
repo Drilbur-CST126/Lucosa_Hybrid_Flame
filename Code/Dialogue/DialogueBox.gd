@@ -107,6 +107,11 @@ func parse_event():
 	match event.event:
 		"Signal":
 			emit_signal("dialogue_signal", event.params["name"])
+		"LoopBack":
+			curArray.current -= 2
+		"Exit":
+			curArray = root
+			root.current = 999
 
 func init(path: String = "res://Dialogue/test.json"):
 	var file := File.new()
