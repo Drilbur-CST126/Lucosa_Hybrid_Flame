@@ -108,5 +108,5 @@ position = Vector2( 208.974, 139.15 )
 type = 2
 [connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor3" method="open"]
-[connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor4" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor2" method="open"]
+[connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor4" method="open"]
