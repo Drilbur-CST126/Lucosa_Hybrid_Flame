@@ -27,7 +27,7 @@ func print_connect_errors(path: String, connections: Array):
 func print_errors(calls: Array):
 	for i in calls:
 		if i != 0:
-			printerr("Godot Error found! Error: " + i)
+			printerr("Godot Error found! Error: " + String(i))
 			print_stack()
 		
 		

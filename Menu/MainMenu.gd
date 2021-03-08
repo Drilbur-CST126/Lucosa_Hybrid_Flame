@@ -12,7 +12,7 @@ func _ready():
 	GlobalData.debug = false
 	Utility.print_connect_errors(get_path(), [
 		$OptionVBoxContainer/NewGame.connect("pressed", self, "new_game"),
-		$OptionVBoxContainer/Continue.connect("pressed", GlobalData, "load_game"),
+		$OptionVBoxContainer/Continue.connect("pressed", self, "load_game"),
 		$OptionVBoxContainer/Exit.connect("pressed", get_tree(), "quit"),
 	])
 	$OptionVBoxContainer/NewGame.grab_focus()
@@ -25,6 +25,10 @@ func new_game():
 	])
 	GlobalData.save_reload(newGameScene)
 	
+func load_game():
+	var success := GlobalData.load_game()
+	if !success:
+		new_game()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
