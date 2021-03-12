@@ -9,6 +9,7 @@ export(int, 1, 99) var routeId := 1
 export var movingRight := true
 export var lockedDist := 160.0
 export var spawnDist := 32.0
+export var initLocked := true
 
 var player: Ruicosa = null
 var velocity := 0.0
@@ -27,7 +28,7 @@ func moving() -> bool:
 	return movingOut || movingIn
 
 func _ready():
-	if !GlobalData.flags.has(get_unlocked_flag()):
+	if initLocked && !GlobalData.flags.has(get_unlocked_flag()):
 		position.x += lockedDist * Utility.get_dir(movingRight)
 	
 	Utility.print_connect_errors(get_path(), [

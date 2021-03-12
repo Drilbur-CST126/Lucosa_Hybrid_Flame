@@ -42,11 +42,11 @@ position = Vector2( -433, 150 )
 [node name="Ruicosa" parent="." instance=ExtResource( 3 )]
 position = Vector2( 267, 140.5 )
 
-[node name="SceneTransition" parent="." instance=ExtResource( 4 )]
+[node name="TSceneTransition" parent="." instance=ExtResource( 4 )]
 position = Vector2( -652, 116 )
 loadPath = "res://Stages/FrogLands/TSplitRoom.tscn"
 
-[node name="RoomSpawnPoint" parent="." instance=ExtResource( 6 )]
+[node name="TRoomSpawnPoint" parent="." instance=ExtResource( 6 )]
 position = Vector2( -627.954, 124.115 )
 loadId = "TSplitRoom"
 facingRight = true
@@ -57,7 +57,13 @@ size = Vector2( 116, 5 )
 popup = "res://Menu/TutorialPopups/Jump.tscn"
 waitTime = 3.0
 
-[node name="RoomSpawnPoint2" parent="." instance=ExtResource( 6 )]
+[node name="MushroomRoomSpawnPoint" parent="." instance=ExtResource( 6 )]
 position = Vector2( -329.674, -3.18786 )
 loadId = "MushroomCombatRoom"
 onGround = false
+
+[node name="DerenisaSceneTransition" parent="." instance=ExtResource( 4 )]
+position = Vector2( 333.403, 76.3324 )
+colDimensions = Vector2( 12, 76 )
+direction = 3
+loadPath = "res://Stages/FrogLands/DerenisaFightRoom.tscn"

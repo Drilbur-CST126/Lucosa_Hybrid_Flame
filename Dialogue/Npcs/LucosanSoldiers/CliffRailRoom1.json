@@ -1,0 +1,15 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "Y'know, I give some props to those frogs for coming up here in the cold.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "But seriously, why are they so mean?! We're trying to hunt a criminal, and they're attacking US!",
+		},
+	]
+}

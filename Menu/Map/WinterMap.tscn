@@ -218,7 +218,7 @@ width = 5.0
 
 [node name="Room36" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9044, 47.9042 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -622.755, -526.946, -574.85, -526.946, -526.946, -479.042, -526.946, -431.138, -610.779, -431.138, -622.755, -443.114, -622.755, -467.066, -610.779, -479.042, -574.85, -479.042, -622.755, -479.042 )
 width = 5.0
 
@@ -248,19 +248,19 @@ width = 5.0
 
 [node name="Room41" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9044, 47.9042 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
-polygon = PoolVector2Array( -1053.89, -526.946, -1053.89, -287.425, -1101.8, -287.425, -1149.7, -335.329, -1149.7, -526.946 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
+polygon = PoolVector2Array( -1053.89, -526.946, -1053.89, -335.329, -1149.7, -335.329, -1149.7, -526.946 )
 width = 5.0
 
 [node name="Room42" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9042, 0 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -1053.89, -335.329, -1005.99, -335.329, -1005.99, -287.425, -958.084, -143.713, -958.084, -95.8084, -1005.99, -95.8084, -1005.99, -143.713, -1053.89, -239.521 )
 width = 5.0
 
 [node name="Room43" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9044, 47.9042 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -1053.89, -479.042, -1053.89, -431.138, -1017.96, -431.138, -1005.99, -443.114, -1005.99, -467.066, -1017.96, -479.042 )
 width = 5.0
 
@@ -334,6 +334,12 @@ width = 5.0
 position = Vector2( 47.9042, 47.9042 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -287.425, -1.14441e-05, -287.425, -47.9042, -335.329, -47.9042, -335.329, 47.9042, -239.521, 47.9042, -239.521, -47.9042, -287.425, -47.9042 )
+width = 5.0
+
+[node name="Room56" parent="." instance=ExtResource( 1 )]
+position = Vector2( 47.9042, 47.9042 )
+color = Color( 0.678431, 0.337255, 0.313726, 1 )
+polygon = PoolVector2Array( -47.9042, -95.8084, -47.9042, -47.9042, 47.9042, -47.9042, 47.9042, -95.8084 )
 width = 5.0
 
 [node name="FrogRoomEntrances" type="Polygon2D" parent="."]
