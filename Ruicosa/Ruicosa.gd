@@ -94,7 +94,7 @@ func look_at(pos: Vector2):
 	
 func knockback(enemy: Enemy, damage := 0, allowDive := true):
 	play_anim("Idle", true)
-	if state == ActionState.Dive && allowDive:
+	if (state == ActionState.Dive || $DiveExtraTimer.time_left > 0.0) && allowDive:
 		if facingRight:
 			velocity.x = -walkSpeed
 		else:
@@ -430,6 +430,8 @@ func _physics_process(delta: float):
 			
 		velocity = move_and_slide(velocity, Vector2.UP, true)
 		if is_on_floor() && is_air_state():
+			if state == ActionState.Dive:
+				$DiveExtraTimer.start()
 			state = ActionState.Normal
 			canDoubleJump = form_has_double_jump()
 			
