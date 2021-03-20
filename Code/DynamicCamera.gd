@@ -52,6 +52,8 @@ func position_at_spawn_point():
 			spawnFound = true
 	if !spawnFound:
 		position = get_target_pos()
+		
+	set_camera_in_limits()
 
 func _ready():
 	position_at_spawn_point()
@@ -76,6 +78,16 @@ func get_target_pos() -> Vector2:
 	if get_node_or_null(target) == null:
 		return Vector2(position.x, position.y)
 	return get_node(target).position
+	
+func set_camera_in_limits():
+	if position.x + width / 2.0 > dynamicLimitRight:
+		position.x = dynamicLimitRight - width / 2.0
+	if position.x - width / 2.0 < dynamicLimitLeft:
+		position.x = dynamicLimitLeft + width / 2.0
+	if position.y + height / 2.0 > dynamicLimitDown:
+		position.y = dynamicLimitDown - height / 2.0
+	if position.y - height / 2.0 < dynamicLimitUp:
+		position.y = dynamicLimitUp + height / 2.0
 
 func _physics_process(delta):
 	var targetPos = get_target_pos()
@@ -107,15 +119,8 @@ func _physics_process(delta):
 				curLock = Lock.CtrLeft
 		
 		position.y = targetPos.y - yCenter
-	
-	if position.x + width / 2.0 > dynamicLimitRight:
-		position.x = dynamicLimitRight - width / 2.0
-	if position.x - width / 2.0 < dynamicLimitLeft:
-		position.x = dynamicLimitLeft + width / 2.0
-	if position.y + height / 2.0 > dynamicLimitDown:
-		position.y = dynamicLimitDown - height / 2.0
-	if position.y - height / 2.0 < dynamicLimitUp:
-		position.y = dynamicLimitUp + height / 2.0
+		
+		set_camera_in_limits()
 		
 	if shaking:
 		offset = Vector2(GlobalData.random.randf_range(-shakeSeverity, shakeSeverity), \

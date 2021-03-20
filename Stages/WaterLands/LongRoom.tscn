@@ -24,6 +24,8 @@
 [ext_resource path="res://Graphics/Scenery/ForestScenery/Bush.tres" type="Texture" id=22]
 [ext_resource path="res://Graphics/Scenery/FireSign.PNG" type="Texture" id=23]
 
+
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 252, 16 )
 

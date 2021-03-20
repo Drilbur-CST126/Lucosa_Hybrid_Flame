@@ -8,6 +8,8 @@
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Dialogue/Npcs/FrogKing/FrogKing.tscn" type="PackedScene" id=7]
 
+
+
 [node name="FrogKingRoom" type="Node2D"]
 position = Vector2( -0.930893, -0.930878 )
 

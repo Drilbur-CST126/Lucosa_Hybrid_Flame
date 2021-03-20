@@ -10,6 +10,8 @@
 [ext_resource path="res://Enemies/FrogWarrior/FrogWarrior.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=9]
 
+
+
 [node name="ShroomTutorialRoom" type="Node2D"]
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]

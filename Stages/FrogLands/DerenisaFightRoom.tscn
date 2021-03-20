@@ -7,6 +7,8 @@
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=6]
 
+
+
 [node name="DerenisaFightRoom" type="Node2D"]
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]

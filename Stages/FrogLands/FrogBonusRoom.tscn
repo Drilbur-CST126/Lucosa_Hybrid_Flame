@@ -9,6 +9,8 @@
 [ext_resource path="res://Code/PlayerAreas/CameraArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=8]
 
+
+
 [node name="FrogBonusRoom" type="Node2D"]
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]

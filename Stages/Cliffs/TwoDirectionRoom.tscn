@@ -12,6 +12,8 @@
 [ext_resource path="res://Graphics/Particles/Snow/Snowfall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/Polish/Gradient.tscn" type="PackedScene" id=11]
 
+
+
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.744186, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
@@ -87,6 +89,10 @@ position = Vector2( 308.285, -51.2078 )
 yCenter = 48.0
 target = NodePath("../Ruicosa")
 
+[node name="Upgrade" parent="." instance=ExtResource( 9 )]
+position = Vector2( 208.974, 139.15 )
+type = 2
+
 [node name="LowerConflictSceneTransition" parent="." instance=ExtResource( 7 )]
 position = Vector2( 332.49, -60.1181 )
 direction = 3
@@ -103,9 +109,14 @@ overrideLoadId = "UpperTwoDirectionRoom"
 position = Vector2( 308.338, -149.133 )
 loadId = "UpperRoomBeforeConflict"
 
-[node name="Upgrade" parent="." instance=ExtResource( 9 )]
-position = Vector2( 208.974, 139.15 )
-type = 2
+[node name="ArenaSceneTransition" parent="." instance=ExtResource( 7 )]
+position = Vector2( -13.0013, -60.172 )
+loadPath = "res://Stages/Cliffs/CliffArenaRoom.tscn"
+
+[node name="ArenaRoomSpawnPoint" parent="." instance=ExtResource( 8 )]
+position = Vector2( 11.9039, -52.6249 )
+loadId = "CliffArenaRoom"
+facingRight = true
 [connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor3" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor2" method="open"]

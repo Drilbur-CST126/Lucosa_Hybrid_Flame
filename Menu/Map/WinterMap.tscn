@@ -242,7 +242,7 @@ width = 5.0
 
 [node name="Room40" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9044, 47.9042 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -958.084, -479.042, -1053.89, -479.042, -1053.89, -574.85, -958.084, -574.85 )
 width = 5.0
 
@@ -266,25 +266,25 @@ width = 5.0
 
 [node name="Room44" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9044, 47.9042 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -910.18, -574.85, -1005.99, -574.85, -1005.99, -622.755, -910.18, -622.754 )
 width = 5.0
 
 [node name="Room45" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9044, 47.9042 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -1005.99, -622.754, -1053.89, -622.754, -1053.89, -670.659, -1101.8, -670.659, -1101.8, -574.85, -1005.99, -574.85 )
 width = 5.0
 
 [node name="Room46" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9044, 47.9042 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -1053.89, -622.754, -1005.99, -622.754, -1005.99, -718.563, -1149.7, -718.563, -1149.7, -526.946, -1101.8, -526.946, -1101.8, -670.659, -1053.89, -670.659 )
 width = 5.0
 
 [node name="Room47" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9042, 47.9042 )
-color = Color( 0.68, 0.33728, 0.3128, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -479.042, -431.138, -287.425, -431.138, -287.425, -479.042, -431.138, -526.946, -479.042, -526.946 )
 width = 5.0
 
@@ -338,7 +338,7 @@ width = 5.0
 
 [node name="Room56" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9042, 47.9042 )
-color = Color( 0.678431, 0.337255, 0.313726, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -47.9042, -95.8084, -47.9042, -47.9042, 47.9042, -47.9042, 47.9042, -95.8084 )
 width = 5.0
 

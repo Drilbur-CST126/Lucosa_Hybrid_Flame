@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/EarthLucosa/EarthLucosa.gd" type="Script" id=2]
+[ext_resource path="res://Code/PlayerAreas/SignalArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/PolygonTexture.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 10 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "SpearAttack"
+length = 0.3
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/AttackIndicator:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 0.25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/AttackIndicator:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/AttackIndicator:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="EarthLucosa" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Graphics"]
+margin_left = -5.0
+margin_top = -10.0
+margin_right = 5.0
+margin_bottom = 10.0
+color = Color( 0.67451, 0.427451, 0.345098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AttackIndicator" type="Polygon2D" parent="Graphics"]
+modulate = Color( 0.937255, 0.45098, 0.294118, 1 )
+scale = Vector2( 1e-05, 1 )
+color = Color( 0.937255, 0.45098, 0.294118, 1 )
+texture = ExtResource( 4 )
+polygon = PoolVector2Array( 0, -2, 0, 2, 42, 2, 42, -2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="EnemyData" parent="." instance=ExtResource( 1 )]
+deathShards = 2
+maxHp = 7
+colArea = NodePath("../CollisionShape2D")
+shakeOnDeath = false
+
+[node name="WallRayCast" type="RayCast2D" parent="."]
+position = Vector2( 0, -4 )
+enabled = true
+cast_to = Vector2( 13, 0 )
+
+[node name="StandTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="SignalArea" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -4 )
+oneoff = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SignalArea"]
+polygon = PoolVector2Array( 0, 0, 33, 17, 39, 0, 26, -18, 0, -27 )
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/SpearAttack = SubResource( 2 )
+anims/SpearAttackWindup = SubResource( 3 )

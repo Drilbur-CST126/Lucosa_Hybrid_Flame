@@ -55,7 +55,7 @@ position = Vector2( -85.6656, -374.19 )
 [node name="Snowfall" parent="." instance=ExtResource( 8 )]
 position = Vector2( 0, -270 )
 amount = 150
-lifetime = 0.382812
+lifetime = 0.382813
 visibility_rect = Rect2( -320, -270, 640, 540 )
 process_material = SubResource( 3 )
 velocity = 256.0
@@ -157,4 +157,13 @@ overrideLoadId = "UpperRoomBeforeConflict"
 [node name="Upper2DRoomSpawnPoint" parent="." instance=ExtResource( 13 )]
 position = Vector2( -307.667, -147.934 )
 loadId = "UpperTwoDirectionRoom"
+facingRight = true
+
+[node name="ConfrontationSceneTransition" parent="." instance=ExtResource( 12 )]
+position = Vector2( -332.522, -420.317 )
+loadPath = "res://Stages/Cliffs/ConfrontationRoom.tscn"
+
+[node name="ConfrontationRoomSpawnPoint" parent="." instance=ExtResource( 13 )]
+position = Vector2( -307.017, -411.954 )
+loadId = "ConfrontationRoom"
 facingRight = true

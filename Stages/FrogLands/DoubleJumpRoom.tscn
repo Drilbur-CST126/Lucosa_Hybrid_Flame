@@ -12,6 +12,8 @@
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=11]
 
+
+
 [node name="DoubleJumpRoom" type="Node2D"]
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]

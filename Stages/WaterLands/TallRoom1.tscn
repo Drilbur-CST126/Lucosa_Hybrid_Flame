@@ -9,6 +9,8 @@
 [ext_resource path="res://Code/Polish/SummonArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/StageAssets/Lantern/Lantern.tscn" type="PackedScene" id=8]
 
+
+
 [node name="TallRoom1" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]

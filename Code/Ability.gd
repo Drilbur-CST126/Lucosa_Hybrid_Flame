@@ -32,6 +32,8 @@ func has_ability() -> bool:
 			return GlobalData.hasUppercut
 		Ability.DoubleJump:
 			return GlobalData.hasDoubleJump
+		Ability.ExplosionImmunity:
+			return GlobalData.hasExplosionImmunity
 	return false
 
 func _ready():
@@ -56,6 +58,9 @@ func _process(_delta):
 				popup = load("res://Menu/AbilityPopups/DoubleJump.tscn").instance()
 				GlobalData.hasDoubleJump = true
 				player.canDoubleJump = true
+			Ability.ExplosionImmunity:
+				popup = load("res://Menu/AbilityPopups/ExplosionImmunity.tscn").instance()
+				GlobalData.hasExplosionImmunity = true
 		
 		popup.player = player
 		GlobalData.hud.add_child(popup)

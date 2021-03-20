@@ -14,6 +14,8 @@
 [ext_resource path="res://Dialogue/Npcs/LucosanSoldiers/WaterSoldier.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Graphics/Scenery/TransformWall3.PNG" type="Texture" id=13]
 
+
+
 [node name="AmuletHubRoom" type="Node2D"]
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]

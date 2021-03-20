@@ -9,6 +9,8 @@
 [ext_resource path="res://Graphics/Particles/Snow/Snowfall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=8]
 
+
+
 [node name="EarlyTallRoom" type="Node2D"]
 
 [node name="StageBg" parent="." instance=ExtResource( 8 )]

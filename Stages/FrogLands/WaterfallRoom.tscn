@@ -239,3 +239,12 @@ magnitude = 0.5
 [node name="Lantern" parent="." instance=ExtResource( 8 )]
 position = Vector2( -162.801, -1275.56 )
 length = 2
+
+[node name="ExplosionSceneTransition" parent="." instance=ExtResource( 4 )]
+position = Vector2( 12.7541, -1847.82 )
+direction = 3
+loadPath = "res://Stages/Cliffs/ExplosionHallway.tscn"
+
+[node name="ExplosionRoomSpawnPoint" parent="." instance=ExtResource( 5 )]
+position = Vector2( -11.6298, -1836.6 )
+loadId = "ExplosionHallway"

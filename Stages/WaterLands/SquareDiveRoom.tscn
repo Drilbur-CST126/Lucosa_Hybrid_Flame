@@ -12,6 +12,8 @@
 [ext_resource path="res://Code/StageAssets/SwitchDoor/SwitchDoor.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/StageAssets/Upgrade/Upgrade.tscn" type="PackedScene" id=11]
 
+
+
 [node name="SquareDiveRoom" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]

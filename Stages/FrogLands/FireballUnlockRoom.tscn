@@ -10,6 +10,8 @@
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=9]
 
+
+
 [node name="FireballUnlockRoom" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
