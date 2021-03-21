@@ -20,6 +20,7 @@ func set_facing_right(val: bool):
 	var dir := Utility.get_dir(facingRight)
 	$WallRayCast.cast_to.x = dir * kWallCastLength
 	$SignalArea.scale.x = dir
+	$GroundRayCast.position.x = 5 * dir
 
 func _ready():
 	Utility.print_errors([
@@ -34,7 +35,7 @@ func _physics_process(_delta):
 		States.Moving:
 			velocity = Vector2(Utility.get_dir(facingRight) * kWalkVelocity, 0.0)
 			
-			if $WallRayCast.is_colliding() || (is_on_wall() && !curOnWall):
+			if $WallRayCast.is_colliding() || (is_on_wall() && !curOnWall) || !$GroundRayCast.is_colliding():
 				start_turn_around()
 	
 	curOnWall = is_on_wall()
@@ -55,10 +56,7 @@ func turn_around():
 	state = States.Moving
 	
 func decide_attack(player: Ruicosa):
-	if abs(player.global_position.y - global_position.y) < 5.0 || !player.is_on_floor():
-		return States.SpearAttack
-	else:
-		return States.JumpAttack
+	return States.SpearAttack
 	
 func see_player():
 	if $AttackCooldownTimer.time_left > 0.0:

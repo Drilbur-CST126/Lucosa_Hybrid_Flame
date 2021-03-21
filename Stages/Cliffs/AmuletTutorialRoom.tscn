@@ -105,6 +105,7 @@ dynamicLimitDown = 0
 [node name="UnlockSceneTransition" parent="." instance=ExtResource( 8 )]
 position = Vector2( 309, -47 )
 colDimensions = Vector2( 12, 16 )
+loadPath = "res://Stages/Cliffs/AmuletUnlockRoom.tscn"
 
 [node name="FarSceneTransition" parent="." instance=ExtResource( 8 )]
 position = Vector2( -165, 373 )

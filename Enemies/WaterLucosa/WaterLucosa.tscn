@@ -1,3 +1,38 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Enemies/WaterLucosa/WaterLucosa.gd" type="Script" id=1]
+[ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Code/SpecificVisibilityNotifier.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 10 )
 
 [node name="WaterLucosa" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Graphics"]
+margin_left = -5.0
+margin_top = -10.0
+margin_right = 5.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProjectileTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="VisibilityNotifier" type="Node2D" parent="."]
+script = ExtResource( 3 )
+area = Rect2( -3, -8, 6, 16 )
+
+[node name="EnemyData" parent="." instance=ExtResource( 2 )]
+maxHp = 5
+colArea = NodePath("../CollisionShape2D")

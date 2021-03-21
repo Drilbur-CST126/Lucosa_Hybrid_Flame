@@ -24,6 +24,7 @@ var gravity: float
 
 var lastRoomId: String
 var camera: DynamicCamera
+var player: Node2D
 var oldCameraLimits = null
 var transDirection = null
 var random := RandomNumberGenerator.new()
@@ -157,6 +158,7 @@ func save(room_filename: String):
 		"hasUppercut": hasUppercut,
 		"hasDoubleJump": hasDoubleJump,
 		"hasFireball": hasFireball,
+		"hasExplosionImmunity": hasExplosionImmunity,
 		"canTransformAnywhere": canTransformAnywhere,
 		"flags": flags,
 		# Stats
@@ -184,6 +186,7 @@ func save_reload(room_filename: String):
 		"hasUppercut": hasUppercut,
 		"hasDoubleJump": hasDoubleJump,
 		"hasFireball": hasFireball,
+		"hasExplosionImmunity": hasExplosionImmunity,
 		"canTransformAnywhere": canTransformAnywhere,
 		"flags": flags,
 		# Stats
@@ -215,6 +218,7 @@ func load_file(filename: String):
 			self.hasUppercut = hasUppercut || data["hasUppercut"]
 			self.hasDoubleJump = hasDoubleJump || data["hasDoubleJump"]
 			self.hasFireball = hasFireball || data["hasFireball"]
+			self.hasExplosionImmunity = hasExplosionImmunity || data["hasExplosionImmunity"]
 			self.canTransformAnywhere = canTransformAnywhere || data["canTransformAnywhere"]
 			self.playerMaxHp = int(max(playerMaxHp, data["maxHp"]))
 			self.playerAttackDmg = int(max(playerAttackDmg, data["attackDmg"]))

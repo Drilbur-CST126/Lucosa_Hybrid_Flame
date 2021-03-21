@@ -199,6 +199,7 @@ func attack():
 		#child.get_node("ParticleSprite").velocity.x = 16 * dir
 		
 		var attackArea := Area2D.new()
+		attackArea.collision_layer = 0b101
 		var attackShape := CollisionShape2D.new()
 		var rect := RectangleShape2D.new()
 		rect.extents = Vector2(6, 6)
@@ -369,6 +370,7 @@ func on_collide(obj: Node2D):
 		if GlobalData.playerHp > 0:
 			yield(GlobalData, "hit_animation_finished")
 			position = respawnPos
+			velocity = Vector2.ZERO
 			if GlobalData.camera != null:
 				GlobalData.camera.global_position = global_position
 	if obj.is_in_group("StablePlatform") && is_on_floor() \
@@ -382,6 +384,7 @@ func form_has_double_jump() -> bool:
 
 func _ready():
 	GlobalData.gravity = gravity
+	GlobalData.player = self
 	
 	minJumpGravity = jumpImpulse * jumpImpulse / (16.0 * minJumpHeight)
 	doubleJumpImpulse = -sqrt(16.0 * doubleJumpHeight * gravity)

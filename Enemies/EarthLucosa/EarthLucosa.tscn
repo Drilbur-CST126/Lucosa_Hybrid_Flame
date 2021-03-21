@@ -55,6 +55,9 @@ tracks/2/keys = {
 collision_layer = 0
 script = ExtResource( 2 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
 [node name="Graphics" type="Node2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Graphics"]
@@ -74,9 +77,6 @@ color = Color( 0.937255, 0.45098, 0.294118, 1 )
 texture = ExtResource( 4 )
 polygon = PoolVector2Array( 0, -2, 0, 2, 42, 2, 42, -2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
 deathShards = 2
 maxHp = 7
@@ -87,6 +87,11 @@ shakeOnDeath = false
 position = Vector2( 0, -4 )
 enabled = true
 cast_to = Vector2( 13, 0 )
+
+[node name="GroundRayCast" type="RayCast2D" parent="."]
+position = Vector2( 5, 10 )
+enabled = true
+cast_to = Vector2( 0, 2 )
 
 [node name="StandTimer" type="Timer" parent="."]
 wait_time = 0.3

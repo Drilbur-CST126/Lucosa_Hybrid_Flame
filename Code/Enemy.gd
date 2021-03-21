@@ -19,6 +19,7 @@ export var damageOnTouch := 1
 export var flashDur := 0.2
 export var colArea: NodePath
 export var freeParentOnDeath := true
+export var giveParentFlashShader := true
 export var shakeOnDeath := true
 
 var hp: int
@@ -37,9 +38,10 @@ signal on_stop_touch(other)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hp = maxHp
-	shader = ColorAdd.duplicate()
-	shader.set_shader_param("color", Color(1.0, 1.0, 1.0, 0.0))
-	add_shader(get_parent())
+	if giveParentFlashShader:
+		shader = ColorAdd.duplicate()
+		shader.set_shader_param("color", Color(1.0, 1.0, 1.0, 0.0))
+		add_shader(get_parent())
 	$Area2D.add_child(get_node(colArea).duplicate())
 	Utility.print_connect_errors(get_path(), [
 		connect("on_death", self, "give_hp_shards"),
@@ -50,11 +52,11 @@ func _ready():
 		Utility.print_connect_errors(get_path(), [
 			connect("on_death", get_parent(), "queue_free")
 		])
-	if flashTimer > 0.0:
+	if flashTimer > 0.0 && shader != null:
 		shader.set_shader_param("color", flashColor)
 	
 func _process(delta: float):
-	if flashEffect:
+	if flashEffect && shader != null:
 		shader.set_shader_param("color", Utility.color_change_alpha(flashColor, flashTimer / flashMaxDur))
 		flashTimer -= delta
 		if flashTimer <= 0.0:
