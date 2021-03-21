@@ -56,11 +56,11 @@ func position_at_spawn_point():
 	set_camera_in_limits()
 
 func _ready():
-	position_at_spawn_point()
 	width = int(width * zoom.x)
 	height = int(height * zoom.y)
 	GlobalData.camera = self
 	GlobalData.oldCameraLimits = null
+	position_at_spawn_point()
 	
 	# Auto-set limits
 	if limit_left == -10000000 && get_parent().has_node("StageBg"):

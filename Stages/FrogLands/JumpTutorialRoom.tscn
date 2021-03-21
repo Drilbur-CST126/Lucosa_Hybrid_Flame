@@ -8,8 +8,6 @@
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Graphics/Tilesets/HdWaterfall.tres" type="TileSet" id=7]
 
-
-
 [node name="JumpTutorialRoom" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -30,6 +28,10 @@ tile_data = PoolIntArray( -393262, 0, 11, -393261, 0, 196609, -393260, 0, 196609
 
 [node name="DynamicCamera" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 90 )
+limit_left = -640
+limit_top = 0
+limit_right = 320
+limit_bottom = 180
 target = NodePath("../Ruicosa")
 dynamicLimitLeft = -640
 dynamicLimitRight = 320
