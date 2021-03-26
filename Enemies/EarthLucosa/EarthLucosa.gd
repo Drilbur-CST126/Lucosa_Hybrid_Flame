@@ -55,7 +55,7 @@ func turn_around():
 	self.facingRight = !facingRight
 	state = States.Moving
 	
-func decide_attack(player: Ruicosa):
+func decide_attack(_player: Ruicosa):
 	return States.SpearAttack
 	
 func see_player():
