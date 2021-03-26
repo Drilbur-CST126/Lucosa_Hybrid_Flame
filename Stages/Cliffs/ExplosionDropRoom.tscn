@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/WaterLucosa/WaterLucosa.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=8]
 
 [node name="ExplosionDropRoom" type="Node2D"]
 
@@ -47,3 +48,12 @@ position = Vector2( -171, 373 )
 colDimensions = Vector2( 84, 12 )
 direction = 1
 loadPath = "res://Stages/Cliffs/LongDiveHallway.tscn"
+
+[node name="PeakStartSceneTransition" parent="." instance=ExtResource( 7 )]
+position = Vector2( 333, -237 )
+direction = 3
+loadPath = "res://Stages/Cliffs/StartToPeak.tscn"
+
+[node name="PeakStartRoomSpawnPoint" parent="." instance=ExtResource( 8 )]
+position = Vector2( 308, -226 )
+loadId = "StartToPeak"

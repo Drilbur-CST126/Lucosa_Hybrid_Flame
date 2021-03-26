@@ -19,12 +19,12 @@ func set_width(val: float):
 
 func update():
 	.update()
-	if get_node_or_null("OLDLine2D") != null:
-		$OLDLine2D.points = polygon
+	if get_node_or_null("Line2D") != null:
+		$Line2D.points = polygon
 		if polygon.size() > 0:
-			$OLDLine2D.add_point(polygon[0])
-		$OLDLine2D.width = width
-		$OLDLine2D.default_color = outlineColor
+			$Line2D.add_point(polygon[0])
+		$Line2D.width = width
+		$Line2D.default_color = outlineColor
 		
 func _ready():
 	update()
