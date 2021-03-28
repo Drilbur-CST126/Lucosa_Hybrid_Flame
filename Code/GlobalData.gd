@@ -324,10 +324,13 @@ func _input(event):
 				print("Can transform anywhere has been set to " + String(canTransformAnywhere))
 			KEY_7:
 				GlobalData.playerMaxHp += 1
+				print("Extra HP granted")
 			KEY_8:
 				GlobalData.maxCharges += 1
+				print("Extra Charge granted")
 			KEY_9:
 				GlobalData.playerForesight += 1
+				print("Extra Power Orb granted")
 			KEY_0:
 				Engine.time_scale = 0.2
 			KEY_SHIFT:

@@ -55,6 +55,8 @@ func _process(delta):
 				GlobalData.maxCharges += 1
 			Type.Foresight:
 				GlobalData.playerForesight += 1
+				if GlobalData.playerForesight == 3:
+					GlobalData.playerAttackDmg += 1
 		GlobalData.flags.append(collected_str())
 		GlobalData.hud.show_dialogue_box(kDialoguePaths[type])
 		queue_free()
