@@ -785,7 +785,7 @@ points = PoolVector2Array( -670.659, -191.617, -622.755, -191.617, -622.755, -23
 
 [node name="Room54" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9042, 47.9042 )
-color = Color( 0.937255, 0.45098, 0.294118, 1 )
+color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -766.467, -526.946, -718.563, -526.946, -718.563, -622.755, -862.276, -622.755, -862.276, -574.85, -766.467, -574.85 )
 width = 5.0
 
@@ -811,7 +811,10 @@ polygon = PoolVector2Array( -47.9042, -95.8084, -47.9042, -47.9042, 47.9042, -47
 width = 5.0
 
 [node name="RoomLine" parent="Room56" instance=ExtResource( 2 )]
-points = PoolVector2Array( -47.9042, -47.9042, 47.9042, -47.9042, 47.9042, -95.8084, -47.9042, -95.8084 )
+points = PoolVector2Array( -47.9042, -47.9042, 47.9042, -47.9042, 47.9042, -59.8803 )
+
+[node name="RoomLine2" parent="Room56" instance=ExtResource( 2 )]
+points = PoolVector2Array( 47.9042, -83.8324, 47.9042, -95.8084, -47.9042, -95.8084 )
 
 [node name="Room59" parent="." instance=ExtResource( 1 )]
 position = Vector2( 47.9042, 47.9042 )
@@ -821,3 +824,24 @@ width = 5.0
 
 [node name="RoomLine" parent="Room59" instance=ExtResource( 2 )]
 points = PoolVector2Array( -239.521, -1.14441e-05, -239.521, -47.9042 )
+
+[node name="Room60" parent="." instance=ExtResource( 1 )]
+position = Vector2( 47.9042, 47.9042 )
+color = Color( 0.164706, 0.388235, 0.270588, 1 )
+polygon = PoolVector2Array( 47.9042, -47.9042, 143.713, -47.9042, 191.617, -95.8084, 335.329, -95.8084, 335.329, -143.713, 191.617, -143.713, 47.9042, -143.713 )
+width = 5.0
+
+[node name="RoomLine" parent="Room60" instance=ExtResource( 2 )]
+points = PoolVector2Array( 47.9042, -47.9042, 143.713, -47.9042, 191.617, -95.8084, 335.329, -95.8084 )
+
+[node name="RoomLine2" parent="Room60" instance=ExtResource( 2 )]
+points = PoolVector2Array( 335.329, -143.713, 47.9042, -143.713, 47.9042, -83.8324 )
+
+[node name="Gradient" parent="Room60" instance=ExtResource( 3 )]
+margin_left = 359.0
+margin_top = -144.0
+margin_right = 408.0
+margin_bottom = -120.0
+rect_rotation = 90.0
+topColor = Color( 0.164706, 0.388235, 0.270588, 0 )
+bottomColor = Color( 0.164706, 0.388235, 0.270588, 1 )

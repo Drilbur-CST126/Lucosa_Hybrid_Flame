@@ -44,7 +44,8 @@ dynamicLimitDown = 180
 position = Vector2( -433, 150 )
 
 [node name="Ruicosa" parent="." instance=ExtResource( 3 )]
-position = Vector2( 267, 140.5 )
+position = Vector2( 308, 142 )
+facingRight = false
 
 [node name="TSceneTransition" parent="." instance=ExtResource( 4 )]
 position = Vector2( -652, 116 )
@@ -70,4 +71,4 @@ onGround = false
 position = Vector2( 333.403, 76.3324 )
 colDimensions = Vector2( 12, 76 )
 direction = 3
-loadPath = "res://Stages/FrogLands/DerenisaFightRoom.tscn"
+loadPath = "res://Stages/FrogLands/OpeningCutsceneRoom.tscn"

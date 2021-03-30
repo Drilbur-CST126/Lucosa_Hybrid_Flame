@@ -71,7 +71,7 @@ autostart = true
 shape = SubResource( 2 )
 
 [node name="EnemyData" parent="." instance=ExtResource( 2 )]
-maxHp = 3
+maxHp = 4
 colArea = NodePath("../CollisionShape2D")
 shakeOnDeath = false
 
@@ -104,28 +104,27 @@ offset = Vector2( -5.25929, 8.63515 )
 [node name="Leg" parent="Graphics/Body1/Body2/Body3" instance=ExtResource( 4 )]
 position = Vector2( -10.9654, 26.5496 )
 scale = Vector2( 0.7, 0.7 )
-frame = 0
 
 [node name="Leg" parent="Graphics/Body1/Body2" instance=ExtResource( 4 )]
 position = Vector2( -21.0777, 18.9229 )
 scale = Vector2( 0.85, 0.85 )
-frame = 1
+frame = 3
 
 [node name="Leg" parent="Graphics/Body1" instance=ExtResource( 4 )]
 position = Vector2( -10.2849, 22.2269 )
-frame = 1
+frame = 3
 
 [node name="Wings" parent="Graphics/Body1" instance=ExtResource( 6 )]
 position = Vector2( -32.619, -29.1142 )
-frame = 2
-offset = Vector2( 6, 4 )
+frame = 3
+offset = Vector2( 2, 3 )
 offsets = PoolVector2Array( 0, 0, 0, 3, 6, 4, 2, 3, 2, 3, 0, 2 )
 
 [node name="BackWings" parent="Graphics/Body1" instance=ExtResource( 6 )]
 show_behind_parent = true
 position = Vector2( 32.8805, -29.1142 )
-frame = 2
-offset = Vector2( 6, 4 )
+frame = 3
+offset = Vector2( 2, 3 )
 flip_h = true
 offsets = PoolVector2Array( 0, 0, 0, 3, 6, 4, 2, 3, 2, 3, 0, 2 )
 
@@ -136,7 +135,6 @@ offset = Vector2( 15.5059, 3.37278 )
 
 [node name="Eyes" parent="Graphics/Body1/Head" instance=ExtResource( 5 )]
 position = Vector2( 20.4953, -1.45316 )
-frame = 0
 
 [node name="Antennae" type="Sprite" parent="Graphics/Body1/Head"]
 position = Vector2( 22.921, -32.3752 )
