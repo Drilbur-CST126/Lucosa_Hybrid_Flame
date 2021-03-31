@@ -3,6 +3,9 @@ extends Camera2D
 class_name DynamicCamera
 
 enum Lock {CtrLeft, CtrRight, LeftTrans, RightTrans, Unlocked}
+enum Adjust {Default, Up, Down}
+
+const kAdjustAmount := 64.0
 
 var width := ProjectSettings.get_setting("display/window/size/width") as int
 var height := ProjectSettings.get_setting("display/window/size/height") as int
@@ -21,6 +24,8 @@ export var dynamicLimitDown := 100000
 var curLock = Lock.CtrLeft
 var shakeSeverity := 0.0
 var shaking := false
+var canAdjust := true
+var adjust = Adjust.Default
 
 
 signal camera_lock_changed(lock)
@@ -69,6 +74,11 @@ func _ready():
 		limit_right = int(bg.margin_right)
 		limit_top = int(bg.margin_top)
 		limit_bottom = int(bg.margin_bottom)
+	if dynamicLimitLeft == -100000:
+		dynamicLimitUp = limit_top
+		dynamicLimitDown = limit_bottom
+		dynamicLimitLeft = limit_left
+		dynamicLimitRight = limit_right
 
 func set_cur_lock(value):
 	curLock = value
@@ -79,7 +89,7 @@ func get_target_pos() -> Vector2:
 		return Vector2(position.x, position.y)
 	return get_node(target).position
 	
-func set_camera_in_limits():
+func set_camera_in_limits(offset := 0.0):
 	if position.x + width / 2.0 > dynamicLimitRight:
 		position.x = dynamicLimitRight - width / 2.0
 	if position.x - width / 2.0 < dynamicLimitLeft:
@@ -88,9 +98,36 @@ func set_camera_in_limits():
 		position.y = dynamicLimitDown - height / 2.0
 	if position.y - height / 2.0 < dynamicLimitUp:
 		position.y = dynamicLimitUp + height / 2.0
+		
+	if offset != 0.0:
+		position.y += offset
+		set_camera_in_limits()
 
 func _physics_process(delta):
 	var targetPos = get_target_pos()
+	
+	var yOffset := 0.0
+	match adjust:
+		Adjust.Default:
+			if Input.is_action_pressed("ui_up"):
+				adjust = Adjust.Up
+				$CameraAdjustTimer.start()
+			elif Input.is_action_pressed("ui_down"):
+				adjust = Adjust.Down
+				$CameraAdjustTimer.start()
+		Adjust.Up:
+			if Input.is_action_just_released("ui_up"):
+				adjust = Adjust.Default
+				$CameraAdjustTimer.stop()
+			elif $CameraAdjustTimer.time_left == 0.0:
+				yOffset -= kAdjustAmount
+		Adjust.Down:
+			if Input.is_action_just_released("ui_down"):
+				adjust = Adjust.Default
+				$CameraAdjustTimer.stop()
+			elif $CameraAdjustTimer.time_left == 0.0:
+				yOffset += kAdjustAmount
+					
 	if !Engine.editor_hint:
 		if curLock == Lock.CtrLeft:
 			if targetPos.x - lockOffset <= position.x:
@@ -120,7 +157,7 @@ func _physics_process(delta):
 		
 		position.y = targetPos.y - yCenter
 		
-		set_camera_in_limits()
+		set_camera_in_limits(yOffset)
 		
 	if shaking:
 		offset = Vector2(GlobalData.random.randf_range(-shakeSeverity, shakeSeverity), \

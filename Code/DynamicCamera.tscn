@@ -9,3 +9,7 @@ zoom = Vector2( 0.25, 0.25 )
 smoothing_speed = 10.0
 script = ExtResource( 1 )
 yCenter = 30.0
+
+[node name="CameraAdjustTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
