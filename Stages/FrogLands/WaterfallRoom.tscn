@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Code/Polish/Gradient.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Code/StageAssets/Lantern/Lantern.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Code/StageAssets/TeleportationRune/TeleRune.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/StageAssets/Block.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Graphics/Scenery/FireSign.PNG" type="Texture" id=11]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -93,6 +94,12 @@ margin_right = 0.0
 margin_bottom = -900.319
 topColor = Color( 0.282353, 0.4, 0.396078, 1 )
 bottomColor = Color( 0.231373, 0.333333, 0.278431, 1 )
+
+[node name="FireSign" type="Sprite" parent="."]
+position = Vector2( -232.981, -258.925 )
+rotation = 0.307766
+scale = Vector2( 0.202013, 0.168988 )
+texture = ExtResource( 11 )
 
 [node name="TeleRunes" type="Node2D" parent="."]
 

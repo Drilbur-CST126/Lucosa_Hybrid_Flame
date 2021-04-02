@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -9,8 +9,7 @@
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/FrogWarrior/FrogWarrior.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=9]
-
-
+[ext_resource path="res://Graphics/Scenery/FireSign.PNG" type="Texture" id=10]
 
 [node name="ShroomTutorialRoom" type="Node2D"]
 
@@ -20,6 +19,12 @@ margin_top = -180.0
 margin_right = 640.0
 color = Color( 0.282353, 0.4, 0.396078, 1 )
 screen_size = Rect2( -2, -1, 4, 2 )
+
+[node name="FireSign" type="Sprite" parent="."]
+position = Vector2( -464, -51 )
+rotation = -0.448838
+scale = Vector2( 0.25, 0.21875 )
+texture = ExtResource( 10 )
 
 [node name="HdTileMap" parent="." groups=[
 "StablePlatform",
