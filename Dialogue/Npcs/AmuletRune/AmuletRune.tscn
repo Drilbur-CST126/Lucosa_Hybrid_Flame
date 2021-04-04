@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Dialogue/Npcs/AmuletRune/AmuletRune.gd" type="Script" id=1]
+[ext_resource path="res://Dialogue/Npcs/AmuletRune/Rune.PNG" type="Texture" id=2]
+[ext_resource path="res://Code/StageAssets/Arena/ArenaSpawn/ArenaSpawn.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 12 )
+
+[node name="AmuletRune" type="Area2D"]
+script = ExtResource( 1 )
+dialogueTree = "res://Dialogue/Npcs/AmuletRune/AmuletRune.json"
+
+[node name="Rune" type="Sprite" parent="."]
+scale = Vector2( 0.167, 0.167 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ArenaSpawn" parent="." instance=ExtResource( 3 )]
+position = Vector2( 23.6329, 0 )
+spawn = "res://Code/StageAssets/Amulet/Amulet.tscn"

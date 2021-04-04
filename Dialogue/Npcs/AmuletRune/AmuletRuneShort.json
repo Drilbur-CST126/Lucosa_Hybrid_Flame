@@ -1,0 +1,14 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"text": "It's a large rune, with something enscribed upon it..."
+		},
+		{
+			"type": "Event",
+			"event": "Signal",
+			"name": "drop_amulet"
+		},
+	]
+}

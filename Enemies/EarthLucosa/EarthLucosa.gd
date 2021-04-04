@@ -10,6 +10,7 @@ enum States {
 }
 
 export var facingRight := true setget set_facing_right
+export var requireAmulet := true
 
 var state = States.Moving
 var velocity := Vector2.ZERO
@@ -21,6 +22,8 @@ func set_facing_right(val: bool):
 	$WallRayCast.cast_to.x = dir * kWallCastLength
 	$SignalArea.scale.x = dir
 	$GroundRayCast.position.x = 5 * dir
+	$Graphics/Sprite.scale.x = -0.167 * dir
+	$Graphics/ArmSprite.scale.x = -0.167 * dir
 
 func _ready():
 	Utility.print_errors([
@@ -29,6 +32,9 @@ func _ready():
 		$AnimationPlayer.connect("animation_finished", self, "anim_finished"),
 		$EnemyData.connect("on_hit", self, "on_hit"),
 	])
+	set_facing_right(facingRight)
+	if requireAmulet && !GlobalData.hasExplosionImmunity:
+		queue_free()
 
 func _physics_process(_delta):
 	match state:
@@ -52,8 +58,9 @@ func start_turn_around():
 	velocity = Vector2.ZERO
 
 func turn_around():
-	self.facingRight = !facingRight
-	state = States.Moving
+	if state == States.Standing:
+		self.facingRight = !facingRight
+		state = States.Moving
 	
 func decide_attack(_player: Ruicosa):
 	return States.SpearAttack
@@ -77,12 +84,16 @@ func see_player():
 func anim_finished(anim: String):
 	match anim:
 		"SpearAttackWindup":
+			$Graphics/ArmSprite.rotation = $Graphics/AttackIndicator.rotation + (PI if !facingRight else 0.0)
+			$AnimationPlayer.play("SpearAttackAim")
+		"SpearAttackAim":
 			var spear := Spear.instance() as Area2D
 			spear.rotation = $Graphics/AttackIndicator.rotation
 			add_child(spear)
 			$AnimationPlayer.play("SpearAttack")
 		"SpearAttack":
 			state = States.Moving
+			$AnimationPlayer.play("Run")
 			
 func on_hit(_src):
 	if !is_attacking_state():

@@ -1,0 +1,29 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"text": "It's a large rune, with something enscribed upon it..."
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rune",
+			"text": "\"For years I have been a victim, torn by war between Ruirui and Lucosa. No longer will I stand for this ceaseless violence.\""
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rune",
+			"text": "\"Peace has been promised, but as with every attempt before, discontent boils beneath the surface.\""
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rune",
+			"text": "\"I have lived a long life, and it saddens me knowing that I can't fix this world. However, even if I can't see it, I will try my best to help.\""
+		},
+		{
+			"type": "Event",
+			"event": "Signal",
+			"name": "drop_amulet"
+		},
+	]
+}

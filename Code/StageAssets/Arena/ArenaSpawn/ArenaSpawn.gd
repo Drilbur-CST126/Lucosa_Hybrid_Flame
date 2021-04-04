@@ -17,19 +17,20 @@ func _ready():
 
 func spawn_enemy() -> Node2D:
 	child = kEnemy.instance() as Node2D
-	child.global_position = global_position
 	$AnimationPlayer.play("Summon")
 	return child
 
 func anim_finished(_name):
 	get_parent().call_deferred("add_child", child)
+	child.global_position = global_position
 	$Particles2D.emitting = true
 #	var part := $Particles2D
 #	remove_child($Particles2D)
 #	child.add_child(part)
 	
-	var en := child.get_node("EnemyData") as EnemyData
-	en.flash_color(en.kCorruptCol)
+	if child.has_node("EnemyData"):
+		var en := child.get_node("EnemyData") as EnemyData
+		en.flash_color(en.kCorruptCol)
 	
 	child = null
 	
