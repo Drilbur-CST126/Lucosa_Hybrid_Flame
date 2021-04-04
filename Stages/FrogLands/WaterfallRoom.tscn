@@ -244,8 +244,8 @@ extents = Vector2( 25, 110 )
 magnitude = 0.5
 
 [node name="Lantern" parent="." instance=ExtResource( 8 )]
-position = Vector2( -162.801, -1275.56 )
-length = 2
+position = Vector2( -185.831, -1284.21 )
+length = 3
 
 [node name="ExplosionSceneTransition" parent="." instance=ExtResource( 4 )]
 position = Vector2( 12.7541, -1847.82 )

@@ -39,7 +39,6 @@ screen_size = Rect2( -1, -1, 2, 2 )
 
 [node name="AmuletRune" parent="." instance=ExtResource( 10 )]
 position = Vector2( -146, -59 )
-dialogueTree = "res://Dialogue/Npcs/AmuletRune/AmuletRuneShort.json"
 
 [node name="Snowfall" parent="." instance=ExtResource( 7 )]
 amount = 32
