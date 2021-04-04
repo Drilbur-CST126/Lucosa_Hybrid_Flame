@@ -35,7 +35,7 @@ length = 0.458333
 loop = true
 step = 0.0416667
 tracks/0/type = "value"
-tracks/0/path = NodePath("../EarthLucosa/Graphics/Sprite:texture")
+tracks/0/path = NodePath("Graphics/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,7 +47,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 14 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../EarthLucosa/Graphics/Sprite:offset")
+tracks/1/path = NodePath("Graphics/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -59,7 +59,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../EarthLucosa/Graphics/ArmSprite:visible")
+tracks/2/path = NodePath("Graphics/ArmSprite:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -75,7 +75,7 @@ tracks/2/keys = {
 length = 0.291667
 step = 0.0416667
 tracks/0/type = "value"
-tracks/0/path = NodePath("../EarthLucosa/Graphics/ArmSprite:texture")
+tracks/0/path = NodePath("Graphics/ArmSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -92,7 +92,7 @@ resource_name = "SpearAttackAim"
 length = 0.0416667
 step = 0.0416667
 tracks/0/type = "value"
-tracks/0/path = NodePath("../EarthLucosa/Graphics/ArmSprite:texture")
+tracks/0/path = NodePath("Graphics/ArmSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -108,7 +108,7 @@ tracks/0/keys = {
 length = 0.375
 step = 0.0416667
 tracks/0/type = "value"
-tracks/0/path = NodePath("../EarthLucosa/Graphics/AttackIndicator:scale")
+tracks/0/path = NodePath("Graphics/AttackIndicator:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -120,7 +120,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1 ), Vector2( 1, 0.25 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../EarthLucosa/Graphics/AttackIndicator:modulate")
+tracks/1/path = NodePath("Graphics/AttackIndicator:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -132,7 +132,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../EarthLucosa/Graphics/AttackIndicator:visible")
+tracks/2/path = NodePath("Graphics/AttackIndicator:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -144,7 +144,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../EarthLucosa/Graphics/Sprite:texture")
+tracks/3/path = NodePath("Graphics/Sprite:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -156,7 +156,7 @@ tracks/3/keys = {
 "values": [ ExtResource( 17 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("../EarthLucosa/Graphics/Sprite:offset:x")
+tracks/4/path = NodePath("Graphics/Sprite:offset:x")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -168,7 +168,7 @@ tracks/4/keys = {
 "values": [ -80.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../EarthLucosa/Graphics/ArmSprite:rotation_degrees")
+tracks/5/path = NodePath("Graphics/ArmSprite:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -180,7 +180,7 @@ tracks/5/keys = {
 "values": [ 0.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("../EarthLucosa/Graphics/ArmSprite:texture")
+tracks/6/path = NodePath("Graphics/ArmSprite:texture")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -192,7 +192,7 @@ tracks/6/keys = {
 "values": [ ExtResource( 18 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 20 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("../EarthLucosa/Graphics/ArmSprite:visible")
+tracks/7/path = NodePath("Graphics/ArmSprite:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -234,13 +234,13 @@ polygon = PoolVector2Array( 0, -2, 0, 2, 42, 2, 42, -2 )
 [node name="Sprite" type="Sprite" parent="Graphics"]
 position = Vector2( 0, -1 )
 scale = Vector2( 0.167, 0.167 )
-texture = ExtResource( 6 )
+texture = ExtResource( 17 )
+offset = Vector2( -80, 0 )
 
 [node name="ArmSprite" type="Sprite" parent="Graphics"]
-visible = false
 position = Vector2( 1.67, 0 )
 scale = Vector2( 0.167, 0.167 )
-texture = ExtResource( 25 )
+texture = ExtResource( 23 )
 offset = Vector2( -90, -6 )
 
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
