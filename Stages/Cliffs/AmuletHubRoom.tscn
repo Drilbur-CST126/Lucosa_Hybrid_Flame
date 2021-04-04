@@ -65,10 +65,12 @@ position = Vector2( 175, 143 )
 rotation = -3.14159
 scale = Vector2( 1, -1 )
 dialogueTree = "res://Dialogue/Npcs/LucosanSoldiers/AmuletHubRoom1.json"
+becomeEnemy = false
 
 [node name="WaterSoldier" parent="Enemies" instance=ExtResource( 12 )]
 position = Vector2( 244, -9 )
 dialogueTree = "res://Dialogue/Npcs/LucosanSoldiers/AmuletHubRoom2.json"
+becomeEnemy = false
 
 [node name="Ruicosa" parent="." instance=ExtResource( 5 )]
 position = Vector2( -197, 118 )

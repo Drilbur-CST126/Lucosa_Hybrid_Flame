@@ -33,6 +33,7 @@ func _ready():
 		$EnemyData.connect("on_hit", self, "on_hit"),
 	])
 	set_facing_right(facingRight)
+	#print($AnimationPlayer.root_node)
 	if requireAmulet && !GlobalData.hasExplosionImmunity:
 		queue_free()
 

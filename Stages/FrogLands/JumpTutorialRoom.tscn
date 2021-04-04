@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Code/PlayerAreas/TutorialArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Enemies/SoldierWatsi/SoldierWatsi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Graphics/Tilesets/HdWaterfall.tres" type="TileSet" id=7]
+[ext_resource path="res://Enemies/EarthLucosa/EarthLucosa.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/WaterLucosa/WaterLucosa.tscn" type="PackedScene" id=9]
 
 [node name="JumpTutorialRoom" type="Node2D"]
 
@@ -42,6 +44,15 @@ dynamicLimitDown = 180
 
 [node name="SoldierWatsi" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( -433, 150 )
+
+[node name="WaterLucosa" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( -460, 152 )
+
+[node name="EarthLucosa" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( -233, 136 )
+
+[node name="EarthLucosa2" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 182, 152 )
 
 [node name="Ruicosa" parent="." instance=ExtResource( 3 )]
 position = Vector2( 308, 142 )

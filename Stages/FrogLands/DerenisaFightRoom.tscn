@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Code/Campfire.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/StageAssets/Block.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=9]
 
 [node name="DerenisaFightRoom" type="Node2D"]
 
@@ -42,3 +43,8 @@ magnitude = 1.0
 [node name="SaveRoomSpawnPoint" parent="." instance=ExtResource( 7 )]
 position = Vector2( -380, -66 )
 loadId = "Savepoint"
+
+[node name="SceneTransition" parent="." instance=ExtResource( 9 )]
+position = Vector2( -973, -6 )
+colDimensions = Vector2( 12, 160 )
+loadPath = "res://Stages/FrogLands/OpeningCutsceneRoom.tscn"

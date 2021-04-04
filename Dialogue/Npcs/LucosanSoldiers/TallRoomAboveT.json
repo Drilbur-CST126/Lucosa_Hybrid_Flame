@@ -1,0 +1,30 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "Greetings, citizen.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "I got a report of a Shifter running off in this direction. Do you know anything about it?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Oh, uh, no? (Keep it cool...)",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "...Okay. You better be telling the truth, I'd hate to use the wrath of the Lucosan Royal Guard on you.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Yeah, no, sorry, I know nothing, heh heh...",
+		},
+	]
+}
