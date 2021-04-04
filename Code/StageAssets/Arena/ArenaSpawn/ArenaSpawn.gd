@@ -22,7 +22,9 @@ func spawn_enemy() -> Node2D:
 
 func anim_finished(_name):
 	get_parent().call_deferred("add_child", child)
-	child.global_position = global_position
+	Utility.print_errors([
+		child.connect("ready", self, "set_node_position", [child]),
+	])
 	$Particles2D.emitting = true
 #	var part := $Particles2D
 #	remove_child($Particles2D)
@@ -33,6 +35,9 @@ func anim_finished(_name):
 		en.flash_color(en.kCorruptCol)
 	
 	child = null
+	
+func set_node_position(node: Node2D):
+	node.global_position = global_position
 	
 func _process(_delta):
 	if get_node_or_null("Particles2D") != null && $Particles2D.emitting && !$Particles2D/VisibilityNotifier2D.is_on_screen():

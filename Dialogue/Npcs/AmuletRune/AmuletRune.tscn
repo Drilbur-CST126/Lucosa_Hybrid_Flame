@@ -19,5 +19,4 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="ArenaSpawn" parent="." instance=ExtResource( 3 )]
-position = Vector2( 23.6329, 0 )
 spawn = "res://Code/StageAssets/Amulet/Amulet.tscn"

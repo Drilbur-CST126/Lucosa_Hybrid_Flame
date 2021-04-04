@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Code/StageAssets/Amulet/Amulet.gd" type="Script" id=1]
 [ext_resource path="res://Shaders/RadialGradient.shader" type="Shader" id=2]
@@ -10,6 +10,9 @@ shader = ExtResource( 2 )
 shader_param/center = Vector2( 0.5, 0.5 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/strength = 0.6
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.0
 
 [node name="Amulet" type="Area2D"]
 script = ExtResource( 1 )
@@ -23,3 +26,6 @@ diameter = 48.0
 [node name="Amulet" type="Sprite" parent="."]
 scale = Vector2( 0.167, 0.167 )
 texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )

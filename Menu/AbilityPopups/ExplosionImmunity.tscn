@@ -133,7 +133,7 @@ margin_top = 70.0
 margin_right = 1280.0
 margin_bottom = 200.0
 custom_fonts/font = ExtResource( 2 )
-text = "AMULET OF PROTECTION"
+text = "AMULET OF PEACE"
 align = 1
 
 [node name="Space" type="ColorRect" parent="VBoxContainer"]
@@ -161,7 +161,7 @@ margin_top = 344.0
 margin_right = 1280.0
 margin_bottom = 410.0
 custom_fonts/font = ExtResource( 1 )
-text = "The Amulet appears to be very special, take care of it..."
+text = "Can this amulet really help bring peace...?"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
