@@ -6,6 +6,7 @@ const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tsc
 const LucosaHealthScene = preload("res://Code/HealMinigame/LucosaHealthScene.tscn")
 const Enemy = preload("res://Code/Enemy.gd")
 const Fireball = preload("res://Ruicosa/Fireball/Fireball.tscn")
+const PauseMenu = preload("res://Menu/PauseMenu.tscn")
 
 const kHit1Particle = preload("res://Graphics/Particles/Hit1/Hit1.tscn")
 const kUppercutParticle = preload("res://Graphics/Particles/Uppercut/Uppercut.tscn")
@@ -402,6 +403,7 @@ func _ready():
 	set_facing_right(facingRight)
 	self.lucosaForm = GlobalData.lucosaForm
 	hud.set_icon("lucosa" if self.lucosaForm else "ruirui")
+	#hud.get_node("Control").add_child(PauseMenu.instance())
 	canDoubleJump = form_has_double_jump()
 	#play_anim("Idle")
 	

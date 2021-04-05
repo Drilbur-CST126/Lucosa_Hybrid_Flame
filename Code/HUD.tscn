@@ -97,3 +97,10 @@ texture = SubResource( 6 )
 
 [node name="Charges" type="Node2D" parent="."]
 position = Vector2( 103.442, 171.077 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -34,8 +34,8 @@ func _ready():
 	])
 	set_facing_right(facingRight)
 	#print($AnimationPlayer.root_node)
-#	if requireAmulet && !GlobalData.hasExplosionImmunity:
-#		queue_free()
+	if requireAmulet && !GlobalData.hasExplosionImmunity:
+		queue_free()
 
 func _physics_process(_delta):
 	match state:

@@ -37,7 +37,7 @@ func on_touch(other: Node2D):
 func destroy():
 	if has_node("EnemyData"):
 		$EnemyData.queue_free()
-	$Circle.hide()
+	$AnimatedSprite.hide()
 	$Particles2D.emitting = true
 	$DestroyAnimTimer.start()
 	yield($DestroyAnimTimer, "timeout")
