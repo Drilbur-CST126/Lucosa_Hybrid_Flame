@@ -13,7 +13,7 @@
 [ext_resource path="res://Code/Polish/Gradient.tscn" type="PackedScene" id=11]
 
 [sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
+script/source = "extends GameRoom
 
 const kFarLeft := -320
 const kFarRight := 320
@@ -57,6 +57,7 @@ scale_curve = SubResource( 3 )
 
 [node name="PathToCliffs" type="Node2D"]
 script = SubResource( 1 )
+mapId = 42
 
 [node name="StageBg" type="ColorRect" parent="."]
 margin_left = -320.0

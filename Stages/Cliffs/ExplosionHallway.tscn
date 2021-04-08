@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -13,8 +13,11 @@
 [ext_resource path="res://Enemies/WaterLucosa/WaterLucosa.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Code/StageAssets/Switch/Switch.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=14]
 
 [node name="ExplosionHallway" type="Node2D"]
+script = ExtResource( 14 )
+mapId = 47
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]
 margin_left = -640.0

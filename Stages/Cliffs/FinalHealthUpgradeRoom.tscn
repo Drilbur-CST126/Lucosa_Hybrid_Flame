@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -10,8 +10,11 @@
 [ext_resource path="res://Enemies/BombShroom/BombShroom.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Code/PlayerAreas/SecretTerrainArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=11]
 
 [node name="FinalHealthUpgradeRoom" type="Node2D"]
+script = ExtResource( 11 )
+mapId = 50
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]
 margin_top = -360.0
@@ -25,7 +28,6 @@ scale = Vector2( 0.167, 0.167 )
 color = Color( 0.196078, 0.278431, 0.247059, 1 )
 polygon = PoolVector2Array( 497.006, -1377.25, 520.958, -1377.25, 526.946, -1407.19, 562.874, -1395.21, 604.79, -1437.13, 640.719, -1371.26, 760.479, -1359.28, 1047.9, -1167.66, 1443.11, -1263.47, 2437.13, -1329.34, 2305.39, -1149.7, 2365.27, -1065.87, 2089.82, -910.18, 2137.72, -826.347, 1946.11, -736.527, 1892.22, -586.826, 1730.54, -514.97, 1676.65, -395.21, 1449.1, -311.377, 1179.64, 47.9042, 47.9042, 23.9521, 83.8323, -1371.26 )
 outlineColor = Color( 0.0941176, 0.196078, 0.152941, 1 )
-width = 3.0
 
 [node name="HdTileMap" parent="." groups=[
 "StablePlatform",

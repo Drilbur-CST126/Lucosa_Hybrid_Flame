@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://Code/PlayerAreas/SecretTerrainArea.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Code/PlayerAreas/CameraArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=8]
-
-
+[ext_resource path="res://Code/PlayerAreas/MapArea.gd" type="Script" id=9]
 
 [node name="FrogBonusRoom" type="Node2D"]
 
@@ -70,3 +69,17 @@ polygon = PoolVector2Array( -1, -180, 0, 0, 320, 0, 320, -179 )
 [node name="SceneTransition" parent="." instance=ExtResource( 8 )]
 position = Vector2( -332, -92 )
 loadPath = "res://Stages/FrogLands/RoomMovingIntoWaterfall.tscn"
+
+[node name="MapArea" type="Area2D" parent="."]
+script = ExtResource( 9 )
+mapId = 55
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapArea"]
+polygon = PoolVector2Array( -2, 1, 330, 1, 327, 200, -322, 198, -320, -189, 2, -180 )
+
+[node name="MapArea2" type="Area2D" parent="."]
+script = ExtResource( 9 )
+mapId = 59
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapArea2"]
+polygon = PoolVector2Array( 34, -4, 323, -4, 323, -188, 78, -182, 78, -68 )

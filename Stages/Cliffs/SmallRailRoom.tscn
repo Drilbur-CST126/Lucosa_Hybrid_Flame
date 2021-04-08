@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=2]
@@ -6,8 +6,11 @@
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=7]
 
 [node name="SmallRailRoom" type="Node2D"]
+script = ExtResource( 7 )
+mapId = 43
 
 [node name="StageBg" parent="." instance=ExtResource( 2 )]
 color = Color( 0.282353, 0.4, 0.396078, 1 )

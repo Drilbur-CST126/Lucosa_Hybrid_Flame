@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Enemies/WaterLucosa/WaterLucosa.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Enemies/Firefly/Firefly.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Enemies/BombShroom/BombShroom.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 304, 74 )
@@ -19,6 +20,8 @@ extents = Vector2( 304, 74 )
 extents = Vector2( 456, 180 )
 
 [node name="HallwayToPeak" type="Node2D"]
+script = ExtResource( 12 )
+mapId = 51
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]
 margin_left = -1280.0

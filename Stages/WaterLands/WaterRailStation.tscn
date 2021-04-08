@@ -11,7 +11,7 @@
 [ext_resource path="res://Code/PlayerAreas/CameraArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/StageAssets/Upgrade/Upgrade.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Dialogue/Npcs/CorruptionRuirui/CorruptonRuirui.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Code/GameRoom.gd" type="Script" id=12]
+[ext_resource path="res://Code/PlayerAreas/MapArea.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 90 )
@@ -23,8 +23,6 @@ extents = Vector2( 160, 160 )
 extents = Vector2( 320, 90 )
 
 [node name="WaterRailStation" type="Node2D"]
-script = ExtResource( 12 )
-mapId = 21
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_top = -360.0
@@ -114,3 +112,17 @@ shape = SubResource( 3 )
 
 [node name="CorruptionRuirui" parent="." instance=ExtResource( 11 )]
 position = Vector2( 901.169, -222.547 )
+
+[node name="MapArea" type="Area2D" parent="."]
+script = ExtResource( 13 )
+mapId = 21
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapArea"]
+polygon = PoolVector2Array( -16.6497, 17.001, 365.251, 20.801, 362.401, 188.001, -44.1998, 191.801 )
+
+[node name="MapArea2" type="Area2D" parent="."]
+script = ExtResource( 13 )
+mapId = 53
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapArea2"]
+polygon = PoolVector2Array( 349.101, -4.84909, -4.29972, 2.75095, -1.44971, -348.75, 962.802, -339.25, 963.753, -174.899 )
