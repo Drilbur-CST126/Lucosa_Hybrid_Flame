@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -11,16 +11,17 @@
 [ext_resource path="res://Code/StageAssets/Minecart/Minecart.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=11]
-
-
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 124, 180 )
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 124, 180 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 160, 90 )
 
 [node name="CliffRailRoom" type="Node2D"]
+script = ExtResource( 12 )
+mapId = 36
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]
 margin_left = -320.0
@@ -73,14 +74,14 @@ cameraBounds = Rect2( -160, -180, 480, 360 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraArea2"]
 position = Vector2( 196, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CameraArea3" parent="CameraAreas" instance=ExtResource( 5 )]
 cameraBounds = Rect2( -320, 0, 640, 180 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreas/CameraArea3"]
 position = Vector2( -160, 90 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="AmuletSceneTransition" parent="." instance=ExtResource( 10 )]
 position = Vector2( -332.242, -83.6838 )

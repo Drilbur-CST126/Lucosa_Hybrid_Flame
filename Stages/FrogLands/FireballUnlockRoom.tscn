@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Scenery/Tree.PNG" type="Texture" id=2]
@@ -9,10 +9,11 @@
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=9]
-
-
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=10]
 
 [node name="FireballUnlockRoom" type="Node2D"]
+script = ExtResource( 10 )
+mapId = 24
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 320.0
@@ -35,7 +36,6 @@ material = ExtResource( 3 )
 scale = Vector2( 5.98802, 5.98802 )
 polygon = PoolVector2Array( 0, 0, 150, 0, 147.118, 29.2635, 138.582, 57.4025, 124.72, 83.3355, 106.066, 106.066, 83.3355, 124.72, 57.4025, 138.582, 29.2635, 147.118, 9.18455e-15, 150, -29.2635, 147.118, -57.4025, 138.582, -83.3355, 124.72, -106.066, 106.066, -124.72, 83.3355, -138.582, 57.4025, -147.118, 29.2635, -150, 1.83691e-14, -147.118, -29.2635, -138.582, -57.4025, -124.72, -83.3355, -106.066, -106.066, -83.3355, -124.72, -57.4025, -138.582, -29.2635, -147.118, -2.75536e-14, -150, 29.2635, -147.118, 57.4025, -138.582, 83.3355, -124.72, 106.066, -106.066, 124.72, -83.3355, 138.582, -57.4025, 147.118, -29.2635, 150, -3.67382e-14 )
 uv = PoolVector2Array( 0.5, 0.5, 1, 0.5, 0.990393, 0.597545, 0.96194, 0.691342, 0.915735, 0.777785, 0.853553, 0.853553, 0.777785, 0.915735, 0.691342, 0.96194, 0.597545, 0.990393, 0.5, 1, 0.402455, 0.990393, 0.308658, 0.96194, 0.222215, 0.915735, 0.146447, 0.853553, 0.0842652, 0.777785, 0.0380602, 0.691342, 0.00960736, 0.597545, 0, 0.5, 0.00960736, 0.402455, 0.0380602, 0.308658, 0.0842652, 0.222215, 0.146447, 0.146447, 0.222215, 0.0842652, 0.308658, 0.0380602, 0.402455, 0.00960736, 0.5, 0, 0.597545, 0.00960736, 0.691342, 0.0380602, 0.777785, 0.0842652, 0.853553, 0.146447, 0.915735, 0.222215, 0.96194, 0.308658, 0.990393, 0.402455, 1, 0.5 )
-vertices = 32
 diameter = 150.0
 
 [node name="SummonArea" parent="Polish" instance=ExtResource( 5 )]

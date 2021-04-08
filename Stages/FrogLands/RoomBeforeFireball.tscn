@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/StageAssets/SwitchDoor/SwitchDoor.tscn" type="PackedScene" id=2]
@@ -13,8 +13,7 @@
 [ext_resource path="res://Code/PlayerAreas/TutorialArea.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Code/StageAssets/Switch/Switch.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Graphics/Scenery/FireSign.PNG" type="Texture" id=13]
-
-
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 90 )
@@ -23,6 +22,8 @@ extents = Vector2( 160, 90 )
 extents = Vector2( 480, 50 )
 
 [node name="RoomBeforeFireball" type="Node2D"]
+script = ExtResource( 14 )
+mapId = 23
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -320.0
@@ -40,6 +41,7 @@ position = Vector2( -261.727, 140.626 )
 [node name="Switch" parent="." instance=ExtResource( 12 )]
 position = Vector2( -89.964, 160.475 )
 rotation = 0.172471
+scale = Vector2( 1, 1 )
 
 [node name="FireSign" type="Sprite" parent="."]
 position = Vector2( -297.535, 155.231 )

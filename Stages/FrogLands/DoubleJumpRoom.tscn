@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
@@ -11,10 +11,11 @@
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=11]
-
-
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=12]
 
 [node name="DoubleJumpRoom" type="Node2D"]
+script = ExtResource( 12 )
+mapId = 26
 
 [node name="StageBg" parent="." instance=ExtResource( 1 )]
 color = Color( 0.188235, 0.313726, 0.196078, 1 )
