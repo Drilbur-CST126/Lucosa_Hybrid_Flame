@@ -1,16 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Code/RoomSpawnPoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/Polish/SummonArea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Code/GameRoom.gd" type="Script" id=4]
 [ext_resource path="res://Enemies/SoldierWatsi/SoldierWatsi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Code/SceneTransition.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=9]
 
-
-
 [node name="FirstFireballGate" type="Node2D"]
+script = ExtResource( 4 )
+mapId = 10
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -320.0

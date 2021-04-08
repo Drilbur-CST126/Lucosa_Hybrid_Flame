@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Code/Polish/Gradient.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Code/StageAssets/TeleportationRune/TeleRune.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Code/StageAssets/Block.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Graphics/Scenery/FireSign.PNG" type="Texture" id=11]
+[ext_resource path="res://Code/PlayerAreas/MapArea.gd" type="Script" id=12]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -255,3 +256,31 @@ loadPath = "res://Stages/Cliffs/ExplosionHallway.tscn"
 [node name="ExplosionRoomSpawnPoint" parent="." instance=ExtResource( 5 )]
 position = Vector2( -11.6298, -1836.6 )
 loadId = "ExplosionHallway"
+
+[node name="MapArea" type="Area2D" parent="."]
+script = ExtResource( 12 )
+mapId = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapArea"]
+polygon = PoolVector2Array( 322.679, 166.667, -655.589, 169.681, -638.833, -399.902, 299.435, -449.869 )
+
+[node name="MapArea2" type="Area2D" parent="."]
+script = ExtResource( 12 )
+mapId = 9
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapArea2"]
+polygon = PoolVector2Array( -451.919, -788.533, -440.816, -464.674, 160.638, -485.03, 131.028, -795.936 )
+
+[node name="MapArea3" type="Area2D" parent="."]
+script = ExtResource( 12 )
+mapId = 57
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapArea3"]
+polygon = PoolVector2Array( -376.044, -877.363, 106.97, -877.363, 105.119, -1521.38, -383.446, -1501.02 )
+
+[node name="MapArea4" type="Area2D" parent="."]
+script = ExtResource( 12 )
+mapId = 58
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapArea4"]
+polygon = PoolVector2Array( -427.861, -1908.16, -418.608, -1543.59, 121.775, -1556.54, 101.418, -1910.01 )

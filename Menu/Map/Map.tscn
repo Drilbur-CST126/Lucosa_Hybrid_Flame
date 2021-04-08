@@ -134,6 +134,9 @@ points = PoolVector2Array( -479.042, 59.8802, -479.042, 47.9042, -431.138, 47.90
 [node name="RoomLine4" parent="Room8" instance=ExtResource( 2 )]
 points = PoolVector2Array( -431.138, -35.9281, -431.138, -47.9042 )
 
+[node name="RoomLine5" parent="Room8" instance=ExtResource( 2 )]
+points = PoolVector2Array( -383.233, -35.9284, -383.233, -47.9044 )
+
 [node name="Room9" parent="." instance=ExtResource( 1 )]
 position = Vector2( 383.233, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
