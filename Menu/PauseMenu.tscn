@@ -208,6 +208,6 @@ __meta__ = {
 }
 
 [node name="ControlButtonPopup" parent="MapRect" instance=ExtResource( 7 )]
-anchor_top = 0.25
+anchor_top = 0.2
 curButton = 4
 buttonScale = Vector2( 0.66, 0.66 )

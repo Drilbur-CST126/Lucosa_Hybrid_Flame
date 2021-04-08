@@ -1,15 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Code/Polish/OutlinePolygon.gd" type="Script" id=1]
+[ext_resource path="res://Menu/Map/Room.gd" type="Script" id=1]
 
 [node name="Room" type="Polygon2D"]
 script = ExtResource( 1 )
-outlineColor = Color( 1, 1, 1, 1 )
-width = 1.25
-
-[node name="OLDLine2D" type="Line2D" parent="."]
-visible = false
-width = 1.25
-default_color = Color( 1, 1, 1, 1 )
-joint_mode = 2
-begin_cap_mode = 2

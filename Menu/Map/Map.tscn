@@ -1,17 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Menu/Map/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Menu/Map/RoomLine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Code/Polish/Gradient.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Menu/Map/Map.gd" type="Script" id=4]
 
 [node name="Map" type="Node2D"]
 scale = Vector2( 0.167, 0.167 )
+script = ExtResource( 4 )
 
 [node name="Room" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( 47.9041, 0, 47.9041, -47.9042, -95.8084, -47.9042, -95.8084, 0 )
-width = 5.0
 
 [node name="RoomLine" parent="Room" instance=ExtResource( 2 )]
 points = PoolVector2Array( 47.9041, -35.9281, 47.9041, -47.9042, -95.8085, -47.9042, -95.8085, -35.9281 )
@@ -20,10 +21,9 @@ points = PoolVector2Array( 47.9041, -35.9281, 47.9041, -47.9042, -95.8085, -47.9
 points = PoolVector2Array( 47.9041, -11.976, 47.9041, 0, -95.8085, 0, -95.8085, -11.976 )
 
 [node name="Room2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -95.8084, -47.9042, -143.713, -47.9042, -143.713, -95.8084, -191.617, -95.8084, -191.617, -47.9042, -239.521, -47.9042, -239.521, 0, -95.8084, 0 )
-width = 5.0
 
 [node name="RoomLine" parent="Room2" instance=ExtResource( 2 )]
 points = PoolVector2Array( -95.8085, -11.976, -95.8085, 0, -239.521, 0, -239.521, -11.976 )
@@ -35,10 +35,9 @@ points = PoolVector2Array( -95.8085, -35.9281, -95.8085, -47.9042, -143.713, -47
 points = PoolVector2Array( -179.641, -95.8084, -191.617, -95.8084, -191.617, -47.9042, -239.521, -47.9042, -239.521, -35.9281 )
 
 [node name="Room3" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -191.617, -95.8084, -143.713, -95.8084, -143.713, -191.617, -191.617, -191.617 )
-width = 5.0
 
 [node name="RoomLine" parent="Room3" instance=ExtResource( 2 )]
 points = PoolVector2Array( -155.689, -95.8084, -143.713, -95.8084, -143.713, -155.689 )
@@ -50,10 +49,9 @@ points = PoolVector2Array( -143.713, -179.641, -143.713, -191.617, -191.617, -19
 points = PoolVector2Array( -191.617, -155.689, -191.617, -95.8084, -179.641, -95.8084 )
 
 [node name="Room4" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -191.617, -191.617, -287.425, -191.617, -287.425, -143.713, -191.617, -143.713 )
-width = 5.0
 
 [node name="RoomLine" parent="Room4" instance=ExtResource( 2 )]
 points = PoolVector2Array( -191.617, -155.689, -191.617, -143.713, -287.425, -143.713, -287.425, -155.689 )
@@ -62,10 +60,9 @@ points = PoolVector2Array( -191.617, -155.689, -191.617, -143.713, -287.425, -14
 points = PoolVector2Array( -191.617, -179.641, -191.617, -191.617, -287.425, -191.617, -287.425, -179.641 )
 
 [node name="Room5" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -287.425, -191.617, -335.329, -191.617, -335.329, -143.713, -383.234, -143.713, -383.234, 0, -335.329, 0, -335.329, -95.8084, -287.425, -95.8084 )
-width = 5.0
 
 [node name="RoomLine" parent="Room5" instance=ExtResource( 2 )]
 position = Vector2( -215.569, -89.8204 )
@@ -84,10 +81,9 @@ position = Vector2( -113.773, -17.9641 )
 points = PoolVector2Array( -269.461, -17.9641, -269.461, -89.8204 )
 
 [node name="Room6" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -335.329, -47.9042, -239.521, -47.9042, -239.521, 0, -335.329, 0 )
-width = 5.0
 
 [node name="RoomLine" parent="Room6" instance=ExtResource( 2 )]
 points = PoolVector2Array( -335.329, -11.976, -335.329, 0, -275.449, 0 )
@@ -99,10 +95,9 @@ points = PoolVector2Array( -251.497, 0, -239.521, 0, -239.521, -11.976 )
 points = PoolVector2Array( -239.521, -35.9281, -239.521, -47.9042, -335.329, -47.9042, -335.329, -35.9281 )
 
 [node name="Room7" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -239.521, 0, -335.329, 0, -335.329, 95.8084, -287.425, 95.8084, -287.425, 47.9042, -239.521, 47.9042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room7" instance=ExtResource( 2 )]
 points = PoolVector2Array( -251.497, 0, -239.521, 0, -239.521, 11.976 )
@@ -115,10 +110,9 @@ position = Vector2( -9.53674e-05, 0 )
 points = PoolVector2Array( -335.329, 59.8802, -335.329, 0, -275.449, 0 )
 
 [node name="Room8" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -335.329, 47.9042, -383.234, 47.9042, -383.234, -47.9042, -431.138, -47.9042, -431.138, 47.9042, -479.042, 47.9042, -479.042, 95.8084, -335.329, 95.8084 )
-width = 5.0
 
 [node name="Gradient" parent="Room8" instance=ExtResource( 3 )]
 margin_left = -431.0
@@ -141,10 +135,9 @@ points = PoolVector2Array( -479.042, 59.8802, -479.042, 47.9042, -431.138, 47.90
 points = PoolVector2Array( -431.138, -35.9281, -431.138, -47.9042 )
 
 [node name="Room9" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -383.234, -47.9042, -383.234, -143.713, -431.138, -143.713, -431.138, -47.9042 )
-width = 5.0
 
 [node name="Gradient" parent="Room9" instance=ExtResource( 3 )]
 margin_left = -431.0
@@ -164,10 +157,9 @@ points = PoolVector2Array( -431.138, -131.737, -431.138, -143.713 )
 points = PoolVector2Array( -383.234, -131.737, -383.234, -143.713 )
 
 [node name="Room57" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -383.234, -143.713, -383.234, -383.234, -431.138, -383.234, -431.138, -143.713 )
-width = 5.0
 
 [node name="Gradient" parent="Room57" instance=ExtResource( 3 )]
 margin_left = -431.0
@@ -190,10 +182,9 @@ points = PoolVector2Array( -383.234, -227.545, -383.234, -383.234 )
 points = PoolVector2Array( -431.138, -323.353, -431.138, -383.234 )
 
 [node name="Room58" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -383.234, -383.234, -383.234, -526.946, -431.138, -526.946, -431.138, -383.234 )
-width = 5.0
 
 [node name="RoomLine7" parent="Room58" instance=ExtResource( 2 )]
 points = PoolVector2Array( -383.234, -227.545, -383.234, -443.114 )
@@ -205,10 +196,9 @@ points = PoolVector2Array( -431.138, -323.353, -431.138, -395.21 )
 points = PoolVector2Array( -431.138, -419.162, -431.138, -526.946, -383.234, -526.946, -383.234, -467.066 )
 
 [node name="Room10" parent="." instance=ExtResource( 1 )]
-position = Vector2( -47.9041, 0 )
+position = Vector2( 383.233, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -479.042, 47.9042, -574.85, 47.9042, -574.85, 95.8084, -479.042, 95.8084 )
-width = 5.0
 
 [node name="RoomLine" parent="Room10" instance=ExtResource( 2 )]
 points = PoolVector2Array( -479.042, 83.8323, -479.042, 95.8084, -574.85, 95.8084, -574.85, 83.8323 )
@@ -220,10 +210,9 @@ points = PoolVector2Array( -479.042, 59.8802, -479.042, 47.9042, -491.018, 47.90
 points = PoolVector2Array( -514.97, 47.9042, -574.85, 47.9042, -574.85, 59.8802 )
 
 [node name="Room11" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0.00012207, 0 )
+position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -574.85, 47.9042, -574.85, 0, -574.85, 0, -574.85, -47.9042, -479.042, -47.9042, -479.042, 47.9042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room11" instance=ExtResource( 2 )]
 points = PoolVector2Array( -538.922, 47.9042, -479.042, 47.9042, -479.042, -11.976 )
@@ -238,10 +227,9 @@ points = PoolVector2Array( -514.97, -47.9042, -574.85, -47.9042, -574.85, -35.92
 points = PoolVector2Array( -574.85, -11.976, -574.85, 0, -526.946, 0, -574.85, 0, -574.85, 47.9042, -562.874, 47.9042 )
 
 [node name="Room12" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0.00012207, 0 )
+position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -574.85, -95.8084, -622.754, -95.8084, -622.754, 47.9042, -574.85, 47.9042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room12" instance=ExtResource( 2 )]
 points = PoolVector2Array( -574.85, -35.9281, -574.85, -95.8084, -622.755, -95.8084, -622.755, -83.8323 )
@@ -253,10 +241,9 @@ points = PoolVector2Array( -622.755, -59.8802, -622.755, 11.976 )
 points = PoolVector2Array( -622.755, 35.9281, -622.755, 47.9042, -574.85, 47.9042, -574.85, -11.976 )
 
 [node name="Room13" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0.00012207, 0 )
+position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -622.754, 0, -670.659, 0, -670.659, 143.713, -622.754, 143.713 )
-width = 5.0
 
 [node name="RoomLine" parent="Room13" instance=ExtResource( 2 )]
 points = PoolVector2Array( -622.755, 11.976, -622.755, 0, -670.659, 0, -670.659, 59.8802 )
@@ -271,19 +258,17 @@ points = PoolVector2Array( -622.755, 59.8802, -622.755, 35.9281 )
 points = PoolVector2Array( -670.659, 83.8323, -670.659, 107.784 )
 
 [node name="Room14" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0.00012207, 0 )
+position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -670.659, 143.713, -766.467, 143.713, -766.467, 47.9042, -670.659, 47.9042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room14" instance=ExtResource( 2 )]
 points = PoolVector2Array( -670.659, 143.713, -766.467, 143.713, -766.467, 47.9042, -670.659, 47.9042 )
 
 [node name="Room15" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0.00012207, 0 )
+position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -574.85, -47.9042, -574.85, -143.713, -479.042, -143.713, -479.042, -47.9042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room15" instance=ExtResource( 2 )]
 points = PoolVector2Array( -514.97, -47.9042, -574.85, -47.9042, -574.85, -107.784 )
@@ -295,10 +280,9 @@ points = PoolVector2Array( -574.85, -131.737, -574.85, -143.713, -479.042, -143.
 points = PoolVector2Array( -479.042, -107.784, -479.042, -47.9042, -491.018, -47.9042 )
 
 [node name="Room16" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0.00012207, 0 )
+position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -622.754, 0, -622.755, -167.665, -694.611, -239.521, -718.563, -239.521, -718.563, 0 )
-width = 5.0
 
 [node name="RoomLine" parent="Room16" instance=ExtResource( 2 )]
 points = PoolVector2Array( -622.755, -59.8802, -622.755, 0, -718.563, 0, -718.563, -11.976 )
@@ -316,10 +300,9 @@ points = PoolVector2Array( -718.563, -227.545, -718.563, -239.521, -694.611, -23
 points = PoolVector2Array( -622.755, -107.784, -622.755, -83.8323 )
 
 [node name="Room17" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0.00012207, 0 )
+position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -718.563, -191.617, -718.563, -263.473, -742.515, -287.425, -862.275, -287.425, -862.275, -191.617, -814.371, -191.617, -814.371, -239.521, -766.467, -239.521, -766.467, -191.617 )
-width = 5.0
 
 [node name="RoomLine" parent="Room17" instance=ExtResource( 2 )]
 points = PoolVector2Array( -718.563, -203.593, -718.563, -191.617, -766.467, -191.617, -766.467, -239.521, -814.371, -239.521, -814.371, -191.617, -826.347, -191.617 )
@@ -328,10 +311,9 @@ points = PoolVector2Array( -718.563, -203.593, -718.563, -191.617, -766.467, -19
 points = PoolVector2Array( -850.3, -191.617, -862.276, -191.617, -862.276, -287.425, -742.515, -287.425, -718.563, -263.473, -718.563, -227.545 )
 
 [node name="Room18" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, 95.8084 )
+position = Vector2( 431.137, 287.425 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -718.563, -191.617, -718.563, -287.425, -862.275, -287.425, -862.275, -191.617, -814.371, -191.617, -808.383, -227.545, -802.395, -221.557, -796.407, -227.545, -790.419, -215.569, -784.431, -221.557, -778.443, -209.581, -772.455, -215.569, -766.467, -191.617 )
-width = 5.0
 
 [node name="RoomLine" parent="Room18" instance=ExtResource( 2 )]
 points = PoolVector2Array( -718.563, -227.545, -718.563, -287.425, -826.347, -287.425 )
@@ -343,10 +325,9 @@ points = PoolVector2Array( -850.299, -287.425, -862.276, -287.425, -862.276, -22
 points = PoolVector2Array( -862.276, -203.593, -862.276, -191.617, -814.371, -191.617, -808.383, -227.545, -802.395, -221.557, -796.407, -227.545, -790.419, -215.569, -784.431, -221.557, -778.443, -209.581, -772.455, -215.569, -766.467, -191.617, -718.563, -191.617, -718.563, -203.593 )
 
 [node name="Room19" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, 95.8084 )
+position = Vector2( 431.137, 287.425 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -862.275, -239.521, -910.18, -239.521, -910.18, -191.617, -958.084, -191.617, -958.084, -143.713, -910.18, -143.713, -910.18, -95.8084, -718.563, -95.8084, -718.563, -143.713, -862.275, -143.713 )
-width = 5.0
 
 [node name="RoomLine" parent="Room19" instance=ExtResource( 2 )]
 points = PoolVector2Array( -862.276, -227.545, -862.276, -239.521, -910.18, -239.521, -910.18, -227.545 )
@@ -361,19 +342,17 @@ points = PoolVector2Array( -718.563, -131.737, -718.563, -143.713, -862.276, -14
 points = PoolVector2Array( -910.18, -107.784, -910.18, -95.8084, -718.563, -95.8084, -718.563, -107.784 )
 
 [node name="Room20" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, 95.8084 )
+position = Vector2( 431.137, 287.425 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -910.18, -143.713, -910.18, 0, -958.084, 0, -958.084, -143.713 )
-width = 5.0
 
 [node name="RoomLine" parent="Room20" instance=ExtResource( 2 )]
 points = PoolVector2Array( -910.18, -131.737, -910.18, -143.713, -958.084, -143.713, -958.084, -2.28882e-05, -910.18, -2.28882e-05, -910.18, -107.784 )
 
 [node name="Room21" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, 95.8084 )
+position = Vector2( 431.137, 287.425 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
 polygon = PoolVector2Array( -622.755, -191.617, -586.826, -191.617, -574.85, -203.593, -574.85, -227.545, -586.826, -239.521, -622.755, -239.521 )
-width = 5.0
 
 [node name="RoomLine" parent="Room21" instance=ExtResource( 2 )]
 points = PoolVector2Array( -574.85, -203.593, -586.826, -191.617, -622.755, -191.617, -622.755, -203.593 )
@@ -382,10 +361,9 @@ points = PoolVector2Array( -574.85, -203.593, -586.826, -191.617, -622.755, -191
 points = PoolVector2Array( -574.85, -227.545, -586.826, -239.521, -622.755, -239.521, -622.755, -227.545 )
 
 [node name="Room22" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -143.713, -143.713, -95.8084, -143.713, -95.8084, -191.617, 0, -191.617, 0, -239.521, -143.713, -239.521 )
-width = 5.0
 
 [node name="RoomLine" parent="Room22" instance=ExtResource( 2 )]
 points = PoolVector2Array( -143.713, -179.641, -143.713, -203.593 )
@@ -406,10 +384,9 @@ points = PoolVector2Array( -107.784, -239.521, -1.14441e-05, -239.521, -1.14441e
 points = PoolVector2Array( -107.784, -143.713, -95.8084, -143.713, -95.8084, -155.689 )
 
 [node name="Room23" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -95.8084, -191.617, -95.8084, -95.8084, 47.9042, -95.8084, 47.9042, -143.713, -47.9042, -143.713, -47.9042, -191.617 )
-width = 5.0
 
 [node name="RoomLine" parent="Room23" instance=ExtResource( 2 )]
 points = PoolVector2Array( -95.8084, -155.689, -95.8084, -131.737 )
@@ -421,37 +398,33 @@ points = PoolVector2Array( -95.8084, -107.784, -95.8084, -95.8084, 47.9042, -95.
 points = PoolVector2Array( 47.9042, -131.737, 47.9042, -143.713, -47.9042, -143.713, -47.9042, -191.617 )
 
 [node name="Room24" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( 47.9042, -143.713, 47.9042, -95.8084, 95.8084, -95.8084, 95.8084, -143.713 )
-width = 5.0
 
 [node name="RoomLine" parent="Room24" instance=ExtResource( 2 )]
 points = PoolVector2Array( 47.9042, -131.737, 47.9042, -143.713, 95.8084, -143.713, 95.8084, -95.8084, 47.9042, -95.8084, 47.9042, -107.784 )
 
 [node name="Room25" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( -95.8084, -143.713, -95.8084, -95.8084, -131.737, -95.8084, -143.713, -107.784, -143.713, -131.737, -131.737, -143.713 )
-width = 5.0
 
 [node name="RoomLine" parent="Room25" instance=ExtResource( 2 )]
 points = PoolVector2Array( -131.737, -143.713, -143.713, -131.737, -143.713, -107.784, -131.737, -95.8084, -95.8084, -95.8084, -95.8084, -107.784 )
 
 [node name="Room26" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
 polygon = PoolVector2Array( 0, -239.521, 47.9042, -239.521, 47.9042, -191.617, 0, -191.617 )
-width = 5.0
 
 [node name="RoomLine" parent="Room26" instance=ExtResource( 2 )]
 points = PoolVector2Array( -1.14441e-05, -203.593, -1.14441e-05, -191.617, 47.9042, -191.617, 47.9042, -239.521, -1.14441e-05, -239.521, -1.14441e-05, -227.545 )
 
 [node name="Room27" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -143.713, -191.617, -143.713, -287.425, -191.617, -287.425, -191.617, -191.617 )
-width = 5.0
 
 [node name="RoomLine" parent="Room27" instance=ExtResource( 2 )]
 points = PoolVector2Array( -143.713, -227.545, -143.713, -287.425, -191.617, -287.425, -191.617, -275.449 )
@@ -460,10 +433,9 @@ points = PoolVector2Array( -143.713, -227.545, -143.713, -287.425, -191.617, -28
 points = PoolVector2Array( -191.617, -251.497, -191.617, -191.617, -143.713, -191.617, -143.713, -203.593 )
 
 [node name="Room28" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -191.617, -239.521, -191.617, -383.234, -239.521, -383.234, -239.521, -239.521, -191.617, -239.521 )
-width = 5.0
 
 [node name="RoomLine" parent="Room28" instance=ExtResource( 2 )]
 points = PoolVector2Array( -191.617, -251.497, -191.617, -239.521, -239.521, -239.521, -239.521, -251.497 )
@@ -475,10 +447,9 @@ points = PoolVector2Array( -239.521, -275.449, -239.521, -383.234, -191.617, -38
 points = PoolVector2Array( -191.617, -347.305, -191.617, -275.449 )
 
 [node name="Room29" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -191.617, -383.234, -47.9042, -383.234, -47.9042, -287.425, -191.617, -287.425 )
-width = 5.0
 
 [node name="RoomLine" parent="Room29" instance=ExtResource( 2 )]
 points = PoolVector2Array( -191.617, -371.258, -191.617, -383.234, -131.737, -383.234 )
@@ -490,19 +461,17 @@ points = PoolVector2Array( -107.784, -383.234, -47.9042, -383.234, -47.9042, -28
 points = PoolVector2Array( -83.8324, -287.425, -143.713, -287.425 )
 
 [node name="Room30" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.164706, 0.388235, 0.270588, 1 )
 polygon = PoolVector2Array( -47.9042, -287.425, -143.713, -287.425, -143.713, -239.521, -47.9042, -239.521 )
-width = 5.0
 
 [node name="RoomLine" parent="Room30" instance=ExtResource( 2 )]
 points = PoolVector2Array( -47.9042, -287.425, -47.9042, -239.521 )
 
 [node name="Room32" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.164706, 0.388235, 0.270588, 1 )
 polygon = PoolVector2Array( -239.521, -191.617, -239.521, -95.8084, -191.617, -47.9042, -143.713, -47.9042, -143.713, -191.617 )
-width = 5.0
 
 [node name="RoomLine" parent="Room32" instance=ExtResource( 2 )]
 points = PoolVector2Array( -143.713, -179.641, -143.713, -191.617, -239.521, -191.617, -239.521, -179.641 )
@@ -514,10 +483,9 @@ points = PoolVector2Array( -239.521, -155.689, -239.521, -95.8084, -191.617, -47
 points = PoolVector2Array( -143.713, -47.9042, -143.713, -155.689 )
 
 [node name="Room33" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -239.521, -287.425, -383.234, -287.425, -383.234, -239.521, -479.042, -239.521, -479.042, -191.617, -239.521, -191.617, -239.521, -239.17 )
-width = 5.0
 
 [node name="RoomLine" parent="Room33" instance=ExtResource( 2 )]
 points = PoolVector2Array( -239.521, -251.497, -239.521, -191.617, -479.042, -191.617, -479.042, -203.593 )
@@ -529,10 +497,9 @@ points = PoolVector2Array( -479.042, -227.545, -479.042, -239.521, -383.234, -23
 points = PoolVector2Array( -251.497, -287.425, -239.521, -287.425, -239.521, -275.449 )
 
 [node name="Room34" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -526.946, -335.329, -574.85, -335.329, -718.563, -383.234, -718.563, -431.138, -526.946, -431.138 )
-width = 5.0
 
 [node name="RoomLine" parent="Room34" instance=ExtResource( 2 )]
 points = PoolVector2Array( -526.946, -347.305, -526.946, -335.329, -574.851, -335.329, -718.563, -383.234, -718.563, -431.138, -706.587, -431.138 )
@@ -541,10 +508,9 @@ points = PoolVector2Array( -526.946, -347.305, -526.946, -335.329, -574.851, -33
 points = PoolVector2Array( -682.635, -431.138, -526.946, -431.138, -526.946, -371.258 )
 
 [node name="Room35" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -718.563, -431.138, -718.563, -574.85, -670.659, -574.85, -622.755, -526.946, -622.755, -431.138 )
-width = 5.0
 
 [node name="RoomLine" parent="Room35" instance=ExtResource( 2 )]
 points = PoolVector2Array( -682.635, -431.138, -622.755, -431.138, -622.755, -491.018 )
@@ -559,10 +525,9 @@ points = PoolVector2Array( -718.563, -538.922, -718.563, -467.066 )
 points = PoolVector2Array( -718.563, -443.114, -718.563, -431.138, -706.587, -431.138 )
 
 [node name="Room36" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -622.755, -526.946, -574.85, -526.946, -526.946, -479.042, -526.946, -431.138, -610.779, -431.138, -622.755, -443.114, -622.755, -467.066, -610.779, -479.042, -574.85, -479.042, -622.755, -479.042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room36" instance=ExtResource( 2 )]
 points = PoolVector2Array( -622.755, -514.97, -622.755, -526.946, -574.851, -526.946, -526.946, -479.042, -526.946, -467.066 )
@@ -571,10 +536,9 @@ points = PoolVector2Array( -622.755, -514.97, -622.755, -526.946, -574.851, -526
 points = PoolVector2Array( -526.946, -443.114, -526.946, -431.138, -610.779, -431.138, -622.755, -443.114, -622.755, -467.066, -610.779, -479.042, -574.851, -479.042, -622.755, -479.042 )
 
 [node name="Room37" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -718.563, -479.042, -718.563, -431.138, -814.371, -431.138, -814.371, -526.946, -766.467, -526.946, -766.467, -479.042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room37" instance=ExtResource( 2 )]
 points = PoolVector2Array( -718.563, -467.066, -718.563, -479.042, -766.467, -479.042, -766.467, -526.946, -814.372, -526.946, -814.372, -514.97 )
@@ -583,10 +547,9 @@ points = PoolVector2Array( -718.563, -467.066, -718.563, -479.042, -766.467, -47
 points = PoolVector2Array( -814.372, -491.018, -814.372, -431.138, -718.563, -431.138, -718.563, -443.114 )
 
 [node name="Room38" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -814.371, -479.042, -910.18, -479.042, -910.18, -622.754, -862.275, -622.754, -862.275, -526.946, -814.371, -526.946 )
-width = 5.0
 
 [node name="RoomLine" parent="Room38" instance=ExtResource( 2 )]
 points = PoolVector2Array( -814.372, -491.018, -814.372, -479.042, -910.18, -479.042, -910.18, -491.018 )
@@ -598,10 +561,9 @@ points = PoolVector2Array( -814.372, -514.97, -814.372, -526.946, -862.276, -526
 points = PoolVector2Array( -910.18, -586.826, -910.18, -514.97 )
 
 [node name="Room39" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -910.18, -526.946, -958.084, -526.946, -958.084, -431.138, -910.18, -431.138 )
-width = 5.0
 
 [node name="RoomLine" parent="Room39" instance=ExtResource( 2 )]
 points = PoolVector2Array( -910.18, -491.018, -910.18, -431.138, -958.084, -431.138, -958.084, -491.018 )
@@ -610,10 +572,9 @@ points = PoolVector2Array( -910.18, -491.018, -910.18, -431.138, -958.084, -431.
 points = PoolVector2Array( -910.18, -514.97, -910.18, -526.946, -958.084, -526.946, -958.084, -514.97 )
 
 [node name="Room40" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -958.084, -479.042, -1053.89, -479.042, -1053.89, -574.85, -958.084, -574.85 )
-width = 5.0
 
 [node name="RoomLine" parent="Room40" instance=ExtResource( 2 )]
 points = PoolVector2Array( -958.084, -491.018, -958.084, -479.042, -1053.89, -479.042, -1053.89, -491.018 )
@@ -622,10 +583,9 @@ points = PoolVector2Array( -958.084, -491.018, -958.084, -479.042, -1053.89, -47
 points = PoolVector2Array( -958.084, -514.97, -958.084, -574.85, -1053.89, -574.85, -1053.89, -514.97 )
 
 [node name="Room41" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -1053.89, -526.946, -1053.89, -335.329, -1149.7, -335.329, -1149.7, -526.946 )
-width = 5.0
 
 [node name="RoomLine" parent="Room41" instance=ExtResource( 2 )]
 position = Vector2( -47.9044, -47.9042 )
@@ -641,10 +601,9 @@ points = PoolVector2Array( -1137.72, -526.946, -1149.7, -526.946, -1149.7, -335.
 points = PoolVector2Array( -1053.89, -371.258, -1053.89, -443.114 )
 
 [node name="Room42" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 0 )
+position = Vector2( 479.041, 191.617 )
 color = Color( 0.239216, 0.309804, 0.631373, 1 )
 polygon = PoolVector2Array( -1053.89, -335.329, -1005.99, -335.329, -1005.99, -287.425, -958.084, -143.713, -958.084, -95.8084, -1005.99, -95.8084, -1005.99, -143.713, -1053.89, -287.425 )
-width = 5.0
 
 [node name="RoomLine" parent="Room42" instance=ExtResource( 2 )]
 points = PoolVector2Array( -1053.89, -323.353, -1053.89, -335.329, -1005.99, -335.329, -1005.99, -287.425, -958.084, -143.713, -958.084, -131.737 )
@@ -653,19 +612,17 @@ points = PoolVector2Array( -1053.89, -323.353, -1053.89, -335.329, -1005.99, -33
 points = PoolVector2Array( -958.084, -107.784, -958.084, -95.8084, -1005.99, -95.8084, -1005.99, -143.713, -1053.89, -287.425, -1053.89, -299.401 )
 
 [node name="Room43" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -1053.89, -479.042, -1053.89, -431.138, -1017.96, -431.138, -1005.99, -443.114, -1005.99, -467.066, -1017.96, -479.042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room43" instance=ExtResource( 2 )]
 points = PoolVector2Array( -1053.89, -467.066, -1053.89, -479.042, -1017.96, -479.042, -1005.99, -467.066, -1005.99, -443.114, -1017.96, -431.138, -1053.89, -431.138, -1053.89, -443.114 )
 
 [node name="Room44" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -910.18, -574.85, -1005.99, -574.85, -1005.99, -622.755, -910.18, -622.754 )
-width = 5.0
 
 [node name="RoomLine" parent="Room44" instance=ExtResource( 2 )]
 points = PoolVector2Array( -910.18, -586.826, -910.18, -574.85, -1005.99, -574.85, -1005.99, -586.826 )
@@ -674,10 +631,9 @@ points = PoolVector2Array( -910.18, -586.826, -910.18, -574.85, -1005.99, -574.8
 points = PoolVector2Array( -910.18, -610.778, -910.18, -622.755, -1005.99, -622.755, -1005.99, -610.778 )
 
 [node name="Room45" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -1005.99, -622.754, -1053.89, -622.754, -1053.89, -670.659, -1101.8, -670.659, -1101.8, -574.85, -1005.99, -574.85 )
-width = 5.0
 
 [node name="RoomLine" parent="Room45" instance=ExtResource( 2 )]
 points = PoolVector2Array( -1005.99, -610.778, -1005.99, -622.755, -1053.89, -622.755, -1053.89, -634.731 )
@@ -686,10 +642,9 @@ points = PoolVector2Array( -1005.99, -610.778, -1005.99, -622.755, -1053.89, -62
 points = PoolVector2Array( -1053.89, -658.683, -1053.89, -670.659, -1101.8, -670.659, -1101.8, -574.85, -1005.99, -574.85, -1005.99, -586.826 )
 
 [node name="Room46" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9044, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -1053.89, -622.754, -1005.99, -622.754, -1005.99, -718.563, -1149.7, -718.563, -1149.7, -526.946, -1101.8, -526.946, -1101.8, -670.659, -1053.89, -670.659 )
-width = 5.0
 
 [node name="RoomLine" parent="Room46" instance=ExtResource( 2 )]
 points = PoolVector2Array( -1005.99, -622.755, -1005.99, -718.563, -1149.7, -718.563, -1149.7, -526.946, -1137.72, -526.946 )
@@ -699,10 +654,9 @@ position = Vector2( -47.9044, -47.9042 )
 points = PoolVector2Array( -1065.87, -479.042, -1053.89, -479.042, -1053.89, -526.946 )
 
 [node name="Room47" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -479.042, -431.138, -287.425, -431.138, -287.425, -479.042, -431.138, -526.946, -479.042, -526.946 )
-width = 5.0
 
 [node name="RoomLine" parent="Room47" instance=ExtResource( 2 )]
 points = PoolVector2Array( -479.042, -514.97, -479.042, -526.946, -431.138, -526.946, -287.425, -479.042, -287.425, -467.066 )
@@ -712,10 +666,9 @@ position = Vector2( -47.9042, -47.9042 )
 points = PoolVector2Array( -239.521, -395.21, -239.521, -383.234, -431.138, -383.234, -431.138, -443.114 )
 
 [node name="Room48" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -287.425, -335.329, -287.425, -526.946, -191.617, -526.946, -191.617, -479.042, -239.521, -479.042, -239.521, -335.329 )
-width = 5.0
 
 [node name="RoomLine" parent="Room48" instance=ExtResource( 2 )]
 points = PoolVector2Array( -275.449, -335.329, -287.425, -335.329, -287.425, -443.114 )
@@ -727,10 +680,9 @@ points = PoolVector2Array( -287.425, -467.066, -287.425, -526.946, -191.617, -52
 points = PoolVector2Array( -191.617, -491.018, -191.617, -479.042, -239.521, -479.042, -239.521, -335.329, -251.497, -335.329 )
 
 [node name="Room49" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -191.617, -479.042, -191.617, -526.946, -143.713, -526.946, -143.713, -574.85, -95.8084, -574.85, -95.8084, -431.138, -143.713, -431.138, -143.713, -479.042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room49" instance=ExtResource( 2 )]
 points = PoolVector2Array( -191.617, -491.018, -191.617, -479.042, -143.713, -479.042, -143.713, -431.138, -131.737, -431.138 )
@@ -745,19 +697,17 @@ points = PoolVector2Array( -95.8084, -514.97, -95.8084, -574.85, -107.784, -574.
 points = PoolVector2Array( -131.737, -574.85, -143.713, -574.85, -143.713, -526.946, -191.617, -526.946, -191.617, -514.97 )
 
 [node name="Room50" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -95.8084, -526.946, -95.8084, -431.138, -1.52588e-05, -431.138, -1.52588e-05, -479.042, 47.9042, -479.042, 47.9042, -526.946 )
-width = 5.0
 
 [node name="RoomLine" parent="Room50" instance=ExtResource( 2 )]
 points = PoolVector2Array( -95.8084, -514.97, -95.8084, -526.946, 47.9042, -526.946, 47.9042, -479.042, -1.14441e-05, -479.042, -1.14441e-05, -431.138, -95.8084, -431.138, -95.8084, -491.018 )
 
 [node name="Room51" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -95.8084, -574.85, -95.8084, -622.754, -239.521, -622.754, -287.425, -574.85, -335.329, -574.85, -335.329, -526.946, -239.521, -526.946, -191.617, -574.85 )
-width = 5.0
 
 [node name="RoomLine" parent="Room51" instance=ExtResource( 2 )]
 points = PoolVector2Array( -107.784, -574.85, -95.8084, -574.85, -95.8084, -622.755, -239.521, -622.755, -287.425, -574.85, -335.329, -574.85, -335.329, -562.874 )
@@ -766,37 +716,33 @@ points = PoolVector2Array( -107.784, -574.85, -95.8084, -574.85, -95.8084, -622.
 points = PoolVector2Array( -335.329, -538.922, -335.329, -526.946, -239.521, -526.946, -191.617, -574.85, -131.737, -574.85 )
 
 [node name="Room52" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -335.329, -526.946, -383.234, -526.946, -431.138, -574.85, -526.946, -574.85, -526.946, -622.755, -335.329, -622.754 )
-width = 5.0
 
 [node name="RoomLine" parent="Room52" instance=ExtResource( 2 )]
 points = PoolVector2Array( -335.329, -538.922, -335.329, -526.946, -383.234, -526.946, -431.138, -574.85, -526.946, -574.85, -526.946, -622.755, -335.329, -622.755, -335.329, -562.874 )
 
 [node name="Room53" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.239216, 0.309804, 0.631373, 1 )
 polygon = PoolVector2Array( -670.659, -191.617, -670.659, -287.425, -526.946, -287.425, -526.946, -239.521, -622.755, -239.521, -622.755, -191.617 )
-width = 5.0
 
 [node name="RoomLine" parent="Room53" instance=ExtResource( 2 )]
 points = PoolVector2Array( -670.659, -191.617, -622.755, -191.617, -622.755, -239.521, -526.946, -239.521, -526.946, -287.425, -670.659, -287.425, -670.659, -191.617 )
 
 [node name="Room54" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
 polygon = PoolVector2Array( -766.467, -526.946, -718.563, -526.946, -718.563, -622.755, -862.276, -622.755, -862.276, -574.85, -766.467, -574.85 )
-width = 5.0
 
 [node name="RoomLine" parent="Room54" instance=ExtResource( 2 )]
 points = PoolVector2Array( -718.563, -562.874, -718.563, -622.755, -862.276, -622.755, -862.276, -574.85, -766.467, -574.85, -766.467, -526.946, -718.563, -526.946, -718.563, -538.922 )
 
 [node name="Room55" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.164706, 0.388235, 0.270588, 1 )
 polygon = PoolVector2Array( -287.425, -47.9042, -335.329, -47.9042, -335.329, 47.9042, -239.521, 47.9042, -239.521, -1.14441e-05, -287.425, -1.14441e-05 )
-width = 5.0
 
 [node name="RoomLine" parent="Room55" instance=ExtResource( 2 )]
 points = PoolVector2Array( -335.329, -11.9761, -335.329, 47.9042, -239.521, 47.9042, -239.521, -1.14441e-05, -251.497, -1.14441e-05 )
@@ -805,10 +751,9 @@ points = PoolVector2Array( -335.329, -11.9761, -335.329, 47.9042, -239.521, 47.9
 points = PoolVector2Array( -275.449, -1.14441e-05, -287.425, -1.14441e-05, -287.425, -47.9042 )
 
 [node name="Room56" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.164706, 0.388235, 0.270588, 1 )
 polygon = PoolVector2Array( -47.9042, -95.8084, -47.9042, -47.9042, 47.9042, -47.9042, 47.9042, -95.8084 )
-width = 5.0
 
 [node name="RoomLine" parent="Room56" instance=ExtResource( 2 )]
 points = PoolVector2Array( -47.9042, -47.9042, 47.9042, -47.9042, 47.9042, -59.8803 )
@@ -817,19 +762,17 @@ points = PoolVector2Array( -47.9042, -47.9042, 47.9042, -47.9042, 47.9042, -59.8
 points = PoolVector2Array( 47.9042, -83.8324, 47.9042, -95.8084, -47.9042, -95.8084 )
 
 [node name="Room59" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.164706, 0.388235, 0.270588, 1 )
 polygon = PoolVector2Array( -287.425, -47.9042, -287.425, -1.14441e-05, -239.521, -1.14441e-05, -239.521, -47.9042 )
-width = 5.0
 
 [node name="RoomLine" parent="Room59" instance=ExtResource( 2 )]
 points = PoolVector2Array( -239.521, -1.14441e-05, -239.521, -47.9042 )
 
 [node name="Room60" parent="." instance=ExtResource( 1 )]
-position = Vector2( 47.9042, 47.9042 )
+position = Vector2( 479.041, 239.521 )
 color = Color( 0.164706, 0.388235, 0.270588, 1 )
 polygon = PoolVector2Array( 47.9042, -47.9042, 143.713, -47.9042, 191.617, -95.8084, 335.329, -95.8084, 335.329, -143.713, 191.617, -143.713, 47.9042, -143.713 )
-width = 5.0
 
 [node name="RoomLine" parent="Room60" instance=ExtResource( 2 )]
 points = PoolVector2Array( 47.9042, -47.9042, 143.713, -47.9042, 191.617, -95.8084, 335.329, -95.8084 )
