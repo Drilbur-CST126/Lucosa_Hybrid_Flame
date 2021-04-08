@@ -168,6 +168,7 @@ func save(room_filename: String):
 		"attackDmg": playerAttackDmg,
 		"maxCharges": maxCharges,
 		"foresight": playerForesight,
+		"roomsVisited": roomsVisited,
 	}
 	
 	var file = File.new()
@@ -196,6 +197,7 @@ func save_reload(room_filename: String):
 		"attackDmg": playerAttackDmg,
 		"maxCharges": maxCharges,
 		"foresight": playerForesight,
+		"roomsVisited": roomsVisited,
 	}
 	
 	var file = File.new()
@@ -227,6 +229,7 @@ func load_file(filename: String):
 			self.maxCharges = int(max(maxCharges, data["maxCharges"]))
 			self.charges = maxCharges
 			self.playerForesight = int(max(playerForesight, data["foresight"]))
+			self.roomsVisited += data["roomsVisited"]
 			
 			self.lastRoomId = "Savepoint"
 			self.transDirection = Direction.Fade

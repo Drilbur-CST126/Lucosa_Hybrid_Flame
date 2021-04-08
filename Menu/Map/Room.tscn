@@ -4,3 +4,4 @@
 
 [node name="Room" type="Polygon2D"]
 script = ExtResource( 1 )
+glowColor = Color( 0.81, 0.6696, 0.2835, 1 )
