@@ -11,7 +11,7 @@
 [ext_resource path="res://Enemies/WaterLucosa/WaterLucosa.tscn" type="PackedScene" id=9]
 
 [sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
+script/source = "extends GameRoom
 
 
 # Declare member variables here. Examples:
@@ -64,6 +64,7 @@ extents = Vector2( 200, 40 )
 
 [node name="TSplitRoom" type="Node2D"]
 script = SubResource( 1 )
+mapId = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -640.0

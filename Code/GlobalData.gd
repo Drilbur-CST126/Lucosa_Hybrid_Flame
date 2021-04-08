@@ -26,7 +26,7 @@ var lastRoomId: String
 var camera: DynamicCamera
 var player: Node2D
 var curRoom := 1
-var roomsVisited := [1, 2, 3, 4, 5]
+var roomsVisited := []
 var oldCameraLimits = null
 var transDirection = null
 var random := RandomNumberGenerator.new()
