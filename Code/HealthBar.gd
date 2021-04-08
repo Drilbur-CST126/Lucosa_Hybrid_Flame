@@ -21,6 +21,7 @@ const NEXT_HEART_OFFSET := 90
 # var b = "text"
 var curNumHearts := 0
 var firstRun := true
+onready var control := $Control
 
 var adjustHealthMutex := Mutex.new()
 

@@ -1,8 +1,46 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Menu/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Fonts/Lato12.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Graphics/Fonts/LatoItalic12.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Code/StageAssets/Upgrade/LifeRing.tres" type="Texture" id=4]
+[ext_resource path="res://Code/StageAssets/Upgrade/Rune.tres" type="Texture" id=5]
+[ext_resource path="res://Code/StageAssets/Upgrade/ForesightOrb.tres" type="Texture" id=6]
+[ext_resource path="res://Code/Polish/ControlButtonPopup.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Close"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="PauseMenu" type="ColorRect"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.376471 )
@@ -11,12 +49,165 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchor_left = 0.1
 anchor_top = 0.1
-anchor_right = 0.9
+anchor_right = 0.8
 anchor_bottom = 0.9
 color = Color( 0.45098, 0.176471, 0.176471, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Abilities" type="Control" parent="Background"]
+anchor_right = 0.6
+anchor_bottom = 0.7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Upgrades" type="VBoxContainer" parent="Background"]
+anchor_left = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.7
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LifeRings" type="HBoxContainer" parent="Background/Upgrades"]
+margin_top = 98.0
+margin_right = 358.0
+margin_bottom = 164.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/Upgrades/LifeRings"]
+margin_left = 124.0
+margin_right = 174.0
+margin_bottom = 66.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Background/Upgrades/LifeRings"]
+margin_left = 178.0
+margin_right = 234.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 3 )
+text = "x0"
+
+[node name="Runes" type="HBoxContainer" parent="Background/Upgrades"]
+margin_top = 168.0
+margin_right = 358.0
+margin_bottom = 234.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/Upgrades/Runes"]
+margin_left = 124.0
+margin_right = 174.0
+margin_bottom = 66.0
+texture = ExtResource( 5 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Background/Upgrades/Runes"]
+margin_left = 178.0
+margin_right = 234.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 3 )
+text = "x0"
+
+[node name="PowerOrbs" type="HBoxContainer" parent="Background/Upgrades"]
+margin_top = 238.0
+margin_right = 358.0
+margin_bottom = 304.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/Upgrades/PowerOrbs"]
+margin_left = 124.0
+margin_right = 174.0
+margin_bottom = 66.0
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Background/Upgrades/PowerOrbs"]
+margin_left = 178.0
+margin_right = 234.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 3 )
+text = "x0"
+
+[node name="Options" type="Control" parent="Background"]
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Quit" type="Button" parent="Background/Options"]
+anchor_right = 0.5
+anchor_bottom = 0.5
+focus_neighbour_right = NodePath("../Options")
+focus_neighbour_bottom = NodePath("../Resume")
+focus_next = NodePath("../Options")
+custom_fonts/font = ExtResource( 2 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Button" parent="Background/Options"]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+focus_neighbour_left = NodePath("../Quit")
+focus_neighbour_right = NodePath("../../../MapRect/Button")
+focus_neighbour_bottom = NodePath("../Resume")
+focus_next = NodePath("../Resume")
+focus_previous = NodePath("../Quit")
+custom_fonts/font = ExtResource( 2 )
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="Background/Options"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_neighbour_left = NodePath("../Options")
+focus_neighbour_top = NodePath("../Options")
+focus_neighbour_right = NodePath("../../../MapRect/Button")
+focus_next = NodePath("../../../MapRect/Button")
+focus_previous = NodePath("../Options")
+custom_fonts/font = ExtResource( 2 )
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Open"
+anims/Close = SubResource( 3 )
+anims/Open = SubResource( 2 )
+
+[node name="MapRect" type="ColorRect" parent="."]
+anchor_left = 0.8
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+color = Color( 0.309804, 0.113725, 0.14902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="MapRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Map"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlButtonPopup" parent="MapRect" instance=ExtResource( 7 )]
+anchor_top = 0.25
+curButton = 4
+buttonScale = Vector2( 0.66, 0.66 )

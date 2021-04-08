@@ -413,6 +413,9 @@ func _ready():
 func _process(_delta: float):
 	if Input.is_action_just_pressed("spell"):
 		GlobalData.chargeEnabled = !GlobalData.chargeEnabled
+		
+	if Input.is_action_just_pressed("menu"):
+		hud.control.add_child(PauseMenu.instance())
 	
 func _physics_process(delta: float):
 	if !is_stun_state():
