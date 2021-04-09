@@ -791,3 +791,12 @@ margin_bottom = -120.0
 rect_rotation = 90.0
 topColor = Color( 0.164706, 0.388235, 0.270588, 0 )
 bottomColor = Color( 0.164706, 0.388235, 0.270588, 1 )
+
+[node name="Size" type="Control" parent="."]
+margin_left = -677.0
+margin_top = -485.0
+margin_right = 814.0
+margin_bottom = 341.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

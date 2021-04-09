@@ -107,26 +107,27 @@ func _physics_process(delta):
 	var targetPos = get_target_pos()
 	
 	var yOffset := 0.0
-	match adjust:
-		Adjust.Default:
-			if Input.is_action_pressed("ui_up"):
-				adjust = Adjust.Up
-				$CameraAdjustTimer.start()
-			elif Input.is_action_pressed("ui_down"):
-				adjust = Adjust.Down
-				$CameraAdjustTimer.start()
-		Adjust.Up:
-			if Input.is_action_just_released("ui_up"):
-				adjust = Adjust.Default
-				$CameraAdjustTimer.stop()
-			elif $CameraAdjustTimer.time_left == 0.0:
-				yOffset -= kAdjustAmount
-		Adjust.Down:
-			if Input.is_action_just_released("ui_down"):
-				adjust = Adjust.Default
-				$CameraAdjustTimer.stop()
-			elif $CameraAdjustTimer.time_left == 0.0:
-				yOffset += kAdjustAmount
+	if !get_tree().paused:
+		match adjust:
+			Adjust.Default:
+				if Input.is_action_pressed("ui_up"):
+					adjust = Adjust.Up
+					$CameraAdjustTimer.start()
+				elif Input.is_action_pressed("ui_down"):
+					adjust = Adjust.Down
+					$CameraAdjustTimer.start()
+			Adjust.Up:
+				if Input.is_action_just_released("ui_up"):
+					adjust = Adjust.Default
+					$CameraAdjustTimer.stop()
+				elif $CameraAdjustTimer.time_left == 0.0:
+					yOffset -= kAdjustAmount
+			Adjust.Down:
+				if Input.is_action_just_released("ui_down"):
+					adjust = Adjust.Default
+					$CameraAdjustTimer.stop()
+				elif $CameraAdjustTimer.time_left == 0.0:
+					yOffset += kAdjustAmount
 					
 	if !Engine.editor_hint:
 		if curLock == Lock.CtrLeft:
