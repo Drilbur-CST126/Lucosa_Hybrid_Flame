@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Menu/Map/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Menu/Map/RoomLine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Code/Polish/Gradient.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Menu/Map/Map.gd" type="Script" id=4]
+[ext_resource path="res://Menu/Map/Campfire.tres" type="Texture" id=5]
+[ext_resource path="res://Menu/Map/TransformArea.tres" type="Texture" id=6]
+[ext_resource path="res://Menu/Map/Minecart.tres" type="Texture" id=7]
+[ext_resource path="res://Menu/Map/Ability.tres" type="Texture" id=8]
 
 [node name="Map" type="Node2D"]
 scale = Vector2( 0.167, 0.167 )
@@ -79,6 +83,16 @@ points = PoolVector2Array( -221.557, 5.98803, -221.557, 17.9641, -269.461, 17.96
 [node name="RoomLine4" parent="Room5" instance=ExtResource( 2 )]
 position = Vector2( -113.773, -17.9641 )
 points = PoolVector2Array( -269.461, -17.9641, -269.461, -89.8204 )
+
+[node name="Campfire" type="Sprite" parent="Room5"]
+position = Vector2( -311.377, -167.665 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TransformArea" type="Sprite" parent="Room5"]
+position = Vector2( -359.281, -23.9523 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 6 )
 
 [node name="Room6" parent="." instance=ExtResource( 1 )]
 position = Vector2( 383.233, 191.617 )
@@ -229,6 +243,11 @@ points = PoolVector2Array( -514.97, -47.9042, -574.85, -47.9042, -574.85, -35.92
 [node name="RoomLine4" parent="Room11" instance=ExtResource( 2 )]
 points = PoolVector2Array( -574.85, -11.976, -574.85, 0, -526.946, 0, -574.85, 0, -574.85, 47.9042, -562.874, 47.9042 )
 
+[node name="Campfire" type="Sprite" parent="Room11"]
+position = Vector2( -550.898, -23.9523 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
 [node name="Room12" parent="." instance=ExtResource( 1 )]
 position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
@@ -268,6 +287,11 @@ polygon = PoolVector2Array( -670.659, 143.713, -766.467, 143.713, -766.467, 47.9
 [node name="RoomLine" parent="Room14" instance=ExtResource( 2 )]
 points = PoolVector2Array( -670.659, 143.713, -766.467, 143.713, -766.467, 47.9042, -670.659, 47.9042 )
 
+[node name="Ability" type="Sprite" parent="Room14"]
+position = Vector2( -742.514, 119.76 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 8 )
+
 [node name="Room15" parent="." instance=ExtResource( 1 )]
 position = Vector2( 431.137, 191.617 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
@@ -281,6 +305,11 @@ points = PoolVector2Array( -574.85, -131.737, -574.85, -143.713, -479.042, -143.
 
 [node name="RoomLine3" parent="Room15" instance=ExtResource( 2 )]
 points = PoolVector2Array( -479.042, -107.784, -479.042, -47.9042, -491.018, -47.9042 )
+
+[node name="TransformArea" type="Sprite" parent="Room15"]
+position = Vector2( -502.993, -119.761 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 6 )
 
 [node name="Room16" parent="." instance=ExtResource( 1 )]
 position = Vector2( 431.137, 191.617 )
@@ -344,6 +373,16 @@ points = PoolVector2Array( -718.563, -131.737, -718.563, -143.713, -862.276, -14
 [node name="RoomLine4" parent="Room19" instance=ExtResource( 2 )]
 points = PoolVector2Array( -910.18, -107.784, -910.18, -95.8084, -718.563, -95.8084, -718.563, -107.784 )
 
+[node name="Campfire" type="Sprite" parent="Room19"]
+position = Vector2( -886.227, -167.664 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TransformArea" type="Sprite" parent="Room19"]
+position = Vector2( -934.131, -167.664 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 6 )
+
 [node name="Room20" parent="." instance=ExtResource( 1 )]
 position = Vector2( 431.137, 287.425 )
 color = Color( 0.2394, 0.31101, 0.63, 1 )
@@ -351,6 +390,11 @@ polygon = PoolVector2Array( -910.18, -143.713, -910.18, 0, -958.084, 0, -958.084
 
 [node name="RoomLine" parent="Room20" instance=ExtResource( 2 )]
 points = PoolVector2Array( -910.18, -131.737, -910.18, -143.713, -958.084, -143.713, -958.084, -2.28882e-05, -910.18, -2.28882e-05, -910.18, -107.784 )
+
+[node name="Ability" type="Sprite" parent="Room20"]
+position = Vector2( -934.131, -23.952 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 8 )
 
 [node name="Room21" parent="." instance=ExtResource( 1 )]
 position = Vector2( 431.137, 287.425 )
@@ -362,6 +406,12 @@ points = PoolVector2Array( -574.85, -203.593, -586.826, -191.617, -622.755, -191
 
 [node name="RoomLine2" parent="Room21" instance=ExtResource( 2 )]
 points = PoolVector2Array( -574.85, -227.545, -586.826, -239.521, -622.755, -239.521, -622.755, -227.545 )
+
+[node name="Minecart" type="Sprite" parent="Room21"]
+position = Vector2( -598.801, -215.569 )
+scale = Vector2( 0.75, 0.75 )
+z_index = 5
+texture = ExtResource( 7 )
 
 [node name="Room22" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 191.617 )
@@ -386,6 +436,11 @@ points = PoolVector2Array( -107.784, -239.521, -1.14441e-05, -239.521, -1.14441e
 [node name="RoomLine6" parent="Room22" instance=ExtResource( 2 )]
 points = PoolVector2Array( -107.784, -143.713, -95.8084, -143.713, -95.8084, -155.689 )
 
+[node name="Campfire" type="Sprite" parent="Room22"]
+position = Vector2( -23.9511, -215.569 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
 [node name="Room23" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
@@ -408,6 +463,11 @@ polygon = PoolVector2Array( 47.9042, -143.713, 47.9042, -95.8084, 95.8084, -95.8
 [node name="RoomLine" parent="Room24" instance=ExtResource( 2 )]
 points = PoolVector2Array( 47.9042, -131.737, 47.9042, -143.713, 95.8084, -143.713, 95.8084, -95.8084, 47.9042, -95.8084, 47.9042, -107.784 )
 
+[node name="Ability" type="Sprite" parent="Room24"]
+position = Vector2( 71.8573, -119.761 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 8 )
+
 [node name="Room25" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
@@ -416,6 +476,18 @@ polygon = PoolVector2Array( -95.8084, -143.713, -95.8084, -95.8084, -131.737, -9
 [node name="RoomLine" parent="Room25" instance=ExtResource( 2 )]
 points = PoolVector2Array( -131.737, -143.713, -143.713, -131.737, -143.713, -107.784, -131.737, -95.8084, -95.8084, -95.8084, -95.8084, -107.784 )
 
+[node name="Campfire" type="Sprite" parent="Room25"]
+position = Vector2( -107.784, -131.737 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 5
+texture = ExtResource( 5 )
+
+[node name="Minecart" type="Sprite" parent="Room25"]
+position = Vector2( -131.735, -107.785 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 4
+texture = ExtResource( 7 )
+
 [node name="Room26" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 191.617 )
 color = Color( 0.1677, 0.39, 0.27144, 1 )
@@ -423,6 +495,11 @@ polygon = PoolVector2Array( 0, -239.521, 47.9042, -239.521, 47.9042, -191.617, 0
 
 [node name="RoomLine" parent="Room26" instance=ExtResource( 2 )]
 points = PoolVector2Array( -1.14441e-05, -203.593, -1.14441e-05, -191.617, 47.9042, -191.617, 47.9042, -239.521, -1.14441e-05, -239.521, -1.14441e-05, -227.545 )
+
+[node name="Ability" type="Sprite" parent="Room26"]
+position = Vector2( 23.9531, -215.569 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 8 )
 
 [node name="Room27" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 191.617 )
@@ -462,6 +539,11 @@ points = PoolVector2Array( -107.784, -383.234, -47.9042, -383.234, -47.9042, -28
 
 [node name="RoomLine3" parent="Room29" instance=ExtResource( 2 )]
 points = PoolVector2Array( -83.8324, -287.425, -143.713, -287.425 )
+
+[node name="TransformArea" type="Sprite" parent="Room29"]
+position = Vector2( -119.76, -311.377 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 6 )
 
 [node name="Room30" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 191.617 )
@@ -527,6 +609,16 @@ points = PoolVector2Array( -718.563, -538.922, -718.563, -467.066 )
 [node name="RoomLine4" parent="Room35" instance=ExtResource( 2 )]
 points = PoolVector2Array( -718.563, -443.114, -718.563, -431.138, -706.587, -431.138 )
 
+[node name="Campfire" type="Sprite" parent="Room35"]
+position = Vector2( -646.706, -455.09 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TransformArea" type="Sprite" parent="Room35"]
+position = Vector2( -694.61, -455.09 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 6 )
+
 [node name="Room36" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
@@ -537,6 +629,11 @@ points = PoolVector2Array( -622.755, -514.97, -622.755, -526.946, -574.851, -526
 
 [node name="RoomLine2" parent="Room36" instance=ExtResource( 2 )]
 points = PoolVector2Array( -526.946, -443.114, -526.946, -431.138, -610.779, -431.138, -622.755, -443.114, -622.755, -467.066, -610.779, -479.042, -574.851, -479.042, -622.755, -479.042 )
+
+[node name="Minecart" type="Sprite" parent="Room36"]
+position = Vector2( -598.801, -455.09 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 7 )
 
 [node name="Room37" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )
@@ -562,6 +659,11 @@ points = PoolVector2Array( -814.372, -514.97, -814.372, -526.946, -862.276, -526
 
 [node name="RoomLine3" parent="Room38" instance=ExtResource( 2 )]
 points = PoolVector2Array( -910.18, -586.826, -910.18, -514.97 )
+
+[node name="Campfire" type="Sprite" parent="Room38"]
+position = Vector2( -886.227, -598.802 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
 
 [node name="Room39" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )
@@ -622,6 +724,11 @@ polygon = PoolVector2Array( -1053.89, -479.042, -1053.89, -431.138, -1017.96, -4
 [node name="RoomLine" parent="Room43" instance=ExtResource( 2 )]
 points = PoolVector2Array( -1053.89, -467.066, -1053.89, -479.042, -1017.96, -479.042, -1005.99, -467.066, -1005.99, -443.114, -1017.96, -431.138, -1053.89, -431.138, -1053.89, -443.114 )
 
+[node name="Minecart" type="Sprite" parent="Room43"]
+position = Vector2( -1029.94, -455.09 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 7 )
+
 [node name="Room44" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
@@ -643,6 +750,11 @@ points = PoolVector2Array( -1005.99, -610.778, -1005.99, -622.755, -1053.89, -62
 
 [node name="RoomLine2" parent="Room45" instance=ExtResource( 2 )]
 points = PoolVector2Array( -1053.89, -658.683, -1053.89, -670.659, -1101.8, -670.659, -1101.8, -574.85, -1005.99, -574.85, -1005.99, -586.826 )
+
+[node name="Ability" type="Sprite" parent="Room45"]
+position = Vector2( -1077.84, -646.706 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 8 )
 
 [node name="Room46" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )
@@ -699,6 +811,11 @@ points = PoolVector2Array( -95.8084, -514.97, -95.8084, -574.85, -107.784, -574.
 [node name="RoomLine4" parent="Room49" instance=ExtResource( 2 )]
 points = PoolVector2Array( -131.737, -574.85, -143.713, -574.85, -143.713, -526.946, -191.617, -526.946, -191.617, -514.97 )
 
+[node name="Campfire" type="Sprite" parent="Room49"]
+position = Vector2( -119.76, -502.994 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
 [node name="Room50" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )
 color = Color( 0.219608, 0.572549, 0.658824, 1 )
@@ -725,6 +842,16 @@ polygon = PoolVector2Array( -335.329, -526.946, -383.234, -526.946, -431.138, -5
 
 [node name="RoomLine" parent="Room52" instance=ExtResource( 2 )]
 points = PoolVector2Array( -335.329, -538.922, -335.329, -526.946, -383.234, -526.946, -431.138, -574.85, -526.946, -574.85, -526.946, -622.755, -335.329, -622.755, -335.329, -562.874 )
+
+[node name="Ability" type="Sprite" parent="Room52/RoomLine"]
+position = Vector2( -502.993, -598.802 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 8 )
+
+[node name="Campfire" type="Sprite" parent="Room52"]
+position = Vector2( -359.281, -550.898 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
 
 [node name="Room53" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )
@@ -764,6 +891,11 @@ points = PoolVector2Array( -47.9042, -47.9042, 47.9042, -47.9042, 47.9042, -59.8
 [node name="RoomLine2" parent="Room56" instance=ExtResource( 2 )]
 points = PoolVector2Array( 47.9042, -83.8324, 47.9042, -95.8084, -47.9042, -95.8084 )
 
+[node name="TransformArea" type="Sprite" parent="Room56"]
+position = Vector2( -23.9511, -71.8563 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 6 )
+
 [node name="Room59" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )
 color = Color( 0.164706, 0.388235, 0.270588, 1 )
@@ -791,12 +923,3 @@ margin_bottom = -120.0
 rect_rotation = 90.0
 topColor = Color( 0.164706, 0.388235, 0.270588, 0 )
 bottomColor = Color( 0.164706, 0.388235, 0.270588, 1 )
-
-[node name="Size" type="Control" parent="."]
-margin_left = -677.0
-margin_top = -485.0
-margin_right = 814.0
-margin_bottom = 341.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
