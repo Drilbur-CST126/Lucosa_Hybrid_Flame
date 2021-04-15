@@ -128,6 +128,8 @@ func _physics_process(delta):
 					$CameraAdjustTimer.stop()
 				elif $CameraAdjustTimer.time_left == 0.0:
 					yOffset += kAdjustAmount
+	else:
+		adjust = Adjust.Default
 					
 	if !Engine.editor_hint:
 		if curLock == Lock.CtrLeft:

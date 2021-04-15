@@ -2,8 +2,9 @@ extends KinematicBody2D
 class_name Ruicosa
 
 const HUD = preload("res://Code/HUD.tscn")
-const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tscn")
-const LucosaHealthScene = preload("res://Code/HealMinigame/LucosaHealthScene.tscn")
+#const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tscn")
+#const LucosaHealthScene = preload("res://Code/HealMinigame/LucosaHealthScene.tscn")
+const MockPlayerScene = preload("res://Code/Cutscenes/MockPlayer.tscn")
 const Enemy = preload("res://Code/Enemy.gd")
 const Fireball = preload("res://Ruicosa/Fireball/Fireball.tscn")
 const PauseMenu = preload("res://Menu/PauseMenu.tscn")
@@ -27,6 +28,7 @@ enum ActionState {
 	MinecartEnter,
 	InMinecart,
 	Stun,
+	InCutscene,
 }
 
 
@@ -92,6 +94,33 @@ func get_class():
 	
 func look_at(pos: Vector2):
 	self.facingRight = pos.x > position.x
+	
+func begin_cutscene():
+	hide()
+	state = ActionState.InCutscene
+	$CollisionShape2D.set_deferred("disabled", true)
+	
+	var mockPlayer = MockPlayerScene.instance()
+	get_parent().call_deferred("add_child", mockPlayer)
+	mockPlayer.kJumpImpulse = jumpImpulse
+	mockPlayer.kWalkSpeed = walkSpeed
+	mockPlayer.kRunSpeed = runSpeed
+	mockPlayer.kAnimOffsets = animOffsets
+	
+	mockPlayer.global_position = global_position
+	mockPlayer.facingRight = facingRight
+	mockPlayer.lucosaForm = lucosaForm
+	return mockPlayer
+	
+func end_cutscene(mockPlayer: Node2D):
+	show()
+	state = ActionState.Normal
+	global_position = mockPlayer.global_position
+	facingRight = mockPlayer.facingRight
+	lucosaForm = mockPlayer.lucosaForm
+	velocity = Vector2.ZERO
+	mockPlayer.queue_free()
+	$CollisionShape2D.set_deferred("disabled", false)
 	
 func knockback(enemy: Enemy, damage := 0):
 	play_anim("Idle", true)
@@ -287,29 +316,29 @@ func fireball():
 		
 		get_parent().add_child_below_node(self, child)
 		
-func begin_heal():
-	if is_on_floor() && !GlobalData.player_at_full_hp() \
-			&& state != ActionState.Healing && GlobalData.playerMana == GlobalData.kMaxMana:
-		state = ActionState.Healing
-		GlobalData.playerMana = 0.0
-		GlobalData.regenMana = false
-		var healScene := LucosaHealthScene.instance() if lucosaForm else RuiruiHealthScene.instance()
-		hud.add_child(healScene)
-		Utility.print_connect_errors(get_path(), [
-			healScene.connect("on_finish", self, "end_heal"),
-			GlobalData.connect("player_hit", self, "interrupt_heal", [healScene])
-		])
-		GlobalData.distributeHpShards = false
-
-func end_heal():
-	state = ActionState.Normal
-	GlobalData.regenMana = true
-	GlobalData.disconnect("player_hit", self, "interrupt_heal")
-	GlobalData.distributeHpShards = true
-		
-func interrupt_heal(_hp: int, healScene):
-	healScene.queue_free()
-	end_heal()
+#func begin_heal():
+#	if is_on_floor() && !GlobalData.player_at_full_hp() \
+#			&& state != ActionState.Healing && GlobalData.playerMana == GlobalData.kMaxMana:
+#		state = ActionState.Healing
+#		GlobalData.playerMana = 0.0
+#		GlobalData.regenMana = false
+#		var healScene := LucosaHealthScene.instance() if lucosaForm else RuiruiHealthScene.instance()
+#		hud.add_child(healScene)
+#		Utility.print_connect_errors(get_path(), [
+#			healScene.connect("on_finish", self, "end_heal"),
+#			GlobalData.connect("player_hit", self, "interrupt_heal", [healScene])
+#		])
+#		GlobalData.distributeHpShards = false
+#
+#func end_heal():
+#	state = ActionState.Normal
+#	GlobalData.regenMana = true
+#	GlobalData.disconnect("player_hit", self, "interrupt_heal")
+#	GlobalData.distributeHpShards = true
+#
+#func interrupt_heal(_hp: int, healScene):
+#	healScene.queue_free()
+#	end_heal()
 		
 func set_can_attack():
 	canAttack = true
@@ -351,7 +380,8 @@ func is_momentum_state() -> bool:
 func is_stun_state() -> bool:
 	return state == ActionState.Healing \
 		|| state == ActionState.InMinecart \
-		|| state == ActionState.Stun
+		|| state == ActionState.Stun \
+		|| state == ActionState.InCutscene
 		
 func is_anim_freeze_state():
 	return state == ActionState.Attacking \

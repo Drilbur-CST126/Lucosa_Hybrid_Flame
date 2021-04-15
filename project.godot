@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Code/Charge.gd"
 }, {
+"base": "Node2D",
+"class": "Cutscene",
+"language": "GDScript",
+"path": "res://Code/Cutscenes/Cutscene.gd"
+}, {
+"base": "Node2D",
+"class": "CutsceneAction",
+"language": "GDScript",
+"path": "res://Code/Cutscenes/CutsceneAction.gd"
+}, {
 "base": "Node",
 "class": "DialogueArray",
 "language": "GDScript",
@@ -53,6 +63,11 @@ _global_script_classes=[ {
 "class": "MapArea",
 "language": "GDScript",
 "path": "res://Code/PlayerAreas/MapArea.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MockPlayer",
+"language": "GDScript",
+"path": "res://Code/Cutscenes/MockPlayer.gd"
 }, {
 "base": "InteractArea",
 "class": "Npc",
@@ -92,6 +107,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ArenaSpawn": "",
 "Charge": "",
+"Cutscene": "",
+"CutsceneAction": "",
 "DialogueArray": "",
 "DynamicCamera": "",
 "EnemyData": "",
@@ -99,6 +116,7 @@ _global_script_class_icons={
 "Hud": "",
 "InteractArea": "",
 "MapArea": "",
+"MockPlayer": "",
 "Npc": "",
 "OutlinePolygon": "",
 "PlayerArea": "",
