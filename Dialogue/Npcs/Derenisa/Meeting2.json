@@ -1,0 +1,65 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "Why, if it isn't my favorite citizen.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Oh! Hello again... you!",
+		},
+		{
+			"type": "Cond",
+			"condition": "lucosaForm",
+			"true":
+			[
+				{
+					"type": "Dialogue",
+					"speaker": "Derenisa",
+					"text": "Lucosa. I have an important question for you.",
+				},
+				{
+					"type": "Dialogue",
+					"speaker": "Derenisa",
+					"text": "I've seen you jump around here, but even with your magic, I find it highly unlikely you were able to get all this way alone. Is there something you aren't telling me?",
+				},
+			],
+			"false":
+			[
+				{
+					"type": "Dialogue",
+					"speaker": "Derenisa",
+					"text": "Little Ruirui. I have an important question for you.",
+				},
+				{
+					"type": "Dialogue",
+					"speaker": "Derenisa",
+					"text": "There are a lot of large boulders on the road up here. I find it highly unlikely you were able to get all this way alone. Is there something you aren't telling me?",
+				},
+			],
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Oh, uh, no. I did it all myself! Why do you ask?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "Hmph. As I thought.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "...If you're looking to get up the waterfall, this is the way to go. My guards and I think the view is spectacular. I implore you to continue. Citizen.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Okay, thanks for the tip...?",
+		},
+	]
+}

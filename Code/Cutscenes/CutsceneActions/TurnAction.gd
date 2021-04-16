@@ -8,9 +8,10 @@ func activate():
 	.activate()
 	match direction:
 		Direction.Left:
-			cutscene.mockPlayer.facingRight = false
+			cutscene.mockPlayer.set_facing_right(false)
 		Direction.Right:
-			cutscene.mockPlayer.facingRight = true
+			cutscene.mockPlayer.set_facing_right(true)
 		Direction.Toggle:
-			cutscene.mockPlayer.facingRight = !cutscene.mockPlayer.facingRight
+			cutscene.mockPlayer.set_facing_right(!cutscene.mockPlayer.facingRight)
+	cutscene.mockPlayer.play_anim("Idle")
 	finish()

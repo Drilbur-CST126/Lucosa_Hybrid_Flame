@@ -18,6 +18,7 @@ var initialized := false
 
 
 signal dialogue_signal(data)
+signal dialogue_finished()
 
 
 func set_cur_dialogue(val):
@@ -95,6 +96,7 @@ func next_text_box():
 		closing = true
 		$AnimationPlayer.play_backwards("Open")
 		yield($AnimationPlayer, "animation_finished")
+		emit_signal("dialogue_finished")
 		queue_free()
 		get_tree().paused = false
 	else:

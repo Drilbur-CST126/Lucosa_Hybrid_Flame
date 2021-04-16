@@ -13,7 +13,7 @@ curve = SubResource( 1 )
 emission_shape = 2
 emission_box_extents = Vector3( 160, 180, 0 )
 flag_disable_z = true
-direction = Vector3( -1, 1, 0 )
+direction = Vector3( 1, 1, 0 )
 spread = 10.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 72.0
@@ -23,6 +23,7 @@ scale = 0.15
 scale_curve = SubResource( 2 )
 
 [node name="Snowfall" type="Particles2D"]
+pause_mode = 2
 amount = 16
 lifetime = 1.36111
 visibility_rect = Rect2( -160, -90, 320, 180 )

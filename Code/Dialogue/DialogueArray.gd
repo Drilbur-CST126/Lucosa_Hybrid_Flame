@@ -28,12 +28,18 @@ class DialogueBranch:
 	var options: Array
 	
 	func _init(script: GDScript, dict: Dictionary, parent):
-		dialogue = Dialogue.new(dict["dialogue"], parent)
 		for i in dict["options"]:
 			options.append(i["text"])
 			var new_path = script.new(i["path"], parent)
 			add_child(new_path)
-		add_child(dialogue)
+		match dict["dialogue"]["type"]:
+			"Dialogue":
+				dialogue = Dialogue.new(dict["dialogue"], parent)
+				add_child(dialogue)
+			"Cond":
+				var dialogueCond := DialogueCond.new(script, dict["dialogue"], parent)
+				dialogue = dialogueCond.get_path().get_first().dialogue
+				add_child(dialogueCond)
 		
 class DialogueCond:
 	extends Node

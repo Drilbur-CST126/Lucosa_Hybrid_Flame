@@ -2,9 +2,24 @@
 	"tree": 
 	[
 		{
-			"type": "Dialogue",
-			"speaker": "???",
-			"text": "Little Ruirui. May I ask you a question?",
+			"type": "Cond",
+			"condition": "lucosaForm",
+			"true":
+			[
+				{
+					"type": "Dialogue",
+					"speaker": "???",
+					"text": "Lucosa. May I ask you a question?",
+				},
+			],
+			"false":
+			[
+				{
+					"type": "Dialogue",
+					"speaker": "???",
+					"text": "Little Ruirui. May I ask you a question?",
+				},
+			],
 		},
 		{
 			"type": "Dialogue",
@@ -79,9 +94,24 @@
 			"type": "Branch",
 			"dialogue": 
 			{
-				"type": "Dialogue",
-				"speaker": "Derenisa",
-				"text": "Say, you're a nice girl. You wouldn't happen to have a lead on it's whereabouts, would you?",
+				"type": "Cond",
+				"condition": "lucosaForm",
+				"true":
+				[
+					{
+						"type": "Dialogue",
+						"speaker": "Derenisa",
+						"text": "Say, you look like an honest guy. You wouldn't happen to have a lead on it's whereabouts, would you?",
+					},
+				],
+				"false":
+				[
+					{
+						"type": "Dialogue",
+						"speaker": "Derenisa",
+						"text": "Say, you look like a nice girl. You wouldn't happen to have a lead on it's whereabouts, would you?",
+					},
+				],
 			},
 			"options": 
 			[

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=2]
@@ -14,14 +14,21 @@
 [ext_resource path="res://Enemies/FrogWarrior/FrogWarrior.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Graphics/Particles/Snow/Snowfall.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Code/GameRoom.gd" type="Script" id=14]
+[ext_resource path="res://Code/PlayerAreas/SignalArea.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Derenisa.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Code/Cutscenes/Cutscene.gd" type="Script" id=17]
+[ext_resource path="res://Code/Cutscenes/CutsceneActions/DialogueAction.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Code/Cutscenes/CutsceneActions/RunToAction.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Code/Cutscenes/CutsceneActions/CameraRepositionAction.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Code/Cutscenes/CutsceneActions/SetAnimAction.tscn" type="PackedScene" id=21]
 
-[sub_resource type="Curve" id=1]
+[sub_resource type="Curve" id=5]
 _data = [ Vector2( 0.744186, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=2]
-curve = SubResource( 1 )
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 2
 emission_box_extents = Vector3( 800, 180, 0 )
 flag_disable_z = true
@@ -32,7 +39,10 @@ initial_velocity = 72.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.15
-scale_curve = SubResource( 2 )
+scale_curve = SubResource( 6 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 45.5885, 41.2016 )
 
 [node name="LongDiveHallway" type="Node2D"]
 script = ExtResource( 14 )
@@ -49,7 +59,7 @@ screen_size = Rect2( -2, -1, 5, 2 )
 position = Vector2( 160, 0 )
 amount = 160
 visibility_rect = Rect2( -800, -180, 1600, 360 )
-process_material = SubResource( 3 )
+process_material = SubResource( 7 )
 
 [node name="Lanterns" type="Node2D" parent="."]
 
@@ -113,11 +123,14 @@ position = Vector2( 972.966, -103.859 )
 colDimensions = Vector2( 12, 16 )
 direction = 3
 loadPath = "res://Stages/Cliffs/EarlyTallRoom.tscn"
+overrideLoadId = ""
 
 [node name="WaterfallSceneTransition" parent="." instance=ExtResource( 9 )]
 position = Vector2( -652.983, 152.526 )
 colDimensions = Vector2( 12, 16 )
+direction = 2
 loadPath = "res://Stages/FrogLands/WaterfallRoom.tscn"
+overrideLoadId = ""
 
 [node name="WaterfallRoomSpawnPoint" parent="." instance=ExtResource( 10 )]
 position = Vector2( -628.078, 155.168 )
@@ -128,4 +141,35 @@ facingRight = true
 position = Vector2( 909.642, -196.007 )
 loadId = "ExplosionDropRoom"
 onGround = false
+
+[node name="CutsceneWrapper" type="Node2D" parent="."]
+
+[node name="SignalArea" parent="CutsceneWrapper" instance=ExtResource( 15 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneWrapper/SignalArea"]
+position = Vector2( -580.511, 128.552 )
+shape = SubResource( 4 )
+
+[node name="Derenisa" parent="CutsceneWrapper" instance=ExtResource( 16 )]
+position = Vector2( -622, 160 )
+scale = Vector2( -1, 1 )
+dialogueTree = "res://Dialogue/Npcs/Derenisa/Citizen.json"
+
+[node name="Cutscene" type="Node2D" parent="CutsceneWrapper"]
+script = ExtResource( 17 )
+playerPath = NodePath("../../Ruicosa")
+deleteParent = true
+
+[node name="CameraRepositionAction" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 20 )]
+position = Vector2( -581, 128 )
+
+[node name="RunToAction" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 19 )]
+position = Vector2( -608, 161 )
+
+[node name="SetAnimAction" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 21 )]
+anim = "Idle"
+
+[node name="DialogueAction" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 18 )]
+dialoguePath = "res://Dialogue/Npcs/Derenisa/Meeting2.json"
 [connection signal="activated" from="Switch" to="SwitchDoor" method="open"]
+[connection signal="has_player" from="CutsceneWrapper/SignalArea" to="CutsceneWrapper/Cutscene" method="begin_cutscene"]
