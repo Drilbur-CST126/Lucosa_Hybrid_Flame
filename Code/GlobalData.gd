@@ -7,18 +7,21 @@ enum Ability {Dive, Uppercut, DoubleJump, Fireball, ExplosionImmunity, Transform
 const kPlayerClassName = "Ruicosa"
 const kManaRegenPerSec := 10.0
 const kMaxMana := 100.0
+const kPlayerStartingMaxHp := 5
+const kPlayerStartingDmg := 2
+const kPlayerPowerDmg := 3
 
 var debug := true
 
-var playerHp := 4 setget set_player_hp
+var playerHp := kPlayerStartingMaxHp setget set_player_hp
 var hpShards := 0 setget set_hp_shards
-var playerMaxHp := 4 setget set_player_max_hp
+var playerMaxHp := kPlayerStartingMaxHp setget set_player_max_hp
 var playerMana := 100.0 setget set_player_mana
 var charges := 0 setget set_charges
 var maxCharges := 0 setget set_max_charges
 var chargeEnabled := true setget set_charge_enabled
-var playerAttackDmg := 2
-var playerForesight := 0
+var playerAttackDmg := kPlayerStartingDmg
+var playerForesight := 0 setget set_player_foresight
 var distributeHpShards := true setget set_distribute_hp_shards
 var gravity: float
 
@@ -146,6 +149,11 @@ func set_can_transform_anywhere(val: bool):
 	canTransformAnywhere = val
 	if val:
 		canTransform = true
+		
+func set_player_foresight(val: int):
+	playerForesight = val
+	if val == 3:
+		playerAttackDmg = kPlayerPowerDmg
 		
 func player_at_full_hp() -> bool:
 	var hpFromShards := int(hpShards / 5.0)

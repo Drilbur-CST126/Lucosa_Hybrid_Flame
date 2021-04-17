@@ -2,16 +2,35 @@
 
 [ext_resource path="res://Code/StageAssets/Upgrade/Upgrade.gd" type="Script" id=1]
 [ext_resource path="res://Code/StageAssets/Upgrade/UpgradeSprites.PNG" type="Texture" id=2]
-[ext_resource path="res://Shaders/RadialGradient.shader" type="Shader" id=3]
 [ext_resource path="res://Code/Polish/Circle.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.0
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 3 )
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform vec2 center = vec2(0.5, 0.5);
+uniform vec4 color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float strength = 1.0;
+
+float rand(vec2 co, float lower, float upper){
+    return mix(lower, upper, fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453));
+}
+
+void fragment()
+{
+	COLOR = texture(TEXTURE, UV);
+	float dist = distance(UV, center);
+	COLOR.rgb = color.rgb;
+	COLOR.a = COLOR.a * rand(UV, 0.95, 1.0) * (0.5 - dist) * strength;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 shader_param/center = Vector2( 0.5, 0.5 )
-shader_param/color = Color( 0, 1, 1, 1 )
+shader_param/color = Color( 1, 1, 0, 1 )
 shader_param/strength = 0.6
 
 [node name="Upgrade" type="Area2D"]
@@ -21,10 +40,11 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Circle" parent="." instance=ExtResource( 4 )]
-material = SubResource( 2 )
-polygon = PoolVector2Array( 0, 0, 22.5104, 0, 22.0779, 4.39156, 20.7969, 8.61436, 18.7167, 12.5061, 15.9173, 15.9173, 12.5061, 18.7167, 8.61436, 20.7969, 4.39156, 22.0779, 1.37832e-15, 22.5104, -4.39156, 22.0779, -8.61436, 20.7969, -12.5061, 18.7167, -15.9173, 15.9173, -18.7167, 12.5061, -20.7969, 8.61436, -22.0779, 4.39156, -22.5104, 2.75664e-15, -22.0779, -4.39156, -20.7969, -8.61436, -18.7167, -12.5061, -15.9173, -15.9173, -12.5061, -18.7167, -8.61436, -20.7969, -4.39156, -22.0779, -4.13496e-15, -22.5104, 4.39156, -22.0779, 8.61436, -20.7969, 12.5061, -18.7167, 15.9173, -15.9173, 18.7167, -12.5061, 20.7969, -8.61436, 22.0779, -4.39156, 22.5104, -5.51328e-15 )
+material = SubResource( 3 )
+polygon = PoolVector2Array( 0, 0, 16.0675, 0, 15.7587, 3.13461, 14.8444, 6.14875, 13.3596, 8.92661, 11.3614, 11.3614, 8.92661, 13.3596, 6.14875, 14.8444, 3.13461, 15.7587, 9.83816e-16, 16.0675, -3.13461, 15.7587, -6.14875, 14.8444, -8.92661, 13.3596, -11.3614, 11.3614, -13.3596, 8.92661, -14.8444, 6.14875, -15.7587, 3.13461, -16.0675, 1.96763e-15, -15.7587, -3.13461, -14.8444, -6.14875, -13.3596, -8.92661, -11.3614, -11.3614, -8.92661, -13.3596, -6.14875, -14.8444, -3.13461, -15.7587, -2.95145e-15, -16.0675, 3.13461, -15.7587, 6.14875, -14.8444, 8.92661, -13.3596, 11.3614, -11.3614, 13.3596, -8.92661, 14.8444, -6.14875, 15.7587, -3.13461, 16.0675, -3.93526e-15 )
 uv = PoolVector2Array( 0.5, 0.5, 1, 0.5, 0.990393, 0.597545, 0.96194, 0.691342, 0.915735, 0.777785, 0.853553, 0.853553, 0.777785, 0.915735, 0.691342, 0.96194, 0.597545, 0.990393, 0.5, 1, 0.402455, 0.990393, 0.308658, 0.96194, 0.222215, 0.915735, 0.146447, 0.853553, 0.0842652, 0.777785, 0.0380602, 0.691342, 0.00960736, 0.597545, 0, 0.5, 0.00960736, 0.402455, 0.0380602, 0.308658, 0.0842652, 0.222215, 0.146447, 0.146447, 0.222215, 0.0842652, 0.308658, 0.0380602, 0.402455, 0.00960736, 0.5, 0, 0.597545, 0.00960736, 0.691342, 0.0380602, 0.777785, 0.0842652, 0.853553, 0.146447, 0.915735, 0.222215, 0.96194, 0.308658, 0.990393, 0.402455, 1, 0.5 )
-diameter = 22.5104
+vertices = 32
+diameter = 16.0675
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.167, 0.167 )

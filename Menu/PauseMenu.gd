@@ -14,6 +14,17 @@ func _ready():
 	if skipAnim:
 		$AnimationPlayer.stop()
 		modulate = Color.white
+		
+	$Background/Abilities/Dive.visible = GlobalData.hasDive
+	$Background/Abilities/Uppercut.visible = GlobalData.hasUppercut
+	$Background/Abilities/Fireball.visible = GlobalData.hasFireball
+	$Background/Abilities/DoubleJump.visible = GlobalData.hasDoubleJump
+	$Background/Abilities/ExplosionImmunity.visible = GlobalData.hasExplosionImmunity
+	$Background/Abilities/TransformAnywhere.visible = GlobalData.canTransformAnywhere
+	
+	$Background/Upgrades/LifeRings/Label.text = "x" + String(GlobalData.playerMaxHp - GlobalData.kPlayerStartingMaxHp)
+	$Background/Upgrades/Runes/Label.text = "x" + String(GlobalData.maxCharges)
+	$Background/Upgrades/PowerOrbs/Label.text = "x" + String(GlobalData.playerForesight)
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("menu"):

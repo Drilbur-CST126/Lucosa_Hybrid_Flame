@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Menu/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Fonts/Lato12.tres" type="DynamicFont" id=2]
@@ -7,8 +7,39 @@
 [ext_resource path="res://Code/StageAssets/Upgrade/Rune.tres" type="Texture" id=5]
 [ext_resource path="res://Code/StageAssets/Upgrade/ForesightOrb.tres" type="Texture" id=6]
 [ext_resource path="res://Code/Polish/ControlButtonPopup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Menu/PauseAbilityIcons.PNG" type="Texture" id=8]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 56, 0, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 112, 0, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 56, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 56, 56, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 112, 56, 56, 56 )
+
+[sub_resource type="Animation" id=1]
 resource_name = "Close"
 length = 0.2
 tracks/0/type = "value"
@@ -65,6 +96,90 @@ anchor_bottom = 0.7
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Dive" type="TextureRect" parent="Background/Abilities"]
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+margin_left = -56.0
+margin_top = -56.0
+margin_right = 56.2
+margin_bottom = 56.36
+texture = SubResource( 3 )
+stretch_mode = 4
+
+[node name="Uppercut" type="TextureRect" parent="Background/Abilities"]
+anchor_left = 0.35
+anchor_top = 0.4
+anchor_right = 0.35
+anchor_bottom = 0.4
+margin_left = -56.0
+margin_top = -56.0
+margin_right = 56.0
+margin_bottom = 56.0
+texture = SubResource( 4 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fireball" type="TextureRect" parent="Background/Abilities"]
+anchor_left = 0.65
+anchor_top = 0.4
+anchor_right = 0.65
+anchor_bottom = 0.4
+margin_left = -56.0
+margin_top = -56.0
+margin_right = 56.0
+margin_bottom = 56.0
+texture = SubResource( 5 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DoubleJump" type="TextureRect" parent="Background/Abilities"]
+anchor_left = 0.35
+anchor_top = 0.6
+anchor_right = 0.35
+anchor_bottom = 0.6
+margin_left = -56.0
+margin_top = -56.0
+margin_right = 56.0
+margin_bottom = 56.0
+texture = SubResource( 6 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExplosionImmunity" type="TextureRect" parent="Background/Abilities"]
+anchor_left = 0.65
+anchor_top = 0.6
+anchor_right = 0.65
+anchor_bottom = 0.6
+margin_left = -56.0
+margin_top = -56.0
+margin_right = 56.0
+margin_bottom = 56.0
+texture = SubResource( 7 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransformAnywhere" type="TextureRect" parent="Background/Abilities"]
+anchor_left = 0.5
+anchor_top = 0.8
+anchor_right = 0.5
+anchor_bottom = 0.8
+margin_left = -56.0
+margin_top = -56.0
+margin_right = 56.0
+margin_bottom = 56.0
+texture = SubResource( 8 )
+stretch_mode = 4
 
 [node name="Upgrades" type="VBoxContainer" parent="Background"]
 anchor_left = 0.6
@@ -184,7 +299,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Open"
-anims/Close = SubResource( 3 )
+anims/Close = SubResource( 1 )
 anims/Open = SubResource( 2 )
 
 [node name="MapRect" type="ColorRect" parent="."]
