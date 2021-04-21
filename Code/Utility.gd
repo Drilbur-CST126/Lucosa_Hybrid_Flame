@@ -51,7 +51,11 @@ func get_dir(facingRight: bool) -> int:
 	
 func set_font(src: Control, path: String):
 	src.set("custom_fonts/font", load(path))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	
+func select_option(option_dict: Dictionary):
+	var rand := randf()
+	for key in option_dict.keys():
+		if option_dict[key] >= rand: # This key was chosen
+			return key
+		else: # This key was not chosen; subtract the odds of it occuring
+			rand -= option_dict[key]

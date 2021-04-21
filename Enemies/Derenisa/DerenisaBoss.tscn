@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Derenisa/DerenisaBoss.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 9 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Jump"
+length = 0.4
+
+[sub_resource type="Animation" id=5]
+resource_name = "RetractSwords"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:velocity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "ShootSwords"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:velocity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="DerenisaBoss" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -4.0
+margin_top = -9.0
+margin_right = 4.0
+margin_bottom = 9.0
+color = Color( 0.380392, 0.658824, 0.807843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="EnemyData" parent="." instance=ExtResource( 1 )]
+maxHp = 60
+colArea = NodePath("../CollisionShape2D")
+giveParentFlashShader = false
+shakeOnDeath = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Start"
+anims/Jump = SubResource( 4 )
+anims/RetractSwords = SubResource( 5 )
+anims/ShootSwords = SubResource( 3 )
+anims/Start = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = -30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
