@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Derenisa/DerenisaBoss.gd" type="Script" id=2]
@@ -42,6 +42,10 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "Stagger"
+length = 0.2
+
 [sub_resource type="Animation" id=2]
 resource_name = "Start"
 length = 0.5
@@ -76,7 +80,7 @@ __meta__ = {
 shape = SubResource( 1 )
 
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
-maxHp = 60
+maxHp = 40
 colArea = NodePath("../CollisionShape2D")
 giveParentFlashShader = false
 shakeOnDeath = false
@@ -86,6 +90,7 @@ autoplay = "Start"
 anims/Jump = SubResource( 4 )
 anims/RetractSwords = SubResource( 5 )
 anims/ShootSwords = SubResource( 3 )
+anims/Stagger = SubResource( 6 )
 anims/Start = SubResource( 2 )
 
 [node name="Label" type="Label" parent="."]
@@ -93,3 +98,7 @@ margin_top = -30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StaggerCooldownTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
