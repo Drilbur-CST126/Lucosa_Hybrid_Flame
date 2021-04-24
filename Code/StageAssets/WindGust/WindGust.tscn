@@ -3,26 +3,26 @@
 [ext_resource path="res://Code/StageAssets/WindGust/WindGust.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Particles/Circle.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=1]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 1, 1, 1, 0.509804, 0.984314, 1, 1 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.757954 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=6]
 trail_divisor = 5
-trail_size_modifier = SubResource( 7 )
-trail_color_modifier = SubResource( 5 )
+trail_size_modifier = SubResource( 5 )
+trail_color_modifier = SubResource( 3 )
 emission_shape = 2
-emission_box_extents = Vector3( 120, 300, 0 )
+emission_box_extents = Vector3( 150, 660, 0 )
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 spread = 0.0
@@ -36,7 +36,7 @@ scale = 0.5
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 0, 2.33333 )
@@ -44,5 +44,5 @@ scale = Vector2( 0.167, 0.167 )
 amount = 25
 lifetime = 0.2
 visibility_rect = Rect2( -60, -60, 120, 120 )
-process_material = SubResource( 9 )
+process_material = SubResource( 6 )
 texture = ExtResource( 2 )

@@ -13,6 +13,10 @@ enum States {
 		Stagger = 7,
 		LongDashRunning = 8,
 		LongDash = 9,
+		SuperJump = 10,
+		SuperJumpHover = 11,
+		SuperJumpWarning = 12,
+		SuperJumpFall = 13,
 	}
 
 const kAttackOdds := {
@@ -58,6 +62,13 @@ const kAttackOdds := {
 	}
 }
 
+const kAngryAttackOdds := {
+	States.FirstJump: {
+		States.SecondJump: 0.2,
+		States.SuperJump: 0.8,
+	},
+}
+
 const kSpreadAngle := deg2rad(30.0)
 const kWindSwordDist := 5.0 * 8.0
 const kFirstJumpVel := Vector2(0.0, -256.0)
@@ -67,6 +78,10 @@ const kRunSpeed := 192.0
 const kDashSpeed := 256.0
 const kLongDashSpeed := 384.0
 const kRunDashLength := 64.0
+const kSuperJumpVelocity := 384.0
+const kSuperJumpHoverTime := 2.5
+const kSuperJumpWarningTime := 1.5
+onready var kStartingHp := $EnemyData.hp as int # Treated as const
 
 export(States) var state = States.StartAnim setget set_state
 export var velocity := Vector2.ZERO
@@ -97,10 +112,19 @@ func set_state(val):
 			long_dash_setup()
 		States.LongDash:
 			long_dash()
+		States.SuperJump:
+			super_jump()
+		States.SuperJumpHover:
+			super_jump_hover_start()
+		States.SuperJumpWarning:
+			super_jump_warning()
 			
 func is_float_state():
 	return state == States.RetractSwords \
-			|| state == States.ShootSwords
+			|| state == States.ShootSwords \
+			|| state == States.SuperJump \
+			|| state == States.SuperJumpHover #\
+			#|| state == States.SuperJumpFall
 
 func _ready():
 	Utility.print_errors([
@@ -119,6 +143,10 @@ func _process(delta):
 			long_dash_running(delta)
 		States.LongDash:
 			long_dash_await()
+		States.SuperJump:
+			super_jump_await()
+		States.SuperJumpHover:
+			super_jump_hover()
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
@@ -153,6 +181,8 @@ func next_state():
 	self.state = get_next_state()
 	
 func get_next_state() -> int:
+	if is_angry() && kAngryAttackOdds.has(state):
+		return Utility.select_option(kAngryAttackOdds[state])
 	return Utility.select_option(kAttackOdds[state])
 	
 func create_timer(time: float) -> Timer:
@@ -176,6 +206,10 @@ func clear_timers():
 		if timer != null:
 			timer.queue_free()
 	timers.clear()
+	
+func is_angry() -> bool:
+	return true
+	#return $EnemyData.hp < kStartingHp / 2.0
 
 
 func shoot_swords():
@@ -269,3 +303,27 @@ func stagger():
 	$AnimationPlayer.play("Stagger")
 	clear_timers()
 	velocity = Vector2.ZERO
+	
+func super_jump():
+	velocity.y = -kSuperJumpVelocity
+	
+func super_jump_await():
+	var goalPos := arena.position.y - ($CollisionShape2D.shape as RectangleShape2D).extents.y
+	if global_position.y <= goalPos:
+		global_position.y = goalPos
+		velocity.y = 0.0
+		yield(create_timer(0.5), "timeout")
+		self.state = States.SuperJumpHover
+		
+func super_jump_hover_start():
+	$Particles2D.emitting = true
+	yield(create_timer(kSuperJumpHoverTime), "timeout")
+	self.state = States.SuperJumpWarning
+	
+func super_jump_hover():
+	global_position.x = GlobalData.player.global_position.x
+
+func super_jump_warning():
+	$Particles2D.emitting = false
+	yield(create_timer(kSuperJumpWarningTime), "timeout")
+	self.state = States.SuperJumpFall

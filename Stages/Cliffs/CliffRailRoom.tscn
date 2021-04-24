@@ -85,12 +85,15 @@ shape = SubResource( 2 )
 
 [node name="AmuletSceneTransition" parent="." instance=ExtResource( 10 )]
 position = Vector2( -332.242, -83.6838 )
+direction = 2
 loadPath = "res://Stages/Cliffs/AmuletHubRoom.tscn"
+overrideLoadId = ""
 
 [node name="WaterfallSceneTransition" parent="." instance=ExtResource( 10 )]
 position = Vector2( 332.401, 140.565 )
 direction = 3
 loadPath = "res://Stages/FrogLands/WaterfallRoom.tscn"
+overrideLoadId = ""
 
 [node name="WaterfallRoomSpawnPoint" parent="." instance=ExtResource( 11 )]
 position = Vector2( 308.583, 148.055 )

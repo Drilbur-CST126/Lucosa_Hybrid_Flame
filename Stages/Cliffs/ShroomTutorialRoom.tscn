@@ -80,12 +80,14 @@ tile_data = PoolIntArray( -1507409, 4, 0, -1507408, 4, 1, -1507407, 4, 1, -15074
 position = Vector2( 653, 116 )
 direction = 3
 loadPath = "res://Stages/FrogLands/WaterfallRoom.tscn"
+overrideLoadId = ""
 
 [node name="HubSceneTransition" parent="." instance=ExtResource( 7 )]
 position = Vector2( -501, -196 )
 colDimensions = Vector2( 36, 12 )
 direction = 0
 loadPath = "res://Stages/Cliffs/AmuletHubRoom.tscn"
+overrideLoadId = ""
 
 [node name="HubRoomSpawnPoint" parent="." instance=ExtResource( 9 )]
 position = Vector2( -499, -162 )
