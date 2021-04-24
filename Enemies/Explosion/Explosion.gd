@@ -12,6 +12,7 @@ func _ready():
 		connect("area_entered", self, "entity_entered"),
 	])
 	GlobalData.camera.shake(3.0, 0.2)
+	$Sound.volume_db = linear2db(GlobalData.sfxVolume)
 	$Sound.play()
 	
 func disable_hitbox():

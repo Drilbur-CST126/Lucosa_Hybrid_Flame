@@ -1,11 +1,14 @@
 extends Control
 
+const Options = preload("res://Menu/Options.tscn")
+
 var skipAnim := false
+var optionsOpen := false
 
 func _ready():
 	Utility.print_errors([
 		$Background/Options/Quit.connect("button_up", self, "quit"),
-		$Background/Options/Options.connect("button_up", self, "options"),
+		$Background/Options/Options.connect("button_up", self, "open_options"),
 		$Background/Options/Resume.connect("button_up", self, "resume"),
 		$MapRect/Button.connect("button_down", self, "load_map"),
 	])
@@ -27,15 +30,27 @@ func _ready():
 	$Background/Upgrades/PowerOrbs/Label.text = "x" + String(GlobalData.playerForesight)
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("menu"):
-		resume()
-	if Input.is_action_just_pressed("second_attack"):
-		load_map()
+	if !optionsOpen:
+		if Input.is_action_just_pressed("menu"):
+			resume()
+		if Input.is_action_just_pressed("second_attack"):
+			load_map()
 		
 func load_map():
 	var mapMenu := load("res://Menu/MapMenu.tscn")
 	get_parent().add_child(mapMenu.instance())
 	queue_free()
+	
+func open_options():
+	var options = Options.instance()
+	Utility.print_errors([
+		options.connect("on_close", self, "close_options"),
+	])
+	optionsOpen = true
+	$Background.add_child(options)
+	
+func close_options():
+	optionsOpen = false
 	
 func quit():
 	get_tree().paused = false

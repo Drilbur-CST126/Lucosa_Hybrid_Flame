@@ -9,38 +9,37 @@
 [ext_resource path="res://Code/Polish/ControlButtonPopup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Menu/PauseAbilityIcons.PNG" type="Texture" id=8]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 56, 0, 56, 56 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 112, 0, 56, 56 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 56, 56, 56 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 56, 56, 56, 56 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 56, 56 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 112, 56, 56, 56 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Close"
+[sub_resource type="Animation" id=7]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -55,7 +54,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=8]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -106,7 +105,7 @@ margin_left = -56.0
 margin_top = -56.0
 margin_right = 56.2
 margin_bottom = 56.36
-texture = SubResource( 3 )
+texture = SubResource( 1 )
 stretch_mode = 4
 
 [node name="Uppercut" type="TextureRect" parent="Background/Abilities"]
@@ -118,7 +117,7 @@ margin_left = -56.0
 margin_top = -56.0
 margin_right = 56.0
 margin_bottom = 56.0
-texture = SubResource( 4 )
+texture = SubResource( 2 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -133,7 +132,7 @@ margin_left = -56.0
 margin_top = -56.0
 margin_right = 56.0
 margin_bottom = 56.0
-texture = SubResource( 5 )
+texture = SubResource( 3 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -148,7 +147,7 @@ margin_left = -56.0
 margin_top = -56.0
 margin_right = 56.0
 margin_bottom = 56.0
-texture = SubResource( 6 )
+texture = SubResource( 4 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -163,7 +162,7 @@ margin_left = -56.0
 margin_top = -56.0
 margin_right = 56.0
 margin_bottom = 56.0
-texture = SubResource( 7 )
+texture = SubResource( 5 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -178,7 +177,7 @@ margin_left = -56.0
 margin_top = -56.0
 margin_right = 56.0
 margin_bottom = 56.0
-texture = SubResource( 8 )
+texture = SubResource( 6 )
 stretch_mode = 4
 
 [node name="Upgrades" type="VBoxContainer" parent="Background"]
@@ -299,8 +298,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Open"
-anims/Close = SubResource( 1 )
-anims/Open = SubResource( 2 )
+anims/Close = SubResource( 7 )
+anims/Open = SubResource( 8 )
 
 [node name="MapRect" type="ColorRect" parent="."]
 anchor_left = 0.8

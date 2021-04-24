@@ -30,6 +30,8 @@ var camera: DynamicCamera
 var player: Node2D
 var curRoom := 1
 var roomsVisited := []
+var sfxVolume := 1.0 setget set_sfx_volume
+var musicVolume := 1.0 setget set_music_volume
 var oldCameraLimits = null
 var transDirection = null
 var random := RandomNumberGenerator.new()
@@ -59,6 +61,8 @@ signal hit_animation_finished()
 signal player_dead()
 
 signal control_config_changed(usingController)
+signal sfx_volume_changed()
+signal music_volume_changed()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -154,6 +158,14 @@ func set_player_foresight(val: int):
 	playerForesight = val
 	if val == 3:
 		playerAttackDmg = kPlayerPowerDmg
+		
+func set_sfx_volume(val: float):
+	sfxVolume = val
+	emit_signal("sfx_volume_changed")
+		
+func set_music_volume(val: float):
+	musicVolume = val
+	emit_signal("music_volume_changed")
 		
 func player_at_full_hp() -> bool:
 	var hpFromShards := int(hpShards / 5.0)
