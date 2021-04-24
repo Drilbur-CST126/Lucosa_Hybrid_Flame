@@ -101,14 +101,15 @@ bottomColor = Color( 0.231373, 0.333333, 0.278431, 1 )
 [node name="Waterfall" parent="." instance=ExtResource( 13 )]
 position = Vector2( -320, 180 )
 height = 13
+mistOffset = -16.0
 
 [node name="Gradient2" parent="." instance=ExtResource( 1 )]
 margin_left = -261.0
 margin_top = -1206.0
 margin_right = -60.0
 margin_bottom = 180.0
-topColor = Color( 0.282353, 0.4, 0.396078, 0 )
-bottomColor = Color( 0.282353, 0.4, 0.396078, 0.627451 )
+topColor = Color( 0.231373, 0.333333, 0.278431, 0 )
+bottomColor = Color( 0.231373, 0.333333, 0.278431, 0.25098 )
 
 [node name="OutlinePolygon" parent="." instance=ExtResource( 14 )]
 scale = Vector2( 0.167, 0.167 )
