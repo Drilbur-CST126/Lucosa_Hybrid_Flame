@@ -26,6 +26,7 @@ func accept():
 	GlobalData.sfxVolume = sfxSlider.value / 100.0
 	GlobalData.musicVolume = musicSlider.value / 100.0
 	OS.window_fullscreen = fullscreenCheckBox.pressed
+	GlobalData.save_options()
 	close()
 	
 func close():

@@ -54,6 +54,7 @@ func set_font(src: Control, path: String):
 	
 func select_option(option_dict: Dictionary):
 	var rand := randf()
+	#print(rand)
 	for key in option_dict.keys():
 		if option_dict[key] >= rand: # This key was chosen
 			return key

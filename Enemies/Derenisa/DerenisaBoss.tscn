@@ -44,7 +44,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "Stagger"
-length = 0.2
+length = 0.4
 
 [sub_resource type="Animation" id=6]
 tracks/0/type = "value"

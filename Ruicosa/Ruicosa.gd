@@ -462,7 +462,7 @@ func _physics_process(delta: float):
 		if ((Input.is_action_pressed("ui_up") && Input.is_action_just_pressed("attack")) \
 				|| Input.is_action_just_pressed("transform")) && is_on_floor() \
 				&& GlobalData.canTransform:
-			play_anim("Transform")
+			play_anim("Transform", true)
 			state = ActionState.Transforming
 			velocity.x = 0.0
 			self.lucosaForm = !lucosaForm

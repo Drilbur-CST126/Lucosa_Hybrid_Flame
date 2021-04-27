@@ -27,8 +27,7 @@ const kAttackOdds := {
 	},
 	States.ShootSwords: {
 		States.FirstJump: 0.6,
-		States.RunDashRunning: 0.3,
-		States.LongDashRunning: 0.1,
+		States.RunDashRunning: 0.4,
 	},
 	States.FirstJump: {
 		States.SecondJump: 1.0,
@@ -40,8 +39,8 @@ const kAttackOdds := {
 	States.RetractSwords: {
 		States.FirstJump: 0.2,
 		States.RunDashRunning: 0.4,
-		States.LongDashRunning: 0.2,
-		States.ShootSwords: 0.2,
+		States.LongDashRunning: 0.1,
+		States.ShootSwords: 0.3,
 	},
 	States.RunDashRunning: {
 		States.ShootSwords: 0.6,
@@ -59,13 +58,29 @@ const kAttackOdds := {
 	States.LongDash: {
 		States.FirstJump: 0.5,
 		States.ShootSwords: 0.5,
-	}
+	},
+	States.SuperJumpFall: {
+		States.ShootSwords: 0.5,
+		States.FirstJump: 0.2,
+		States.RunDashRunning: 0.3,
+	},
 }
 
 const kAngryAttackOdds := {
 	States.FirstJump: {
-		States.SecondJump: 0.2,
-		States.SuperJump: 0.8,
+		States.SecondJump: 0.8,
+		States.SuperJump: 0.2,
+	},
+	States.ShootSwords: {
+		States.FirstJump: 0.5,
+		States.RunDashRunning: 0.3,
+		States.LongDashRunning: 0.2,
+	},
+	States.RetractSwords: {
+		States.FirstJump: 0.2,
+		States.RunDashRunning: 0.4,
+		States.LongDashRunning: 0.3,
+		States.ShootSwords: 0.1,
 	},
 }
 
@@ -80,7 +95,7 @@ const kLongDashSpeed := 384.0
 const kRunDashLength := 64.0
 const kSuperJumpVelocity := 384.0
 const kSuperJumpHoverTime := 2.5
-const kSuperJumpWarningTime := 1.5
+const kSuperJumpWarningTime := 1.0
 onready var kStartingHp := $EnemyData.hp as int # Treated as const
 
 export(States) var state = States.StartAnim setget set_state
@@ -118,13 +133,15 @@ func set_state(val):
 			super_jump_hover_start()
 		States.SuperJumpWarning:
 			super_jump_warning()
+		States.SuperJumpFall:
+			super_jump_fall()
 			
 func is_float_state():
 	return state == States.RetractSwords \
 			|| state == States.ShootSwords \
 			|| state == States.SuperJump \
-			|| state == States.SuperJumpHover #\
-			#|| state == States.SuperJumpFall
+			|| state == States.SuperJumpHover \
+			|| state == States.SuperJumpWarning
 
 func _ready():
 	Utility.print_errors([
@@ -312,7 +329,7 @@ func super_jump_await():
 	if global_position.y <= goalPos:
 		global_position.y = goalPos
 		velocity.y = 0.0
-		yield(create_timer(0.5), "timeout")
+		#yield(create_timer(0.5), "timeout")
 		self.state = States.SuperJumpHover
 		
 func super_jump_hover_start():
@@ -324,6 +341,10 @@ func super_jump_hover():
 	global_position.x = GlobalData.player.global_position.x
 
 func super_jump_warning():
-	$Particles2D.emitting = false
 	yield(create_timer(kSuperJumpWarningTime), "timeout")
+	$Particles2D.emitting = false
 	self.state = States.SuperJumpFall
+	
+func super_jump_fall():
+	yield(create_timer(1.5), "timeout")
+	next_state()

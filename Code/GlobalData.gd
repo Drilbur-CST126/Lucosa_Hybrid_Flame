@@ -172,6 +172,29 @@ func player_at_full_hp() -> bool:
 	var hpFromShards := int(hpShards / 5.0)
 	return hpFromShards + playerHp >= playerMaxHp
 		
+func save_options():
+	var dict := {
+		"sfxVolume": sfxVolume,
+		"musicVolume": musicVolume,
+		"fullscreen": OS.window_fullscreen,
+	}
+	
+	var file = File.new()
+	file.open("user://options.json", File.WRITE)
+	file.store_line(to_json(dict))
+	file.close()
+	
+func load_options():
+	var file := File.new()
+	var fileOpen := file.open("user://options.json", File.READ)
+	
+	if fileOpen == 0:
+		while file.get_position() < file.get_len():
+			var json := parse_json(file.get_line()) as Dictionary
+			sfxVolume = json["sfxVolume"]
+			musicVolume = json["musicVolume"]
+			OS.window_fullscreen = json["fullscreen"]
+		
 func save(room_filename: String):
 	var dict := {
 		"filename": room_filename,
@@ -266,6 +289,7 @@ func load_file(filename: String):
 		return fileOpen
 	
 func load_game() -> bool:
+	load_options()
 	return load_file("user://save.json") == 0
 	
 func reload_game():
