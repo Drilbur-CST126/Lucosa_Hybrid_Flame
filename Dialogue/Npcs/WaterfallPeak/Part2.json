@@ -1,0 +1,25 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "It's beautiful... But what's the point?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "It's not like I can stop being a criminal now. If anything, getting up here has made it harder!",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "It's a dead end up here. There's no where to run to, nowhere to hide.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "...........\n...No, this isn't the end. Maybe I can't run, or hide. But I can fight.",
+		},
+	]
+}

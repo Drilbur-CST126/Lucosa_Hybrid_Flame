@@ -34,6 +34,11 @@ func play_anim(anim: String, reset := false):
 			$Sprite.play(anim)
 			$Sprite.offset.x = kAnimOffsets[anim]
 			$Sprite.offset.x *= -1 if facingRight else 1
+			
+func get_anim() -> String:
+	if lucosaForm:
+		return $Sprite.animation.split("_")[0]
+	return $Sprite.animation
 
 func jump():
 	velocity.y = kJumpImpulse

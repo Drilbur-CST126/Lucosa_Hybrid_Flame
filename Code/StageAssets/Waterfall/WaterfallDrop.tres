@@ -1,21 +1,21 @@
 [gd_resource type="ParticlesMaterial" load_steps=5 format=2]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.839216, 0.913725, 0.956863, 1, 0.380392, 0.658824, 0.807843, 1 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.490909 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=2]
-curve = SubResource( 6 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
 [resource]
 trail_divisor = 5
-trail_size_modifier = SubResource( 2 )
-trail_color_modifier = SubResource( 5 )
+trail_size_modifier = SubResource( 4 )
+trail_color_modifier = SubResource( 2 )
 emission_shape = 2
 emission_box_extents = Vector3( 90, 45, 1 )
 flag_disable_z = true

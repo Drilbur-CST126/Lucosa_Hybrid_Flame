@@ -119,6 +119,7 @@ func end_cutscene(mockPlayer: Node2D):
 	facingRight = mockPlayer.facingRight
 	lucosaForm = mockPlayer.lucosaForm
 	velocity = Vector2.ZERO
+	play_anim(mockPlayer.get_anim())
 	mockPlayer.queue_free()
 	$CollisionShape2D.set_deferred("disabled", false)
 	

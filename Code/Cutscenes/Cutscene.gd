@@ -53,3 +53,4 @@ func increment_action():
 		get_tree().paused = false
 		if oneoff:
 			GlobalData.flags.append(completion_flag())
+		init_free()

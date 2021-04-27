@@ -42,6 +42,7 @@ orbit_velocity_random = 0.0
 scale = 0.2
 
 [node name="WaterfallTop" type="Node2D"]
+pause_mode = 2
 scale = Vector2( 0.167, 0.167 )
 
 [node name="TopSprite" type="Sprite" parent="."]
@@ -49,7 +50,7 @@ texture = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Particles2D" type="Particles2D" parent="."]

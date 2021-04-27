@@ -59,6 +59,7 @@ signal trans_begin(direction, destination)
 signal player_hit(hp)
 signal hit_animation_finished()
 signal player_dead()
+signal ability_unlocked(ability)
 
 signal control_config_changed(usingController)
 signal sfx_volume_changed()
@@ -277,12 +278,17 @@ func unlock_ability(ability):
 			hasDive = true
 		Ability.Uppercut:
 			hasUppercut = true
+			if player != null && lucosaForm:
+				player.canDoubleJump = true
 		Ability.DoubleJump:
 			hasDoubleJump = true
+			if player != null && !lucosaForm:
+				player.canDoubleJump = true
 		Ability.Fireball:
 			hasFireball = true
 		Ability.TransformAnywhere:
 			canTransformAnywhere = true
+			canTransform = true
 	emit_signal("ability_unlocked", ability)
 			
 func has_ability(ability) -> bool:
