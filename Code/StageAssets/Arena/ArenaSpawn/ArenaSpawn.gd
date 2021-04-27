@@ -1,8 +1,9 @@
 extends Node2D
 class_name ArenaSpawn
 
-export(int, 1, 99) var enemiesRequired := 1
+export(int, 0, 99) var enemiesRequired := 1
 export(String, FILE, "*.tscn,*.scn") var spawn := ""
+export(Dictionary) var setParameters
 
 var kEnemy: PackedScene
 var child: Node2D
@@ -21,6 +22,9 @@ func spawn_enemy() -> Node2D:
 	return child
 
 func anim_finished(_name):
+	for key in setParameters:
+		child.set(key, setParameters[key])
+	
 	get_parent().call_deferred("add_child", child)
 	Utility.print_errors([
 		child.connect("ready", self, "set_node_position", [child]),

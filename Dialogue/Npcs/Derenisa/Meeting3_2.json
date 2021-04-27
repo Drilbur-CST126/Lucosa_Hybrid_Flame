@@ -1,0 +1,20 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Ngh-! Why are you doing this?! I'm a person too!",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "You're a disgrace. You could just pick one form and live like us, but you abuse your power. I'm only doing what I need to do.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "I hope these guards can stop you without me. For your sake.",
+		},
+	]
+}

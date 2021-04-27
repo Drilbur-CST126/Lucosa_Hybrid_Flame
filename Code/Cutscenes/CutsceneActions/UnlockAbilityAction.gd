@@ -7,9 +7,13 @@ func activate():
 	.activate()
 	
 	GlobalData.unlock_ability(ability)
-	cutscene.player.state = Ruicosa.ActionState.Stun
+	
+	var player := cutscene.player
 	var popup = load(abilityTutorial).instance()
 	popup.player = cutscene.player
 	GlobalData.hud.add_child(popup)
+	player.play_anim("Idle", true)
+	player.velocity = Vector2.ZERO
+	player.state = player.ActionState.Stun
 	
 	finish()

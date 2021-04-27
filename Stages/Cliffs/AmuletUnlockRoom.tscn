@@ -49,6 +49,7 @@ lifetime = 0.382813
 visibility_rect = Rect2( -320, -180, 640, 360 )
 process_material = SubResource( 3 )
 velocity = 256.0
+direction = Vector3( 1, 1, 0 )
 particlesPerScreen = 8
 
 [node name="HdTileMap" parent="." instance=ExtResource( 2 )]
@@ -80,12 +81,14 @@ target = NodePath("../Ruicosa")
 position = Vector2( 333, 116 )
 direction = 3
 loadPath = "res://Stages/Cliffs/ConfrontationRoom.tscn"
+overrideLoadId = ""
 
 [node name="TutorialSceneTransition" parent="." instance=ExtResource( 6 )]
 position = Vector2( 12, -47 )
 colDimensions = Vector2( 12, 16 )
 direction = 3
 loadPath = "res://Stages/Cliffs/AmuletTutorialRoom.tscn"
+overrideLoadId = ""
 
 [node name="TutorialRoomSpawnPoint" parent="." instance=ExtResource( 9 )]
 position = Vector2( -12, -44 )

@@ -17,3 +17,6 @@ func finish():
 	activated = false
 	finished = true
 	emit_signal("finished")
+	
+func on_cutscene_finished():
+	pass

@@ -54,7 +54,9 @@ position = Vector2( 160, 0 )
 amount = 32
 visibility_rect = Rect2( -160, -180, 320, 360 )
 process_material = SubResource( 3 )
+velocity = 72.0
 direction = Vector3( -1, 1, 0 )
+particlesPerScreen = 16
 
 [node name="SwitchStuff" type="Node2D" parent="."]
 
@@ -112,13 +114,15 @@ loadId = "UpperRoomBeforeConflict"
 
 [node name="ArenaSceneTransition" parent="." instance=ExtResource( 7 )]
 position = Vector2( -13.0013, -60.172 )
+direction = 2
 loadPath = "res://Stages/Cliffs/CliffArenaRoom.tscn"
+overrideLoadId = ""
 
 [node name="ArenaRoomSpawnPoint" parent="." instance=ExtResource( 8 )]
 position = Vector2( 11.9039, -52.6249 )
 loadId = "CliffArenaRoom"
 facingRight = true
-[connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor3" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor" method="open"]
+[connection signal="activated" from="SwitchStuff/Switch" to="SwitchStuff/SwitchDoor3" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor2" method="open"]
 [connection signal="activated" from="SwitchStuff/Switch2" to="SwitchStuff/SwitchDoor4" method="open"]

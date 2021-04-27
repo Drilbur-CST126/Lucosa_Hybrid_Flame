@@ -1,0 +1,35 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "Ah, there you are. Citizen. Like a moth to a lantern...",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Hey... are you sure this is the way to the waterfall? It looks like it's back that way to me.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "This is the road to something much better, Shifter.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "............                        \n...I think you're mistaken.\n(Just play it cool...)",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "Why have there been no other suspects along this entire route? Why is it that, whenever one form of yours enters a cave, the other one emerges?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "I don't need evidence anymore, Shifter. I need action.",
+		},
+	]
+}

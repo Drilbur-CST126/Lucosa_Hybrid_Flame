@@ -112,9 +112,10 @@ func begin_cutscene():
 	mockPlayer.lucosaForm = lucosaForm
 	return mockPlayer
 	
-func end_cutscene(mockPlayer: Node2D):
+func end_cutscene(mockPlayer: Node2D, resetState := true):
 	show()
-	state = ActionState.Normal
+	if resetState:
+		state = ActionState.Normal
 	global_position = mockPlayer.global_position
 	facingRight = mockPlayer.facingRight
 	lucosaForm = mockPlayer.lucosaForm

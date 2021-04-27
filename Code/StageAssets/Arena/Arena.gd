@@ -14,13 +14,16 @@ func on_enemy_defeat():
 		var spawn := i as ArenaSpawn
 		spawn.enemiesRequired -= 1
 		if spawn.enemiesRequired == 0:
-			var child := spawn.spawn_enemy()
-			Utility.print_connect_errors(get_path(), [
-				child.get_node("EnemyData").connect("on_death", self, "on_enemy_defeat")
-			])
+			spawn_enemy(spawn)
 	
 	if numEnemies == 0:
 		clear()
+		
+func spawn_enemy(spawn: ArenaSpawn):
+	var child := spawn.spawn_enemy()
+	Utility.print_connect_errors(get_path(), [
+		child.get_node("EnemyData").connect("on_death", self, "on_enemy_defeat")
+	])
 		
 func get_clear_str() -> String:
 	return String(get_path()) + "_cleared"
@@ -45,3 +48,9 @@ func _ready():
 				Utility.print_connect_errors(get_path(), [
 					child.get_node("EnemyData").connect("on_death", self, "on_enemy_defeat")
 				])
+				
+func signal_start():
+	for i in arenaSpawns:
+		var spawn := i as ArenaSpawn
+		if spawn.enemiesRequired == 0:
+			spawn_enemy(spawn)

@@ -87,6 +87,7 @@ position = Vector2( -483.899, 28.2094 )
 script = ExtResource( 12 )
 playerPath = NodePath("../../Ruicosa")
 deleteParent = true
+resetState = false
 
 [node name="CameraRepositionAction" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 16 )]
 position = Vector2( -480, -33.5 )
