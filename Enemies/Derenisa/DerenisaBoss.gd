@@ -37,8 +37,8 @@ const kAttackOdds := {
 		States.ShootSwords: 1.0,
 	},
 	States.RetractSwords: {
-		States.FirstJump: 0.2,
-		States.RunDashRunning: 0.4,
+		States.FirstJump: 0.3,
+		States.RunDashRunning: 0.3,
 		States.LongDashRunning: 0.1,
 		States.ShootSwords: 0.3,
 	},
@@ -179,7 +179,7 @@ func take_damage(source):
 func anim_finished(_anim):
 	match state:
 		States.RetractSwords:
-			if global_position.y > arena.position.y + arena.size.y / 2.0:
+			if global_position.y > arena.position.y + arena.size.y / 3.0:
 				var next := get_next_state()
 				while next == States.ShootSwords && global_position.distance_to(GlobalData.player.global_position) > 64.0:
 					next = get_next_state()
@@ -187,7 +187,7 @@ func anim_finished(_anim):
 			else:
 				self.state = States.RunDashRunning
 		States.ShootSwords:
-			if global_position.y > arena.position.y + arena.size.y / 2.0:
+			if global_position.y > arena.position.y + arena.size.y / 3.0:
 				var next := get_next_state()
 				while next == States.ShootSwords && global_position.distance_to(GlobalData.player.global_position) > 64.0:
 					next = get_next_state()

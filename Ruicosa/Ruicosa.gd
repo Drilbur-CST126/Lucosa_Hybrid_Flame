@@ -164,11 +164,15 @@ func set_lucosa_form(value: bool):
 	#play_anim("Idle")
 	
 func get_attack_damage(consumeCharges := true) -> int:
+	var baseDmg := GlobalData.playerAttackDmg
+	if !lucosaForm:
+		baseDmg -= 1
+		
 	if GlobalData.chargeEnabled && consumeCharges && GlobalData.charges > 0:
 		GlobalData.charges -= 1
-		return 2 * GlobalData.playerAttackDmg
+		return 2 * baseDmg
 	else:
-		return GlobalData.playerAttackDmg
+		return baseDmg
 	
 func play_anim(anim: String, force := false, reset := false):
 	if force || !is_anim_freeze_state():

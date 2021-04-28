@@ -45,6 +45,7 @@ tile_data = PoolIntArray( -2031616, 0, 11, -2031615, 0, 196609, -2031614, 0, 196
 
 [node name="DerenisaBoss" parent="." instance=ExtResource( 14 )]
 position = Vector2( 292, -32 )
+arena = Rect2( 0, -180, 320, 180 )
 
 [node name="Ruicosa" parent="." instance=ExtResource( 4 )]
 position = Vector2( -948, 142 )

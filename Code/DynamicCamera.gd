@@ -79,6 +79,9 @@ func _ready():
 		dynamicLimitDown = limit_bottom
 		dynamicLimitLeft = limit_left
 		dynamicLimitRight = limit_right
+		
+func _exit_tree():
+	GlobalData.camera = null
 
 func set_cur_lock(value):
 	curLock = value

@@ -84,7 +84,7 @@ func set_player_hp(amt: int):
 		if damage:
 			emit_signal("player_hit", playerHp)
 			get_tree().paused = true
-			if camera.has_method("shake"):
+			if camera && camera.has_method("shake"):
 				camera.shake(3.0, 0.15)
 			yield(get_tree().create_timer(0.2), "timeout")
 			if playerHp <= 0:
