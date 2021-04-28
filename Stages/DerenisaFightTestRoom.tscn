@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Code/Polish/StageBg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Tilesets/HdTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ruicosa/Ruicosa.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Code/DynamicCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Derenisa/DerenisaBoss.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Code/PlayerAreas/SignalArea.tscn" type="PackedScene" id=6]
 
 [node name="DerenisaFightTestRoom" type="Node2D"]
 
@@ -22,3 +23,9 @@ target = NodePath("../Ruicosa")
 
 [node name="DerenisaBoss" parent="." instance=ExtResource( 5 )]
 position = Vector2( 292, 160 )
+
+[node name="SignalArea" parent="." instance=ExtResource( 6 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SignalArea"]
+polygon = PoolVector2Array( 208, 172, 283, 172, 279, 147, 197, 147 )
+[connection signal="has_player" from="SignalArea" to="DerenisaBoss" method="start"]

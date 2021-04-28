@@ -176,7 +176,6 @@ anim = "Idle"
 
 [node name="DialogueAction" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 14 )]
 dialoguePath = "res://Dialogue/Npcs/Derenisa/Meeting3_1.json"
-debugSkip = true
 
 [node name="SignalAction" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 18 )]
 
@@ -185,7 +184,6 @@ duration = 1.2
 
 [node name="DialogueAction2" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 14 )]
 dialoguePath = "res://Dialogue/Npcs/Derenisa/Meeting3_2.json"
-debugSkip = true
 
 [node name="SignalAction2" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 18 )]
 
