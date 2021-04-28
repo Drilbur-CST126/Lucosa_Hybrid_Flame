@@ -67,7 +67,7 @@ func _ready():
 	GlobalData.oldCameraLimits = null
 	position_at_spawn_point()
 	
-	# Auto-set limits
+	# Auto-set limitsget_parent().get_node"StageBg") as ColorRect
 	if limit_left == -10000000 && get_parent().has_node("StageBg"):
 		var bg := get_parent().get_node("StageBg") as ColorRect
 		limit_left = int(bg.margin_left)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Code/Dialogue/Npc.gd" type="Script" id=1]
 [ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/Head1.tres" type="Texture" id=2]
@@ -14,6 +14,12 @@
 [ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegWind1.tres" type="Texture" id=12]
 [ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegWind2.tres" type="Texture" id=13]
 [ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegWind3.tres" type="Texture" id=14]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/ArmBend3.tres" type="Texture" id=15]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/ArmBend2.tres" type="Texture" id=16]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegBend1.tres" type="Texture" id=17]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/ArmBend1.tres" type="Texture" id=18]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegBend3.tres" type="Texture" id=19]
+[ext_resource path="res://Dialogue/Npcs/Derenisa/Graphics/LegBend2.tres" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 10 )
@@ -34,6 +40,107 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 2.2974, 3.13834 ),
 "update": 1,
 "values": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "JumpStart"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Arm:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.45, 0.5 ),
+"transitions": PoolRealArray( 2.2974, 1, 0.482968, 11.3137, 1 ),
+"update": 1,
+"values": [ ExtResource( 18 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Arm:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 0 ), Vector2( -1, 0 ), Vector2( -2, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/FrontLeg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 2.46229, 8.57419, 8, 1.86607 ),
+"update": 1,
+"values": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 17 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/BackLeg:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 3.73213, 78.7933, 1.18921, 1.86607 ),
+"update": 1,
+"values": [ ExtResource( 17 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 17 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/FrontLeg:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.5, 1 ), Vector2( -1.5, -0.614 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/BackLeg:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.5, 1 ), Vector2( -1.5, -0.614 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8.38636 ), Vector2( 0, 10 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Body/Head:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -1.5, -3.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -101,6 +208,42 @@ tracks/4/keys = {
 "update": 1,
 "values": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 10 ) ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/FrontLeg:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/BackLeg:offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Body/Arm:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [node name="Derenisa" type="Area2D"]
 script = ExtResource( 1 )
@@ -118,25 +261,28 @@ texture = ExtResource( 3 )
 [node name="BackArm" type="Sprite" parent="Graphics/Body"]
 show_behind_parent = true
 position = Vector2( -9.93764, 1.46766 )
-texture = ExtResource( 10 )
+texture = ExtResource( 9 )
 
 [node name="BackLeg" type="Sprite" parent="Graphics/Body"]
 show_behind_parent = true
 position = Vector2( -8.03463, 30.1324 )
-texture = ExtResource( 13 )
+texture = ExtResource( 17 )
+offset = Vector2( -1.5, 1 )
 
 [node name="FrontLeg" type="Sprite" parent="Graphics/Body"]
 show_behind_parent = true
 position = Vector2( 6.94318, 32.7532 )
-texture = ExtResource( 13 )
+texture = ExtResource( 17 )
+offset = Vector2( -1.5, 1 )
 
 [node name="Arm" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 11.0613, 1.46766 )
-texture = ExtResource( 10 )
+texture = ExtResource( 18 )
+offset = Vector2( -1, 0 )
 
 [node name="Head" type="Sprite" parent="Graphics/Body"]
 position = Vector2( 2.76522, -41.5211 )
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )
 
 [node name="Eye" type="Sprite" parent="Graphics/Body/Head"]
 position = Vector2( -6.85599, -4.17261 )
@@ -148,4 +294,5 @@ anims/Blink = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
 autoplay = "Wind"
+anims/JumpStart = SubResource( 4 )
 anims/Wind = SubResource( 3 )

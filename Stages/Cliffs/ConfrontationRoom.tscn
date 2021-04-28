@@ -41,10 +41,14 @@ scale = 0.15
 scale_curve = SubResource( 2 )
 
 [node name="ConfrontationRoom" type="Node2D"]
+z_index = 3
 script = ExtResource( 10 )
 mapId = 44
 
-[node name="StageBg" parent="." instance=ExtResource( 1 )]
+[node name="StageBgWrapper" type="Node2D" parent="."]
+z_index = -3
+
+[node name="StageBg" parent="StageBgWrapper" instance=ExtResource( 1 )]
 margin_left = -320.0
 margin_top = -180.0
 margin_bottom = 0.0
@@ -63,7 +67,7 @@ defaultClosed = false
 
 [node name="Snowfall" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, -90 )
-amount = 50
+amount = 25
 lifetime = 0.191406
 visibility_rect = Rect2( -320, -90, 640, 180 )
 process_material = SubResource( 3 )
@@ -128,6 +132,10 @@ position = Vector2( 308, -50 )
 facingRight = false
 
 [node name="DynamicCamera" parent="." instance=ExtResource( 7 )]
+limit_left = -320
+limit_top = -180
+limit_right = 320
+limit_bottom = 0
 target = NodePath("../Ruicosa")
 
 [node name="ConflictSceneTransition" parent="." instance=ExtResource( 8 )]
@@ -177,6 +185,9 @@ duration = 1.2
 
 [node name="DialogueAction2" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 14 )]
 dialoguePath = "res://Dialogue/Npcs/Derenisa/Meeting3_2.json"
+debugSkip = true
+
+[node name="SignalAction2" parent="CutsceneWrapper/Cutscene" instance=ExtResource( 18 )]
 
 [node name="SignalArea" parent="CutsceneWrapper" instance=ExtResource( 4 )]
 
@@ -192,4 +203,5 @@ dialogueTree = "res://Dialogue/Npcs/Derenisa/Citizen.json"
 [connection signal="has_player" from="SignalArea" to="BossDoor" method="close"]
 [connection signal="signal_action" from="CutsceneWrapper/Cutscene/SignalAction" to="BossDoor2" method="close"]
 [connection signal="signal_action" from="CutsceneWrapper/Cutscene/SignalAction" to="Arena" method="signal_start"]
+[connection signal="signal_action" from="CutsceneWrapper/Cutscene/SignalAction2" to="CutsceneWrapper/Derenisa" method="jump"]
 [connection signal="has_player" from="CutsceneWrapper/SignalArea" to="CutsceneWrapper/Cutscene" method="begin_cutscene"]
