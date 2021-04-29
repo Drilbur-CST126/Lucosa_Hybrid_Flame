@@ -1,0 +1,29 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"text": "It's a large rune, with something enscribed upon it..."
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rune",
+			"text": "\"It's official, the guild of the Ironspears is breaking apart.\""
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rune",
+			"text": "\"This is ridiculous! The Lucosa have proven to be untrustable, and yet my fellow Ruirui want to try peace!\""
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rune",
+			"text": "\"It will all fall apart again, I know it. It always does. Hopefully, when it happens, my kind can fight back as necessary.\""
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rune",
+			"text": "\"If the war has started again as you find this, take this Power Orb. Find the others, and your power will be unbeatable.\""
+		},
+	]
+}
