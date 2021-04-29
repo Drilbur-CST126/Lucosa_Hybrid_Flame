@@ -69,10 +69,13 @@ position = Vector2( 52, 200 )
 colDimensions = Vector2( 28, 8 )
 direction = 1
 loadPath = "res://Stages/FrogLands/TSplitRoom.tscn"
+overrideLoadId = ""
 
 [node name="LeftSceneTransition" parent="." instance=ExtResource( 4 )]
 position = Vector2( -12, -52 )
+direction = 2
 loadPath = "res://Stages/FrogLands/FrogKingRoom.tscn"
+overrideLoadId = ""
 
 [node name="LeftRoomSpawnPoint" parent="." instance=ExtResource( 5 )]
 position = Vector2( 12, -44.066 )
@@ -83,6 +86,7 @@ facingRight = true
 position = Vector2( 331.953, -68.0422 )
 direction = 3
 loadPath = "res://Stages/FrogLands/MushroomCombatRoom.tscn"
+overrideLoadId = ""
 
 [node name="RightRoomSpawnPoint" parent="." instance=ExtResource( 5 )]
 position = Vector2( 308.062, -59.7315 )

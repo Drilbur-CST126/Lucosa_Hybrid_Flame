@@ -1,0 +1,15 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "How does Commander Derenisa expect me to get up here?! This cliff is huge!",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Soldier",
+			"text": "That other guy got past, there has to be another way in...",
+		},
+	]
+}
