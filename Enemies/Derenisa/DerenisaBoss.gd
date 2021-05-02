@@ -239,8 +239,8 @@ func clear_timers():
 	timers.clear()
 	
 func is_angry() -> bool:
-	return true
-	#return $EnemyData.hp < kStartingHp / 2.0
+	#return true
+	return $EnemyData.hp < kStartingHp / 2.0
 
 
 func shoot_swords():
