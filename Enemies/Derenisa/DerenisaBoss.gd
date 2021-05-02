@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const WindSword := preload("res://Enemies/Derenisa/WindSword/WindSword.tscn")
+const WindWall := preload("res://Enemies/Derenisa/WindWall/WindWall.tscn")
 
 enum States { 
 		StartAnim = 0, 
@@ -105,7 +106,9 @@ export var arena := Rect2(0, 0, 320, 180)
 var swords := []
 var timers := []
 var runningToRight := false
+var onGround := false
 
+signal hit_ground()
 
 func start():
 	$AnimationPlayer.play("Start")
@@ -167,8 +170,16 @@ func _process(delta):
 			super_jump_await()
 		States.SuperJumpHover:
 			super_jump_hover()
+			
+	if !onGround && is_on_floor():
+		emit_signal("hit_ground")
+	onGround = is_on_floor()
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+func _exit_tree():
+	for sword in swords:
+		sword.queue_free()
 	
 	
 func take_damage(source):
@@ -228,8 +239,8 @@ func clear_timers():
 	timers.clear()
 	
 func is_angry() -> bool:
-	#return true
-	return $EnemyData.hp < kStartingHp / 2.0
+	return true
+	#return $EnemyData.hp < kStartingHp / 2.0
 
 
 func shoot_swords():
@@ -349,5 +360,17 @@ func super_jump_warning():
 	self.state = States.SuperJumpFall
 	
 func super_jump_fall():
-	yield(create_timer(1.5), "timeout")
+	velocity.y = 128.0
+	
+	yield(self, "hit_ground")
+	
+	var leftWall := WindWall.instance() as PlayerArea
+	var rightWall := leftWall.duplicate()
+	rightWall.movingRight = true
+	get_parent().add_child_below_node(self, leftWall)
+	get_parent().add_child_below_node(self, rightWall)
+	leftWall.global_position = global_position
+	rightWall.global_position = global_position
+	
+	yield(create_timer(1.25), "timeout")
 	next_state()
