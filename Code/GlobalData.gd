@@ -79,6 +79,7 @@ func reset():
 		var name := property["name"] as String
 		if name != "startingData":
 			self.set(name, startingData.get(name))
+	startingData = self.duplicate()
 	
 func set_player_hp(amt: int):
 	if amt != playerHp:
