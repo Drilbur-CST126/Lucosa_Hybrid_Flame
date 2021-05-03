@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Enemies/Derenisa/WindSword/WindSword.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Derenisa/WindSword/WindSword.PNG" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 2 )
@@ -12,6 +13,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = -6.0
 margin_top = -2.0
 margin_right = 6.0
@@ -19,3 +21,8 @@ margin_bottom = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WindSword" type="Sprite" parent="."]
+scale = Vector2( 0.167, 0.167 )
+texture = ExtResource( 2 )
+offset = Vector2( -1, 1 )

@@ -136,7 +136,7 @@ func set_state(val):
 		States.RetractSwords:
 			retract_swords()
 		States.RunDashRunning:
-			$AnimationPlayer.play("Run")
+			run_dash_setup()
 		States.RunDash:
 			run_dash()
 		States.Stagger:
@@ -305,6 +305,10 @@ func retract_swords():
 		sword.move_to(global_position, true)
 	swords.clear()
 	
+func run_dash_setup():
+	$AnimationPlayer.play("Run")
+	self.facingRight = GlobalData.player.global_position.x > global_position.x
+	
 func run_dash_running(delta: float):
 	if is_on_floor():
 		var dest := GlobalData.player.global_position
@@ -319,6 +323,7 @@ func run_dash_running(delta: float):
 func run_dash():
 	#var playerPos := GlobalData.player.global_position
 	velocity.x = 0.0
+	$AnimationPlayer.play("Run")
 	yield(create_timer(0.3), "timeout")
 	$AnimationPlayer.play("Dash")
 	var dir := Utility.get_dir(facingRight)

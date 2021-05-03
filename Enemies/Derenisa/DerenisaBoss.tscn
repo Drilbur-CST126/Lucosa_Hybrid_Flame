@@ -324,6 +324,7 @@ collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = -4.0
 margin_top = -9.0
 margin_right = 4.0
@@ -335,8 +336,8 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.167, 0.167 )
-texture = ExtResource( 8 )
-offset = Vector2( 0, -30 )
+texture = ExtResource( 4 )
+offset = Vector2( -20, -35 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -360,6 +361,7 @@ anims/SuperJumpFall = SubResource( 12 )
 anims/SuperJumpFreeze = SubResource( 13 )
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_top = -30.0
 __meta__ = {
 "_edit_use_anchors_": false
