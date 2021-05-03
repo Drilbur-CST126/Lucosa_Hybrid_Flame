@@ -62,8 +62,7 @@ step = 5.0
 rounded = true
 
 [node name="ColorRect" parent="VBoxContainer/SfxSlider" instance=ExtResource( 3 )]
-margin_top = -10.0
-margin_bottom = 10.0
+margin_top = -64.0
 
 [node name="MusicLabel" type="Label" parent="VBoxContainer"]
 margin_top = 97.0
@@ -85,8 +84,7 @@ step = 5.0
 rounded = true
 
 [node name="ColorRect" parent="VBoxContainer/MusicSlider" instance=ExtResource( 3 )]
-margin_top = -10.0
-margin_bottom = 10.0
+margin_top = -64.0
 
 [node name="FullscreenCheckBox" type="CheckBox" parent="VBoxContainer"]
 margin_top = 194.0
