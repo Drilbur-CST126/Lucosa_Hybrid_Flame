@@ -14,7 +14,7 @@ func _ready():
 	map.position = $Background.rect_size / 2.0 - get_current_room_center()
 	
 func _process(delta: float):
-	if Input.is_action_just_pressed("menu"):
+	if Input.is_action_just_pressed("menu") || Input.is_action_just_pressed("map"):
 		resume()
 	if Input.is_action_just_pressed("second_attack"):
 		load_menu()

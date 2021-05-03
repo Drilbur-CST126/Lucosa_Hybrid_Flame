@@ -8,8 +8,8 @@ var optionsOpen := false
 func _ready():
 	Utility.print_errors([
 		$Background/Options/Quit.connect("button_up", self, "quit"),
-		$Background/Options/Options.connect("button_up", self, "open_options"),
-		$Background/Options/Resume.connect("button_up", self, "resume"),
+		$Background/Options/Options.connect("button_down", self, "open_options"),
+		$Background/Options/Resume.connect("button_down", self, "resume"),
 		$MapRect/Button.connect("button_down", self, "load_map"),
 	])
 	$Background/Options/Resume.grab_focus()
@@ -51,6 +51,7 @@ func open_options():
 	
 func close_options():
 	optionsOpen = false
+	$Background/Options/Options.grab_focus()
 	
 func quit():
 	get_tree().paused = false

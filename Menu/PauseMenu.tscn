@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Menu/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Fonts/Lato12.tres" type="DynamicFont" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Code/StageAssets/Upgrade/ForesightOrb.tres" type="Texture" id=6]
 [ext_resource path="res://Code/Polish/ControlButtonPopup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Menu/PauseAbilityIcons.PNG" type="Texture" id=8]
+[ext_resource path="res://Menu/BrightenFocus.tscn" type="PackedScene" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -266,6 +267,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" parent="Background/Options/Quit" instance=ExtResource( 9 )]
+show_behind_parent = false
+
 [node name="Options" type="Button" parent="Background/Options"]
 anchor_left = 0.5
 anchor_right = 1.0
@@ -281,6 +285,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" parent="Background/Options/Options" instance=ExtResource( 9 )]
+show_behind_parent = false
+
 [node name="Resume" type="Button" parent="Background/Options"]
 anchor_top = 0.5
 anchor_right = 1.0
@@ -295,6 +302,9 @@ text = "Resume"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" parent="Background/Options/Resume" instance=ExtResource( 9 )]
+show_behind_parent = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Open"
@@ -320,6 +330,8 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" parent="MapRect/Button" instance=ExtResource( 9 )]
 
 [node name="ControlButtonPopup" parent="MapRect" instance=ExtResource( 7 )]
 anchor_top = 0.2

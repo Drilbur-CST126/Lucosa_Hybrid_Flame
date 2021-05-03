@@ -2,12 +2,13 @@ extends KinematicBody2D
 class_name Ruicosa
 
 const HUD = preload("res://Code/HUD.tscn")
-#const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tscn")
-#const LucosaHealthScene = preload("res://Code/HealMinigame/LucosaHealthScene.tscn")
+const RuiruiHealthScene = preload("res://Code/HealMinigame/RuiruiHealthScene.tscn")
+const LucosaHealthScene = preload("res://Code/HealMinigame/LucosaHealthScene.tscn")
 const MockPlayerScene = preload("res://Code/Cutscenes/MockPlayer.tscn")
 const Enemy = preload("res://Code/Enemy.gd")
 const Fireball = preload("res://Ruicosa/Fireball/Fireball.tscn")
 const PauseMenu = preload("res://Menu/PauseMenu.tscn")
+const MapMenu = preload("res://Menu/MapMenu.tscn")
 
 const kHit1Particle = preload("res://Graphics/Particles/Hit1/Hit1.tscn")
 const kUppercutParticle = preload("res://Graphics/Particles/Uppercut/Uppercut.tscn")
@@ -43,6 +44,7 @@ const animOffsets := {
 	"Lucosa_Attack": -20,
 }
 
+const kDiveInvinTime := 0.1
 const walkSpeed := 128.0
 const runSpeed := 180.0
 const maxSpeedTime := 0.15
@@ -136,6 +138,10 @@ func knockback(enemy: Enemy, damage := 0):
 		canDoubleJump = form_has_double_jump()
 		if enemy.vulnerable:
 			enemy.take_damage(get_attack_damage(!enemy.blocking), self)
+			
+			vulnerable = false
+			yield(Utility.create_timer(self, kDiveInvinTime), "timeout")
+			vulnerable = true
 	elif vulnerable:
 		if (damage > 0):
 			GlobalData.playerHp -= damage
@@ -165,10 +171,8 @@ func set_lucosa_form(value: bool):
 	
 func get_attack_damage(consumeCharges := true) -> int:
 	var baseDmg := GlobalData.playerAttackDmg
-	if !lucosaForm:
-		baseDmg -= 1
 		
-	if GlobalData.chargeEnabled && consumeCharges && GlobalData.charges > 0:
+	if lucosaForm && GlobalData.chargeEnabled && consumeCharges && GlobalData.charges > 0:
 		GlobalData.charges -= 1
 		return 2 * baseDmg
 	else:
@@ -452,6 +456,10 @@ func _process(_delta: float):
 		
 	if Input.is_action_just_pressed("menu"):
 		hud.control.add_child(PauseMenu.instance())
+		
+	if Input.is_action_just_pressed("map"):
+		hud.control.add_child(MapMenu.instance())
+		get_tree().paused = true
 	
 func _physics_process(delta: float):
 	if !is_stun_state():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Graphics/Fonts/Lato24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Graphics/Fonts/Lato18.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Graphics/Fonts/Lato14.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Graphics/StartScreen.png" type="Texture" id=4]
 [ext_resource path="res://Menu/MainMenu.gd" type="Script" id=5]
+[ext_resource path="res://Menu/BrightenFocus.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Load"
@@ -138,6 +139,8 @@ custom_fonts/font = ExtResource( 3 )
 text = "New Game"
 flat = true
 
+[node name="ColorRect" parent="OptionVBoxContainer/NewGame" instance=ExtResource( 6 )]
+
 [node name="Continue" type="Button" parent="OptionVBoxContainer"]
 margin_top = 528.0
 margin_right = 1280.0
@@ -152,6 +155,8 @@ custom_fonts/font = ExtResource( 3 )
 text = "Continue"
 flat = true
 
+[node name="ColorRect" parent="OptionVBoxContainer/Continue" instance=ExtResource( 6 )]
+
 [node name="Exit" type="Button" parent="OptionVBoxContainer"]
 margin_top = 626.0
 margin_right = 1280.0
@@ -165,6 +170,8 @@ focus_previous = NodePath(".")
 custom_fonts/font = ExtResource( 3 )
 text = "Exit"
 flat = true
+
+[node name="ColorRect" parent="OptionVBoxContainer/Exit" instance=ExtResource( 6 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Load = SubResource( 1 )

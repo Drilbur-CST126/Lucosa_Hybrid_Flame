@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Graphics/Fonts/LatoItalic8.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Menu/Options.gd" type="Script" id=2]
+[ext_resource path="res://Menu/BrightenFocus.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.380392, 0.658824, 0.807843, 1 )
@@ -60,6 +61,10 @@ theme = SubResource( 3 )
 step = 5.0
 rounded = true
 
+[node name="ColorRect" parent="VBoxContainer/SfxSlider" instance=ExtResource( 3 )]
+margin_top = -10.0
+margin_bottom = 10.0
+
 [node name="MusicLabel" type="Label" parent="VBoxContainer"]
 margin_top = 97.0
 margin_right = 768.0
@@ -79,6 +84,10 @@ theme = SubResource( 3 )
 step = 5.0
 rounded = true
 
+[node name="ColorRect" parent="VBoxContainer/MusicSlider" instance=ExtResource( 3 )]
+margin_top = -10.0
+margin_bottom = 10.0
+
 [node name="FullscreenCheckBox" type="CheckBox" parent="VBoxContainer"]
 margin_top = 194.0
 margin_right = 768.0
@@ -90,6 +99,8 @@ focus_previous = NodePath("../MusicSlider")
 custom_fonts/font = ExtResource( 1 )
 text = "Fullscreen"
 expand_icon = true
+
+[node name="ColorRect" parent="VBoxContainer/FullscreenCheckBox" instance=ExtResource( 3 )]
 
 [node name="AcceptClose" type="Control" parent="."]
 anchor_top = 1.0
@@ -115,6 +126,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" parent="AcceptClose/Accept" instance=ExtResource( 3 )]
+show_behind_parent = false
+
 [node name="Close" type="Button" parent="AcceptClose"]
 anchor_left = 0.5
 anchor_right = 1.0
@@ -128,3 +142,6 @@ text = "Close"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" parent="AcceptClose/Close" instance=ExtResource( 3 )]
+show_behind_parent = false
