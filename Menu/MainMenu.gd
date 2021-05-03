@@ -13,6 +13,7 @@ func _ready():
 	
 const newGameScene := "res://Stages/FrogLands/JumpTutorialRoom.tscn"
 func new_game():
+	GlobalData.reset()
 	Utility.print_errors([
 		get_tree().change_scene(newGameScene),
 	])

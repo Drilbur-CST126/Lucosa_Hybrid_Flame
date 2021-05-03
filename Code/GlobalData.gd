@@ -49,6 +49,8 @@ var hasExplosionImmunity := false
 var canTransform := false
 var canTransformAnywhere := false setget set_can_transform_anywhere
 
+var startingData
+
 signal max_hp_changed(maxHp)
 signal hp_changed(hp, shards)
 signal mana_changed(mana)
@@ -70,6 +72,13 @@ func _ready():
 	#Engine.time_scale = 0.2
 	randomize()
 	random.randomize()
+	startingData = self.duplicate()
+	
+func reset():
+	for property in get_property_list():
+		var name := property["name"] as String
+		if name != "startingData":
+			self.set(name, startingData.get(name))
 	
 func set_player_hp(amt: int):
 	if amt != playerHp:
