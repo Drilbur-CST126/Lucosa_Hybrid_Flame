@@ -85,6 +85,16 @@ const kAngryAttackOdds := {
 	},
 }
 
+const kAnimEndTransitionStates := [
+	States.StartAnim,
+	States.ShootSwords,
+	States.RetractSwords,
+	States.FirstJump,
+	States.SecondJump,
+	States.Stagger,
+	States.RunDash,
+]
+
 const kSpreadAngle := deg2rad(30.0)
 const kWindSwordDist := 5.0 * 8.0
 const kFirstJumpVel := Vector2(0.0, -256.0)
@@ -105,7 +115,7 @@ export var arena := Rect2(0, 0, 320, 180)
 
 var swords := []
 var timers := []
-var runningToRight := false
+var facingRight := false setget set_facing_right
 var onGround := false
 
 signal hit_ground()
@@ -125,6 +135,8 @@ func set_state(val):
 			second_jump()
 		States.RetractSwords:
 			retract_swords()
+		States.RunDashRunning:
+			$AnimationPlayer.play("Run")
 		States.RunDash:
 			run_dash()
 		States.Stagger:
@@ -141,6 +153,11 @@ func set_state(val):
 			super_jump_warning()
 		States.SuperJumpFall:
 			super_jump_fall()
+			
+func set_facing_right(val: bool):
+	facingRight = val
+	var dir := Utility.get_dir(!val)
+	$Sprite.scale.x = dir / 6.0
 			
 func is_float_state():
 	return state == States.RetractSwords \
@@ -188,25 +205,26 @@ func take_damage(source):
 		self.state = States.Stagger
 	
 func anim_finished(_anim):
-	match state:
-		States.RetractSwords:
-			if global_position.y > arena.position.y + arena.size.y / 3.0:
-				var next := get_next_state()
-				while next == States.ShootSwords && global_position.distance_to(GlobalData.player.global_position) > 64.0:
-					next = get_next_state()
-				self.state = next
-			else:
-				self.state = States.RunDashRunning
-		States.ShootSwords:
-			if global_position.y > arena.position.y + arena.size.y / 3.0:
-				var next := get_next_state()
-				while next == States.ShootSwords && global_position.distance_to(GlobalData.player.global_position) > 64.0:
-					next = get_next_state()
-				self.state = next
-			else:
-				self.state = States.RunDashRunning
-		_:
-			next_state()
+	if Utility.contains(kAnimEndTransitionStates, state):
+		match state:
+			States.RetractSwords:
+				if global_position.y > arena.position.y + arena.size.y / 3.0:
+					var next := get_next_state()
+					while next == States.ShootSwords && global_position.distance_to(GlobalData.player.global_position) > 64.0:
+						next = get_next_state()
+					self.state = next
+				else:
+					self.state = States.RunDashRunning
+			States.ShootSwords:
+				if global_position.y > arena.position.y + arena.size.y / 3.0:
+					var next := get_next_state()
+					while next == States.ShootSwords && global_position.distance_to(GlobalData.player.global_position) > 64.0:
+						next = get_next_state()
+					self.state = next
+				else:
+					self.state = States.RunDashRunning
+			_:
+				next_state()
 	
 func next_state():
 	self.state = get_next_state()
@@ -270,8 +288,9 @@ func first_jump():
 	$AnimationPlayer.play("Jump")
 		
 func second_jump():
+	self.facingRight = GlobalData.player.global_position.x > global_position.x
 	velocity = kSecondJumpVel
-	if GlobalData.player.global_position.x < global_position.x:
+	if !facingRight:
 		velocity.x *= -1
 	$AnimationPlayer.play("Jump")
 	
@@ -281,6 +300,7 @@ func retract_swords():
 		return
 		
 	$AnimationPlayer.play("RetractSwords")
+	self.facingRight = swords[0].global_position.x > global_position.x
 	for sword in swords:
 		sword.move_to(global_position, true)
 	swords.clear()
@@ -288,7 +308,8 @@ func retract_swords():
 func run_dash_running(delta: float):
 	if is_on_floor():
 		var dest := GlobalData.player.global_position
-		var dir := Utility.get_dir(dest > global_position)
+		self.facingRight = dest > global_position
+		var dir := Utility.get_dir(facingRight)
 		velocity.x += dir * kRunAcceleration * delta
 		if dir * velocity.x > kRunSpeed:
 			velocity.x = dir * kRunSpeed
@@ -296,10 +317,11 @@ func run_dash_running(delta: float):
 			self.state = States.RunDash
 			
 func run_dash():
-	var playerPos := GlobalData.player.global_position
+	#var playerPos := GlobalData.player.global_position
 	velocity.x = 0.0
 	yield(create_timer(0.3), "timeout")
-	var dir := Utility.get_dir(playerPos.x > global_position.x)
+	$AnimationPlayer.play("Dash")
+	var dir := Utility.get_dir(facingRight)
 	velocity.x = dir * kDashSpeed
 	yield(create_timer(kRunDashLength / kDashSpeed), "timeout")
 	velocity.x = 0.0
@@ -307,11 +329,12 @@ func run_dash():
 	anim_finished("RunDash")
 	
 func long_dash_setup():
-	runningToRight = GlobalData.player.global_position.x < global_position.x
+	$AnimationPlayer.play("Run")
+	self.facingRight = GlobalData.player.global_position.x < global_position.x
 	
 func long_dash_running(delta: float):
 	if is_on_floor():
-		var dir := Utility.get_dir(runningToRight)
+		var dir := Utility.get_dir(facingRight)
 		velocity.x += dir * kRunAcceleration * delta
 		if dir * velocity.x > kRunSpeed:
 			velocity.x = dir * kRunSpeed
@@ -320,15 +343,17 @@ func long_dash_running(delta: float):
 			self.state = States.LongDash
 			
 func long_dash():
-	var dir := Utility.get_dir(!runningToRight)
+	self.facingRight = !facingRight
+	var dir := Utility.get_dir(facingRight)
 	yield(create_timer(0.3), "timeout")
+	$AnimationPlayer.play("Dash")
 	velocity.x = dir * kDashSpeed
 	
 func long_dash_await():
 	var complete := (global_position.x >= arena.position.x + arena.size.x - 16.0) \
-			if !runningToRight else (global_position.x <= arena.position.x + 16.0)
+			if facingRight else (global_position.x <= arena.position.x + 16.0)
 	if complete:
-		anim_finished("LongDash")
+		next_state()
 
 func stagger():
 	$AnimationPlayer.play("Stagger")
@@ -361,8 +386,10 @@ func super_jump_warning():
 	
 func super_jump_fall():
 	velocity.y = 128.0
+	$AnimationPlayer.play("SuperJumpFall")
 	
 	yield(self, "hit_ground")
+	$AnimationPlayer.play("SuperJumpFreeze")
 	
 	var leftWall := WindWall.instance() as PlayerArea
 	var rightWall := leftWall.duplicate()
