@@ -47,7 +47,7 @@ const animOffsets := {
 const kDiveInvinTime := 0.1
 const walkSpeed := 128.0
 const runSpeed := 180.0
-const maxSpeedTime := 0.15
+const maxSpeedTime := 0.10
 const maxGravityMultiplier := 4.0
 const knockbackSpeed := 64.0
 

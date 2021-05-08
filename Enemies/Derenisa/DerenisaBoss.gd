@@ -267,6 +267,7 @@ func shoot_swords():
 		return
 	
 	$AnimationPlayer.play("ShootSwords")
+	self.facingRight = GlobalData.player.global_position.x > global_position.x
 	yield(create_timer(0.3), "timeout")
 	
 	var baseAngle := global_position.angle_to_point(GlobalData.player.global_position) + PI
@@ -275,6 +276,7 @@ func shoot_swords():
 			baseAngle = PI + kSpreadAngle
 		else:
 			baseAngle = 2 * PI - kSpreadAngle
+	self.facingRight = cos(baseAngle) > 0
 	
 	for angle in [baseAngle, baseAngle - kSpreadAngle, baseAngle + kSpreadAngle]:
 		var sword := WindSword.instance() as PlayerArea

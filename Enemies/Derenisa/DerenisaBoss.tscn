@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Derenisa/DerenisaBoss.gd" type="Script" id=2]
@@ -8,13 +8,19 @@
 [ext_resource path="res://Enemies/Derenisa/Sprites/FirstJump.PNG" type="Texture" id=6]
 [ext_resource path="res://Enemies/Derenisa/Sprites/Run.PNG" type="Texture" id=7]
 [ext_resource path="res://Enemies/Derenisa/Sprites/Dash.PNG" type="Texture" id=8]
-[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFall.PNG" type="Texture" id=9]
-[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFreeze.PNG" type="Texture" id=10]
+[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFall/IMG_1671.PNG" type="Texture" id=9]
+[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFreeze/IMG_1668.PNG" type="Texture" id=10]
+[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFreeze/IMG_1670.PNG" type="Texture" id=11]
+[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFreeze/IMG_1669.PNG" type="Texture" id=12]
+[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFall/IMG_1672.PNG" type="Texture" id=13]
+[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFall/IMG_1673.PNG" type="Texture" id=14]
+[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFall/IMG_1675.PNG" type="Texture" id=15]
+[ext_resource path="res://Enemies/Derenisa/Sprites/SuperJumpFall/IMG_1674.PNG" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 9 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=2]
 resource_name = "Dash"
 length = 0.3
 loop = true
@@ -43,8 +49,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -30 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Jump"
+[sub_resource type="Animation" id=3]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -71,8 +76,7 @@ tracks/1/keys = {
 "values": [ Vector2( -20, -30 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "RetractSwords"
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:velocity")
@@ -111,7 +115,7 @@ tracks/2/keys = {
 "values": [ Vector2( -20, -35 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 resource_name = "Run"
 length = 0.3
 loop = true
@@ -140,7 +144,7 @@ tracks/1/keys = {
 "values": [ Vector2( -10, -30 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:velocity")
@@ -179,8 +183,7 @@ tracks/2/keys = {
 "values": [ Vector2( -20, -35 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Stagger"
+[sub_resource type="Animation" id=7]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -207,7 +210,7 @@ tracks/1/keys = {
 "values": [ Vector2( -20, -35 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:state")
 tracks/0/interp = 1
@@ -245,8 +248,11 @@ tracks/2/keys = {
 "values": [ Vector2( -20, -35 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 resource_name = "SuperJumpFall"
+length = 0.4
+loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -254,10 +260,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1.03526, 3.13834, 5.85634, 1, 5.65685, 1 ),
 "update": 1,
-"values": [ ExtResource( 9 ) ]
+"values": [ ExtResource( 9 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 9 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -272,8 +278,9 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -20 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=10]
 resource_name = "SuperJumpFreeze"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -281,10 +288,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1.93187, 5.46416 ),
 "update": 1,
-"values": [ ExtResource( 10 ) ]
+"values": [ ExtResource( 10 ), ExtResource( 12 ), ExtResource( 11 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -299,15 +306,15 @@ tracks/1/keys = {
 "values": [ Vector2( -15, -35 ) ]
 }
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=11]
 colors = PoolColorArray( 1, 1, 1, 1, 0.380392, 0.658824, 0.807843, 1 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=13]
 trail_divisor = 4
-trail_color_modifier = SubResource( 8 )
+trail_color_modifier = SubResource( 12 )
 emission_shape = 2
 emission_box_extents = Vector3( 96, 24, 1 )
 flag_disable_z = true
@@ -336,8 +343,8 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.167, 0.167 )
-texture = ExtResource( 4 )
-offset = Vector2( -20, -35 )
+texture = ExtResource( 16 )
+offset = Vector2( 0, -20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -350,15 +357,15 @@ giveParentFlashShader = false
 shakeOnDeath = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Dash = SubResource( 11 )
-anims/Jump = SubResource( 2 )
-anims/RetractSwords = SubResource( 3 )
-anims/Run = SubResource( 10 )
-anims/ShootSwords = SubResource( 4 )
-anims/Stagger = SubResource( 5 )
-anims/Start = SubResource( 6 )
-anims/SuperJumpFall = SubResource( 12 )
-anims/SuperJumpFreeze = SubResource( 13 )
+anims/Dash = SubResource( 2 )
+anims/Jump = SubResource( 3 )
+anims/RetractSwords = SubResource( 4 )
+anims/Run = SubResource( 5 )
+anims/ShootSwords = SubResource( 6 )
+anims/Stagger = SubResource( 7 )
+anims/Start = SubResource( 8 )
+anims/SuperJumpFall = SubResource( 9 )
+anims/SuperJumpFreeze = SubResource( 10 )
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -378,5 +385,5 @@ emitting = false
 amount = 48
 lifetime = 0.6
 explosiveness = 0.2
-process_material = SubResource( 9 )
+process_material = SubResource( 13 )
 texture = ExtResource( 3 )
