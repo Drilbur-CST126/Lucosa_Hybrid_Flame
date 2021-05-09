@@ -92,7 +92,7 @@ const kAnimEndTransitionStates := [
 	States.FirstJump,
 	States.SecondJump,
 	States.Stagger,
-	States.RunDash,
+	#States.RunDash,
 ]
 
 const kSpreadAngle := deg2rad(30.0)
@@ -119,6 +119,7 @@ var facingRight := false setget set_facing_right
 var onGround := false
 
 signal hit_ground()
+signal defeated()
 
 func start():
 	$AnimationPlayer.play("Start")
@@ -170,6 +171,7 @@ func _ready():
 	Utility.print_errors([
 		$AnimationPlayer.connect("animation_finished", self, "anim_finished"),
 		$EnemyData.connect("on_hit", self, "take_damage"),
+		$EnemyData.connect("on_death", self, "on_defeat"),
 	])
 	
 func _process(delta):
@@ -194,9 +196,11 @@ func _process(delta):
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-func _exit_tree():
+func on_defeat():
 	for sword in swords:
 		sword.queue_free()
+		
+	emit_signal("defeated")
 	
 	
 func take_damage(source):
@@ -308,13 +312,15 @@ func retract_swords():
 	swords.clear()
 	
 func run_dash_setup():
-	$AnimationPlayer.play("Run")
+	$AnimationPlayer.play("Run" if onGround else "Fall")
 	self.facingRight = GlobalData.player.global_position.x > global_position.x
 	
 func run_dash_running(delta: float):
 	if is_on_floor():
+		if !onGround:
+			$AnimationPlayer.play("Run")
 		var dest := GlobalData.player.global_position
-		self.facingRight = dest > global_position
+		self.facingRight = dest.x > global_position.x
 		var dir := Utility.get_dir(facingRight)
 		velocity.x += dir * kRunAcceleration * delta
 		if dir * velocity.x > kRunSpeed:
@@ -325,22 +331,26 @@ func run_dash_running(delta: float):
 func run_dash():
 	#var playerPos := GlobalData.player.global_position
 	velocity.x = 0.0
-	$AnimationPlayer.play("Run")
+	#self.facingRight = GlobalData.player.global_position.x > global_position.x
+	$AnimationPlayer.play("DashStart")
 	yield(create_timer(0.3), "timeout")
 	$AnimationPlayer.play("Dash")
+	GlobalData.camera.shake(1, 0.1)
 	var dir := Utility.get_dir(facingRight)
 	velocity.x = dir * kDashSpeed
 	yield(create_timer(kRunDashLength / kDashSpeed), "timeout")
 	velocity.x = 0.0
 	yield(create_timer(0.2), "timeout")
-	anim_finished("RunDash")
+	next_state()
 	
 func long_dash_setup():
-	$AnimationPlayer.play("Run")
+	$AnimationPlayer.play("Run" if onGround else "Fall")
 	self.facingRight = GlobalData.player.global_position.x < global_position.x
 	
 func long_dash_running(delta: float):
 	if is_on_floor():
+		if !onGround:
+			$AnimationPlayer.play("Run")
 		var dir := Utility.get_dir(facingRight)
 		velocity.x += dir * kRunAcceleration * delta
 		if dir * velocity.x > kRunSpeed:
@@ -352,8 +362,10 @@ func long_dash_running(delta: float):
 func long_dash():
 	self.facingRight = !facingRight
 	var dir := Utility.get_dir(facingRight)
+	$AnimationPlayer.play("DashStart")
 	yield(create_timer(0.3), "timeout")
 	$AnimationPlayer.play("Dash")
+	GlobalData.camera.shake(1, 0.1)
 	velocity.x = dir * kDashSpeed
 	
 func long_dash_await():

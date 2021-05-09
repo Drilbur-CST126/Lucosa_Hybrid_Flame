@@ -10,7 +10,7 @@ var kAnimOffsets: Dictionary
 var facingRight := true setget set_facing_right
 var velocity := Vector2.ZERO
 var running := false
-var lucosaForm := false
+var lucosaForm := false setget set_form
 var dest = null# Vector2
 
 signal destination_reached()
@@ -20,6 +20,10 @@ func set_facing_right(value: bool):
 	$Sprite.flip_h = value
 	$Sprite.offset.x = kAnimOffsets[$Sprite.animation]
 	$Sprite.offset.x *= -1 if facingRight else 1
+	
+func set_form(value: bool):
+	lucosaForm = value
+	play_anim(get_anim())
 
 func play_anim(anim: String, reset := false):
 	if lucosaForm:

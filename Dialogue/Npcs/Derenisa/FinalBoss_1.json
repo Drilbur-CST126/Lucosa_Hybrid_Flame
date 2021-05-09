@@ -1,0 +1,35 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "Well. Look who it is, my favorite little Shifter.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "The name's Rez. Don't wear it out.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "Did you really think you can run us around this waterfall and return to town without consequence? That we'd just give up on you?",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "No, but if you're offering, I wouldn't mind the freedom.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "This isn't a game, Shifter! You are a criminal, and I will delight in bringing you down.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Hmph. The feeling's mutual.",
+		},
+	]
+}
