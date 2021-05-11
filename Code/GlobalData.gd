@@ -6,6 +6,7 @@ enum Ability {Dive, Uppercut, DoubleJump, Fireball, ExplosionImmunity, Transform
 
 const kPlayerClassName = "Ruicosa"
 const kManaRegenPerSec := 10.0
+const kHealCooldownLen := 15.0
 const kMaxMana := 100.0
 const kPlayerStartingMaxHp := 5
 const kPlayerStartingDmg := 2
@@ -20,6 +21,7 @@ var playerMana := 100.0 setget set_player_mana
 var charges := 0 setget set_charges
 var maxCharges := 0 setget set_max_charges
 var chargeEnabled := true setget set_charge_enabled
+var healCooldown := 0.0 setget set_heal_cooldown
 var playerAttackDmg := kPlayerStartingDmg
 var playerForesight := 0 setget set_player_foresight
 var distributeHpShards := true setget set_distribute_hp_shards
@@ -57,6 +59,7 @@ signal mana_changed(mana)
 signal charges_changed(charges)
 signal max_charges_changed(charges)
 signal charge_enabled_changed(state)
+signal heal_cooldown_changed(cd)
 signal trans_begin(direction, destination)
 signal player_hit(hp)
 signal hit_animation_finished()
@@ -154,6 +157,13 @@ func set_max_charges(amt: int):
 	if amt != maxCharges:
 		maxCharges = amt
 		emit_signal("max_charges_changed", amt)
+		
+func set_heal_cooldown(amt: float):
+	if amt < 0.0:
+		amt = 0.0
+	if amt != healCooldown:
+		healCooldown = amt
+		emit_signal("heal_cooldown_changed", healCooldown)
 		
 func set_distribute_hp_shards(val: bool):
 	distributeHpShards = val
@@ -351,6 +361,7 @@ func _process(delta):
 #	if Input.is_action_just_pressed("menu"):
 #		OS.window_fullscreen = !OS.window_fullscreen
 #		#print_stray_nodes()
+	self.healCooldown -= delta
 	
 	if regenMana && charges < maxCharges:
 		set_player_mana(playerMana + kManaRegenPerSec * delta)

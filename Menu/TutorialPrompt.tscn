@@ -92,6 +92,7 @@ rect_min_size = Vector2( 66, 66 )
 [node name="ButtonPopup" parent="HBoxContainer/ButtonControl" instance=ExtResource( 3 )]
 position = Vector2( 33, 33 )
 scale = Vector2( 4, 4 )
+curButton = 0
 elevated = false
 
 [node name="Label" type="Label" parent="HBoxContainer"]

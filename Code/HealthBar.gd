@@ -5,6 +5,7 @@ const Health = preload("res://Code/Health.tscn")
 const ChargeScn = preload("res://Code/Charge.tscn")
 const TransitionEffect = preload("res://Code/Polish/TransitionEffect.tscn")
 const DialogueBox = preload("res://Code/Dialogue/DialogueBox.tscn")
+const Meditate = preload("res://Menu/TutorialPopups/Meditate.tscn")
 
 const kBarWidth := 548
 const kIconHeight := 124.525
@@ -21,6 +22,7 @@ const NEXT_HEART_OFFSET := 90
 # var b = "text"
 var curNumHearts := 0
 var firstRun := true
+var meditate
 onready var control := $Control
 
 var adjustHealthMutex := Mutex.new()
@@ -36,6 +38,7 @@ func _ready():
 		GlobalData.connect("charges_changed", self, "adjust_charge_display"),
 		GlobalData.connect("charge_enabled_changed", self, "adjust_charge_enabled"),
 		GlobalData.connect("player_dead", self, "begin_death_transition"),
+		GlobalData.connect("heal_cooldown_changed", self, "adjust_heal_cooldown"),
 	])
 	GlobalData.hud = self
 	adjust_max_hp_display(GlobalData.playerMaxHp)
@@ -87,6 +90,9 @@ func adjust_hp_display(hp: int, shards: int):
 			if firstRun:
 				heart.animTime = 0.0
 		curHeart += 1
+		
+	show_meditate_tutorial(hp)
+		
 	adjustHealthMutex.unlock()
 
 func adjust_mana_display(mana: float):
@@ -121,6 +127,25 @@ func adjust_charge_enabled(enabled: bool):
 	for i in range(0, $Charges.get_child_count()):
 		var charge := $Charges.get_child(i) as Charge
 		charge.set_enabled(enabled)
+		
+func adjust_heal_cooldown(cd: float):
+	var amtFull := (GlobalData.kHealCooldownLen - cd) / GlobalData.kHealCooldownLen
+	var width: float = $Visuals/BarBackground.region_rect.end.x * amtFull
+	var maxWidth: float = $Visuals/BarBackground.region_rect.end.x
+	$Visuals/BarInfill.region_rect.end.x = width
+	$Visuals/BarInfill.offset.x = -(maxWidth - width) / 2.0
+	$Visuals/BarInfill.modulate.a = 1.0 if cd == 0.0 else 0.5
+	show_meditate_tutorial(GlobalData.playerHp)
+	
+func show_meditate_tutorial(hp: int):
+	if ((!GlobalData.player_at_full_hp() && !GlobalData.hasDive) || hp == 1) \
+			&& GlobalData.healCooldown <= 0.0:
+		if meditate == null:
+			meditate = Meditate.instance()
+			add_child(meditate)
+	elif meditate != null:
+		meditate.queue_free()
+		meditate = null
 	
 func show_dialogue_box(path: String) -> Node:
 	var dialogueBox := DialogueBox.instance()

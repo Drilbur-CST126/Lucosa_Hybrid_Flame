@@ -67,9 +67,10 @@ region_rect = Rect2( 0, 0, 114.638, 124.525 )
 modulate = Color( 0.329412, 0.294118, 0.27451, 1 )
 position = Vector2( 358.354, 121.764 )
 texture = SubResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 548, 23 )
 
 [node name="BarInfill" type="Sprite" parent="Visuals"]
-visible = false
 position = Vector2( 358.354, 121.764 )
 texture = SubResource( 2 )
 region_enabled = true

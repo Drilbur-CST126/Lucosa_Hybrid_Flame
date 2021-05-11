@@ -39,7 +39,7 @@ func _physics_process(delta):
 	if is_on_wall() and !attacking:
 		set_flip(!$AnimatedSprite.flip_h)
 	
-func _begin_attack():
+func _begin_attack(_src = null):
 	if !attacking:
 		attacking = true
 		$EnemyData.blocking = false

@@ -1,5 +1,6 @@
 tool
 extends Control
+class_name TutorialPopup
 
 const Buttons = preload("res://Code/ButtonPopup.gd").Buttons
 

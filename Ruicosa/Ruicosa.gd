@@ -326,29 +326,29 @@ func fireball():
 		
 		get_parent().add_child_below_node(self, child)
 		
-#func begin_heal():
-#	if is_on_floor() && !GlobalData.player_at_full_hp() \
-#			&& state != ActionState.Healing && GlobalData.playerMana == GlobalData.kMaxMana:
-#		state = ActionState.Healing
-#		GlobalData.playerMana = 0.0
-#		GlobalData.regenMana = false
-#		var healScene := LucosaHealthScene.instance() if lucosaForm else RuiruiHealthScene.instance()
-#		hud.add_child(healScene)
-#		Utility.print_connect_errors(get_path(), [
-#			healScene.connect("on_finish", self, "end_heal"),
-#			GlobalData.connect("player_hit", self, "interrupt_heal", [healScene])
-#		])
-#		GlobalData.distributeHpShards = false
-#
-#func end_heal():
-#	state = ActionState.Normal
-#	GlobalData.regenMana = true
-#	GlobalData.disconnect("player_hit", self, "interrupt_heal")
-#	GlobalData.distributeHpShards = true
-#
-#func interrupt_heal(_hp: int, healScene):
-#	healScene.queue_free()
-#	end_heal()
+func begin_heal():
+	if is_on_floor() && !GlobalData.player_at_full_hp() \
+			&& state != ActionState.Healing && GlobalData.healCooldown <= 0.0:
+		state = ActionState.Healing
+		GlobalData.healCooldown = GlobalData.kHealCooldownLen
+		GlobalData.regenMana = false
+		var healScene := LucosaHealthScene.instance() if lucosaForm else RuiruiHealthScene.instance()
+		hud.add_child(healScene)
+		Utility.print_connect_errors(get_path(), [
+			healScene.connect("on_finish", self, "end_heal"),
+			GlobalData.connect("player_hit", self, "interrupt_heal", [healScene])
+		])
+		GlobalData.distributeHpShards = false
+
+func end_heal():
+	state = ActionState.Normal
+	GlobalData.regenMana = true
+	GlobalData.disconnect("player_hit", self, "interrupt_heal")
+	GlobalData.distributeHpShards = true
+
+func interrupt_heal(_hp: int, healScene):
+	healScene.queue_free()
+	end_heal()
 		
 func set_can_attack():
 	canAttack = true
@@ -452,7 +452,8 @@ func _ready():
 	
 func _process(_delta: float):
 	if Input.is_action_just_pressed("spell"):
-		GlobalData.chargeEnabled = !GlobalData.chargeEnabled
+		#GlobalData.chargeEnabled = !GlobalData.chargeEnabled
+		begin_heal()
 		
 	if Input.is_action_just_pressed("menu"):
 		hud.control.add_child(PauseMenu.instance())
