@@ -128,8 +128,8 @@ playerPath = NodePath("../Ruicosa")
 
 [node name="DialogueAction" parent="Cutscene" instance=ExtResource( 17 )]
 dialoguePath = "res://Dialogue/Npcs/Derenisa/FinalBoss_1.json"
-[connection signal="defeated" from="DerenisaBoss" to="BossWindGust" method="queue_free"]
 [connection signal="defeated" from="DerenisaBoss" to="BossDoor2" method="open"]
+[connection signal="defeated" from="DerenisaBoss" to="BossWindGust" method="queue_free"]
 [connection signal="has_player" from="SignalArea" to="BossDoor" method="close"]
 [connection signal="has_player" from="SignalArea" to="DerenisaBoss" method="start"]
 [connection signal="has_player" from="SignalArea" to="Cutscene" method="begin_cutscene"]
