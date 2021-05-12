@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Code/HealMinigame/HealthScene.gd" type="Script" id=1]
+[ext_resource path="res://Code/Polish/ControlButtonPopup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Graphics/Fonts/LatoItalic12.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -46,3 +48,95 @@ __meta__ = {
 autoplay = "FadeIn"
 anims/FadeIn = SubResource( 1 )
 anims/FadeOut = SubResource( 2 )
+
+[node name="ChargesRemaining" type="Control" parent="."]
+anchor_left = 0.05
+anchor_top = 0.9
+anchor_right = 0.2
+anchor_bottom = 0.9
+margin_top = -40.0
+margin_right = 40.0
+
+[node name="Charge1" type="ColorRect" parent="ChargesRemaining"]
+anchor_right = 0.15
+anchor_bottom = 1.0
+
+[node name="Charge2" type="ColorRect" parent="ChargesRemaining"]
+anchor_left = 0.2
+anchor_right = 0.35
+anchor_bottom = 1.0
+
+[node name="Charge3" type="ColorRect" parent="ChargesRemaining"]
+anchor_left = 0.4
+anchor_right = 0.55
+anchor_bottom = 1.0
+
+[node name="Charge4" type="ColorRect" parent="ChargesRemaining"]
+anchor_left = 0.6
+anchor_right = 0.75
+anchor_bottom = 1.0
+
+[node name="Charge5" type="ColorRect" parent="ChargesRemaining"]
+anchor_left = 0.8
+anchor_right = 0.95
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.8
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlButtonPopup" parent="Control/HBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 96.0
+margin_bottom = 108.0
+curButton = 5
+buttonScale = Vector2( 0.7, 0.7 )
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+margin_left = 100.0
+margin_top = 21.0
+margin_right = 227.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "Focus"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlButtonPopup" parent="Control/HBoxContainer2" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 96.0
+margin_bottom = 108.0
+curButton = 3
+buttonScale = Vector2( 0.7, 0.7 )
+
+[node name="Label" type="Label" parent="Control/HBoxContainer2"]
+margin_left = 100.0
+margin_top = 21.0
+margin_right = 186.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 3 )
+text = "Exit"

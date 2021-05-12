@@ -6,9 +6,18 @@ const kMaxRuns := 5
 export var leftPosition := 40.0
 export var rightPosition := 1240.0
 
-var runsLeft := kMaxRuns
+var runsLeft := kMaxRuns setget set_runs_left
 
 signal on_finish()
+
+func set_runs_left(val: int):
+	runsLeft = val
+	for i in range($ChargesRemaining.get_child_count()):
+		var child: CanvasItem = $ChargesRemaining.get_child(i)
+		if i > val:
+			child.hide()
+		else:
+			child.show()
 
 func begin_run():
 	if runsLeft > 0:
@@ -25,7 +34,7 @@ func begin_run():
 		Utility.print_connect_errors(get_path(), [
 			marker.connect("on_submit", self, "on_submit")
 		])
-		runsLeft -= 1
+		self.runsLeft -= 1
 	else:
 		finish()
 		

@@ -36,6 +36,7 @@ enum ActionState {
 const animOffsets := {
 	"Idle": -10,
 	"Run": 20,
+	"Jump": 20,
 	"Transform": -20,
 	"Lucosa_Transform": -20,
 	"Lucosa_Idle": -20,
@@ -166,6 +167,7 @@ func set_facing_right(value: bool):
 func set_lucosa_form(value: bool):
 	lucosaForm = value
 	GlobalData.lucosaForm = value
+	GlobalData.chargeEnabled = value
 	canDoubleJump = form_has_double_jump()
 	#play_anim("Idle")
 	
@@ -222,14 +224,15 @@ func dive():
 func double_jump():
 	if canDoubleJump:
 		$SoundManager.play_sound("DoubleJump")
+		play_anim("Jump", true, false)
 		velocity.y = doubleJumpImpulse
 		state = ActionState.DoubleJump
 		canDoubleJump = false
 		
 func attack():
-	if canAttack && !is_anim_freeze_state():
+	if canAttack && state != ActionState.DoubleJump:
 		$SoundManager.play_sound("Attack")
-		play_anim("Attack")
+		play_anim("Attack", true)
 		var child := kHit1Particle.instance()
 		var dir := 1 if facingRight else -1
 		
@@ -271,7 +274,7 @@ func land_attack(var target: Node2D, var attackArea: Area2D):
 		attackArea.queue_free()
 		
 func uppercut():
-	if canDoubleJump && (!is_anim_freeze_state() || state == ActionState.DoubleJump):
+	if canDoubleJump && (state != ActionState.Attacking):
 		$SoundManager.play_sound("Uppercut")
 		play_anim("Uppercut", true, true)
 		velocity.y = lucosaJumpImpulse
@@ -356,6 +359,7 @@ func set_can_attack():
 	
 func jump(full := false):
 	$SoundManager.play_sound("Jump")
+	play_anim("Jump", true, true)
 	velocity.y = jumpImpulse if !lucosaForm else lucosaJumpImpulse
 	state = ActionState.Jump if !full else ActionState.FullJump
 	
@@ -369,7 +373,7 @@ func on_anim_complete():
 	elif state == ActionState.Attacking:
 		play_anim("Idle")
 		state = ActionState.Normal
-	elif state == ActionState.DoubleJump:
+	elif state == ActionState.DoubleJump && lucosaForm:
 		play_anim("Idle", true)
 		state = ActionState.Normal
 	
@@ -395,7 +399,8 @@ func is_stun_state() -> bool:
 		
 func is_anim_freeze_state():
 	return state == ActionState.Attacking \
-		|| state == ActionState.DoubleJump
+		|| state == ActionState.DoubleJump \
+		|| state == ActionState.Jump
 
 func on_damaged(_amt):
 	vulnerable = false

@@ -11,11 +11,7 @@
 			"false": [
 				{
 					"type": "Dialogue",
-					"text": "Attacks will consume Charges to deal extra damage. Charge Attacks regenerate over time."
-				},
-				{
-					"type": "Dialogue",
-					"text": "Press S to toggle Charge Attacks on and off."
+					"text": "Attacks will consume Charges to deal extra damage. Charge Attacks regenerate over time. Only your Lucosa form can use Charge Attacks."
 				},
 			]
 		}

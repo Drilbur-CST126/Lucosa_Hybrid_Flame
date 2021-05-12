@@ -24,8 +24,8 @@ width = 600
 modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
 position = Vector2( 640, 384 )
 shards = 2
-width = 275
+width = 375
 
 [node name="HighHealthRegion" parent="." index="4" instance=ExtResource( 1 )]
 position = Vector2( 640, 384 )
-width = 75
+width = 150

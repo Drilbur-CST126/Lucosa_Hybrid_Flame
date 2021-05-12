@@ -7,6 +7,9 @@ const kFillHeight := 71
 export(float, 0, 100) var fill = 100 setget set_fill
 export var enabled := true setget set_enabled
 
+func _ready():
+	self.enabled = GlobalData.lucosaForm
+
 func set_fill(val: int):
 	fill = val
 	#$Fill.region_rect.end.y = int(kFillHeight * (fill / 100.0))

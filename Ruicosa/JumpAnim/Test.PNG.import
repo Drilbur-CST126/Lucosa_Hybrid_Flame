@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FirstJump.PNG-b095802ab0f00a4cb3489f1144f3146e.stex"
+path="res://.import/Test.PNG-d9e8af0d03602cb36223b0180a98c4e0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Derenisa/Sprites/FirstJump.PNG"
-dest_files=[ "res://.import/FirstJump.PNG-b095802ab0f00a4cb3489f1144f3146e.stex" ]
+source_file="res://Ruicosa/JumpAnim/Test.PNG"
+dest_files=[ "res://.import/Test.PNG-d9e8af0d03602cb36223b0180a98c4e0.stex" ]
 
 [params]
 
@@ -20,10 +20,10 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+flags/filter=false
+flags/mipmaps=true
+flags/anisotropic=true
+flags/srgb=0
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

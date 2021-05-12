@@ -9,6 +9,7 @@ enum Buttons {
 	Z = 2,
 	X = 3,
 	C = 4,
+	S = 5,
 }
 
 export(Buttons) var curButton := Buttons.Up setget set_cur_button
@@ -31,6 +32,7 @@ func set_controller_pos(usingController: bool):
 		atlas.region.position.y = 96 if usingController else 0
 
 func _ready():
+	$TextureRect.texture = $TextureRect.texture.duplicate()
 	atlas = $TextureRect.texture as AtlasTexture
 	set_cur_button(curButton)
 	set_button_scale(buttonScale)

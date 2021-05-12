@@ -7,6 +7,7 @@ enum Buttons {
 	Z = 2,
 	X = 3,
 	C = 4,
+	S = 5,
 }
 
 export(Buttons) var curButton := Buttons.Up setget set_cur_button
