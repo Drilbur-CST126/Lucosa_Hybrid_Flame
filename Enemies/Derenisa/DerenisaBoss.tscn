@@ -1,8 +1,10 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Derenisa/DerenisaBoss.gd" type="Script" id=2]
 [ext_resource path="res://Graphics/Particles/Circle.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Derenisa/Sprites/Hit/IMG_1711.PNG" type="Texture" id=4]
+[ext_resource path="res://Enemies/Derenisa/Sprites/Hit/IMG_1712.PNG" type="Texture" id=5]
 [ext_resource path="res://Enemies/Derenisa/Sprites/Jump/IMG_1688.PNG" type="Texture" id=6]
 [ext_resource path="res://Enemies/Derenisa/Sprites/Run/IMG_1683.PNG" type="Texture" id=7]
 [ext_resource path="res://Enemies/Derenisa/Sprites/Dash/IMG_1678.PNG" type="Texture" id=8]
@@ -33,6 +35,7 @@
 [ext_resource path="res://Enemies/Derenisa/Sprites/Dash/DashStart/IMG_1695.PNG" type="Texture" id=33]
 [ext_resource path="res://Enemies/Derenisa/Sprites/ShootSwords/IMG_1698.PNG" type="Texture" id=34]
 [ext_resource path="res://Enemies/Derenisa/Sprites/ShootSwords/IMG_1703.PNG" type="Texture" id=35]
+[ext_resource path="res://Enemies/Derenisa/Sprites/Hit/IMG_1713.PNG" type="Texture" id=36]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 9 )
@@ -262,6 +265,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=9]
 length = 0.4
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -269,10 +273,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1.86607 ),
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 2.92818, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 6 ) ]
+"values": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 36 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -428,7 +432,6 @@ shape = SubResource( 1 )
 deathShards = 35
 maxHp = 40
 colArea = NodePath("../CollisionShape2D")
-giveParentFlashShader = false
 shakeOnDeath = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

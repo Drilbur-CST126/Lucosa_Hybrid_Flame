@@ -1,6 +1,7 @@
 extends "res://Code/PlayerArea.gd"
 
 const ButtonPopup = preload("res://Code/ButtonPopup.tscn")
+const SavePopup = preload("res://Menu/SavePopup.tscn")
 
 var playerInside := false
 var buttonPopup
@@ -35,3 +36,4 @@ func _process(_delta):
 	if playerInside && Input.is_action_just_pressed("ui_up"):
 		GlobalData.playerHp = GlobalData.playerMaxHp
 		GlobalData.save(get_parent().filename)
+		GlobalData.hud.add_child(SavePopup.instance())
