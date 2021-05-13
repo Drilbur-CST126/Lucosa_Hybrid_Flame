@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Test.PNG-d9e8af0d03602cb36223b0180a98c4e0.stex"
+path="res://.import/Test.PNG-b75bdacea92a8f7243ef026ee5047a9a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ruicosa/JumpAnim/Test.PNG"
-dest_files=[ "res://.import/Test.PNG-d9e8af0d03602cb36223b0180a98c4e0.stex" ]
+source_file="res://Ruicosa/JumpAnim/Lucosa/Test.PNG"
+dest_files=[ "res://.import/Test.PNG-b75bdacea92a8f7243ef026ee5047a9a.stex" ]
 
 [params]
 

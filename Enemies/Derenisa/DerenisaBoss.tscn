@@ -432,7 +432,6 @@ shape = SubResource( 1 )
 deathShards = 35
 maxHp = 40
 colArea = NodePath("../CollisionShape2D")
-shakeOnDeath = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Dash = SubResource( 2 )

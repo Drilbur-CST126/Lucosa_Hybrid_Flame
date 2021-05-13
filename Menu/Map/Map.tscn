@@ -405,7 +405,10 @@ polygon = PoolVector2Array( -622.755, -191.617, -586.826, -191.617, -574.85, -20
 points = PoolVector2Array( -574.85, -203.593, -586.826, -191.617, -622.755, -191.617, -622.755, -203.593 )
 
 [node name="RoomLine2" parent="Room21" instance=ExtResource( 2 )]
-points = PoolVector2Array( -574.85, -227.545, -586.826, -239.521, -622.755, -239.521, -622.755, -227.545 )
+points = PoolVector2Array( -574.85, -227.545, -586.826, -239.521, -592.814, -239.521 )
+
+[node name="RoomLine3" parent="Room21" instance=ExtResource( 2 )]
+points = PoolVector2Array( -622.754, -227.545, -622.754, -239.521, -610.778, -239.521 )
 
 [node name="Minecart" type="Sprite" parent="Room21"]
 position = Vector2( -598.801, -215.569 )
@@ -859,7 +862,7 @@ color = Color( 0.239216, 0.309804, 0.631373, 1 )
 polygon = PoolVector2Array( -670.659, -191.617, -670.659, -287.425, -526.946, -287.425, -526.946, -239.521, -622.755, -239.521, -622.755, -191.617 )
 
 [node name="RoomLine" parent="Room53" instance=ExtResource( 2 )]
-points = PoolVector2Array( -670.659, -191.617, -622.755, -191.617, -622.755, -239.521, -526.946, -239.521, -526.946, -287.425, -670.659, -287.425, -670.659, -191.617 )
+points = PoolVector2Array( -634.73, -191.617, -622.755, -191.617, -622.755, -239.521, -526.945, -239.521, -526.945, -287.425, -670.658, -287.425, -670.659, -191.617 )
 
 [node name="Room54" parent="." instance=ExtResource( 1 )]
 position = Vector2( 479.041, 239.521 )

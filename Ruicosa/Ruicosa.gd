@@ -35,11 +35,14 @@ enum ActionState {
 
 const animOffsets := {
 	"Idle": -10,
+	"Dive": -10,
+	"DiveLoop": -10,
 	"Run": 20,
 	"Jump": 20,
 	"Transform": -20,
 	"Lucosa_Transform": -20,
 	"Lucosa_Idle": -20,
+	"Lucosa_Jump": -20,
 	"Lucosa_Uppercut": -20,
 	"Lucosa_Run": -20,
 	"Lucosa_Attack": -20,
@@ -214,6 +217,7 @@ func dive():
 	if GlobalData.hasDive && state != ActionState.Dive \
 			&& is_air_state():
 		$SoundManager.play_sound("Dive")
+		play_anim("Dive", true, true)
 		jumpReleased = true
 		#self.facingRight = cos(angle) < 0.0
 		velocity.x = (1 if facingRight else -1) * diveVelocity
@@ -224,7 +228,7 @@ func dive():
 func double_jump():
 	if canDoubleJump:
 		$SoundManager.play_sound("DoubleJump")
-		play_anim("Jump", true, false)
+		play_anim("Jump", true, true)
 		velocity.y = doubleJumpImpulse
 		state = ActionState.DoubleJump
 		canDoubleJump = false
@@ -376,6 +380,8 @@ func on_anim_complete():
 	elif state == ActionState.DoubleJump && lucosaForm:
 		play_anim("Idle", true)
 		state = ActionState.Normal
+	elif $Sprite.animation == "Dive":
+		play_anim("DiveLoop", true)
 	
 func is_air_state() -> bool:
 	return state == ActionState.Falling \
@@ -400,7 +406,8 @@ func is_stun_state() -> bool:
 func is_anim_freeze_state():
 	return state == ActionState.Attacking \
 		|| state == ActionState.DoubleJump \
-		|| state == ActionState.Jump
+		|| state == ActionState.Jump \
+		|| state == ActionState.Dive
 
 func on_damaged(_amt):
 	vulnerable = false
@@ -506,6 +513,10 @@ func ruirui_abilities():
 		dive()
 	if Input.is_action_just_pressed("jump") && coyoteTime < 0.0:
 		double_jump()
+		
+	if state == ActionState.Dive && is_on_wall():
+		play_anim("Idle")
+		state = ActionState.Falling
 		
 func lucosa_abilities():
 	if Input.is_action_just_pressed("attack") && !Input.is_action_pressed("ui_up"):

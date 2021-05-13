@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/IMG_1717.PNG-c9a57a6048b097425d3762c3f17b4e10.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Ruicosa/JumpAnim/IMG_1717.PNG"
+dest_files=[ "res://.import/IMG_1717.PNG-c9a57a6048b097425d3762c3f17b4e10.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=true
+flags/anisotropic=true
+flags/srgb=0
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
