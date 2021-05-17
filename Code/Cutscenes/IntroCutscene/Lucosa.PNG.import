@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/IMG_1725.PNG-fe58719c220f590d7b4b393444057666.stex"
+path="res://.import/Lucosa.PNG-57f2bc8ff39ef8c075a5f0dcf33f9e6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ruicosa/JumpAnim/Lucosa/IMG_1725.PNG"
-dest_files=[ "res://.import/IMG_1725.PNG-fe58719c220f590d7b4b393444057666.stex" ]
+source_file="res://Code/Cutscenes/IntroCutscene/Lucosa.PNG"
+dest_files=[ "res://.import/Lucosa.PNG-57f2bc8ff39ef8c075a5f0dcf33f9e6e.stex" ]
 
 [params]
 

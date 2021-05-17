@@ -1,0 +1,20 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "...Okay. I think I escaped those guards. I don't think they saw me..."
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "At this point, going back right now would be dangerous. Guess I'll loop around this area and hope they give up."
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Shapeshifting in front of everyone like that, what was I thinking...?"
+		},
+	]
+}

@@ -5,6 +5,7 @@ export var playerPath: NodePath
 export var oneoff := true
 export var deleteParent := false
 export var resetState := true
+export var pause := true
 export(Array, GlobalData.Ability) var requiredAbilities
 
 var player: Ruicosa
@@ -33,7 +34,7 @@ func begin_cutscene():
 	player = get_node(playerPath) as Ruicosa
 	mockPlayer = player.begin_cutscene()
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	get_tree().paused = true
+	get_tree().paused = pause
 	increment_action()
 	
 func disable_cutscene():

@@ -14,6 +14,7 @@ var lucosaForm := false setget set_form
 var dest = null# Vector2
 
 signal destination_reached()
+signal animation_finished()
 
 func set_facing_right(value: bool):
 	facingRight = value
@@ -43,6 +44,9 @@ func get_anim() -> String:
 	if lucosaForm:
 		return $Sprite.animation.split("_")[0]
 	return $Sprite.animation
+	
+func on_anim_finished():
+	emit_signal("animation_finished")
 
 func jump():
 	velocity.y = kJumpImpulse
@@ -51,6 +55,11 @@ func move_to(globalPos: float, runToPos: bool):
 	dest = globalPos
 	running = runToPos
 	play_anim("Run")
+
+func _ready():
+	Utility.print_errors([
+		$Sprite.connect("animation_finished", self, "on_anim_finished"),
+	])
 
 func _process(delta):
 	velocity.y += GlobalData.gravity * delta

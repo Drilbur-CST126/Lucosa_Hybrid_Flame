@@ -10,7 +10,7 @@ func _ready():
 	$OptionVBoxContainer/NewGame.grab_focus()
 	$AnimationPlayer.play("Load")
 	
-const newGameScene := "res://Stages/FrogLands/JumpTutorialRoom.tscn"
+const newGameScene := "res://Code/Cutscenes/IntroCutscene/IntroCutscene.tscn"
 func new_game():
 	GlobalData.reset()
 	GlobalData.debug = false

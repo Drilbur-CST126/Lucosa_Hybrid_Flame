@@ -107,7 +107,8 @@ func begin_cutscene():
 	$CollisionShape2D.set_deferred("disabled", true)
 	
 	var mockPlayer = MockPlayerScene.instance()
-	get_parent().call_deferred("add_child", mockPlayer)
+	get_parent().call_deferred("add_child_below_node", self, mockPlayer)
+	
 	mockPlayer.kJumpImpulse = jumpImpulse
 	mockPlayer.kWalkSpeed = walkSpeed
 	mockPlayer.kRunSpeed = runSpeed

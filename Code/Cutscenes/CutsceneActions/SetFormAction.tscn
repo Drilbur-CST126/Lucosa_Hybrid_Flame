@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends CutsceneAction
+
+export var lucosaForm := true
+export var animate := false
+
+func activate():
+	.activate()
+	
+	if animate:
+		cutscene.mockPlayer.play_anim(\"Transform\", true)
+		yield(cutscene.mockPlayer, \"animation_finished\")
+	cutscene.mockPlayer.lucosaForm = lucosaForm
+	
+	finish()
+"
+
+[node name="SetFormAction" type="Node2D"]
+script = SubResource( 1 )
