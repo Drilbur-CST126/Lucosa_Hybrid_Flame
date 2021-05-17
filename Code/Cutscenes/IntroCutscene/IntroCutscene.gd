@@ -50,6 +50,7 @@ func increment_character_count():
 			start_text_display(dialogueArray[currentText])
 	else:
 		$IntroCutsceneTextbox.visible_characters = newChars
+		$CharBeep.play()
 		$CharacterTimer.start(kCharTimer / (2.0 if Input.is_action_pressed("ui_accept") else 1.0))
 		
 func play_anim():
