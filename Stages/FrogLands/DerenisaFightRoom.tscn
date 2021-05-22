@@ -89,11 +89,18 @@ magnitude = 1.0
 position = Vector2( -380, -66 )
 loadId = "Savepoint"
 
-[node name="SceneTransition" parent="." instance=ExtResource( 9 )]
+[node name="OpeningSceneTransition" parent="." instance=ExtResource( 9 )]
 position = Vector2( -973, -6 )
 colDimensions = Vector2( 12, 160 )
 direction = 2
 loadPath = "res://Stages/FrogLands/OpeningCutsceneRoom.tscn"
+overrideLoadId = ""
+
+[node name="CreditsSceneTransition" parent="." instance=ExtResource( 9 )]
+position = Vector2( 973, -110 )
+colDimensions = Vector2( 12, 160 )
+direction = 3
+loadPath = "res://Menu/Credits.tscn"
 overrideLoadId = ""
 
 [node name="CameraAreas" type="Node2D" parent="."]
@@ -131,5 +138,5 @@ dialoguePath = "res://Dialogue/Npcs/Derenisa/FinalBoss_1.json"
 [connection signal="defeated" from="DerenisaBoss" to="BossDoor2" method="open"]
 [connection signal="defeated" from="DerenisaBoss" to="BossWindGust" method="queue_free"]
 [connection signal="has_player" from="SignalArea" to="BossDoor" method="close"]
-[connection signal="has_player" from="SignalArea" to="DerenisaBoss" method="start"]
 [connection signal="has_player" from="SignalArea" to="Cutscene" method="begin_cutscene"]
+[connection signal="has_player" from="SignalArea" to="DerenisaBoss" method="start"]

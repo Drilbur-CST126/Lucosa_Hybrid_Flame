@@ -7,7 +7,8 @@ var player: Ruicosa
 signal has_player()
 
 func player_entered(p: Node2D):
-	player = p
+	if p is Ruicosa:
+		player = p
 	emit_signal("has_player")
 	if oneoff:
 		queue_free()

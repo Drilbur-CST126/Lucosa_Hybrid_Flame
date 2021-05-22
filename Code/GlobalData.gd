@@ -42,6 +42,7 @@ var usingController := false
 var regenMana := true
 var hud: CanvasLayer
 var flags := []
+var timePlayed := 0.0
 
 var hasDoubleJump := false
 var hasUppercut := false
@@ -233,6 +234,7 @@ func save(room_filename: String):
 		"maxCharges": maxCharges,
 		"foresight": playerForesight,
 		"roomsVisited": roomsVisited,
+		"timePlayed": timePlayed,
 	}
 	
 	var file = File.new()
@@ -278,7 +280,7 @@ func load_file(filename: String):
 		var saveLocation: String
 		
 		while file.get_position() < file.get_len():
-			var data = parse_json(file.get_line())
+			var data := parse_json(file.get_line()) as Dictionary
 			
 			self.flags += data["flags"]
 			self.lucosaForm = data["lucosaForm"]
@@ -294,6 +296,9 @@ func load_file(filename: String):
 			self.charges = maxCharges
 			self.playerForesight = int(max(playerForesight, data["foresight"]))
 			self.roomsVisited += data["roomsVisited"]
+			
+			if data.has("timePlayed"):
+				self.timePlayed += data["timePlayed"]
 			
 			self.lastRoomId = "Savepoint"
 			self.transDirection = Direction.Fade
@@ -361,6 +366,7 @@ func _process(delta):
 #	if Input.is_action_just_pressed("menu"):
 #		OS.window_fullscreen = !OS.window_fullscreen
 #		#print_stray_nodes()
+	timePlayed += delta
 	self.healCooldown -= delta
 	
 	if regenMana && charges < maxCharges:

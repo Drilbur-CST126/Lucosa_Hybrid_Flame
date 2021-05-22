@@ -1,0 +1,35 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "What...? No, how could I lose??",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Easy. You messed with the wrong Ruicosa.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "No... NO! I don't accept this! You cheated! You and your shapeshifting!",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Or, maybe you picked a bad fight. Maybe you're not as strong as you think you are.",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Derenisa",
+			"text": "This is not over. The Royal Guard and I will take you down!",
+		},
+		{
+			"type": "Dialogue",
+			"speaker": "Rez",
+			"text": "Well, sounds like you'll have your work cut out for you then.",
+		},
+	]
+}

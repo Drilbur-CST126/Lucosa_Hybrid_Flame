@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const WindSword := preload("res://Enemies/Derenisa/WindSword/WindSword.tscn")
 const WindWall := preload("res://Enemies/Derenisa/WindWall/WindWall.tscn")
+const DefeatKinematic := preload("res://Enemies/Derenisa/Defeat/DefeatKinematic.tscn")
 
 enum States { 
 		StartAnim = 0, 
@@ -200,7 +201,15 @@ func on_defeat():
 	for sword in swords:
 		sword.queue_free()
 		
+	var npc := DefeatKinematic.instance()
+	npc.velocity = Vector2(Utility.get_dir(global_position.x > 
+			GlobalData.player.global_position.x) * 128.0, kSecondJumpVel.y)
+	npc.scale = self.scale
+	get_parent().call_deferred("add_child_below_node", self, npc)
+	npc.global_position = self.global_position
+		
 	emit_signal("defeated")
+	queue_free()
 	
 	
 func take_damage(source):
