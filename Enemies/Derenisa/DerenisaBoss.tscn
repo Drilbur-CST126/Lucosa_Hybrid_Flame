@@ -430,6 +430,7 @@ shape = SubResource( 1 )
 
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
 deathShards = 35
+maxHp = 40
 colArea = NodePath("../CollisionShape2D")
 freeParentOnDeath = false
 
