@@ -15,7 +15,7 @@ const kButtonMap := {
 export(Buttons) var popupIcon
 
 var buttonPopup
-var player: Ruicosa
+var player: Node2D
 
 func action():
 	printerr("Error: InteractArea without an action!")

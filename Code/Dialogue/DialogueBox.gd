@@ -1,5 +1,7 @@
 extends Control
 
+const BrightenFocus := preload("res://Menu/BrightenFocus.tscn")
+
 const kInitCharDelay := 0.3
 const kBaseCharDelay := 0.07
 const kCharDelayMod := 0.01
@@ -65,6 +67,7 @@ func text_scroll_finished():
 			index += 1
 			
 			btn.add_child(textBox)
+			btn.add_child(BrightenFocus.instance())
 			$Options.add_child(btn)
 			
 			if lastBtn != null:

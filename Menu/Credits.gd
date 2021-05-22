@@ -52,4 +52,6 @@ func _process(delta):
 		
 func _input(event):
 	if (event is InputEventKey || event is InputEventJoypadButton) && done:
-		get_tree().change_scene("res://Menu/MainMenu.tscn")
+		Utility.print_errors([
+			get_tree().change_scene("res://Menu/MainMenu.tscn")
+		])

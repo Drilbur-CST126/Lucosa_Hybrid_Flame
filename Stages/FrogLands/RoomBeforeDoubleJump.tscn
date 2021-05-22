@@ -97,6 +97,9 @@ target = NodePath("../Ruicosa")
 [node name="Block" parent="." instance=ExtResource( 7 )]
 position = Vector2( -149.442, 45.1446 )
 
+[node name="Block2" parent="." instance=ExtResource( 7 )]
+position = Vector2( -37.7218, 117.292 )
+
 [node name="SecretTerrainArea" parent="." instance=ExtResource( 11 )]
 
 [node name="HdFalseTileMap" parent="SecretTerrainArea" instance=ExtResource( 1 )]
