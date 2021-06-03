@@ -191,6 +191,9 @@ size = Vector2( 24, 16 )
 [node name="Block" parent="." instance=ExtResource( 25 )]
 position = Vector2( -565.171, -58.8306 )
 
+[node name="Block2" parent="." instance=ExtResource( 25 )]
+position = Vector2( -610.11, 124.633 )
+
 [node name="Campfire" parent="." instance=ExtResource( 9 )]
 position = Vector2( -804.088, -62.6285 )
 

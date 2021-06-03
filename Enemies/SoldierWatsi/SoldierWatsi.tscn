@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/SoldierWatsi/Move.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/SoldierWatsi/SoldierWatsi.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/DefeatAnim/DefeatAnimCreator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/SoldierWatsi/Defeat.PNG" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 9
@@ -97,12 +99,11 @@ script = ExtResource( 3 )
 [node name="EnemyData" parent="." instance=ExtResource( 1 )]
 maxHp = 3
 colArea = NodePath("../CollisionShape2D")
-shakeOnDeath = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.167, 0.167 )
 frames = SubResource( 16 )
-frame = 10
+frame = 13
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -116,3 +117,6 @@ cast_to = Vector2( 0, 1 )
 
 [node name="StunTimer" type="Timer" parent="."]
 wait_time = 0.3
+
+[node name="DefeatAnimCreator" parent="." instance=ExtResource( 4 )]
+texture = ExtResource( 5 )

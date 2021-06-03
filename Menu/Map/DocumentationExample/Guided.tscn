@@ -1,0 +1,278 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Menu/Map/RoomLine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Menu/Map/Room.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Menu/Map/Room.gd" type="Script" id=3]
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2( 0.167, 0.167 )
+
+[node name="Room" type="Polygon2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 95.8083, 383.234 )
+color = Color( 0.188235, 0.313726, 0.196078, 1 )
+polygon = PoolVector2Array( 0, 0, 0, 47.9042, 239.521, 47.9042, 239.521, 0, 287.425, 0, 287.425, -47.9042, 287.425, -53.7556, 287.425, -95.8084, 239.521, -95.8084, 239.521, -143.713, 47.9042, -143.713, 47.9042, 0, 143.713, 0, 143.713, -47.9042, 95.8084, -47.9042, 95.8084, -95.8084, 191.617, -95.8084, 191.617, 0 )
+script = ExtResource( 3 )
+glowColor = Color( 0.81, 0.6696, 0.2835, 1 )
+
+[node name="RoomLine" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 47.9042, 11.976, 47.9042, 0, 0, 0, 0, 47.9042, 47.9042, 47.9042, 47.9042, 35.9281 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine2" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 47.9042, 0, 107.784, 0 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine3" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 131.737, 0, 143.713, 0, 143.713, 11.976 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine4" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 143.713, 35.9281, 143.713, 47.9042, 47.9042, 47.9042 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine5" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 143.713, 0, 191.617, 0, 191.617, 11.976 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine6" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 143.713, 47.9042, 191.617, 47.9042, 191.617, 35.9281 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine7" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 191.617, 47.9042, 239.521, 47.9042, 239.521, -11.976 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine8" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 239.521, 0, 287.425, 0, 287.425, -11.976 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine9" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 239.521, -83.8323, 239.521, -143.713, 227.545, -143.713 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine10" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 191.617, -107.784, 191.617, 0 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine11" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 191.617, -95.8084, 83.8323, -95.8084 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine12" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 59.8802, -95.8084, 47.9042, -95.8084, 47.9042, -143.713, 191.617, -143.713 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine13" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 95.8084, -95.8084, 95.8084, -47.9042, 83.8323, -47.9042 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine14" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 47.9042, -95.8084, 47.9042, -47.9042, 59.8802, -47.9042 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine15" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 95.8084, -47.9042, 143.713, -47.9042, 143.713, 0 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine16" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 47.9042, -47.9042, 47.9042, 0 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine17" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 239.521, -59.8802, 239.521, -47.9042, 287.425, -47.9042, 287.425, -59.8803 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine18" type="Line2D" parent="Room" instance=ExtResource( 1 )]
+z_index = 1
+points = PoolVector2Array( 287.425, -35.9281, 287.425, -47.9042, 239.521, -47.9042, 239.521, -35.9281 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="RoomLine19" parent="Room" instance=ExtResource( 1 )]
+points = PoolVector2Array( 287.425, -95.8084, 239.521, -95.8084 )
+
+[node name="RoomLine20" parent="Room" instance=ExtResource( 1 )]
+points = PoolVector2Array( 191.617, -131.737, 191.617, -143.713, 203.593, -143.713 )
+
+[node name="Upgrade" type="Polygon2D" parent="Room" instance=ExtResource( 2 )]
+color = Color( 0.380392, 0.658824, 0.807843, 1 )
+polygon = PoolVector2Array( 71.8563, -89.8204, 89.8204, -71.8563, 71.8563, -53.8922, 53.8922, -71.8563 )
+script = ExtResource( 3 )
+glowColor = Color( 0.81, 0.6696, 0.2835, 1 )
+
+[node name="Lock" type="Polygon2D" parent="Room" instance=ExtResource( 2 )]
+color = Color( 0.380392, 0.658824, 0.807843, 1 )
+polygon = PoolVector2Array( 107.784, -11.976, 107.784, 11.976, 131.737, 11.976, 131.737, -11.976 )
+script = ExtResource( 3 )
+glowColor = Color( 0.81, 0.6696, 0.2835, 1 )
+
+[node name="Lock2" type="Polygon2D" parent="Room" instance=ExtResource( 2 )]
+position = Vector2( 119.76, -23.9521 )
+color = Color( 0.380392, 0.658824, 0.807843, 1 )
+polygon = PoolVector2Array( 107.784, -11.9761, 107.784, 11.976, 131.737, 11.976, 131.737, -11.9761 )
+script = ExtResource( 3 )
+glowColor = Color( 0.81, 0.6696, 0.2835, 1 )
+
+[node name="Lock3" type="Polygon2D" parent="Room" instance=ExtResource( 2 )]
+position = Vector2( 119.76, -71.8563 )
+color = Color( 0.937255, 0.45098, 0.294118, 1 )
+polygon = PoolVector2Array( 107.784, -11.9761, 107.784, 11.976, 131.737, 11.976, 131.737, -11.9761 )
+script = ExtResource( 3 )
+glowColor = Color( 0.81, 0.6696, 0.2835, 1 )
+
+[node name="Room2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -3.05176e-05, 143.713 )
+color = Color( 0.188235, 0.313726, 0.196078, 1 )
+polygon = PoolVector2Array( 383.234, 95.8084, 383.234, 239.521, 526.946, 239.521, 526.946, 0, 622.754, 0, 622.754, -47.9042, 479.042, -47.9042, 479.042, 47.9042, 287.425, 47.9042, 287.425, 95.8084 )
+
+[node name="Hole" parent="Room2" instance=ExtResource( 2 )]
+color = Color( 0.239216, 0.0156863, 0.0156863, 1 )
+polygon = PoolVector2Array( 431.138, 95.8084, 431.138, 191.617, 479.042, 191.617, 479.042, 95.8084 )
+
+[node name="RoomLine" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 383.234, 155.689, 383.234, 95.8084, 431.138, 95.8084, 431.138, 191.617, 383.234, 191.617, 383.234, 179.641 )
+
+[node name="RoomLine2" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 383.234, 239.521, 526.946, 239.521, 526.946, 191.617, 514.97, 191.617 )
+
+[node name="RoomLine3" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 491.018, 191.617, 431.138, 191.617 )
+
+[node name="RoomLine4" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 479.042, 83.8323, 479.042, 191.617 )
+
+[node name="RoomLine5" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 526.946, 191.617, 526.946, 0, 514.97, 0 )
+
+[node name="RoomLine6" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 491.018, 0, 479.042, 0, 479.042, 59.8802 )
+
+[node name="RoomLine7" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 514.97, 0, 622.754, 0, 622.754, -47.9042, 479.042, -47.9042, 479.042, 0 )
+
+[node name="RoomLine8" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 479.042, 47.9042, 287.425, 47.9042, 287.425, 95.8084 )
+
+[node name="RoomLine9" parent="Room2" instance=ExtResource( 1 )]
+points = PoolVector2Array( 323.353, 95.8084, 479.042, 95.8084 )
+
+[node name="Upgrade" parent="Room2" instance=ExtResource( 2 )]
+color = Color( 0.937255, 0.45098, 0.294118, 1 )
+polygon = PoolVector2Array( 598.802, -41.9162, 616.766, -23.9521, 598.802, -5.98802, 580.838, -23.9521 )
+glowColor = Color( 0.811765, 0.670588, 0.282353, 1 )
+
+[node name="Upgrade2" parent="Room2" instance=ExtResource( 2 )]
+position = Vector2( -191.617, 143.713 )
+color = Color( 0.811765, 0.670588, 0.282353, 1 )
+polygon = PoolVector2Array( 598.802, -41.9162, 616.766, -23.9521, 598.802, -5.98802, 580.838, -23.9521 )
+glowColor = Color( 0.811765, 0.670588, 0.282353, 1 )
+
+[node name="Lock" parent="Room2" instance=ExtResource( 2 )]
+color = Color( 0.937255, 0.45098, 0.294118, 1 )
+polygon = PoolVector2Array( 491.018, 59.8802, 467.066, 59.8802, 467.066, 83.8323, 491.018, 83.8323 )

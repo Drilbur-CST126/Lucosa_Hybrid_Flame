@@ -87,7 +87,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 25 ), ExtResource( 24 ), ExtResource( 22 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "SpearAttackAim"
 length = 0.0416667
 step = 0.0416667
@@ -104,7 +104,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 23 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.375
 step = 0.0416667
 tracks/0/type = "value"
@@ -247,7 +247,6 @@ offset = Vector2( -90, -6 )
 deathShards = 2
 maxHp = 7
 colArea = NodePath("../CollisionShape2D")
-shakeOnDeath = false
 
 [node name="WallRayCast" type="RayCast2D" parent="."]
 position = Vector2( 0, -4 )
@@ -278,5 +277,5 @@ one_shot = true
 autoplay = "Run"
 anims/Run = SubResource( 2 )
 anims/SpearAttack = SubResource( 3 )
-anims/SpearAttackAim = SubResource( 5 )
-anims/SpearAttackWindup = SubResource( 4 )
+anims/SpearAttackAim = SubResource( 4 )
+anims/SpearAttackWindup = SubResource( 5 )
