@@ -2,9 +2,9 @@ extends Control
 
 const kScrollSpeed := 128.0
 const kRooms := 59
-const kPercentPerRoom := 30.0 / kRooms
+const kPercentPerRoom := 20.0 / kRooms
 const kPercentPerAbility := 40.0 / 6
-const kPercentPerOptional := 30.0 / 9
+const kPercentPerOptional := 40.0 / 9
 
 var creditsSize: float
 var done := false

@@ -46,16 +46,16 @@ margin_top = 356.0
 margin_right = 1280.0
 margin_bottom = 1445.0
 custom_fonts/font = ExtResource( 2 )
-text = "A game by Chelle Clark
+text = "A game by Jordan Clark
 
 Programming
-Chelle Clark
+Jordan Clark
 
 Art
-Chelle Clark
+Jordan Clark
 
 SFX
-Chelle Clark
+Jordan Clark
 Made with BFXR & LabChirp
 "
 align = 1

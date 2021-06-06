@@ -1,0 +1,13 @@
+{
+	"tree": 
+	[
+		{
+			"type": "Dialogue",
+			"text": "WARNING!\n The path ahead is dangerous!",
+		},
+		{
+			"type": "Dialogue",
+			"text": "Make sure you are well-prepared for the final stretch!",
+		},
+	]
+}
