@@ -44,7 +44,7 @@ align = 1
 [node name="GameBy" type="Label" parent="Credits"]
 margin_top = 356.0
 margin_right = 1280.0
-margin_bottom = 1627.0
+margin_bottom = 1445.0
 custom_fonts/font = ExtResource( 2 )
 text = "A game by Chelle Clark
 
@@ -56,16 +56,14 @@ Chelle Clark
 
 SFX
 Chelle Clark
-
-Music
-<Music>
+Made with BFXR & LabChirp
 "
 align = 1
 
 [node name="Godot" type="HBoxContainer" parent="Credits"]
-margin_top = 1631.0
+margin_top = 1449.0
 margin_right = 1280.0
-margin_bottom = 1719.0
+margin_bottom = 1537.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Credits/Godot"]
@@ -84,9 +82,9 @@ text = "    Made with Godot"
 align = 1
 
 [node name="ThankYou" type="Label" parent="Credits"]
-margin_top = 1723.0
+margin_top = 1541.0
 margin_right = 1280.0
-margin_bottom = 2175.0
+margin_bottom = 1993.0
 custom_fonts/font = ExtResource( 2 )
 text = "
 
@@ -96,27 +94,27 @@ Thank you for playing!"
 align = 1
 
 [node name="CompletionPercent" type="Label" parent="Credits"]
-margin_top = 2179.0
+margin_top = 1997.0
 margin_right = 1280.0
-margin_bottom = 2358.0
+margin_bottom = 2176.0
 custom_fonts/font = ExtResource( 2 )
 text = "
 Completion %: "
 align = 1
 
 [node name="PlayTime" type="Label" parent="Credits"]
-margin_top = 2362.0
+margin_top = 2180.0
 margin_right = 1280.0
-margin_bottom = 2541.0
+margin_bottom = 2359.0
 custom_fonts/font = ExtResource( 2 )
 text = "
 Play time: "
 align = 1
 
 [node name="PressToCont" type="Label" parent="Credits"]
-margin_top = 2545.0
+margin_top = 2363.0
 margin_right = 1280.0
-margin_bottom = 2724.0
+margin_bottom = 2542.0
 custom_fonts/font = ExtResource( 2 )
 text = "
 Press any key to continue"
