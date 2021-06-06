@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Enemies/Firefly/Firefly.gd" type="Script" id=1]
 [ext_resource path="res://Code/Enemy.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Enemies/Firefly/Graphics/Leg.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Firefly/Graphics/Eyes.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Firefly/Graphics/Wings.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/DefeatAnim/DefeatAnimCreator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/Firefly/Graphics/Defeat.PNG" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 3 )
@@ -114,11 +116,15 @@ position = Vector2( -10.2849, 22.2269 )
 
 [node name="Wings" parent="Graphics/Body1" instance=ExtResource( 6 )]
 position = Vector2( -32.619, -29.1142 )
+frame = 3
+offset = Vector2( 2, 3 )
 offsets = PoolVector2Array( 0, 0, 0, 3, 6, 4, 2, 3, 2, 3, 0, 2 )
 
 [node name="BackWings" parent="Graphics/Body1" instance=ExtResource( 6 )]
 show_behind_parent = true
 position = Vector2( 32.8805, -29.1142 )
+frame = 3
+offset = Vector2( 2, 3 )
 flip_h = true
 offsets = PoolVector2Array( 0, 0, 0, 3, 6, 4, 2, 3, 2, 3, 0, 2 )
 
@@ -137,3 +143,6 @@ texture = SubResource( 8 )
 [node name="AnimationTimer" type="Timer" parent="."]
 wait_time = 0.7
 autostart = true
+
+[node name="DefeatAnimCreator" parent="." instance=ExtResource( 7 )]
+texture = ExtResource( 8 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Strike.png-ecfa38d98663c50461afd0b2a0c98e6e.stex"
+path="res://.import/Defeat.PNG-4f4c157149e712b9457d770333106f92.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/FrogWarrior/Strike.png"
-dest_files=[ "res://.import/Strike.png-ecfa38d98663c50461afd0b2a0c98e6e.stex" ]
+source_file="res://Enemies/WaterLucosa/Sprites/Defeat.PNG"
+dest_files=[ "res://.import/Defeat.PNG-4f4c157149e712b9457d770333106f92.stex" ]
 
 [params]
 
